@@ -22,7 +22,7 @@
                     <p class="font-weight-normal">*Fecha ultimo pago*</p>
                     <p class="mb-5">Estatus: *Estatus de pago factura*</p>
                     <!-- Aqui debería enviar con el id del incidente seleccionado a esta pagina -->
-                    <h6 class="card-text"><a href="vistadetalladapago.php" style="text-decoration: none; color: black;">Vista Detallada</a></h6>
+                    <h6 class="card-text"><a href="{{ Route('vistadetalladapago')}}"  style="text-decoration: none; color: black;">Vista Detallada</a></h6>
                   </div>
                 </div>
               </div>
