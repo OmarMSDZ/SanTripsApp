@@ -3,9 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -85,12 +85,12 @@ Route::get('/admin/encargadospaquetes', function () {
 //rutas interfaz de paquetes turisticos admin (GET)
 
 Route::get('/admin/categoriaspaquetes', function () {
-    return view('admin/admincategoriaspaquetes');
-})->name('categoriaspaquetes');
+    return view('admin/admincategoriapaquetes');
+})->name('admincategoriapaquetes');
 
 Route::get('/admin/imagenespaquetes', function () {
     return view('admin/adminimagenespaquetes');
-})->name('imagenespaquetes');
+})->name('adminimagenespaquetes');
 
 Route::get('/admin/ofertas', function () {
     return view('admin/adminofertas');
@@ -100,11 +100,11 @@ Route::get('/admin/ofertas', function () {
 
 Route::get('/admin/provincias', function () {
     return view('admin/adminprovincias');
-})->name('provincias');
+})->name('adminprovincias');
 
 Route::get('/admin/tiposdestino', function () {
     return view('admin/admintiposdestino');
-})->name('tiposdestino');
+})->name('admintiposdestino');
 
 Route::get('/admin/asignardestinospaquetes', function () {
     return view('admin/asignardestinospaquetes');
@@ -114,21 +114,21 @@ Route::get('/admin/asignardestinospaquetes', function () {
 
 Route::get('/admin/tiposerviciosprov', function () {
     return view('admin/admintiposerviciosprov');
-})->name('tiposerviciosprov');
+})->name('admintiposerviciosprov');
 
 //rutas interfaz de vehiculos admin (GET)
 
 Route::get('/admin/marcasvehiculos', function () {
     return view('admin/adminmarcasvehiculos');
-})->name('marcasvehiculos');
+})->name('adminmarcasvehiculos');
 
 Route::get('/admin/modelosvehiculos', function () {
     return view('admin/adminmodelosvehiculos');
-})->name('modelosvehiculos');
+})->name('adminmodelosvehiculos');
 
 Route::get('/admin/tiposvehiculo', function () {
     return view('admin/admintiposvehiculo');
-})->name('tiposvehiculo');
+})->name('admintiposvehiculo');
 
 Route::get('/admin/asignarvehiculoempleado', function () {
     return view('admin/asignarvehiculoempleado');
@@ -157,7 +157,16 @@ Route::get('/admin/vistadetalladaincidente', function () {
 // Rutas para formularios interfaces admin (POST)
 
 
-// Rutas para navegar interfaces usuario (GET)
+// Rutas para navegar interfaces usuario (GET), la de inicio es la primera que sale al abrir la app 
+Route::get('/', function () {
+    return view('usuario/inicio');
+})->name('inicio');
+
+
+Route::get('/incidentes', function () {
+    return view('usuario/incidentes');
+})->name('incidentes');
+
 
 // Rutas para formularios interfaces usuario (POST)
 

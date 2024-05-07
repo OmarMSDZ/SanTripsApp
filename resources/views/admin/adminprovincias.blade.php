@@ -17,8 +17,8 @@
                 <button type="button submit" name="update" class="btn btn-warning">Actualizar</button>
                 <br>
                 <p class="font-weight-bold text-uppercase px-3 small mt-3 mb-0">Otras Acciones</p>
-                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="admindestinos.php" style="text-decoration: none; color: white;"> Ir a Admin Destinos</a></button>
-                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="adminempresasproveedoras.php" style="text-decoration: none; color: white;"> Ir a Admin Emp. Prov.</a></button>
+                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="{{ Route('admindestinos')}}"  style="text-decoration: none; color: white;"> Ir a Admin Destinos</a></button>
+                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="{{ Route('adminempresasproveedoras')}}"  style="text-decoration: none; color: white;"> Ir a Admin Emp. Prov.</a></button>
              
             </div>
         </form>

@@ -27,7 +27,7 @@
                 <button type="button submit" name="update" class="btn btn-warning">Actualizar</button>
                 <br>
                 <p class="font-weight-bold text-uppercase px-3 small mt-3 mb-0">Otras Acciones</p>
-                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="admindestinos.php" style="text-decoration: none; color: white;"> Volver a Admin Destinos</a></button>
+                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="{{ Route('admindestinos')}}"  style="text-decoration: none; color: white;"> Volver a Admin Destinos</a></button>
              </div>
         </form>
     </div>
