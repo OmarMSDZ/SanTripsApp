@@ -29,7 +29,7 @@
                 <button type="button" class="btn btn-warning">Actualizar</button>
                 <br>
                 <p class="font-weight-bold text-uppercase px-3 small mt-3 mb-0">Otras Acciones</p>
-                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="adminempleados.php" style="text-decoration: none; color: white;">Ir a Admin Empleados</a></button>
+                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="{{ Route('adminempleados')}}"  style="text-decoration: none; color: white;">Ir a Admin Empleados</a></button>
             </div>
         </form>
     </div>

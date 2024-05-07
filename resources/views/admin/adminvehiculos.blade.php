@@ -73,11 +73,11 @@
                 <button type="button" class="btn btn-warning">Actualizar</button>
                 <br>
                 <p class="font-weight-bold text-uppercase px-3 small mt-3 mb-0">Otras Acciones</p>
-                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="adminmarcasvehiculos.php" style="text-decoration: none; color: white;"> Administrar Marcas</a></button>
-                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="adminmodelosvehiculos.php" style="text-decoration: none; color: white;"> Administrar Modelos</a></button>
-                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="admintiposvehiculo.php" style="text-decoration: none; color: white;"> Administrar Tipos</a></button>
-                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="asignarvehiculoempleado.php" style="text-decoration: none; color: white;"> Asignar Vehículo Empleado</a></button>
-                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="asignarvehiculopaquete.php" style="text-decoration: none; color: white;"> Asignar Vehículo Paq.</a></button>
+                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="{{ Route('adminmarcasvehiculos')}}" style="text-decoration: none; color: white;"> Administrar Marcas</a></button>
+                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="{{ Route('adminmodelosvehiculos')}}" style="text-decoration: none; color: white;"> Administrar Modelos</a></button>
+                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="{{ Route('admintiposvehiculo')}}" style="text-decoration: none; color: white;"> Administrar Tipos</a></button>
+                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="{{ Route('asignarvehiculoempleado')}}" style="text-decoration: none; color: white;"> Asignar Vehículo Empleado</a></button>
+                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="{{ Route('asignarvehiculopaquete')}}" style="text-decoration: none; color: white;"> Asignar Vehículo Paq.</a></button>
             </div>
         </form>
     </div>

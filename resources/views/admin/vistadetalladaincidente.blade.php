@@ -26,7 +26,7 @@
 <br>
 
 <p class="font-weight-bold text-uppercase px-3 small mt-3 mb-0">Otras Acciones</p>
-<button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="adminincidentes.php" style="text-decoration: none; color: white;">Ir a Admin Incidentes</a></button>
+<button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="{{ Route('adminincidentes')}}"  style="text-decoration: none; color: white;">Ir a Admin Incidentes</a></button>
 </form>
 </div>
 <x-footeradmin></x-footeradmin>

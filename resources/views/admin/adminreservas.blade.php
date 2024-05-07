@@ -30,7 +30,7 @@
                     <p class="mb-5">Estatus: *Estatus de la reservacion*</p>
                     
                     <!-- Aqui debería enviar con el id del incidente seleccionado a esta pagina -->
-                    <h6 class="card-text"><a href="vistadetalladaincidente.php" style="text-decoration: none; color: black;">Vista Detallada</a></h6>
+                    <h6 class="card-text"><a href="{{ Route('vistadetalladareserva')}}"  style="text-decoration: none; color: black;">Vista Detallada</a></h6>
                   </div>
                 </div>
               </div>

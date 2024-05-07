@@ -67,9 +67,9 @@
                 <button type="button submit" name="update" class="btn btn-warning">Actualizar</button>
                 <br>
                 <p class="font-weight-bold text-uppercase px-3 small mt-3 mb-0">Otras Acciones</p>
-                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="adminimagenespaquetes.php" style="text-decoration: none; color: white;"> Asignar Imagenes</a></button>
-                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="admincategoriapaquetes.php" style="text-decoration: none; color: white;"> Administrar Categorías</a></button>
-                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="adminofertas.php" style="text-decoration: none; color: white;"> Administrar Ofertas</a></button>
+                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="{{ Route('adminimagenespaquetes')}}"  style="text-decoration: none; color: white;"> Asignar Imagenes</a></button>
+                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="{{ Route('admincategoriapaquetes')}}"  style="text-decoration: none; color: white;"> Administrar Categorías</a></button>
+                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="{{ Route('adminofertas')}}"  style="text-decoration: none; color: white;"> Administrar Ofertas</a></button>
             </div>
         </form>
     </div>
