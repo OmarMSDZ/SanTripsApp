@@ -1,0 +1,307 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.nav{
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 100px;
+  line-height: 100px;
+  background: linear-gradient(hsl(206, 34%, 20%), transparent);
+  z-index: 100;
+}
+.nav-logo p{
+  color: white;
+  font-size: 25px;
+  font-weight: 600;
+}
+.nav-menu ul{
+  display: flex;
+}
+.nav-menu ul li{
+  list-style-type: none;
+}
+.nav-menu ul li .link{
+  text-decoration: none;
+  font-weight: 500;
+  color: #fff;
+  padding-bottom: 15px;
+  margin: 0 25px;
+}
+.link:hover, .active{
+  border-bottom: 2px solid #fff;
+}
+.nav-button .btn{
+  width: 130px;
+  height: 40px;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.4);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: .3s ease;
+}
+
+
+
+
+header {
+  background-color: #ffcc00;
+  color: #ffffff;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(img/santi.jpg);
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+}
+
+#logo {
+  width: 100px;
+  height: 100px; 
+  border-radius: 50%; 
+  overflow: hidden; 
+}
+
+#logo img {
+  width: 100%;
+  height: auto;
+  display: block; 
+}
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Cardo:400i|Rubik:400,700&display=swap');
+
+:root {
+  --d: 700ms;
+  --e: cubic-bezier(0.19, 1, 0.22, 1);
+  --font-sans: 'Rubik', sans-serif;
+  --font-serif: 'Cardo', serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+.page-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+  padding: 1rem;
+  max-width: 1024px;
+  margin: 0 auto;
+  font-family: var(--font-sans);
+  justify-content: center;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  padding: 1rem;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  background-color: #333;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1), 
+  0 2px 2px rgba(0,0,0,0.1), 
+  0 4px 4px rgba(0,0,0,0.1), 
+  0 8px 8px rgba(0,0,0,0.1),
+  0 16px 16px rgba(0,0,0,0.1);
+}
+
+.card:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 110%;
+  background-size: cover;
+  background-position: 0 0;
+  transition: transform calc(var(--d) * 1.5) var(--e);
+  pointer-events: none;
+}
+
+.card:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  pointer-events: none;
+  background-image: linear-gradient(
+    to bottom,
+    hsla(0, 0%, 0%, 0) 0%,
+    hsla(0, 0%, 0%, 0.009) 11.7%,
+    hsla(0, 0%, 0%, 0.034) 22.1%,
+    hsla(0, 0%, 0%, 0.072) 31.2%,
+    hsla(0, 0%, 0%, 0.123) 39.4%,
+    hsla(0, 0%, 0%, 0.182) 46.6%,
+    hsla(0, 0%, 0%, 0.249) 53.1%,
+    hsla(0, 0%, 0%, 0.320) 58.9%,
+    hsla(0, 0%, 0%, 0.394) 64.3%,
+    hsla(0, 0%, 0%, 0.468) 69.3%,
+    hsla(0, 0%, 0%, 0.540) 74.1%,
+    hsla(0, 0%, 0%, 0.607) 78.8%,
+    hsla(0, 0%, 0%, 0.668) 83.6%,
+    hsla(0, 0%, 0%, 0.721) 88.7%,
+    hsla(0, 0%, 0%, 0.762) 94.1%,
+    hsla(0, 0%, 0%, 0.780) 100% /* Cambiado a 0.780 en lugar de 0.790 */
+  );
+  transition: transform calc(var(--d) * 2) var(--e);
+}
+
+.card:nth-child(1):before{
+  background-image: url(https://th.bing.com/th/id/R.e85b0ca2a5d8c0a01397097044296590?rik=dZNyez6j7wkP9w&pid=ImgRaw&r=0);
+}
+.card:nth-child(2):before{
+  background-image: url(img/eco.jpg);
+
+}
+.card:nth-child(3):before {
+  background-image: url(https://th.bing.com/th/id/R.7d4495d7d6d28251c82f2e780c5badc1?rik=b7oErEc6d1ri5A&pid=ImgRaw&r=0);
+}
+
+.card:nth-child(4):before{
+   background-image: url(img/restaurantes.png);
+}
+.card:nth-child(5):before {
+  background-image: url(img/carnaval.jpg);
+}
+
+.card:nth-child(6):before {
+  background-image: url(https://th.bing.com/th/id/OIP.KJMn4U2SAfxhkRFUMKDe1gHaE8?rs=1&pid=ImgDetMain);
+}
+
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  transition: transform var(--d) var(--e);
+  z-index: 1;
+  justify-content: center;
+}
+
+.title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.copy {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-style: italic;
+  line-height: 1.35;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #146C94;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 10px;
+}
+
+.btn:hover {
+  background-color: #B0DAFF;
+}
+
+.btn:focus {
+  outline: 1px dashed yellow;
+  outline-offset: 3px;
+}
+
+
+@media (hover: hover) and (min-width: 600px) {
+  .card:hover, .card:focus-within {
+    align-items: center;
+    
+    &:before { transform: translateY(-4%); }
+    &:after { transform: translateY(-50%); }
+    
+    .content { transform: translateY(0); }
+  }
+  
+  .card:focus-within {
+    &:before, &:after, .content { transition-duration: 0s; }
+  }
+}
+
+.more-info {
+  display: none;
+}
+
+.more-info ul {
+  list-style-type: circle; 
+  padding-left: 20px; 
+  text-align: left;
+}
+
+.more-info ul li {
+  margin-bottom: 10px;
+  list-style: none;
+}
+
+.more-info ul li::before {
+  content: "*";
+  margin-right: 5px;
+}
+
+.btn-reservar {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #146C94;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-reservar:hover {
+  background-color: #B0DAFF;
+}
+
+.btn-reservar:focus {
+  outline: 1px dashed yellow;
+  outline-offset: 3px;
+}
+
+
+

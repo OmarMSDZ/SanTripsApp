@@ -1,0 +1,171 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    background-color: rgb(255, 240, 240);
+    color: #ffffff;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(img/santi.jpg);
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    font-size: 2.5rem; /* Reducir el tamaño de fuente para dispositivos móviles */
+}
+
+
+#logo {
+    width: 100px;
+    height: 100px; 
+    border-radius: 50%; 
+    overflow: hidden; 
+}
+
+#logo img {
+    width: 100%;
+    height: auto;
+    display: block; 
+}
+
+/* Estilos para hacer el h1 más llamativo */
+h1 {
+    font-size: 54px;
+    color: #007bff; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra del texto */
+    letter-spacing: 2px; /* Espaciado entre letras */
+    text-transform: uppercase; /* Convertir texto a mayúsculas */
+  }
+  
+  /* Estilos para el h2 */
+h2 {
+    font-size: 36px;
+    color: #1100ffb2; /* Color del texto */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra del texto */
+    letter-spacing: 1px; /* Espaciado entre letras */
+  }
+  
+
+p {
+    font-size: 18px;
+    font-family: sans-serif;
+}
+
+/* FORMULARIO */
+
+.formulario {
+    max-width: 600px; /* Cambiar de ancho fijo a ancho máximo */
+    width: 90%; /* Ajustar el ancho para dispositivos más pequeños */
+    margin: 20px auto; /* Centrar el formulario */
+    padding: 20px;
+    background-color: #F0FFFF;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.forms-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+label {
+    display: block;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+input[type="text"],
+input[type="email"],
+input[type="date"],
+select {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+select {
+    width: 100%;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* BOTON DE RESERVAR */
+
+input[type="submit"] {
+    margin-top: 20px;
+    padding: 10px;
+    background-color:  #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px; /* Tamaño de letra aumentado */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Sombra de texto */
+}
+
+input[type="submit"]:hover {
+    background-color:  #007bff;
+}
+
+/* BOTON DE BORRARr */
+
+input[type="reset"] {
+    margin-top: 20px;
+    padding: 10px;
+    background-color:  #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+input[type="reset"]:hover {
+    background-color:  #007bff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
