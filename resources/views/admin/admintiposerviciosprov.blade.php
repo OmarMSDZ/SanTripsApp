@@ -18,7 +18,7 @@
                 <button type="button submit" name="update" class="btn btn-warning">Actualizar</button>
                 <br>
                 <p class="font-weight-bold text-uppercase px-3 small mt-3 mb-0">Otras Acciones</p>
-                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="adminempresasproveedoras.php" style="text-decoration: none; color: white;">Volver a Admin Empresas Proveedoras</a></button>
+                <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="{{ Route('adminempresasproveedoras')}}"  style="text-decoration: none; color: white;">Volver a Admin Empresas Proveedoras</a></button>
             </div>
         </form>
     </div>

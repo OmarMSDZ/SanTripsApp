@@ -1,7 +1,7 @@
 <x-headadmin></x-headadmin>
 <div class="page-content p-5" id="content">
 <!-- Contenido de admin incidentes -->
-<h2>Admin Incidentes <span class="text-gray float-end">SanTrips</span></h2>
+<h2>Admin Reservas <span class="text-gray float-end">SanTrips</span></h2>
 <h3>Vista Detallada</h3>
 <hr>
 
@@ -24,11 +24,11 @@
 </select>
 
 <br>
-<button type="submit" class="btn btn-success">Actualizar Estado Incidente</button>
+<button type="submit" class="btn btn-success">Actualizar Estado Reserva</button>
 <br>
 
 <p class="font-weight-bold text-uppercase px-3 small mt-3 mb-0">Otras Acciones</p>
-<button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="adminincidentes.php" style="text-decoration: none; color: white;">Ir a Admin Incidentes</a></button>
+<button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="{{ Route('adminreservas')}}"  style="text-decoration: none; color: white;">Ir a Admin Reservas</a></button>
 </form>
 </div>
 <x-footeradmin></x-footeradmin>

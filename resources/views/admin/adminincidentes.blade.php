@@ -25,7 +25,7 @@
                     <p class="font-weight-normal">*Fecha del incidente*</p>
                     <p class="mb-5">Estatus: *Estatus del incidente*</p>
                     <!-- Aqui debería enviar con el id del incidente seleccionado a esta pagina -->
-                    <h6 class="card-text"><a href="vistadetalladaincidente.php" style="text-decoration: none; color: black;">Vista Detallada</a></h6>
+                    <h6 class="card-text"><a href="{{ Route('vistadetalladaincidente')}}"  style="text-decoration: none; color: black;">Vista Detallada</a></h6>
                   </div>
                 </div>
               </div>
