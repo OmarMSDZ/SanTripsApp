@@ -23,7 +23,7 @@
                 <div class="btn-group">
                     <button class="btn btn-primary">Leer más</button>
 
-                    <button class="btn btn-secondary">Reserva</button>
+                    <button class="btn btn-secondary"><a href="{{route('paquetes_turisticos')}}" style="text-decoration: none; color: white;"> Reserva</a></button>
                 </div>
 
             </div>
@@ -108,13 +108,7 @@
 
                             <div class="card-content">
 
-                                <div class="card-rating">
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                </div>
+                        
 
                                 <p class="card-subtitle">
                                     <a href="#">Santiago</a>
@@ -143,13 +137,7 @@
 
                             <div class="card-content">
 
-                                <div class="card-rating">
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                </div>
+                       
 
                                 <p class="card-subtitle">
                                     <a href="#">Santiago</a>
@@ -180,13 +168,7 @@
 
                             <div class="card-content">
 
-                                <div class="card-rating">
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                </div>
+                       
 
                                 <p class="card-subtitle">
                                     <a href="#">Santiago</a>
@@ -445,7 +427,7 @@
                 <!--
 AQUI DEBE MANDAR A LA PAGINA DE PAQUETES PARA RESERVAR -->
 
-                <button class="btn btn-primary">View All Packages</button>
+                <button class="btn btn-primary"> <a href="{{route('paquetes_turisticos')}}" style="text-decoration: none; color: white;">   Descubrir Más </a></button>
 
             </div>
         </section>

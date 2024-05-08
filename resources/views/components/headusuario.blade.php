@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SanTrips - Agencia de viajes</title>
-    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="shortcut icon" href="{{asset('img/SanTrips (logo azul).svg')}}" type="image/svg+xml">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -213,12 +213,10 @@
                             </li>
                             <li class="nav-item"><a class="nav-link scrollto" href="{{ route('inicio') }}#about">Sobre
                                     Nosotros</a></li>
-                            <li class="nav-item"><a class="nav-link scrollto" href="#services">Paquetes Turísticos</a>
+                            <li class="nav-item"><a class="nav-link scrollto" href="{{route('paquetes_turisticos')}}">Paquetes Turísticos</a>
                             </li>
-                            <li class="nav-item"><a class="nav-link scrollto" href="#portfolio">Mis Reservas</a></li>
-                            <li class="nav-item"><a class="nav-link scrollto"
-                                    href="{{ route('inicio') }}#contact">Contacto</a></li>
-
+                            <li class="nav-item"><a class="nav-link scrollto" href="{{route('reservas_realizadas')}}">Mis Reservas</a></li>
+                            <li class="nav-item"><a class="nav-link scrollto" href="{{ route('inicio') }}#contact">Contacto</a></li>
                             <li class="nav-item"><a class="nav-link scrollto" href="#about">Registro</a></li>
                             <li class="nav-item"><a class="nav-link scrollto" href="#about">Login</a></li>
                         </ul>
