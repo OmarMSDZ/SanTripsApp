@@ -3,9 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+ 
+ 
+ Route::get('/welcome', function () {
+     return view('welcome');
+ });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -39,6 +41,11 @@ Route::get('/admin/usuarios', function () {
 Route::get('/admin/empleados', function () {
     return view('admin/adminempleados');
 })->name('adminempleados');
+
+// prueba del crud generado
+ 
+//
+
 
 Route::get('/admin/paquetes', function () {
     return view('admin/adminpaquetes');
@@ -122,6 +129,7 @@ Route::get('/admin/marcasvehiculos', function () {
     return view('admin/adminmarcasvehiculos');
 })->name('adminmarcasvehiculos');
 
+
 Route::get('/admin/modelosvehiculos', function () {
     return view('admin/adminmodelosvehiculos');
 })->name('adminmodelosvehiculos');
@@ -166,6 +174,18 @@ Route::get('/', function () {
 Route::get('/incidentes', function () {
     return view('usuario/incidentes');
 })->name('incidentes');
+
+Route::get('/reservas_realizadas', function () {
+    return view('usuario/reservas_realizadas');
+})->name('reservas_realizadas');
+
+Route::get('/paquetes_turisticos', function () {
+    return view('usuario/paquetes');
+})->name('paquetes_turisticos');
+
+Route::get('/formulario_reservas', function () {
+    return view('usuario/formulario_reservas');
+})->name('formulario_reservas');
 
 
 // Rutas para formularios interfaces usuario (POST)
