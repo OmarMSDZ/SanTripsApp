@@ -20,6 +20,7 @@
       <!--Grid column-->
       <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
         <h5 class="text-uppercase">Ponte en contacto mediante estas vías</h5>
+        <hr>
 
         <ul class="list-unstyled">
           <li class="contact-item">
