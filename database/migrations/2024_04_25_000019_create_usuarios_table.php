@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('Usuarios', function (Blueprint $table) {
           
-            $table->increments('IdUsuario');
+            $table->id('IdUsuario');
             $table->string('Nombres', 50);
             $table->string('Apellidos', 50);
             $table->string('Nombre_usuario', 50);
@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('Email', 50);
             $table->string('Contrasena', 50);
             $table->string('TipoUsuario', 25);
-            $table->unsignedInteger('fk_IdPreferenciaViaje');
-
+            $table->unsignedBigInteger('fk_IdPreferenciaViaje');
+            $table->timestamps();
             $table->index(["fk_IdPreferenciaViaje"], 'fk_IdPreferenciaViaje');
 
 

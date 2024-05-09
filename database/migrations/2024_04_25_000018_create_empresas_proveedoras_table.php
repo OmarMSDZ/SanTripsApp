@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('Empresas_proveedoras', function (Blueprint $table) {
            
-            $table->increments('IdEmpresasprov');
+            $table->id('IdEmpresasprov');
             $table->string('Nombre', 50);
             $table->string('Telefono', 15);
             $table->string('Email', 50);
             $table->string('Direccion', 75);
-            $table->unsignedInteger('fk_IdTipoServicio');
-            $table->unsignedInteger('fk_IdProvincia');
+            $table->unsignedBigInteger('fk_IdTipoServicio');
+            $table->unsignedBigInteger('fk_IdProvincia');
+            $table->timestamps();
 
             $table->index(["fk_IdTipoServicio"], 'fk_IdTipoServicio');
 

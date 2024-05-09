@@ -1,10 +1,16 @@
 <?php
 
+//controladores
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReservaController;
+ 
+use App\Http\Controllers\CategoriasPaquetesController;
+use App\Http\Controllers\OfertasController;
+
+
 use Illuminate\Support\Facades\Route;
 
- 
- 
  Route::get('/welcome', function () {
      return view('welcome');
  });
@@ -79,7 +85,7 @@ Route::get('/admin/varias', function () {
     return view('admin/adminvarias');
 })->name('adminvarias');
 
-//rutas interfaz de empleado admin (GET)
+//rutas interfaz de empleado admin  
 
 Route::get('/admin/cargospuestos', function () {
     return view('admin/admincargospuestos');
@@ -91,19 +97,30 @@ Route::get('/admin/encargadospaquetes', function () {
 
 //rutas interfaz de paquetes turisticos admin (GET)
 
-Route::get('/admin/categoriaspaquetes', function () {
-    return view('admin/admincategoriapaquetes');
-})->name('admincategoriapaquetes');
+// Route::get('/admin/categoriaspaquetes', function () {
+//     return view('admin/admincategoriapaquetes');
+// })->name('admincategoriapaquetes');
+
+
+//RUTAS NUEVAS
+Route::resource('admin/Categorias_paquetes', CategoriasPaquetesController::class)->parameters([
+    'Categorias_paquetes' => 'categorias_paquetes'
+]);
+
+Route::resource('admin/Ofertas',OfertasController::class)->parameters([
+    'Ofertas' => 'ofertas'
+]);
+
 
 Route::get('/admin/imagenespaquetes', function () {
     return view('admin/adminimagenespaquetes');
 })->name('adminimagenespaquetes');
 
-Route::get('/admin/ofertas', function () {
-    return view('admin/adminofertas');
-})->name('adminofertas');
+// Route::get('/admin/ofertas', function () {
+//     return view('admin/adminofertas');
+// })->name('adminofertas');
 
-//rutas interfaz de destinos admin (GET)
+//rutas interfaz de destinos admin 
 
 Route::get('/admin/provincias', function () {
     return view('admin/adminprovincias');
@@ -117,13 +134,13 @@ Route::get('/admin/asignardestinospaquetes', function () {
     return view('admin/asignardestinospaquetes');
 })->name('asignardestinospaquetes');
 
-//rutas interfaz de empresas proveedoras admin (GET)
+//rutas interfaz de empresas proveedoras admin  
 
 Route::get('/admin/tiposerviciosprov', function () {
     return view('admin/admintiposerviciosprov');
 })->name('admintiposerviciosprov');
 
-//rutas interfaz de vehiculos admin (GET)
+//rutas interfaz de vehiculos admin  
 
 Route::get('/admin/marcasvehiculos', function () {
     return view('admin/adminmarcasvehiculos');
@@ -146,17 +163,17 @@ Route::get('/admin/asignarvehiculopaquete', function () {
     return view('admin/asignarvehiculopaquete');
 })->name('asignarvehiculopaquete');
  
-//rutas interfaz de reservas admin (GET)
+//rutas interfaz de reservas admin  
 Route::get('/admin/vistadetalladareserva', function () {
     return view('admin/vistadetalladareserva');
 })->name('vistadetalladareserva');
  
-//rutas vista detallada pago (GET)
+//rutas vista detallada pago  
 Route::get('/admin/vistadetalladapago', function () {
     return view('admin/vistadetalladapago');
 })->name('vistadetalladapago');
  
-//rutas vista detallada incidentes (GET)
+//rutas vista detallada incidentes  
 Route::get('/admin/vistadetalladaincidente', function () {
     return view('admin/vistadetalladaincidente');
 })->name('vistadetalladaincidente');
@@ -183,12 +200,25 @@ Route::get('/paquetes_turisticos', function () {
     return view('usuario/paquetes');
 })->name('paquetes_turisticos');
 
-Route::get('/formulario_reservas', function () {
-    return view('usuario/formulario_reservas');
-})->name('formulario_reservas');
+//  Route::get('/formulario_reservas', function () {
+//      return view('usuario/formulario_reservas');
+//  })->name('formulario_reservas');
 
 
-// Rutas para formularios interfaces usuario (POST)
+// Rutas para formularios interfaces usuario (POST), de esta forma se puede 
+Route::get('/formulario-reserva/{id}', [ReservaController::class, 'mostrarFormulario'])->name('formulario_reserva');
+Route::post('/procesar-reserva', [ReservaController::class, 'procesarReserva'])->name('procesar_reserva');
+
+Route::post('/reservar_paquete/{paquete_id}', [ReservaController::class, 'vistaReservacion'])->name('vista_reservacion');
+
+// File: routes/web.php
+
+//Route::match(['get', 'post'],'/usuario/formulario_reservas', [ReservaController::class, 'formulario_reservas'])->name('formulario_reservas');
+
+
+
+//autentificacion de usuario
+Route::get('admin/adminmenu', [HomeController::class,'index']);
 
 
 require __DIR__.'/auth.php';
