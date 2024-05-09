@@ -13,18 +13,19 @@ return new class extends Migration
     {
         Schema::create('Vehiculo_transporte', function (Blueprint $table) {
   
-            $table->increments('IdVehiculo');
+            $table->id('IdVehiculo');
             $table->text('Descripcion');
             $table->string('Matricula', 15);
             $table->date('FechaIngreso');
             $table->integer('CantidadPasajeros');
-            $table->integer('A�oVehiculo');
+            $table->integer('AnoVehiculo');
             $table->string('Color', 15);
             $table->string('TipoCombustible', 20);
-            $table->unsignedInteger('fk_IdTipoVehiculo');
-            $table->unsignedInteger('fk_IdMarcaVehiculo');
-            $table->unsignedInteger('fk_IdModeloVehiculo');
-
+            $table->unsignedBigInteger('fk_IdTipoVehiculo');
+            $table->unsignedBigInteger('fk_IdMarcaVehiculo');
+            $table->unsignedBigInteger('fk_IdModeloVehiculo');
+            $table->timestamps();
+            
             $table->index(["fk_IdTipoVehiculo"], 'fk_IdTipoVehiculo');
 
             $table->index(["fk_IdMarcaVehiculo"], 'fk_IdMarcaVehiculo');

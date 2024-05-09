@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('Imagenes_paquetes', function (Blueprint $table) {
  
-            $table->increments('IdImgPaquete');
+            $table->id('IdImgPaquete');
             $table->binary('Imagen');
+            $table->timestamps();
         });
     }
 

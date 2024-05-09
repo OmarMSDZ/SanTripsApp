@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('Cargos_empleado', function (Blueprint $table) {
  
-            $table->increments('IdCargo');
+            $table->id('IdCargo');
             $table->string('Cargo', 50);
             $table->float('Sueldo');
             $table->text('Responsabilidades');
+            $table->timestamps();
         });
     }
 

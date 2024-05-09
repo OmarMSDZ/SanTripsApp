@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('Ofertas', function (Blueprint $table) {
       
-            $table->increments('IdOferta');
+            $table->id('IdOferta');
             $table->text('Descripcion');
             $table->integer('Porcentaje');
             $table->date('FechaDesde');
             $table->date('FechaHasta');
+            $table->timestamps();
         });
     }
  

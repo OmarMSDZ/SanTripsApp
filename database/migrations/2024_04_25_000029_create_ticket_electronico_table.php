@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('Ticket_electronico', function (Blueprint $table) {
            
-            $table->increments('Id');
+            $table->id('Id');
             $table->dateTime('Fecha');
             $table->dateTime('Valido_hasta');
             $table->text('Punto_encuentro');
-            $table->unsignedInteger('fk_IdReservacion');
-            $table->unsignedInteger('fk_IdEmpleado');
-            $table->unsignedInteger('fk_IdUsuario');
-
+            $table->unsignedBigInteger('fk_IdReservacion');
+            $table->unsignedBigInteger('fk_IdEmpleado');
+            $table->unsignedBigInteger('fk_IdUsuario');
+            $table->timestamps();
+            
             $table->index(["fk_IdReservacion"], 'fk_IdReservacion');
 
             $table->index(["fk_IdEmpleado"], 'fk_IdEmpleado');

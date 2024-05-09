@@ -13,15 +13,17 @@ return new class extends Migration
     {
         Schema::create('Reservacion', function (Blueprint $table) {
         
-            $table->increments('IdReservacion');
+            $table->id('IdReservacion');
             $table->date('FechaDesde');
             $table->date('FechaHasta');
             $table->text('Detalles_adicionales')->nullable()->default(null);
             $table->float('MontoTotal')->nullable()->default(null);
-            $table->unsignedInteger('fk_IdMetodopago');
-            $table->unsignedInteger('fk_IdUsuario');
-            $table->unsignedInteger('fk_IdEstadoReservacion');
-
+            $table->integer('CantidadPersonas')->default('1');
+            $table->unsignedBigInteger('fk_IdMetodopago');
+            $table->unsignedBigInteger('fk_IdUsuario');
+            $table->unsignedBigInteger('fk_IdEstadoReservacion');
+            $table->timestamps();
+            
             $table->index(["fk_IdMetodopago"], 'fk_IdMetodopago');
 
             $table->index(["fk_IdUsuario"], 'fk_IdUsuario');
