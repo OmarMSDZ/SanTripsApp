@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('Reservacion_personas', function (Blueprint $table) {
  
-            $table->increments('Id');
+            $table->id('Id');
             $table->string('Nombre', 50);
             $table->string('Cedula', 15);
             $table->string('Telefono', 12);
             $table->integer('Edad');
-            $table->unsignedInteger('fk_IdReservacion');
-
+            $table->unsignedBigInteger('fk_IdReservacion');
+            $table->timestamps();
+            
             $table->index(["fk_IdReservacion"], 'fk_IdReservacion');
 
 

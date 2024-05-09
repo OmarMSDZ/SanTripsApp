@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('Pago', function (Blueprint $table) {
          
-            $table->increments('IdPago');
+            $table->id('IdPago');
             $table->float('Monto');
             $table->dateTime('Fecha');
             $table->string('Num_referencia', 15);
+            $table->timestamps();
         });
     }
  

@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('Tipo_vehiculo', function (Blueprint $table) {
           
-            $table->increments('IdTipoVehiculo');
+            $table->id('IdTipoVehiculo');
             $table->string('TipoVehiculo', 25);
+            $table->timestamps();
         });
     }
 

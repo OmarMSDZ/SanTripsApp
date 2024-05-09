@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('Paquetes_destinos', function (Blueprint $table) {
           
-            $table->increments('Id');
-            $table->unsignedInteger('fk_IdPaquete');
-            $table->unsignedInteger('fk_IdDestino');
-
+            $table->id('Id');
+            $table->unsignedBigInteger('fk_IdPaquete');
+            $table->unsignedBigInteger('fk_IdDestino');
+            $table->timestamps();
+            
             $table->index(["fk_IdPaquete"], 'fk_IdPaquete');
 
             $table->index(["fk_IdDestino"], 'fk_IdDestino');

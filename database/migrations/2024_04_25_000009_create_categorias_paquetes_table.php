@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('Categorias_paquetes', function (Blueprint $table) {
         
-            $table->increments('IdCategoriapaq');
+            $table->id('IdCategoriapaq');
             $table->string('Categoriapaq', 50);
+            $table->timestamps();
         });
     }
 

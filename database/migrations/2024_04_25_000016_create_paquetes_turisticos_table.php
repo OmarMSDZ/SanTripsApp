@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('Paquetes_turisticos', function (Blueprint $table) {
           
-            $table->increments('IdPaquete');
+            $table->id('IdPaquete');
             $table->string('Nombre', 50);
             $table->text('Descripcion');
             $table->float('Costo');
@@ -23,8 +23,9 @@ return new class extends Migration
             $table->string('Alojamiento', 50)->nullable()->default(null);
             $table->integer('Tiempo_estimado');
             $table->string('Disponibilidad', 25);
-            $table->unsignedInteger('fk_IdCategoriapaq');
-            $table->unsignedInteger('fk_IdOferta');
+            $table->unsignedBigInteger('fk_IdCategoriapaq');
+            $table->unsignedBigInteger('fk_IdOferta');
+            $table->timestamps();
 
             $table->index(["fk_IdCategoriapaq"], 'fk_IdCategoriapaq');
 

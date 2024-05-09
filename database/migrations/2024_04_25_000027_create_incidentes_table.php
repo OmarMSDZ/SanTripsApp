@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('Incidentes', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('IdIncidente');
+            $table->id('IdIncidente');
             $table->dateTime('FechaIncidente');
             $table->text('Descripcion');
-            $table->unsignedInteger('fk_IdTipoIncidente');
-            $table->unsignedInteger('fk_IdUsuario');
-
+            $table->unsignedBigInteger('fk_IdTipoIncidente');
+            $table->unsignedBigInteger('fk_IdUsuario');
+            $table->timestamps();
+            
             $table->index(["fk_IdTipoIncidente"], 'fk_IdTipoIncidente');
 
             $table->index(["fk_IdUsuario"], 'fk_IdUsuario');

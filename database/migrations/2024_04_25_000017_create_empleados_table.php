@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('Empleados', function (Blueprint $table) {
           
-            $table->increments('IdEmpleado');
+            $table->id('IdEmpleado');
             $table->string('Cedula', 13);
             $table->string('Nombres', 50);
             $table->string('Apellidos', 50);
@@ -23,8 +23,8 @@ return new class extends Migration
             $table->dateTime('Fecha_salida')->nullable()->default(null);
             $table->string('Estado', 15);
             $table->string('LicenciaConducir', 20)->nullable()->default(null);
-            $table->unsignedInteger('fk_IdCargo');
-
+            $table->unsignedBigInteger('fk_IdCargo');
+            $table->timestamps();
             $table->index(["fk_IdCargo"], 'fk_IdCargo');
 
 

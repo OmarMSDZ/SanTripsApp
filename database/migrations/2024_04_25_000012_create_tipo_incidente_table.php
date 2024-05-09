@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('Tipo_incidente', function (Blueprint $table) {
           
-            $table->increments('IdTipoIncidente');
+            $table->id('IdTipoIncidente');
             $table->string('TipoIncidente', 50);
+            $table->timestamps();
         });
     }
 

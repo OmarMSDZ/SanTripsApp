@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('Preferencias_viaje', function (Blueprint $table) {
      
-            $table->increments('IdPreferenciaViaje');
+            $table->id('IdPreferenciaViaje');
             $table->string('PreferenciaViaje', 50);
+            $table->timestamps();
         });
     }
  

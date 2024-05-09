@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('Detalle_pago', function (Blueprint $table) {
           
-            $table->increments('IdDetallePago');
-            $table->unsignedInteger('fk_NumFactura');
-            $table->unsignedInteger('fk_IdPago');
-
+            $table->id('IdDetallePago');
+            $table->unsignedBigInteger('fk_NumFactura');
+            $table->unsignedBigInteger('fk_IdPago');
+            $table->timestamps();
+            
             $table->index(["fk_NumFactura"], 'fk_NumFactura');
 
             $table->index(["fk_IdPago"], 'fk_IdPago');

@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('Destinos', function (Blueprint $table) {
      
-            $table->increments('IdDestino');
+            $table->id('IdDestino');
             $table->string('Destino', 50);
             $table->time('HorarioDesde');
             $table->time('HorarioHasta');
             $table->text('Observaciones');
-            $table->unsignedInteger('fk_IdTipoDestino');
-            $table->unsignedInteger('fk_IdProvincia');
+            $table->unsignedBigInteger('fk_IdTipoDestino');
+            $table->unsignedBigInteger('fk_IdProvincia');
+            $table->timestamps();
         
             $table->index(["fk_IdTipoDestino"], 'fk_IdTipoDestino');
             $table->index(["fk_IdProvincia"], 'fk_IdProvincia');
