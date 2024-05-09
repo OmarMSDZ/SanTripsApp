@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('Estado_reservacion', function (Blueprint $table) {
         
-            $table->increments('IdEstadoReservacion');
+            $table->id('IdEstadoReservacion');
             $table->string('EstadoReservacion', 15);
+            $table->timestamps();
         });
     }
 

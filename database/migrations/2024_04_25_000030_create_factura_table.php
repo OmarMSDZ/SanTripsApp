@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('Factura', function (Blueprint $table) {
            
-            $table->increments('NumFactura');
+            $table->id('NumFactura');
             $table->dateTime('Fecha');
             $table->text('Descripcion')->nullable()->default(null);
             $table->float('Monto');
@@ -22,8 +22,9 @@ return new class extends Migration
             $table->string('Tipo_pago', 50);
             $table->string('Plazo', 25)->nullable()->default(null);
             $table->float('Monto_pendiente')->nullable()->default(null);
-            $table->unsignedInteger('fk_IdReservacion');
-
+            $table->unsignedBigInteger('fk_IdReservacion');
+            $table->timestamps();
+            
             $table->index(["fk_IdReservacion"], 'fk_IdReservacion');
 
 

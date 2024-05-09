@@ -120,7 +120,19 @@
     <li class="nav-item">
       <a href="#" class="nav-link text-dark font-italic ">
                 <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
-                Cerrar Sesión
+
+                <form method="POST" action="{{ route('logout') }}">
+                  @csrf
+
+                  <x-responsive-nav-link :href="route('logout')"
+                          onclick="event.preventDefault();
+                                      this.closest('form').submit();">
+                      {{ __('Log Out') }}
+                  </x-responsive-nav-link>
+              </form>
+
+
+           
             </a>
     </li>
 

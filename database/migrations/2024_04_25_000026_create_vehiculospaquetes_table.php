@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('Vehiculos_paquetes', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('IdVehiculosPaquetes');
-            $table->unsignedInteger('fk_IdVehiculo');
-            $table->unsignedInteger('fk_IdPaquete');
-
+            $table->id('IdVehiculosPaquetes');
+            $table->unsignedBigInteger('fk_IdVehiculo');
+            $table->unsignedBigInteger('fk_IdPaquete');
+            $table->timestamps();
+            
             $table->index(["fk_IdVehiculo"], 'fk_IdVehiculo');
 
             $table->index(["fk_IdPaquete"], 'fk_IdPaquete');

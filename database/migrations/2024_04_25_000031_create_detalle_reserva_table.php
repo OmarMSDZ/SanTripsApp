@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('Detalle_reserva', function (Blueprint $table) {
           
-            $table->increments('IdDetalleReserva');
+            $table->id('IdDetalleReserva');
             $table->integer('cantidad');
-            $table->unsignedInteger('fk_IdPaquete');
-            $table->unsignedInteger('fk_IdReservacion');
-
+            $table->unsignedBigInteger('fk_IdPaquete');
+            $table->unsignedBigInteger('fk_IdReservacion');
+            $table->timestamps();
+            
             $table->index(["fk_IdPaquete"], 'fk_IdPaquete');
 
             $table->index(["fk_IdReservacion"], 'fk_IdReservacion');

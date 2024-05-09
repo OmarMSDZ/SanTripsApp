@@ -12,8 +12,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tipo_serviciosproveedor', function (Blueprint $table) {
-            $table->increments('IdTipoServicio');
+            $table->id('IdTipoServicio');
             $table->string('TipoServicio', 50);
+            $table->timestamps();
         });
     }
  
