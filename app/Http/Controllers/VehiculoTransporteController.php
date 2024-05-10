@@ -13,6 +13,7 @@ class VehiculoTransporteController extends Controller
     public function index()
     {
         //
+        return view('admin.adminvehiculos');
     }
 
     /**

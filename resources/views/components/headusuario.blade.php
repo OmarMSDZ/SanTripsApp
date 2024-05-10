@@ -21,6 +21,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
         rel="stylesheet">
+{{-- para lo de paypal --}}
+        <script src="https://www.paypal.com/sdk/js?client-id={{config('paypal.client_id')}}&currency=DOP&intent=capture"></script>
 </head>
 <style>
     /*--------------------------------------------------------------
@@ -231,14 +233,14 @@
             </nav><!-- .navbar --> --}}
 
 
-            <nav id="navbar" class="navbar navbar-expand-lg">
+            <nav id="navbar" class="navbar navbar-expand-lg ">
                 <div class="container-fluid">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
+                    <div class="collapse navbar-collapse " id="navbarNav">
+                        <ul class="navbar-nav ">
                             <li class="nav-item"><a class="nav-link scrollto" href="{{ route('inicio') }}">Inicio</a></li>
                             <li class="nav-item"><a class="nav-link scrollto" href="{{ route('inicio') }}#about">Sobre Nosotros</a></li>
                             <li class="nav-item"><a class="nav-link scrollto" href="{{ route('paquetes_turisticos') }}">Paquetes Turísticos</a></li>
