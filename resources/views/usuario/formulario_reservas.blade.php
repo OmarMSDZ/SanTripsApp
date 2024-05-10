@@ -1,7 +1,7 @@
 <x-headusuario></x-headusuario>
 
 <!-- DATOS PERSONALES -->
-<h1>Reservacion de paquetes</h1>
+{{-- <h1>Reservacion de paquetes</h1>
 <form class="formulario" action="insertar.php" method="POST">
     <p>El ID del paquete es</p>
     <input type="text" name="id" value="{{ $id }}">
@@ -38,12 +38,159 @@
 
     <!-- no tocar lo que tiene en el medio -->
     <input type="reset" value="Borrar Campos">&nbsp;&nbsp;&nbsp;<input type="submit" value="Reservar">
-</form>
+</form> --}}
+
+
+
+      <!-- Section: Design Block -->
+      <section class="mt-5">
+        <!-- Jumbotron -->
+        {{-- Aqui iria la info del paquete --}}
+        @php
+             $paquetes = DB::select("SELECT p.idPaquete as idpaq, p.Nombre as nombre, p.Descripcion as descripcion,
+         p.Costo as costo, p.Num_personas as numpersonas, p.Edades as edades, p.Idiomas as idiomas, p.Alojamiento as alojamiento, p.Tiempo_estimado as tiempoestimado, 
+        p.Disponibilidad as disponibilidad, c.CategoriaPaq as categoria, o.Porcentaje as porciento FROM
+          paquetes_turisticos as p INNER JOIN categorias_paquetes as c ON p.fk_IdCategoriaPaq=c.IdCategoriaPaq 
+          INNER JOIN ofertas as o ON p.fk_IdOferta=o.IdOferta WHERE p.idPaquete=$id");
+        @endphp
+
+        <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+            <div class="container">
+                <div class="row gx-lg-5 align-items-center">
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <h2 class="my-5 display-3 fw-bold ls-tight">
+                            Información del Paquete <br />
+                            {{-- <span class="text-primary">for your business</span> --}}
+                        </h2>
+                            @foreach ($paquetes as $paquete)
+                                
+                            
+                        
+                        <p style="color: hsl(217, 10%, 50.8%)"> Nombre: {{$paquete->nombre}}</p>
+                        <hr>
+                        <p style="color: hsl(217, 10%, 50.8%)"> Categoría: {{$paquete->categoria}}</p>
+                        <hr>
+                        <p style="color: hsl(217, 10%, 50.8%)"> Descripción: {{$paquete->descripcion}}</p>
+                        <hr>
+                        <p style="color: hsl(217, 10%, 50.8%)"> Costo: {{$paquete->costo}}</p>
+                        <hr>
+                        <p style="color: hsl(217, 10%, 50.8%)"> N° Max. Personas: {{$paquete->numpersonas}}</p>
+                        <hr>
+                        <p style="color: hsl(217, 10%, 50.8%)"> Edades: {{$paquete->edades}}</p>
+                        <hr>
+                        <p style="color: hsl(217, 10%, 50.8%)"> Idiomas: {{$paquete->idiomas}}</p>
+                        <hr>
+                        <p style="color: hsl(217, 10%, 50.8%)"> Alojamiento: {{$paquete->alojamiento}}</p>
+                        <hr>
+                        <p style="color: hsl(217, 10%, 50.8%)"> Duración Estimada (Horas): {{$paquete->tiempoestimado}}</p>
+                        <hr>
+                        <p style="color: hsl(217, 10%, 50.8%)"> Disponibilidad: {{$paquete->disponibilidad}}</p>
+                        <hr>
+                        <p style="color: hsl(217, 10%, 50.8%)"> Porcentaje Ofertas (%): {{$paquete->porciento}}</p>
+                       
+                    </div>
+                    {{-- aqui iria el form de registro --}}
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <div class="card">
+                            <div class="card-body py-5 px-md-5">
+                                <form action="{{route('Reservacion.store')}}" method="POST">
+                                    @csrf
+                                   <center><img src="{{asset('img/SanTrips (logo azul).svg')}}" alt="" class="form-img" style="width:6em;heigth:6em;"></center>
+                                    <center> <h2>Reserva este Paquete</h2> </center>
+                                    <hr>
+
+                                   <input type="text" name="paquete_id" id="" value="{{$paquete->idpaq}}" hidden>
+                                   <input type="text" name="usuario_id" id="" value="{{Auth::user()->id}}" hidden>
+                                    
+                                   
+                                   <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <div data-mdb-input-init class="form-outline">
+                                                <label class="form-label" for="FechaSeleccionada">Reservar para el Día:</label>
+                                                <input type="date" name="FechaSeleccionada" id="" class="form-control">
+                                                <br>
+                                                <label class="form-label" for="DetallesAdicionales">Detalles adicionales (A tener en cuenta por parte de nuestro equipo)</label>
+                                                <textarea name="DetallesAdicionales" id="" cols="30" rows="6" class="form-control"></textarea>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <div data-mdb-input-init class="form-outline">
+                                                <label class="form-label" for="CantidadPersonasAdultos">Cantidad de Personas</label>
+                                                {{-- Estos campos deben de sumarse y presentarse en la parte de CantidadPersonas --}}
+                                                <hr class="mt-0">
+                                      
+                                                <label class="form-label" for="CantidadPersonasAdultos">Adultos:</label>
+                                                <input type="number" name="CantidadPersonasAdultos" class="form-control">
+                                            
+                                                <label class="form-label" for="CantidadPersonasAdolescentes">Adolescentes:</label>
+                                                <input type="number" name="CantidadPersonasAdolescentes" class="form-control">
+                                        
+                                                <label class="form-label" for="CantidadPersonasNinos">Niños:</label>
+                                                <input type="number" name="CantidadPersonasNinos" class="form-control">
+                                      
+                                                <center>
+                                                <label for="CantidadPersonas">Cantidad Total Personas:</label>
+                                                <input type="number" name="CantidadPersonas" class="form-control" min="1" max="{{$paquete->numpersonas}}">
+                                                </center>
+                                              
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+
+                                    <div class="row">
+                                    <div class="col-md-6 mb-4">
+                                        
+                                         
+                                        <div data-mdb-input-init class="form-outline">
+                                            <label for="MontoTotal">Monto Total a Pagar (RD$) </label>
+                                            {{-- Con esto se calcula el monto total aplicandole el descuento --}}
+                                            <input type="number" name="MontoTotal" class="form-control" readonly step="0.01" value="{{($paquete->costo)-((($paquete->costo)*($paquete->porciento))/100)}}">
+                                        </div>
+
+                                        @endforeach
+                                    </div>
+
+                                    <div class="col-md-6 mb-4">
+                                        
+                                        {{-- En este caso, al darle a submit, deberia enviarnos al form de pago con la forma correspondiente --}}
+                                        @php
+                                            $metodospago = DB::select('SELECT IdMetodoPago as id, Metodo_Pago as metodo FROM metodo_pago;');
+                                        @endphp
+                                        <div data-mdb-input-init class="form-outline">
+                                            <label for="MetodoPago">Método de Pago</label>
+                                            <select name="MetodoPago" id="" class="form-select">
+                                                @foreach ($metodospago as $mp)
+                                                    <option value="{{$mp->id}}">{{$mp->metodo}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        
+
+                                    </div>
+                                </div>
+                                    <!-- Submit button -->
+                                    <center>
+                                        <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">Reservar</button>
+                                    </center>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Jumbotron -->
+    </section>
+    <!-- Section: Design Block -->
 
 
 <!-- FORMULARIO DE PAGO -->
 
-
+{{-- 
 <form class="formulario" action="procesar_pago_paypal.php" method="POST">
     <h2>Formulario de Pago PayPal</h2>
     <div class="form-group">
@@ -73,7 +220,7 @@
         <textarea id="descripcion" name="descripcion" rows="4"></textarea>
         <input type="submit" value="Pagar con PayPal">
     </div>
-</form>
+</form> --}}
 
 
 

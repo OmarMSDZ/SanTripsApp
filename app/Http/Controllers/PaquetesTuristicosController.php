@@ -13,6 +13,7 @@ class PaquetesTuristicosController extends Controller
     public function index()
     {
         //
+        return view('admin.adminpaquetes');
     }
 
     /**
