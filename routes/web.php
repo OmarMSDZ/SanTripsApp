@@ -1,14 +1,31 @@
 <?php
 
 //controladores
+
+use App\Http\Controllers\CargosEmpleadoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReservaController;
  
 use App\Http\Controllers\CategoriasPaquetesController;
+use App\Http\Controllers\DestinosController;
+use App\Http\Controllers\EmpleadosController;
+use App\Http\Controllers\EmpresasProveedorasController;
+use App\Http\Controllers\EncargadosPaquetesController;
+use App\Http\Controllers\ImagenesPaquetesController;
+use App\Http\Controllers\MarcaVehiculoController;
+use App\Http\Controllers\ModeloVehiculoController;
 use App\Http\Controllers\OfertasController;
-
-
+use App\Http\Controllers\PaquetesDestinosController;
+use App\Http\Controllers\PaquetesTuristicosController;
+use App\Http\Controllers\PayPalController;
+use App\Http\Controllers\ReservacionController;
+use App\Http\Controllers\TipoDestinoController;
+use App\Http\Controllers\TipoServiciosproveedorController;
+use App\Http\Controllers\TipoVehiculoController;
+use App\Http\Controllers\VehiculoEmpleadoController;
+use App\Http\Controllers\VehiculosPaquetesController;
+use App\Http\Controllers\VehiculoTransporteController;
 use Illuminate\Support\Facades\Route;
 
  Route::get('/welcome', function () {
@@ -39,35 +56,37 @@ Route::get('/admin/dashboard', function () {
     return view('admin/adminmenu');
 })->name('adminmenu/dashboard');
 
-//rutas para el header (GET)
+//rutas para el nav (GET)
 Route::get('/admin/usuarios', function () {
     return view('admin/adminusuarios');
 })->name('adminusuarios');
 
-Route::get('/admin/empleados', function () {
-    return view('admin/adminempleados');
-})->name('adminempleados');
-
-// prueba del crud generado
  
-//
+ 
+
+Route::resource('admin/empleados',EmpleadosController::class)->parameters([
+    'Empleados' => 'empleados'
+]);
 
 
-Route::get('/admin/paquetes', function () {
-    return view('admin/adminpaquetes');
-})->name('adminpaquetes');
+Route::resource('admin/Paquetes', PaquetesTuristicosController::class)->parameters([
+    'Paquetes' => 'paquetes'
+]);
 
-Route::get('/admin/destinos', function () {
-    return view('admin/admindestinos');
-})->name('admindestinos');
 
-Route::get('/admin/empresasproveedoras', function () {
-    return view('admin/adminempresasproveedoras');
-})->name('adminempresasproveedoras');
+ 
 
-Route::get('/admin/vehiculos', function () {
-    return view('admin/adminvehiculos');
-})->name('adminvehiculos');
+Route::resource('admin/destinos',DestinosController::class)->parameters([
+    'Destinos' => 'destinos'
+]);
+ 
+Route::resource('admin/empresasProveedoras',EmpresasProveedorasController::class)->parameters([
+    'EmpresasProveedoras' => 'empresasProveedoras'
+]);
+
+Route::resource('admin/vehiculos', VehiculoTransporteController::class)->parameters([
+    'Vehiculos' => 'vehiculos'
+]);
 
 Route::get('/admin/reservas', function () {
     return view('admin/adminreservas');
@@ -87,20 +106,15 @@ Route::get('/admin/varias', function () {
 
 //rutas interfaz de empleado admin  
 
-Route::get('/admin/cargospuestos', function () {
-    return view('admin/admincargospuestos');
-})->name('admincargospuestos');
+Route::resource('admin/cargospuestos', CargosEmpleadoController::class)->parameters([
+    'Cargospuestos' => 'cargospuestos'
+]);
 
-Route::get('/admin/encargadospaquetes', function () {
-    return view('admin/asignarencargadopaquete');
-})->name('asignarencargadopaquete');
+Route::resource('admin/encargadospaquetes',EncargadosPaquetesController::class)->parameters([
+    'Encargadospaquetes' => 'encargadospaquetes'
+]);
 
-//rutas interfaz de paquetes turisticos admin (GET)
-
-// Route::get('/admin/categoriaspaquetes', function () {
-//     return view('admin/admincategoriapaquetes');
-// })->name('admincategoriapaquetes');
-
+//rutas interfaz de paquetes turisticos admin 
 
 //RUTAS NUEVAS
 Route::resource('admin/Categorias_paquetes', CategoriasPaquetesController::class)->parameters([
@@ -112,56 +126,57 @@ Route::resource('admin/Ofertas',OfertasController::class)->parameters([
 ]);
 
 
-Route::get('/admin/imagenespaquetes', function () {
-    return view('admin/adminimagenespaquetes');
-})->name('adminimagenespaquetes');
-
-// Route::get('/admin/ofertas', function () {
-//     return view('admin/adminofertas');
-// })->name('adminofertas');
-
+Route::resource('admin/imagenespaquetes', ImagenesPaquetesController::class)->parameters([
+    'Imagenespaquetes' => 'imagenespaquetes'
+]);
+ 
 //rutas interfaz de destinos admin 
 
 Route::get('/admin/provincias', function () {
     return view('admin/adminprovincias');
 })->name('adminprovincias');
 
-Route::get('/admin/tiposdestino', function () {
-    return view('admin/admintiposdestino');
-})->name('admintiposdestino');
+ 
 
-Route::get('/admin/asignardestinospaquetes', function () {
-    return view('admin/asignardestinospaquetes');
-})->name('asignardestinospaquetes');
+Route::resource('admin/tiposdestino',TipoDestinoController::class)->parameters([
+    'Tiposdestino' => 'tiposdestino'
+]);
+
+Route::resource('admin/asignardestinospaquetes',PaquetesDestinosController::class)->parameters([
+    'Asignardestinospaquetes' => 'asignardestinospaquetes'
+]);
+
+
 
 //rutas interfaz de empresas proveedoras admin  
 
-Route::get('/admin/tiposerviciosprov', function () {
-    return view('admin/admintiposerviciosprov');
-})->name('admintiposerviciosprov');
-
+Route::resource('admin/tiposerviciosprov',TipoServiciosproveedorController::class)->parameters([
+    'Tiposerviciosprov' => 'tiposerviciosprov'
+]);
 //rutas interfaz de vehiculos admin  
+ 
+Route::resource('admin/marcasvehiculos', MarcaVehiculoController::class)->parameters([
+    'MarcasVehiculos' => 'marcasvehiculos'
+]);
+ 
+Route::resource('admin/modelosvehiculos',ModeloVehiculoController::class)->parameters([
+    'Modelosvehiculos' => 'modelosvehiculos'
+]);
 
-Route::get('/admin/marcasvehiculos', function () {
-    return view('admin/adminmarcasvehiculos');
-})->name('adminmarcasvehiculos');
+
+Route::resource('admin/tiposvehiculo', TipoVehiculoController::class)->parameters([
+    'Tiposvehiculo' => 'tiposvehiculo'
+]);
+ 
+Route::resource('admin/asignarvehiculoempleado', VehiculoEmpleadoController::class)->parameters([
+    'Asignarvehiculoempleado' => 'asignarvehiculoempleado'
+]);
+
+Route::resource('admin/asignarvehiculopaquete',VehiculosPaquetesController::class)->parameters([
+    'Psignarvehiculopaquete' => 'asignarvehiculopaquete'
+]);
 
 
-Route::get('/admin/modelosvehiculos', function () {
-    return view('admin/adminmodelosvehiculos');
-})->name('adminmodelosvehiculos');
-
-Route::get('/admin/tiposvehiculo', function () {
-    return view('admin/admintiposvehiculo');
-})->name('admintiposvehiculo');
-
-Route::get('/admin/asignarvehiculoempleado', function () {
-    return view('admin/asignarvehiculoempleado');
-})->name('asignarvehiculoempleado');
-
-Route::get('/admin/asignarvehiculopaquete', function () {
-    return view('admin/asignarvehiculopaquete');
-})->name('asignarvehiculopaquete');
  
 //rutas interfaz de reservas admin  
 Route::get('/admin/vistadetalladareserva', function () {
@@ -192,33 +207,33 @@ Route::get('/incidentes', function () {
     return view('usuario/incidentes');
 })->name('incidentes');
 
+//esta solo entra con login
 Route::get('/reservas_realizadas', function () {
     return view('usuario/reservas_realizadas');
-})->name('reservas_realizadas');
+})->middleware(['auth', 'verified'])->name('reservas_realizadas');
+
 
 Route::get('/paquetes_turisticos', function () {
     return view('usuario/paquetes');
 })->name('paquetes_turisticos');
 
-//  Route::get('/formulario_reservas', function () {
-//      return view('usuario/formulario_reservas');
-//  })->name('formulario_reservas');
+ 
 
-
-// Rutas para formularios interfaces usuario (POST), de esta forma se puede 
-Route::get('/formulario-reserva/{id}', [ReservaController::class, 'mostrarFormulario'])->name('formulario_reserva');
+// Rutas para formulario de reserva, solo se ven con el usuario logueado
+Route::get('/formulario-reserva/{id}', [ReservaController::class, 'mostrarFormulario'])->middleware(['auth', 'verified'])->name('formulario_reserva');
 Route::post('/procesar-reserva', [ReservaController::class, 'procesarReserva'])->name('procesar_reserva');
-
 Route::post('/reservar_paquete/{paquete_id}', [ReservaController::class, 'vistaReservacion'])->name('vista_reservacion');
-
-// File: routes/web.php
-
-//Route::match(['get', 'post'],'/usuario/formulario_reservas', [ReservaController::class, 'formulario_reservas'])->name('formulario_reservas');
-
-
-
+Route::post('/formulario_reserva', [ReservacionController::class, 'store'])->name('Reservacion.store');
+ 
 //autentificacion de usuario
 Route::get('admin/adminmenu', [HomeController::class,'index']);
+
+
+//vaina de paypal
+
+Route::get('/paypalprueba', [PayPalController::class, 'index']);
+Route::get('/create/{amount}', [PayPalController::class, 'create']);
+Route::post('/complete', [PayPalController::class, 'complete']);
 
 
 require __DIR__.'/auth.php';

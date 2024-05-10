@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Empleados;
+use App\Models\VehiculoEmpleado;
 use Illuminate\Http\Request;
 
-class EmpleadosController extends Controller
+class VehiculoEmpleadoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class EmpleadosController extends Controller
     public function index()
     {
         //
-        return view('admin.adminempleados');
+        return view('admin.asignarvehiculoempleado');
     }
 
     /**
@@ -35,7 +35,7 @@ class EmpleadosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Empleados $empleados)
+    public function show(VehiculoEmpleado $vehiculoEmpleado)
     {
         //
     }
@@ -43,7 +43,7 @@ class EmpleadosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Empleados $empleados)
+    public function edit(VehiculoEmpleado $vehiculoEmpleado)
     {
         //
     }
@@ -51,7 +51,7 @@ class EmpleadosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Empleados $empleados)
+    public function update(Request $request, VehiculoEmpleado $vehiculoEmpleado)
     {
         //
     }
@@ -59,7 +59,7 @@ class EmpleadosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Empleados $empleados)
+    public function destroy(VehiculoEmpleado $vehiculoEmpleado)
     {
         //
     }
