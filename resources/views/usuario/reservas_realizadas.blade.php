@@ -22,19 +22,17 @@
         <h3>Mostrar por Estado</h3>
         <select name="estado" id="" class="form-select">
 
-            <?php 
-                $estados = DB::select("SELECT IdEstadoReservacion, EstadoReservacion FROM estado_reservacion;");
-            ?>
-@foreach ($estados as $estado)
-            <option value="{{$estado->IdEstadoReservacion}}">{{$estado->EstadoReservacion}}</option>
-@endforeach
+ 
+ 
         </select>
         <!-- Sección de perfil del usuario -->
 
 
         {{-- Esto se debe de hacer con el id del usuario que inicie sesion --}}
         <?php 
-           $usuarios = DB::select("SELECT id, name, email FROM users WHERE id=2");
+            $idusuario = Auth::user()->id;
+
+           $usuarios = DB::select("SELECT id, name, email FROM users WHERE id=$idusuario");
            
         ?> 
         @foreach ($usuarios as $usuario)
@@ -71,8 +69,8 @@ table {
                     <tr> 
                         <th>No.Reserva</th>
                         <th>Nombre del Paquete</th>
-                        <th>Fecha Inicio Reserva</th>
-                        <th>Fecha Fin Reserva</th>
+                        <th>Fecha Seleccionada</th>
+              
                         <th>N° Personas</th>
                         <th>Metodo de Pago</th>
                         <th>Estado de la Reserva</th>
@@ -82,28 +80,36 @@ table {
                 <tbody class="table-hover">
 
                     {{-- aqui deberia de traer las reservas realizadas por un usuario especifico --}}
-                    <?php 
+                    @php
+                    
+               
+
                     $reservas = DB::select("SELECT 
                     r.IdReservacion, 
                     p.Nombre, 
-                    r.FechaDesde, 
-                    r.FechaHasta, 
+                    r.FechaSeleccionada, 
+            
                     r.CantidadPersonas, 
                     mp.Metodo_Pago,
-                    er.EstadoReservacion 
-                    FROM reservacion AS r INNER JOIN detalle_reserva AS dr ON r.IdReservacion=dr.fk_IdReservacion 
-                    INNER JOIN paquetes_turisticos AS p ON p.IdPaquete=dr.fk_IdPaquete INNER JOIN metodo_pago AS mp ON 
-                    mp.IdMetodopago=r.fk_IdMetodopago 
-                    INNER JOIN estado_reservacion AS er ON er.IdEstadoReservacion=r.fk_IdEstadoReservacion 
-                    WHERE r.fk_IdUsuario=2;  ")    
+                    r.EstadoReservacion,
+              			dr.fk_IdPaquete,
+              			dr.fk_IdReservacion
+                    FROM reservacion AS r INNER JOIN detalle_reserva AS dr
+						   ON r.IdReservacion=dr.fk_IdReservacion 
+                    INNER JOIN paquetes_turisticos AS p ON 
+						  p.IdPaquete=dr.fk_IdPaquete INNER JOIN metodo_pago AS mp ON 
+                    mp.IdMetodopago=r.fk_IdMetodopago  
+                    WHERE r.fk_IdUsuario= $idusuario;")    
                     // esto del id debe de ser variable, tomado de la sesion del usuario
-                    ?>
+                    
+                    @endphp
+
                     @foreach ($reservas as $reserva)
                     <tr>
                         <td>{{$reserva->IdReservacion}}</td>
                         <td>{{$reserva->Nombre}}</td>
-                        <td>{{$reserva->FechaDesde}}</td>
-                        <td>{{$reserva->FechaHasta}}</td>
+                        <td>{{$reserva->FechaSeleccionada}}</td>
+                  
                         <td>{{$reserva->CantidadPersonas}}</td>
                         <td>{{$reserva->Metodo_Pago}}</td>
                         <td>{{$reserva->EstadoReservacion}}</td>

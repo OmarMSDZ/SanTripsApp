@@ -13,6 +13,7 @@ class VehiculosPaquetesController extends Controller
     public function index()
     {
         //
+        return view('admin.asignarvehiculopaquete');
     }
 
     /**

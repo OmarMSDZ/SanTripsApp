@@ -78,7 +78,7 @@ class OfertasController extends Controller
             
         ]);
 
-         $ofertas->update($request->only('Descripcion', 'Porcentaje','FechaDesde','FechaHasta'));
+        $ofertas->update($request->only('Descripcion', 'Porcentaje','FechaDesde','FechaHasta'));
 
         Session::flash('mensaje', 'Registro Actualizado Con Exito!');
         return redirect()->route('Ofertas.index');
