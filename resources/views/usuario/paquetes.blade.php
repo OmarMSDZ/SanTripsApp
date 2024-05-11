@@ -39,8 +39,8 @@
                     <img src="{{asset('img/logosantri.jpeg')}}" alt="" class="card-img-top">
 
                     
-                    <h2 class="card-title">{{$paquete->nombre}} </h2>
-                    <p class="card-text">{{$paquete->categoria}}</p>
+                    <h2 class="card-title">{{$paquete->nombre}}</h2>
+                    <p class="card-text"> <span style="font-weight:bold">Categoría:</span> {{$paquete->categoria}}</p>
                   
                     <button class="btn btn-primary" onclick="toggleMoreInfo(this)">Mostrar Más Información</button>
                     <div class="more-info d-none">
@@ -50,9 +50,9 @@
                             <li class="list-group-item">Edades: {{$paquete->edades}}</li>
                             <li class="list-group-item">Idiomas: {{$paquete->idiomas}}</li>
                             <li class="list-group-item">Disponibilidad Alojamiento: {{$paquete->alojamiento}}</li>
-                            <li class="list-group-item">Duración Estimada: (En Horas){{$paquete->tiempoestimado}}</li>
+                            <li class="list-group-item">Duración Estimada (En Horas): {{$paquete->tiempoestimado}}</li>
                             <li class="list-group-item">Disponibilidad: {{$paquete->disponibilidad}}</li>
-                            <li class="list-group-item">Costo (RD$): {{$paquete->costo}}</li>
+                            <li class="list-group-item">Costo por persona (RD$): {{$paquete->costo}}</li>
                         </ul>
                         <form action="{{ route('procesar_reserva')}}" method="POST">
                             @csrf <!-- Agrega el token CSRF para protección -->
