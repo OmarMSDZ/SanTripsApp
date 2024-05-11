@@ -21,10 +21,12 @@
 
         <h3>Mostrar por Estado</h3>
         <select name="estado" id="" class="form-select">
-
- 
- 
+            <option value="ACTIVA">Activas</option>
+            <option value="EN PROCESO">En Proceso</option>
+            <option value="CANCELADA">Canceladas</option>
+            <option value="COMPLETADA">Completada</option>
         </select>
+        <hr>
         <!-- Sección de perfil del usuario -->
 
 
@@ -39,17 +41,19 @@
             
         
         <div class="user-profile">
-            <img src="{{asset('img/favicon.png')}}" alt="Foto de perfil" >
+            {{-- <img src="{{asset('img/favicon.png')}}" alt="Foto de perfil" > --}}
             <div class="user-info">
-                <h2>Usuario</h2>
+                <h2>Información del Usuario</h2>
                 <p hidden>{{$usuario->id}}</p>
-                <p>Nombre: {{$usuario->name}}</p>
-                <p>Email: {{$usuario->email}}</p>
+                <p> <span style="font-weight:bold;"> Nombre: </span> {{$usuario->name}}</p>
+                <p> <span style="font-weight:bold;"> Email: </span> {{$usuario->email}}</p>
                 <!-- Agrega más información del perfil según sea necesario -->
                 @endforeach    
             </div>
         </div>
     
+
+        <hr>
 
         
         <style>

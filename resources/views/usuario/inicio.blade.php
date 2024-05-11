@@ -29,56 +29,133 @@
             </div>
         </section>
 
-
-
-
-
-        <!--
+  <!--
         - #TOUR SEARCH
       -->
 
-        <section class="tour-search">
-            <div class="container">
+      <section class="tour-search">
+        <div class="container">
 
-                <form action="" class="tour-search-form">
+            <form action="" class="tour-search-form">
 
-                    <div class="input-wrapper">
-                        <label for="destination" class="input-label">Buscar destino*</label>
+                <div class="input-wrapper">
+                    <label for="CategoriaPaquete" class="input-label">Tipo de viaje preferido</label>
+                    <select name="CategoriaPaquete" id="" class="form-select input-field">
+                        @php
+                            $categoriaspaquetes= DB::select('SELECT * FROM categorias_paquetes');
+                        @endphp
+                        @foreach ($categoriaspaquetes as $categoriapaquete)
+                        <option value="{{$categoriapaquete->IdCategoriapaq}}">{{$categoriapaquete->Categoriapaq}}</option>
+                        @endforeach
+                    </select>
+                </div>
 
-                        <input type="text" name="destination" id="destination" required
-                            placeholder="ingresar destino" class="input-field">
-                    </div>
+                <div class="input-wrapper">
+                    <label for="NumPersonas" class="input-label">Numero de Personas</label>
 
-                    <div class="input-wrapper">
-                        <label for="people" class="input-label">Num peronas*</label>
+                    <input type="number" name="NumPersonas" id="NumPersonas" required placeholder="N° de personas"
+                        class="input-field">
+                </div>
 
-                        <input type="number" name="people" id="people" required placeholder="No.de personas"
-                            class="input-field">
-                    </div>
+                <div class="input-wrapper">
+                    <label for="FechaDeseada" class="input-label">Fecha deseada</label>
 
-                    <div class="input-wrapper">
-                        <label for="checkin" class="input-label">Checkin Date**</label>
+                    <input type="date" name="FechaDeseada" id="FechaDeseada" required class="input-field">
+                </div>
 
-                        <input type="date" name="checkin" id="checkin" required class="input-field">
-                    </div>
+                <div class="input-wrapper">
+                    <label for="Edad" class="input-label">Rango de Edad</label>
 
-                    <div class="input-wrapper">
-                        <label for="checkout" class="input-label">Checkout Date*</label>
+                    <select name="Edad" id="" class="form-select input-field">
+                        <option value="Todas las Edades">Todas las Edades</option>
+                        <option value="Todas las Edades">Niños</option>
+                        <option value="Todas las Edades">Adolescentes</option>
+                        <option value="Todas las Edades">Solo Adultos</option>
+                    </select>
+                </div>
+                
 
-                        <input type="date" name="checkout" id="checkout" required class="input-field">
-                    </div>
+                <button type="submit" class="btn btn-secondary">Buscar un Paquete</button>
 
-                    <button type="submit" class="btn btn-secondary">Adquiere ahora</button>
+            </form>
 
-                </form>
+        </div>
+    </section>
+ <!--
+        - #CTA
+      -->
 
-            </div>
-        </section>
+      <section class="cta" id="contact">
+        <div class="container"> 
+
+            <div class="cta-content">
+               <h4 class="section-subtitle" style="font-size:2.5em;">SanTrips</h4>
+               <hr style="color: white; ">
+
+                <h2 class="h2 section-title">¿Quiénes Somos?</h2>
+
+                <p class="text-dark" style="font-size: 1.5em;">
+                    Somos una empresa de turismo fundada en el año 2024, 
+                    la cual se enfoca en brindar sus servicios en la ciudad de Santiago de los Caballeros en la República Dominicana, 
+                    ofreciendo una gran variedad de tours y experiencias turísticas para el disfrute del público en general.
+                </p>
+            </div> 
+
+            
+
+            <style>
+                .gallery {
+                    --s: 150px; /* control the size */
+                    
+                    display: grid;
+                    gap: 10px; /* control the gap */
+                    grid: auto-flow var(--s)/repeat(3,var(--s));
+                    place-items: center;
+                    margin: calc(var(--s)/4);
+                }
+                .gallery > img {
+                    width: 100%;
+                    aspect-ratio: 1;
+                    object-fit: cover;
+                }
+                .gallery > img:nth-child(odd) {
+                    border-radius: 50%;
+                    width: 141%;
+                }
+                .gallery > img:nth-child(even) {
+                    --_r: calc(var(--s)/1.414) at;
+                    --_g: calc(var(--s)/-2),#000 99%,#0000;
+                    --_m:
+                        radial-gradient(var(--_r) left 50% bottom var(--_g)),
+                        radial-gradient(var(--_r) left 50% top    var(--_g)),
+                        radial-gradient(var(--_r) top  50% right  var(--_g)),
+                        radial-gradient(var(--_r) top  50% left   var(--_g)),
+                        linear-gradient(#000 0 0);
+                    -webkit-mask: var(--_m);
+                            mask: var(--_m);
+                    -webkit-mask-composite: destination-out;
+                            mask-composite: exclude;
+                }
+            </style>
+            <div class="gallery">
+                <img src="{{asset('img/Centro-Leon.jpg')}}" alt="">
+                <img src="{{asset('img/estadiocibao.jpg')}}" alt="">
+                <img src="{{asset('img/carnaval.jpg')}}" alt="">
+                <img src="{{asset('img/jardin2.jpg')}}" alt="">
+                <img src="{{asset('img/santigo.jpg')}}" alt="">
+                <img src="{{asset('img/monumento.jpg')}}" alt="">
+                <img src="{{asset('img/restaurantes.png')}}" alt="">
+                <img src="{{asset('img/pico_duarte.jpg')}}" alt="">
+                <img src="{{asset('img/Catedral.jpg')}}" alt="">
+              </div>
 
 
 
+        </div> 
+    </section>
 
 
+    
         <!--
         - #POPULAR
       -->
@@ -442,30 +519,7 @@ AQUI DEBE MANDAR A LA PAGINA DE PAQUETES PARA RESERVAR -->
 
 
 
-        <!--
-        - #CTA
-      -->
-
-        <section class="cta" id="contact">
-            <div class="container">
-
-                <div class="cta-content">
-                    <p class="section-subtitle">Call To Action</p>
-
-                    <h2 class="h2 section-title">LISTO PARA VIAJES INOLVIDABLES?</h2>
-
-                    <p class="section-text">
-                        Estamos disponibles para acompañarte en tu próxima aventura. Puedes contactarnos para cualquier
-                        pregunta que tengas.
-                        ¡Esperamos ser parte de tu experiencia y ayudarte en todo lo que necesites!
-                    </p>
-                </div>
-
-                <!-- QUE ENVIE A ALGUN LUGAR DE CONTACTO -->
-                <button class="btn btn-secondary">Contáctanos!</button>
-
-            </div>
-        </section>
+       
 
     </article>
 </main>

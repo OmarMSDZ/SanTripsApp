@@ -25,7 +25,7 @@
 </style>
 
     <!-- Tabla de consulta -->
-    <div class="col-md-6 table-container">
+    <div class="table-container">
         <table class="table table-hover">
             <!-- Contenido de la tabla -->
             <thead class="">

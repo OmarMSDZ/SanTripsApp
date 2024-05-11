@@ -6,7 +6,7 @@
 
 <div class="row d-flex">
     <!-- Formulario -->
-    <div class="col-md-6">
+    <div class="">
         {{-- Esto nos permite utilizar este mismo formulario para crear y editar --}}
         @if (isset($categorias_paquetes))
         <h2>Editar Categoria</h2>
@@ -25,7 +25,7 @@
 
         @csrf
             <div class="mb-3">
-                <label for="Categoriapaq" class="form-label">Nombre de Categoría</label>
+                <label for="Categoriapaq" class="form-label" style="font-weight: bold">Nombre de Categoría</label>
                 <input type="text" name="Categoriapaq" class="form-control" placeholder="Nombre de la Categoría" value="{{old('Categoriapaq') ?? @$categorias_paquetes->Categoriapaq}}">
                 @error('Categoriapaq')
                     <p class="text-danger form-text">{{$message}}</p>

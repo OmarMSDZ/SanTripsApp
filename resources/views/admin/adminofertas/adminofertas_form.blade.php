@@ -6,7 +6,7 @@
 
 <div class="row d-flex">
     <!-- Formulario -->
-    <div class="col-md-6">
+    <div class="">
 
         {{-- Esto nos permite utilizar este mismo formulario para crear y editar --}}
         @if (isset($ofertas))
@@ -25,7 +25,7 @@
         @endif
             @csrf
             <div class="mb-3">
-                <label for="Descripcion" class="form-label">Descripción de la Oferta</label>
+                <label for="Descripcion" class="form-label" style="font-weight: bold">Descripción de la Oferta</label>
                 <textarea name="Descripcion" id="" cols="30" rows="10" class="form-control" placeholder="Descripcion de la oferta" value="{{old('Descripcion') ?? @$ofertas->Descripcion}}"></textarea>  
                 @error('Descripcion')
                 <p class="text-danger form-text">{{$message}}</p>
@@ -33,7 +33,7 @@
             </div>
             
             <div class="mb-3">
-                <label for="Porcentaje" class="form-label">Porcentaje (%)</label>
+                <label for="Porcentaje" class="form-label" style="font-weight: bold">Porcentaje (%)</label>
                 <input type="number" name="Porcentaje" class="form-control" placeholder="Ingrese el porcentaje (En numeros enteros)" value="{{old('Porcentaje') ?? @$ofertas->Porcentaje}}">
                 @error('Porcentaje')
                 <p class="text-danger form-text">{{$message}}</p>
@@ -41,7 +41,7 @@
             </div>
              
             <div class="mb-3">
-                <label for="FechaDesde" class="form-label">Disponible Desde</label>
+                <label for="FechaDesde" class="form-label" style="font-weight: bold">Disponible Desde</label>
                 <input type="date" name="FechaDesde" class="form-control" placeholder="Seleccione una fecha" value="{{old('FechaDesde') ?? @$ofertas->FechaDesde}}">
                 @error('FechaDesde')
                 <p class="text-danger form-text">{{$message}}</p>
@@ -49,7 +49,7 @@
             </div>
             
             <div class="mb-3">
-                <label for="FechaHasta" class="form-label">Disponible Hasta</label>
+                <label for="FechaHasta" class="form-label" style="font-weight: bold">Disponible Hasta</label>
                 <input type="date" name="FechaHasta" class="form-control" placeholder="Seleccione una fecha" value="{{old('FechaHasta') ?? @$ofertas->FechaHasta}}">
                 @error('FechaHasta')
                 <p class="text-danger form-text">{{$message}}</p>
