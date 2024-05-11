@@ -12,7 +12,7 @@
                     <h4 class="font-weight-normal mb-3">Usuarios Registrados<i class="mdi mdi-chart-line mdi-24px float-end"></i>
                     </h4>
                     <h2 class="mb-5">0</h2>
-                    <h6 class="card-text"><a href="{{ Route('adminusuarios')}}" style="text-decoration: none; color: black;">Ir a Admin Usuarios</a></h6>
+                    <h6 class="card-text"><a href="#" style="text-decoration: none; color: black;">Ir a Admin Usuarios</a></h6>
                   </div>
                 </div>
               </div>
@@ -23,7 +23,7 @@
                     <h4 class="font-weight-normal mb-3">Empleados Registrados<i class="mdi mdi-bookmark-outline mdi-24px float-end"></i>
                     </h4>
                     <h2 class="mb-5">0</h2>
-                    <h6 class="card-text"><a href="{{ Route('adminempleados')}}" style="text-decoration: none; color: black;">Ir a Admin Empleados</a></h6>
+                    <h6 class="card-text"><a href="{{ Route('empleados.index')}}" style="text-decoration: none; color: black;">Ir a Admin Empleados</a></h6>
                   </div>
                 </div>
               </div>
@@ -34,7 +34,7 @@
                     <h4 class="font-weight-normal mb-3">Vehiculos Registrados<i class="mdi mdi-diamond mdi-24px float-end"></i>
                     </h4>
                     <h2 class="mb-5">0</h2>
-                    <h6 class="card-text"><a href="{{ Route('adminvehiculos')}}" style="text-decoration: none; color: black;">Ir a Admin Vehiculos</a></h6>
+                    <h6 class="card-text"><a href="{{ Route('vehiculos.index')}}" style="text-decoration: none; color: black;">Ir a Admin Vehiculos</a></h6>
                   </div>
                 </div>
               </div>
@@ -49,7 +49,7 @@
                     <h4 class="font-weight-normal mb-3">Paquetes Turísticos Registrados<i class="mdi mdi-chart-line mdi-24px float-end"></i>
                     </h4>
                     <h2 class="mb-5">0</h2>
-                    <h6 class="card-text"><a href="{{ Route('adminpaquetes')}}" style="text-decoration: none; color: black;">Ir a Admin Paquetes</a></h6>
+                    <h6 class="card-text"><a href="{{ Route('Paquetes.index')}}" style="text-decoration: none; color: black;">Ir a Admin Paquetes</a></h6>
                   </div>
                 </div>
               </div>
@@ -60,7 +60,7 @@
                     <h4 class="font-weight-normal mb-3">Destinos Registrados<i class="mdi mdi-bookmark-outline mdi-24px float-end"></i>
                     </h4>
                     <h2 class="mb-5">0</h2>
-                    <h6 class="card-text"><a href="{{ Route('admindestinos')}}" style="text-decoration: none; color: black;">Ir a Admin Destinos</a></h6>
+                    <h6 class="card-text"><a href="{{ Route('destinos.index')}}" style="text-decoration: none; color: black;">Ir a Admin Destinos</a></h6>
                   </div>
                 </div>
               </div>
@@ -72,7 +72,7 @@
                     <h4 class="font-weight-normal mb-3">Empresas Proveedoras Registradas<i class="mdi mdi-diamond mdi-24px float-end"></i>
                     </h4>
                     <h2 class="mb-5">0</h2>
-                    <h6 class="card-text"><a href="{{ Route('adminempresasproveedoras')}}" style="text-decoration: none; color: black;">Ir a Admin Empresas Proveedoras</a></h6>
+                    <h6 class="card-text"><a href="{{ Route('empresasProveedoras.index')}}" style="text-decoration: none; color: black;">Ir a Admin Empresas Proveedoras</a></h6>
                   </div>
                 </div>
               </div>
@@ -86,7 +86,7 @@
                     <h4 class="font-weight-normal mb-3">Reservaciones Realizadas<i class="mdi mdi-chart-line mdi-24px float-end"></i>
                     </h4>
                     <h2 class="mb-5">0</h2>
-                    <h6 class="card-text"><a href="{{ Route('adminreservas')}}" style="text-decoration: none; color: black;">Ir a Admin Reservas</a></h6>
+                    <h6 class="card-text"><a href="{{ Route('reservashechas.index')}}" style="text-decoration: none; color: black;">Ir a Admin Reservas</a></h6>
                   </div>
                 </div>
               </div> 
@@ -97,7 +97,7 @@
                     <h4 class="font-weight-normal mb-3">Pagos Pendientes<i class="mdi mdi-bookmark-outline mdi-24px float-end"></i>
                     </h4>
                     <h2 class="mb-5">0</h2>
-                    <h6 class="card-text"><a href="{{ Route('adminpagos')}}" style="text-decoration: none; color: black;">Ir a Admin Pagos</a></h6>
+                    <h6 class="card-text"><a href="{{ Route('pagos.index')}}" style="text-decoration: none; color: black;">Ir a Admin Pagos</a></h6>
                   </div>
                 </div>
               </div>

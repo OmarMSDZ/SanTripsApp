@@ -13,13 +13,16 @@ use App\Http\Controllers\EmpleadosController;
 use App\Http\Controllers\EmpresasProveedorasController;
 use App\Http\Controllers\EncargadosPaquetesController;
 use App\Http\Controllers\ImagenesPaquetesController;
+ 
 use App\Http\Controllers\MarcaVehiculoController;
 use App\Http\Controllers\ModeloVehiculoController;
 use App\Http\Controllers\OfertasController;
+use App\Http\Controllers\PagoController;
 use App\Http\Controllers\PaquetesDestinosController;
 use App\Http\Controllers\PaquetesTuristicosController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\ReservacionController;
+use App\Http\Controllers\ReservasHechasController;
 use App\Http\Controllers\TipoDestinoController;
 use App\Http\Controllers\TipoServiciosproveedorController;
 use App\Http\Controllers\TipoVehiculoController;
@@ -70,7 +73,7 @@ Route::resource('admin/empleados',EmpleadosController::class)->parameters([
 
 
 Route::resource('admin/Paquetes', PaquetesTuristicosController::class)->parameters([
-    'Paquetes' => 'paquetes'
+    'Paquetes' => 'paquetes_turisticos'
 ]);
 
 
@@ -88,13 +91,25 @@ Route::resource('admin/vehiculos', VehiculoTransporteController::class)->paramet
     'Vehiculos' => 'vehiculos'
 ]);
 
-Route::get('/admin/reservas', function () {
-    return view('admin/adminreservas');
-})->name('adminreservas');
+//para administrar las reservas realizadas
+Route::resource('admin/reservas', ReservasHechasController::class)->parameters([
+    'Reservashechas' => 'reservashechas'
+]);
+Route::get('admin/reservas', [ReservasHechasController::class, 'index'])->name('reservashechas.index');
 
-Route::get('/admin/pagos', function () {
-    return view('admin/adminpagos');
-})->name('adminpagos');
+
+Route::resource('admin/pagos', PagoController::class)->parameters([
+    'Pagos' => 'pagos'
+]);
+
+// Route::resource('admin/incidentes', IncidentesController::class)->parameters([
+//     'Incidentesadmin' => 'incidentesadmin'
+// ]);
+// Route::get('admin/reservas', [IncidentesController::class, 'index'])->name('reservashechas.index');
+
+ 
+
+
 
 Route::get('/admin/incidentes', function () {
     return view('admin/adminincidentes');
