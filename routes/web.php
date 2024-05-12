@@ -2,6 +2,7 @@
 
 //controladores
 
+use App\Http\Controllers\ApiServiceCountryStateCityController;
 use App\Http\Controllers\CargosEmpleadoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
@@ -137,9 +138,6 @@ Route::resource('admin/Categorias_paquetes', CategoriasPaquetesController::class
     'Categorias_paquetes' => 'categorias_paquetes'
 ]);
 
-Route::resource('admin/Ofertas',OfertasController::class)->parameters([
-    'Ofertas' => 'ofertas'
-]);
 
 
 Route::resource('admin/imagenespaquetes', ImagenesPaquetesController::class)->parameters([
@@ -153,19 +151,28 @@ Route::get('/admin/provincias', function () {
 })->name('adminprovincias');
 
 Route::middleware('auth')->prefix('admin')->group( function () {
+
     Route::controller(DestinoController::class)->prefix('destinos')->group( function () {
         Route::get('/', 'index')->name('destinos.index');
+        Route::get('/data/table', 'getDestinos')->name('destinos.getDestinos');
+        Route::get('/data/code/{id_destino}', 'getDestino')->name('destinos.getDestino');
+        Route::post('/', 'store')->name('destinos.store');
+        Route::post('/update/{id_destino}', 'update')->name('destinos.update');
     });
+
+
+    // Route::resource('Ofertas',OfertasController::class)->parameters([
+    //     'Ofertas' => 'ofertas'
+    // ]);
+
 });
+
 
 
 // Route::resource('admin/tiposdestino',TipoDestinoController::class)->parameters([
 //     'Tiposdestino' => 'tiposdestino'
 // ]);
 
-Route::resource('admin/asignardestinospaquetes',PaquetesDestinosController::class)->parameters([
-    'Asignardestinospaquetes' => 'asignardestinospaquetes'
-]);
 
 
 
@@ -256,5 +263,13 @@ Route::get('/paypalprueba', [PayPalController::class, 'index']);
 Route::get('/create/{amount}', [PayPalController::class, 'create']);
 Route::post('/complete', [PayPalController::class, 'complete']);
 
+//
+Route::prefix('/v1')->group(function () {
+    Route::controller(ApiServiceCountryStateCityController::class)->group(function () {
+        Route::get('/country', 'getCountries')->name('api.countries');
+        Route::get('/state/{country?}', 'getStates')->name('api.states');
+        Route::get('/city/{country?}/{state?}', 'getCities')->name('api.cities');
+    });
+});
 
 require __DIR__.'/auth.php';

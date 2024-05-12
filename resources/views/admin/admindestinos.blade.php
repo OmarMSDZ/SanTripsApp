@@ -1,8 +1,15 @@
 @extends('layouts.admin_layout_new')
 
 
+@section('css')
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.0/css/responsive.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/2.0.0/css/colReorder.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.1/css/buttons.dataTables.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap5.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.1/css/buttons.bootstrap5.css">
+@endsection
 
-  @section('content')
+@section('content')
 
 
 <div class="pagetitle">
@@ -20,17 +27,17 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Example Card</h5>
+            <h5 class="card-title">Filtro</h5>
 
             <form id="formBusqueda" class="row justify-center align-items-center">
                 <div class="col-md-3 col-sm-4 col-lg-4">
-                    <label for="tipo_cliente">Tipo de cliente</label>
+                    <label for="tipo_cliente">Provincias</label>
                     <div class="form-group">
-                        <select class="form-select default-select2" name="tipo_cliente" id="tipo_cliente" required>
+                        <select class="form-select default-select2" name="provincia" id="filtro_provincia" required>
                             <option value="0"> ====</option>
-                            {{-- @foreach ($tipos_clientes as $tipo)
-                                <option value="{{$tipo->id}}">{{$tipo->nombre}} </option>
-                            @endforeach --}}
+                            @foreach ($provincias as $key)
+                                <option value="{{$key->id}}">{{$key->nombre}} </option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -63,15 +70,14 @@
             <hr>
             <div class="table-responsive is-hide">
                 <table class="table table-striped table-hover table-sm" id="table_id" class="display" style="width:100%">
-                    <thead class="table-primary">
+                    <thead class="">
                         <tr>
-                            <th>#</th>
+                            {{-- <th>#</th> --}}
                             <th>NOMBRE</th>
                             <th>EMPRESA</th>
-                            <th>TIPO</th>
                             <th>PROVINCIA</th>
-                            <th>HORARIO</th>
-                            <th>ESTADO</th>
+                            <th>HORA DESDE</th>
+                            <th>HORA HASTA</th>
                             <th>CREADO EN</th>
                             <th>ACCIONES</th>
                         </tr>
@@ -94,6 +100,7 @@
         <div class="modal-body">
             <form id="registroDestino" action="" method="POST" class="form">
                 @csrf
+                <input type="hidden" id="codigo_destino" name="codigo_destino" value="0">
                 <div class="row">
                     <div class="col-6">
                         <div class="mb-3">
@@ -106,7 +113,10 @@
                         <div class="mb-3">
                             <label for="empresa" class="form-label">Empresa</label>
                             <select name="empresa" id="empresa" class="form-select selectLimpiarForm" required>
-                                <option value="1">Traer de BD</option>
+                                <option value="">===</option>
+                                @foreach ($proveedores as $key)
+                                    <option value="{{$key->id}}">{{$key->nombre}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -114,7 +124,8 @@
                     <div class="col-6">
                         <div class="mb-3">
                             <label for="tipo_destino" class="form-label">Tipo de Destino</label>
-                            <select name="tipo_destino" id="tipo_destino" class="form-select" required>
+                            <select name="tipo_destino" id="tipo_destino" class="form-select selectLimpiarForm" required>
+                                <option value="">===</option>
                                 @foreach ($tipos_destinos as $key)
                                     <option value="{{$key->id}}">{{$key->nombre}}</option>
                                 @endforeach
@@ -124,8 +135,11 @@
                     <div class="col-6">
                         <div class="mb-3">
                             <label for="provincia" class="form-label">Provincia</label>
-                            <select name="provincia" id="provincia" class="form-select">
-                                <option value="1">Traer de BD</option>
+                            <select name="provincia" id="provincia" class="form-select selectLimpiarForm">
+                                <option value="">===</option>
+                                @foreach ($provincias as $key)
+                                    <option value="{{$key->id}}">{{$key->nombre}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -133,20 +147,20 @@
                     <div class="col-6">
                         <div class="mb-3">
                             <label for="abierto_desde" class="form-label">Abierto Desde</label>
-                            <input type="time" name="abierto_desde" id="abierto_desde" class="form-control" required>
+                            <input type="time" name="abierto_desde" id="abierto_desde" class="form-control limpiarForm" required>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="mb-3">
                             <label for="abierto_hasta" class="form-label">Abierto Hasta</label>
-                            <input type="time" name="abierto_hasta" id="abierto_hasta" class="form-control" required>
+                            <input type="time" name="abierto_hasta" id="abierto_hasta" class="form-control limpiarForm" required>
                         </div>
                     </div>
 
                     <div class="col-12">
                         <div class="mb-3">
                             <label for="observaciones" class="form-label">Observaciones</label>
-                            <textarea name="observaciones" id="observaciones" rows="3" class="form-control"></textarea>
+                            <textarea name="observaciones" id="observaciones" rows="3" class="form-control limpiarForm"></textarea>
                         </div>
                     </div>
                 </div>
@@ -168,11 +182,24 @@
         </div>
       </div>
     </div>
-  </div><!-- End Extra Large Modal-->
+</div><!-- End Extra Large Modal-->
 
   @endsection
 
   @section('javascript')
+    <script src="https://cdn.datatables.net/2.0.1/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.1/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/colreorder/2.0.0/js/colReorder.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.0/js/dataTables.responsive.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.1/js/dataTables.buttons.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.bootstrap5.js"></script>
 
     <script src=" {{ asset('assets/js/admin_destinos/destinos.js') }}"></script>
 
