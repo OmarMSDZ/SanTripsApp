@@ -18,6 +18,7 @@ $( function () {
             {data: 'hora_desde'},
             {data: 'hora_hasta'},
             {data: 'creado_por'},
+            {data: 'estado'},
 
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ]
@@ -185,6 +186,12 @@ $( function () {
         const codigo = $(this).attr('codigo');
         const estado = $(this).attr('estado');
 
+        const $form = $('#formCambiarDestino');
+        $form.find('input[name="codigo"]').val(codigo);
+        $form.find('input[name="estado"]').val(estado);
+
+
+
         Swal.fire({
             position: "top-center",
             icon: "question",
@@ -195,11 +202,45 @@ $( function () {
             // showConfirmButton: false,
             // timer: 1500,
         }).then((results) => {
-            //   window.location.href = response.url;
             console.log('SI');
+            $('#formCambiarDestino').submit();
+
         });
-        console.log('codigo: ', codigo);
     });
+
+
+    $('#formCambiarDestino').submit( function (e) {
+        e.preventDefault();
+        // const data = new FormData(this);
+
+        console.log('enviando....');
+
+        const $form = $('#formCambiarDestino');
+
+        const data = {
+            codigo: $form.find('input[name="codigo"]').val(),
+            estado: $form.find('input[name="estado"]').val(),
+            _token: $form.find('input[name="_token"]').val(),
+        };
+
+        const url = route('destinos.cambiar_estado', {id_destino: data.codigo});
+
+        $.post(url, data, function (response) {
+            $('#formBusqueda').submit();
+
+            const mensaje = (data.estado == 1) ? 'Se ha inabilitado de forma correcta!' : 'Se ha habilitado de forma correcta!';
+
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: mensaje,
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        });
+
+    });
+
 
 
 });
