@@ -2,9 +2,12 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
+        {{-- ($APPS) --}}
         @foreach ($APPS as $key)
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{route($key->ruta)}}">
+            <a class="nav-link @if ($key->ruta_actual != 1)
+                collapsed
+            @endif" href="{{route($key->ruta)}}">
               <i class="bi bi-grid"></i>
               <span>{{$key->nombre}}</span>
             </a>
