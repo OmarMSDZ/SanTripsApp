@@ -108,6 +108,30 @@ class DestinoController extends Controller
         return response()->json($return, $return->code);
     }
 
+    public function cambiarDestino($id_destino, Request $request) {
+
+        $return = new stdClass();
+        $return->code = 200;
+        $return->message = "Se ha actualizado de forma correcta";
+
+        try {
+
+            //ID DEL USUARIO LOGUEADO
+            $usuario_id = Auth::user()->id;
+
+            $destinos = Destinos::where('id', $id_destino)->first();
+            $destinos->activo = $request->estado == 1 ? 0 : 1;
+            $destinos->actualizado_por = $usuario_id;
+            $destinos->save();
+
+        } catch (\Throwable $th) {
+            // throw $th->getMessage();
+            $return->message = $th->getMessage();
+            $return->code = 500;
+        }
+        return response()->json($return, $return->code);
+    }
+
     public function getDestino($id_destino, Request $request) {
 
         $data = Destinos::select(
@@ -155,7 +179,7 @@ class DestinoController extends Controller
         return datatables()->of($data)
                             ->addColumn('action', function($row) {
 
-                                $btnActivo = $row->activo == 1 ? "<a class='dropdown-item text-danger btnCambiarEstado' estado='$row->activo' href='#!' codigo='$row->id'> <i class='bi bi-x'> </i> Desactivar</a>" : "<a class='dropdown-item text-success eliminar' href='#!' estado='$row->activo' codigo='$row->id'> <i class='bi bi-check2'> </i> Activar</a>";
+                                $btnActivo = $row->activo == 1 ? "<a class='dropdown-item text-danger btnCambiarEstado' estado='$row->activo' href='#!' codigo='$row->id'> <i class='bi bi-x'> </i> Desactivar</a>" : "<a class='dropdown-item text-success btnCambiarEstado' href='#!' estado='$row->activo' codigo='$row->id'> <i class='bi bi-check2'> </i> Activar</a>";
 
                                 return '<div class="dropstart font-sans-serif position-static d-inline-block">
                                             <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal float-end" type="button" id="dropdown0" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
@@ -168,7 +192,9 @@ class DestinoController extends Controller
                                                     '. $btnActivo .'
                                             </div>
                                         </div>';
-                            })->make(true);
+                            })->addColumn('estado', function ($row) {
+                                return $row->activo == 1 ? "<span class='badge badge-success text-success'> <i class='bi bi-check2'> </i> Activo</span>" : "<span class='badge badge-danger text-danger'><i class='bi bi-x'> Inactivo</span>";
+                            })->rawColumns(['action', 'estado'])->make(true);
     }
 
 

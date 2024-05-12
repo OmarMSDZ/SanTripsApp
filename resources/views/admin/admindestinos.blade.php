@@ -1,5 +1,5 @@
 @extends('layouts.admin_layout_new')
-
+@section('title', 'Administrador de Destinos')
 
 @section('css')
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.0/css/responsive.dataTables.css">
@@ -79,6 +79,7 @@
                             <th>HORA DESDE</th>
                             <th>HORA HASTA</th>
                             <th>CREADO EN</th>
+                            <th>ESTADO</th>
                             <th>ACCIONES</th>
                         </tr>
                     </thead>
@@ -89,6 +90,12 @@
       </div>
     </div>
   </section>
+
+  <form id="formCambiarDestino" action="" method="POST" class="form">
+    <input name="codigo" value="0" type="hidden">
+    <input name="estado" value="0" type="hidden">
+    @csrf
+  </form>
 
   <div class="modal fade" id="modalRegistroDestino" tabindex="-1">
     <div class="modal-dialog modal-xl">

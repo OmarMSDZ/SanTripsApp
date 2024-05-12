@@ -157,6 +157,7 @@ Route::middleware('auth')->prefix('admin')->group( function () {
         Route::get('/data/table', 'getDestinos')->name('destinos.getDestinos');
         Route::get('/data/code/{id_destino}', 'getDestino')->name('destinos.getDestino');
         Route::post('/', 'store')->name('destinos.store');
+        Route::post('/cambiar_estado/{id_destino}', 'cambiarDestino')->name('destinos.cambiar_estado');
         Route::post('/update/{id_destino}', 'update')->name('destinos.update');
     });
 
