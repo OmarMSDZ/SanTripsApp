@@ -8,12 +8,12 @@ use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
- 
+
     public function up()
     {
-        Schema::create('Paquetes_turisticos', function (Blueprint $table) {
-          
-            $table->id('IdPaquete');
+        Schema::create('paquetes_turisticos', function (Blueprint $table) {
+
+            $table->id();
             $table->string('Nombre', 50);
             $table->text('Descripcion');
             $table->float('Costo');
@@ -44,9 +44,9 @@ return new class extends Migration
         });
     }
 
-    
+
     public function down()
     {
-        Schema::dropIfExists('Paquetes_turisticos');
+        Schema::dropIfExists('paquetes_turisticos');
     }
 };
