@@ -23,7 +23,7 @@ return new class extends Migration
             $table->dateTime('Fecha_salida')->nullable()->default(null);
             $table->string('Estado', 15);
             $table->string('LicenciaConducir', 20)->nullable()->default(null);
-            $table->foreignId('id_cargo')->nullable()->constrained('cargos_empleado');
+            $table->foreignId('id_cargo')->nullable()->constrained('cargos_empleado', 'IdCargo');
             $table->timestamps();
             // $table->unsignedBigInteger('fk_IdCargo');
 
