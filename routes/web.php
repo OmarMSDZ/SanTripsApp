@@ -69,9 +69,6 @@ Route::get('/admin/usuarios', function () {
 
 
 
-Route::resource('admin/empleados',EmpleadosController::class)->parameters([
-    'Empleados' => 'empleados'
-]);
 
 
 Route::resource('admin/Paquetes', PaquetesTuristicosController::class)->parameters([
@@ -160,6 +157,16 @@ Route::middleware('auth')->prefix('admin')->group( function () {
         Route::post('/cambiar_estado/{id_destino}', 'cambiarDestino')->name('destinos.cambiar_estado');
         Route::post('/update/{id_destino}', 'update')->name('destinos.update');
     });
+
+    Route::controller(EmpleadosController::class)->prefix('empleados')->group( function () {
+
+        Route::get('/', 'index')->name('empleados.index');
+        Route::post('/', 'store')->name('empleados.store');
+        Route::post('/update/{id_empleado}', 'update')->name('empleados.update');
+    });
+    // Route::resource('admin/empleados',EmpleadosController::class)->parameters([
+    //     'Empleados' => 'empleados'
+    // ]);
 
 
     // Route::resource('Ofertas',OfertasController::class)->parameters([
