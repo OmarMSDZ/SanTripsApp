@@ -79,27 +79,23 @@
                     </form>
                 </div>
                 <div class="col-12 table-container">
-                    <table class="table table-hover">
+                    <table id="tablaEmpleado" class="table table-hover">
                         <!-- Contenido de la tabla -->
                         <thead class="">
                         <tr>
-                            <th>Id</th>
+                            {{-- <th>Id</th> --}}
                             <th>Cédula</th>
                             <th>Nombre/s</th>
                             <th>Apellido/s</th>
                             <th>Telefono</th>
                             <th>Email</th>
                             <th>Lic. Conducir</th>
-                            <th>Cargo/Puesto</th>
                             <th>Fecha Ingreso</th>
                             <th>Fecha Salida</th>
                             <th>Estado</th>
                             <th>Acción</th>
                         </tr>
                     </thead>
-                    <tbody>
-
-                    </tbody>
                     </table>
                 </div>
             </div>
@@ -184,7 +180,7 @@
                 <div class="col-4">
                     <div class="mb-3">
                         <label for="fechasalida" class="form-label">Fecha Salida</label>
-                        <input type="date" name="fechasalida" class="form-control limpiarForm" required>
+                        <input type="date" name="fechasalida" class="form-control limpiarForm">
                     </div>
                 </div>
 
