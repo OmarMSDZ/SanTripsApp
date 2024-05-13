@@ -16,6 +16,6 @@ class ProveedorSeeder extends Seeder
             // ['id_tipo_servicio' => '', 'nombre' => '', 'telefono' => '', 'email' => ''],
         ];
 
-
+        
     }
 }

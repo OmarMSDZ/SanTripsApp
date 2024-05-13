@@ -23,7 +23,7 @@
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {{-- Consulta para obtener la info de los paquetes --}}
         <?php
-        $paquetes = DB::select("SELECT p.idPaquete as idpaq, p.Nombre as nombre, p.Descripcion as descripcion,
+        $paquetes = DB::select("SELECT p.id as idpaq, p.Nombre as nombre, p.Descripcion as descripcion,
         p.Costo as costo, p.Num_personas as numpersonas, p.Edades as edades, p.Idiomas as idiomas, p.Alojamiento as alojamiento, p.Tiempo_estimado as tiempoestimado, 
         p.Disponibilidad as disponibilidad, c.CategoriaPaq as categoria, o.Porcentaje as porciento FROM
         paquetes_turisticos as p INNER JOIN categorias_paquetes as c ON p.fk_IdCategoriaPaq=c.IdCategoriaPaq INNER JOIN ofertas as o ON p.fk_IdOferta=o.IdOferta");

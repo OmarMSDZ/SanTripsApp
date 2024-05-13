@@ -96,12 +96,12 @@ table {
                     r.CantidadPersonas, 
                     mp.Metodo_Pago,
                     r.EstadoReservacion,
-              			dr.fk_IdPaquete,
+              			dr.id_paquete_turistico,
               			dr.fk_IdReservacion
                     FROM reservacion AS r INNER JOIN detalle_reserva AS dr
 						   ON r.IdReservacion=dr.fk_IdReservacion 
                     INNER JOIN paquetes_turisticos AS p ON 
-						  p.IdPaquete=dr.fk_IdPaquete INNER JOIN metodo_pago AS mp ON 
+						  p.id=dr.Id_paquete_turistico INNER JOIN metodo_pago AS mp ON 
                     mp.IdMetodopago=r.fk_IdMetodopago  
                     WHERE r.fk_IdUsuario= $idusuario;")    
                     // esto del id debe de ser variable, tomado de la sesion del usuario
