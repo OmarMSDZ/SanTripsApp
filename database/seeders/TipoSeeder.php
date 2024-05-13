@@ -20,7 +20,7 @@ class TipoSeeder extends Seeder
             ['codigo' => 'mntn', 'tipo' => 'destinos', 'nombre' => 'MONTAÑAS'],
             ['codigo' => 'ntrlz', 'tipo' => 'destinos', 'nombre' => 'NATURALEZA'],
             ['codigo' => 'ply', 'tipo' => 'destinos', 'nombre' => 'PLAYAS'],
-            ['codigo' => 'nctnl', 'tipo' => 'destinos', 'nombre' => 'NACIONALES'],
+            ['codigo' => 'nctnl', 'tipo' => 'destinos', 'nombre' => 'NACIONALES'],  
         ];
         DB::table('tipos')->insert($data);
     }
