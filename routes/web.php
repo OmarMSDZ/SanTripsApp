@@ -161,7 +161,10 @@ Route::middleware('auth')->prefix('admin')->group( function () {
     Route::controller(EmpleadosController::class)->prefix('empleados')->group( function () {
 
         Route::get('/', 'index')->name('empleados.index');
-        Route::post('/', 'store')->name('empleados.store');
+        Route::get('/data', 'getEmpleados')->name('empleados.getEmpleados');
+        Route::get('/data/{id_empleado}', 'getEmpleado')->name('empleados.getEmpleado');
+
+        Route::post('/', 'store')->name('empleados.store'); 
         Route::post('/update/{id_empleado}', 'update')->name('empleados.update');
     });
     // Route::resource('admin/empleados',EmpleadosController::class)->parameters([
