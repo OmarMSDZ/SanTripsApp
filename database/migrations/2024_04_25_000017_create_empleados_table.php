@@ -25,15 +25,7 @@ return new class extends Migration
             $table->string('LicenciaConducir', 20)->nullable()->default(null);
             $table->foreignId('id_cargo')->nullable()->constrained('cargos_empleado');
             $table->timestamps();
-            // $table->unsignedBigInteger('fk_IdCargo');
-
-            // $table->index(["fk_IdCargo"], 'fk_IdCargo');
-
-
-            // $table->foreign('fk_IdCargo', 'fk_IdCargo')
-            //     ->references('IdCargo')->on('cargos_empleado')
-            //     ->onDelete('restrict')
-            //     ->onUpdate('cascade');
+    
         });
     }
 
