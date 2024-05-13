@@ -22,6 +22,7 @@ class CountryStateCityService
     public function __construct() {
         $this->client = new Client([
             'base_uri' => 'https://api.countrystatecity.in/v1/',
+            'verify' => false,
         ]);
     }
 
