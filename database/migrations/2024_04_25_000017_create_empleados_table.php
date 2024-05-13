@@ -8,11 +8,11 @@ use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
-     
+
     public function up()
     {
         Schema::create('Empleados', function (Blueprint $table) {
-          
+
             $table->id('IdEmpleado');
             $table->string('Cedula', 13);
             $table->string('Nombres', 50);
@@ -23,19 +23,21 @@ return new class extends Migration
             $table->dateTime('Fecha_salida')->nullable()->default(null);
             $table->string('Estado', 15);
             $table->string('LicenciaConducir', 20)->nullable()->default(null);
-            $table->unsignedBigInteger('fk_IdCargo');
+            $table->foreignId('id_cargo')->nullable()->constrained('cargos_empleado');
             $table->timestamps();
-            $table->index(["fk_IdCargo"], 'fk_IdCargo');
+            // $table->unsignedBigInteger('fk_IdCargo');
+
+            // $table->index(["fk_IdCargo"], 'fk_IdCargo');
 
 
-            $table->foreign('fk_IdCargo', 'fk_IdCargo')
-                ->references('IdCargo')->on('cargos_empleado')
-                ->onDelete('restrict')
-                ->onUpdate('cascade');
+            // $table->foreign('fk_IdCargo', 'fk_IdCargo')
+            //     ->references('IdCargo')->on('cargos_empleado')
+            //     ->onDelete('restrict')
+            //     ->onUpdate('cascade');
         });
     }
 
- 
+
     public function down()
     {
         Schema::dropIfExists('Empleados');
