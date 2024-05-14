@@ -78,9 +78,7 @@ Route::resource('admin/Paquetes', PaquetesTuristicosController::class)->paramete
 
 
 
-Route::resource('admin/destinos',DestinosController::class)->parameters([
-    'Destinos' => 'destinos'
-]);
+
 
 Route::resource('admin/empresasProveedoras',EmpresasProveedorasController::class)->parameters([
     'EmpresasProveedoras' => 'empresasProveedoras'
@@ -147,6 +145,7 @@ Route::get('/admin/provincias', function () {
     return view('admin/adminprovincias');
 })->name('adminprovincias');
 
+// RUTAS DE ADMIN
 Route::middleware('auth')->prefix('admin')->group( function () {
 
     Route::controller(DestinoController::class)->prefix('destinos')->group( function () {
@@ -167,14 +166,27 @@ Route::middleware('auth')->prefix('admin')->group( function () {
         Route::post('/', 'store')->name('empleados.store'); 
         Route::post('/update/{id_empleado}', 'update')->name('empleados.update');
     });
-    // Route::resource('admin/empleados',EmpleadosController::class)->parameters([
-    //     'Empleados' => 'empleados'
-    // ]);
+    
+    //el prefix es el nombre con el que lo vamos a llamar en la url
+    
+    Route::controller(OfertasController::class)->prefix('ofertas')->group( function () {
+
+        //ir a la vista principal
+        Route::get('/', 'index')->name('ofertas.index');
+        //obtener datos completos
+        Route::get('/data', 'getOfertas')->name('ofertas.getOfertas');
+        //obtener un dato especifico
+        Route::get('/data/{id_oferta}', 'getOferta')->name('ofertas.getOferta');
+        //guardar
+        Route::post('/', 'store')->name('ofertas.store'); 
+        //actualizar
+        Route::post('/update/{id_oferta}', 'update')->name('ofertas.update');
+        //cambiar estado 
+        Route::post('/cambiar_estado/{id_oferta}', 'cambiarOferta')->name('ofertas.cambiar_estado');
+    });
 
 
-    // Route::resource('Ofertas',OfertasController::class)->parameters([
-    //     'Ofertas' => 'ofertas'
-    // ]);
+
 
 });
 

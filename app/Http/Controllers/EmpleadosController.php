@@ -95,14 +95,7 @@ class EmpleadosController extends Controller
             //ID DEL USUARIO LOGUEADO
             $usuario_id = Auth::user()->id;
 
-            // $request->validate([
-            //     'nombre_destino' => 'required',
-            //     'provincia' => 'required',
-            //     'abierto_hasta' => 'required',
-            //     'abierto_desde' => 'required',
-            // ]);
-
-            // return $id_empleado;
+  
 
             $empleado = Empleados::whereRaw('IdEmpleado  = ? ', [$id_empleado])->first();
             $empleado->Cedula = $request->cedula;

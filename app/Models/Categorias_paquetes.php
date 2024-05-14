@@ -10,9 +10,15 @@ class Categorias_paquetes extends Model
     use HasFactory;
 
     //campos de la tabla
-    protected $fillable = ['IdCategoriapaq','Categoriapaq'];
+    protected $fillable = [
+    'IdCategoriapaq',
+    'Categoriapaq'
+    ];
 
     // Specify the primary key
     protected $primaryKey = 'IdCategoriapaq';
 
+    protected $table = 'categorias_paquetes';
+
+    
 }
