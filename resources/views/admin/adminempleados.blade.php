@@ -105,6 +105,12 @@
 </div>
 
 
+<form id="formCambiarEmpleado" action="" method="POST" class="form">
+    <input name="codigo" value="0" type="hidden">
+    <input name="estado" value="0" type="hidden">
+    @csrf
+</form>
+
 <div class="modal fade" id="modalRegistroEmpleado" tabindex="-1">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">

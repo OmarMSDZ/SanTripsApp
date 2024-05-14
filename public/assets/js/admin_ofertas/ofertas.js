@@ -1,9 +1,9 @@
 $( function () {
 
     const PARAMETROS = {
-        URL_DATATABLE: route('ofertas.getOfertas')
+        URL_DATATABLE: route('empleados.getEmpleados')
     }
-    var dataTable = $('#table_id').DataTable({
+    var dataTable = $('#tablaEmpleado').DataTable({
         responsive: true,
         dom: 'Bfrtip',
         "ajax" : `${PARAMETROS.URL_DATATABLE}?${$('#formBusqueda').serialize()}`,
@@ -12,43 +12,59 @@ $( function () {
         },
         "columns": [
             // {data: 'id'},
-            {data: 'descripcion'},
-            {data: 'porcentaje'},
-            {data: 'fechadesde'},
-            {data: 'fechahasta'}, 
-            {data: 'creado_en'},
-            {data: 'activo'},
-
+            {data: 'cedula'},
+            {data: 'nombre'},
+            {data: 'apellido'},
+            {data: 'telefono'},
+            {data: 'email'},
+            {data: 'licencia_conducir'},
+            {data: 'fecha_ingreso'},
+            {data: 'fecha_salida'},
+            {data: 'estado'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ]
     });
 
+    $('#formBusqueda').submit(function (e) {
+
+        //EVITA QUE SE ACTUALICE LA PAGINA AL ENVIAR LA DATA DE BUSQUEDA
+        e.preventDefault();
+        dataTable.ajax.url(`${PARAMETROS.URL_DATATABLE}?${$('#formBusqueda').serialize()}`).load();
+    });
 
     //LIMPIA EL FORMULARIO
     const limpiarFormModal =()=> {
-        $('#codigo_oferta').val('0');
+        $('#codigo_empleado').val('0');
         $('.limpiarForm').val('');
         $('.selectLimpiarForm').val('');
-        $('.selectLimpiarForm').val('');
+        $('#estado').val('ACTIVO');
     }
 
     $('#btnNuevoRegistro').click( function () {
         limpiarFormModal();
-        $('#modalRegistroOferta').modal('show');
+
+
+        $('#btnProcesar').text('GUARDAR');
+        $('#modalRegistroEmpleado  .modal-title').text('Registro de empleado');
+
+        $('#modalRegistroEmpleado').modal('show');
     });
 
-    $('#btnGuardar').click( function () {
-        $('#registroOferta').submit();
+
+
+    $('#btnProcesar').click( function () {
+
+        $("#registroEmpleado").submit();
     });
 
 
-    $("#registroOferta").validate({
-        rules: {
-            identificacion: "required",
-        },
-        messages: {
+    $("#registroEmpleado").validate({
+        // rules: {
+        //     identificacion: "required",
+        // },
+        // messages: {
 
-        },
+        // },
         highlight: function (element, errorClass, validClass) {
             var elem = $(element);
             if (elem.hasClass("select2-hidden-accessible")) {
@@ -84,14 +100,14 @@ $( function () {
         submitHandler: function (form) {
 
             const data_form = new FormData(form);
-            let url = route('ofertas.store');
+            let url = route('empleados.store');
             let method = 'POST';
 
-            const ID = $('#codigo_oferta').val();
+            const ID = $('#codigo_empleado').val();
 
             if(ID != 0) {
 
-                url = route('ofertas.update', {id_oferta: ID});
+                url = route('empleados.update', {id_empleado: ID});
             }
 
             $.ajax({
@@ -105,17 +121,18 @@ $( function () {
               cache: false,
               processData: false,
               beforeSend: function () {
-                  $("#btnGuardar").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando...').prop("disabled", true);
+                  $("#btnProcesar").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando...').prop("disabled", true);
               },
               success: function (response) {
 
+                $("#btnProcesar").html("Guardar").prop("disabled", false);
                 //OCULTAR EL MODAL DEL REGISTRO
-                $('#modalRegistroOferta').modal('hide');
+                $('#modalRegistroEmpleado').modal('hide');
 
                 //LIMPIAR EL FORMULARIO
                 limpiarFormModal();
                 $('#formBusqueda').submit();
-                setTimeout(() => $("#btnGuardar").html("Guardar").prop("disabled", false), 1000);
+                setTimeout(() => $("#btnProcesar").html("Guardar").prop("disabled", false), 1000);
 
                 Swal.fire({
                     position: "top-center",
@@ -128,7 +145,7 @@ $( function () {
                 });
               },
               error: function (XMLHttpRequest, textStatus, errorThrown) {
-                setTimeout(() => $("#btnGuardar").html("Guardar").prop("disabled", false), 1000);
+                setTimeout(() => $("#btnProcesar").html("Guardar").prop("disabled", false), 1000);
                 const data = XMLHttpRequest.responseJSON;
                   console.log(
                       "XMLHttpRequest: ",
@@ -142,101 +159,44 @@ $( function () {
                   });
               },
               complete: function () {
-                  setTimeout(() => $("#btnGuardar").html("Guardar").prop("disabled", false), 1000);
+                  setTimeout(() => $("#btnProcesar").html("Guardar").prop("disabled", false), 1000);
               },
           });
         },
     });
 
-    $('#formBusqueda').submit(function (e) {
-        e.preventDefault();
-        dataTable.ajax.url(`${PARAMETROS.URL_DATATABLE}?${$('#formBusqueda').serialize()}`).load();
-    });
+    //EVENTO ASOCIADO AL BOTON DE ACTUALIZAR DE LA TABLA
+    $('#tablaEmpleado').on('click', '.btnActualizar', function () {
 
-    $('#table_id').on('click', '.btnActualizar', function () {
+        $('#btnProcesar').text('ACTUALIZAR');
+        $('#modalRegistroEmpleado  .modal-title').text('Actualizar registro de empleado');
 
+        //CODIGO IDENTIFICADOR DEL REGISTRO
         const codigo = $(this).attr('codigo');
 
-        const url = route('ofertas.getOferta', {id_oferta: codigo});
+        //RUTA DE CONSULTA DEL ID DE EMPLEADO
+        const url = route('empleados.getEmpleado', {id_empleado: codigo});
 
         $.get(url, function (response) {
 
-            const $form = $('#registroOferta');
+            const $form = $('#registroEmpleado');
 
-            $form.find('#codigo_oferta').val(response.id);
-            $form.find('#descripcion_oferta').val(response.descripcion);
-            $form.find('#porcentaje_oferta').val(response.porcentaje);
-            $form.find('#fecha_desde').val(response.fechadesde);
-            $form.find('#fecha_hasta').val(response.fechahasta);
-           
-            $('#modalRegistroOferta').modal('show');
+            $form.find('#codigo_empleado').val(response.id);
+            $form.find('input[name="cedula"]').val(response.cedula);
+            $form.find('input[name="nombres"]').val(response.nombre);
+            $form.find('input[name="apellidos"]').val(response.apellido);
+            $form.find('input[name="telefono"]').val(response.telefono);
+            $form.find('input[name="email"]').val(response.email);
+            $form.find('input[name="licencia"]').val(response.licencia_conducir);
+            $form.find('input[name="fechaingreso"]').val(response.fecha_ingreso);
+            $form.find('input[name="fechasalida"]').val(response.fecha_salida);
+            $form.find('#estado').val(response.estado);
+
+            $('#modalRegistroEmpleado').modal('show');
 
             console.log('response: ', response);
 
         }, 'json');
         console.log('codigo: ', codigo);
     });
-
-    $('#table_id').on('click', '.btnCambiarEstado', function () {
-
-        const codigo = $(this).attr('codigo');
-        const estado = $(this).attr('estado');
-
-        const $form = $('#formCambiarOferta');
-        $form.find('input[name="codigo"]').val(codigo);
-        $form.find('input[name="estado"]').val(estado);
-
-
-
-        Swal.fire({
-            position: "top-center",
-            icon: "question",
-            title: 'Estas seguro que desea inactivar la oferta X',
-            confirmButtonText: "Si, desactivar",
-            showCancelButton: true,
-            cancelButtonText: "Cancelar",
-            // showConfirmButton: false,
-            // timer: 1500,
-        }).then((results) => {
-            console.log('SI');
-            $('#formCambiarOferta').submit();
-
-        });
-    });
-
-
-    $('#formCambiarOferta').submit( function (e) {
-        e.preventDefault();
-        // const data = new FormData(this);
-
-        console.log('enviando....');
-
-        const $form = $('#formCambiarOferta');
-
-        const data = {
-            codigo: $form.find('input[name="codigo"]').val(),
-            estado: $form.find('input[name="estado"]').val(),
-            _token: $form.find('input[name="_token"]').val(),
-        };
-
-        const url = route('ofertas.cambiar_estado', {id_oferta: data.codigo});
-
-        $.post(url, data, function (response) {
-            $('#formBusqueda').submit();
-
-            const mensaje = (data.estado == 1) ? 'Se ha inabilitado de forma correcta!' : 'Se ha habilitado de forma correcta!';
-
-            Swal.fire({
-                position: "top-center",
-                icon: "success",
-                title: mensaje,
-                showConfirmButton: false,
-                timer: 1500,
-            });
-        });
-
-    });
-
-
-
 });

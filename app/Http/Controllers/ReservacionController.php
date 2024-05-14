@@ -67,9 +67,9 @@ class ReservacionController extends Controller
          
 
      
-            Detalle_reserva::create($request->only('Cantidad', 'fk_IdPaquete','fk_IdReservacion') + [
+            Detalle_reserva::create($request->only('Cantidad', 'id_paquete_turistico','fk_IdReservacion') + [
                 
-                'fk_IdPaquete' => $request->input('paquete_id'),
+                'id_paquete_turistico' => $request->input('paquete_id'),
                 'fk_IdReservacion' => $reserva->IdReservacion 
             ]);
 

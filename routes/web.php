@@ -165,6 +165,10 @@ Route::middleware('auth')->prefix('admin')->group( function () {
 
         Route::post('/', 'store')->name('empleados.store'); 
         Route::post('/update/{id_empleado}', 'update')->name('empleados.update');
+
+        Route::post('/cambiar_estado/{id_empleado}', 'cambiarEmpleado')->name('empleados.cambiar_estado');
+
+
     });
     
     //el prefix es el nombre con el que lo vamos a llamar en la url

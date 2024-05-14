@@ -96,7 +96,14 @@ class EmpleadosController extends Controller
             //ID DEL USUARIO LOGUEADO
             $usuario_id = Auth::user()->id;
 
-  
+            // $request->validate([
+            //     'nombre_destino' => 'required',
+            //     'provincia' => 'required',
+            //     'abierto_hasta' => 'required',
+            //     'abierto_desde' => 'required',
+            // ]);
+
+            // return $id_empleado;
 
             $empleado = Empleados::where('id', $id_empleado)->first();
             $empleado->Cedula = $request->cedula;
@@ -176,4 +183,30 @@ class EmpleadosController extends Controller
                                 return $row->activo == 1 ? "<span class='badge badge-success text-success'> <i class='bi bi-check2'> </i> Activo</span>" : "<span class='badge badge-danger text-danger'><i class='bi bi-x'> Inactivo</span>";
                             })->rawColumns(['action', 'estado'])->make(true);
     }
+
+    
+    public function cambiarDestino($id_empleado, Request $request) {
+
+        $return = new stdClass();
+        $return->code = 200;
+        $return->message = "Se ha actualizado de forma correcta";
+
+        try {
+
+            //ID DEL USUARIO LOGUEADO
+            $usuario_id = Auth::user()->id;
+
+            $empleados = Empleados::where('id', $id_empleado)->first();
+            $empleados->activo = $request->estado == 1 ? 0 : 1;
+            // $empleados->actualizado_por = $usuario_id;
+            $empleados->save();
+
+        } catch (\Throwable $th) {
+            // throw $th->getMessage();
+            $return->message = $th->getMessage();
+            $return->code = 500;
+        }
+        return response()->json($return, $return->code);
+    }
+
 }
