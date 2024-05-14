@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Empleados;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use stdClass;
 
 class EmpleadosController extends Controller
@@ -58,7 +59,7 @@ class EmpleadosController extends Controller
             $empleado->Fecha_ingreso = $request->fechaingreso;
             $empleado->Fecha_salida = isset($request->fechasalida) ? $request->fechasalida : null;
             $empleado->Estado = isset($request->estado) ? $request->estado : null;
-            $empleado->LicenciaConducir = $request->LicenciaConducir;
+            $empleado->LicenciaConducir = $request->licencia;
             // $empleado->creado_por = $usuario_id;
             $empleado->save();
 
@@ -97,7 +98,7 @@ class EmpleadosController extends Controller
 
   
 
-            $empleado = Empleados::whereRaw('IdEmpleado  = ? ', [$id_empleado])->first();
+            $empleado = Empleados::where('id', $id_empleado)->first();
             $empleado->Cedula = $request->cedula;
             $empleado->Nombres = $request->nombres;
             $empleado->Apellidos = $request->apellidos;
@@ -106,7 +107,7 @@ class EmpleadosController extends Controller
             $empleado->Fecha_ingreso = $request->fechaingreso;
             $empleado->Fecha_salida = isset($request->fechasalida) ? $request->fechasalida : null;
             $empleado->Estado = isset($request->estado) ? $request->estado : null;
-            $empleado->LicenciaConducir = $request->LicenciaConducir;
+            $empleado->LicenciaConducir = $request->licencia;
             // $empleado->creado_por = $usuario_id;
             $empleado->save();
 
@@ -122,18 +123,19 @@ class EmpleadosController extends Controller
     public function getEmpleado($id_empleado, Request $request) {
 
         $data = Empleados::select(
-                                'IdEmpleado AS id',
+                                'id',
                                 'Cedula AS cedula',
                                 'Nombres AS nombre',
                                 'Apellidos AS apellido',
                                 'Telefono AS telefono',
                                 'Email AS email',
-                                'Fecha_ingreso AS fecha_ingreso',
-                                'Fecha_salida AS fecha_salida',
+                                DB::raw('DATE_FORMAT(Fecha_ingreso, "%Y-%m-%d") AS fecha_ingreso'),
+                                DB::raw('DATE_FORMAT(Fecha_salida, "%Y-%m-%d") AS fecha_salida'),
+                                // 'Fecha_salida AS fecha_salida',
                                 'LicenciaConducir AS licencia_conducir',
                                 'Estado AS estado',
                             )
-                            ->where('IdEmpleado', $id_empleado)->first();
+                            ->where('id', $id_empleado)->first();
 
         return response()->json($data);
     }
@@ -142,7 +144,7 @@ class EmpleadosController extends Controller
 
         $data = Empleados::
                     select(
-                        'IdEmpleado AS id',
+                        'id',
                         'Cedula AS cedula',
                         'Nombres AS nombre',
                         'Apellidos AS apellido',
