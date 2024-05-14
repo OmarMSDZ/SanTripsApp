@@ -199,4 +199,42 @@ $( function () {
         }, 'json');
         console.log('codigo: ', codigo);
     });
+
+
+    
+
+    $('#formCambiarEmpleado').submit( function (e) {
+        e.preventDefault();
+        // const data = new FormData(this);
+
+        console.log('enviando....');
+
+        const $form = $('#formCambiarEmpleado');
+
+        const data = {
+            codigo: $form.find('input[name="codigo"]').val(),
+            estado: $form.find('input[name="estado"]').val(),
+            _token: $form.find('input[name="_token"]').val(),
+        };
+
+        const url = route('empleados.cambiar_estado', {id_destino: data.codigo});
+
+        $.post(url, data, function (response) {
+            $('#formBusqueda').submit();
+
+            const mensaje = (data.estado == 1) ? 'Se ha inabilitado de forma correcta!' : 'Se ha habilitado de forma correcta!';
+
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: mensaje,
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        });
+
+    });
+
+
+
 });
