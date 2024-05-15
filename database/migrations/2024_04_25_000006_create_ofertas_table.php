@@ -18,6 +18,11 @@ return new class extends Migration
             $table->integer('Porcentaje');
             $table->date('FechaDesde');
             $table->date('FechaHasta');
+            $table->foreignId('creado_por')->constrained('users');
+            $table->foreignId('actualizado_por')->nullable()->constrained('users');
+
+            $table->string('estado')->default('ACTIVO');
+            
             $table->timestamps();
         });
     }

@@ -58,53 +58,53 @@
             </a>
     </li>
     <li class="nav-item">
-      <a href="{{ Route('adminempleados')}}" class="nav-link text-dark font-italic ">
+      <a href="{{ Route('empleados.index')}}" class="nav-link text-dark font-italic ">
                 <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
                 Empleados
             </a>
     </li>
     <li class="nav-item">
-      <a href="{{ Route('adminpaquetes')}}" class="nav-link text-dark font-italic ">
+      <a href="{{ Route('Paquetes.index')}}" class="nav-link text-dark font-italic ">
                 <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
                 Paquetes Turisticos
             </a>
     </li>
     <li class="nav-item">
-      <a href="{{ Route('admindestinos')}}" class="nav-link text-dark font-italic ">
+      <a href="{{ Route('destinos.index')}}" class="nav-link text-dark font-italic ">
                 <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
                 Destinos
             </a>
     </li>
     <li class="nav-item">
-      <a href="{{ Route('adminempresasproveedoras')}}" class="nav-link text-dark font-italic ">
+      <a href="{{ Route('empresasProveedoras.index')}}" class="nav-link text-dark font-italic ">
                 <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
                 Empresas Proveedoras
             </a>
     </li>
     <li class="nav-item">
-      <a href="{{ Route('adminvehiculos')}}" class="nav-link text-dark font-italic ">
+      <a href="{{ Route('vehiculos.index')}}" class="nav-link text-dark font-italic ">
                 <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
                 Vehículos
             </a>
     </li>
     <li class="nav-item">
-      <a href="{{ Route('adminreservas')}}"class="nav-link text-dark font-italic ">
+      <a href="{{ Route('reservashechas.index')}}"class="nav-link text-dark font-italic ">
                 <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
                 Reservas
             </a>
     </li>
     <li class="nav-item">
-      <a href="{{ Route('adminpagos')}}" class="nav-link text-dark font-italic ">
+      <a href="{{ Route('pagos.index')}}" class="nav-link text-dark font-italic ">
                 <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
                 Pagos
             </a>
     </li>
-    <li class="nav-item">
-      <a href="{{ Route('adminincidentes')}}" class="nav-link text-dark font-italic ">
+     {{--  <li class="nav-item">
+    <a href="{{ Route('incidentesadmin.index')}}" class="nav-link text-dark font-italic ">
                 <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
                 Incidentes
             </a>
-    </li>
+    </li> --}}
     
     
     <li class="nav-item">
