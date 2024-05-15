@@ -1,9 +1,9 @@
 $( function () {
 
     const PARAMETROS = {
-        URL_DATATABLE: route('empleados.getEmpleados')
+        URL_DATATABLE: route('ofertas.getOfertas')
     }
-    var dataTable = $('#tablaEmpleado').DataTable({
+    var dataTable = $('#tablaOferta').DataTable({
         responsive: true,
         dom: 'Bfrtip',
         "ajax" : `${PARAMETROS.URL_DATATABLE}?${$('#formBusqueda').serialize()}`,
@@ -12,14 +12,10 @@ $( function () {
         },
         "columns": [
             // {data: 'id'},
-            {data: 'cedula'},
-            {data: 'nombre'},
-            {data: 'apellido'},
-            {data: 'telefono'},
-            {data: 'email'},
-            {data: 'licencia_conducir'},
-            {data: 'fecha_ingreso'},
-            {data: 'fecha_salida'},
+            {data: 'descripcion'},
+            {data: 'porcentaje'},
+            {data: 'fechadesde'},
+            {data: 'fechahasta'},
             {data: 'estado'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ]
@@ -34,7 +30,7 @@ $( function () {
 
     //LIMPIA EL FORMULARIO
     const limpiarFormModal =()=> {
-        $('#codigo_empleado').val('0');
+        $('#codigo_oferta').val('0');
         $('.limpiarForm').val('');
         $('.selectLimpiarForm').val('');
         $('#estado').val('ACTIVO');
@@ -45,20 +41,20 @@ $( function () {
 
 
         $('#btnProcesar').text('GUARDAR');
-        $('#modalRegistroEmpleado  .modal-title').text('Registro de empleado');
+        $('#modalRegistroOferta  .modal-title').text('Registro de Oferta');
 
-        $('#modalRegistroEmpleado').modal('show');
+        $('#modalRegistroOferta').modal('show');
     });
 
 
 
     $('#btnProcesar').click( function () {
 
-        $("#registroEmpleado").submit();
+        $("#registroOferta").submit();
     });
 
 
-    $("#registroEmpleado").validate({
+    $("#registroOferta").validate({
         // rules: {
         //     identificacion: "required",
         // },
@@ -100,14 +96,14 @@ $( function () {
         submitHandler: function (form) {
 
             const data_form = new FormData(form);
-            let url = route('empleados.store');
+            let url = route('ofertas.store');
             let method = 'POST';
 
-            const ID = $('#codigo_empleado').val();
+            const ID = $('#codigo_oferta').val();
 
             if(ID != 0) {
 
-                url = route('empleados.update', {id_empleado: ID});
+                url = route('ofertas.update', {id_oferta: ID});
             }
 
             $.ajax({
@@ -127,7 +123,7 @@ $( function () {
 
                 $("#btnProcesar").html("Guardar").prop("disabled", false);
                 //OCULTAR EL MODAL DEL REGISTRO
-                $('#modalRegistroEmpleado').modal('hide');
+                $('#modalRegistroOferta').modal('hide');
 
                 //LIMPIAR EL FORMULARIO
                 limpiarFormModal();
@@ -166,33 +162,30 @@ $( function () {
     });
 
     //EVENTO ASOCIADO AL BOTON DE ACTUALIZAR DE LA TABLA
-    $('#tablaEmpleado').on('click', '.btnActualizar', function () {
+    $('#tablaOferta').on('click', '.btnActualizar', function () {
 
         $('#btnProcesar').text('ACTUALIZAR');
-        $('#modalRegistroEmpleado  .modal-title').text('Actualizar registro de empleado');
+        $('#modalRegistroOferta  .modal-title').text('Actualizar registro de Oferta');
 
         //CODIGO IDENTIFICADOR DEL REGISTRO
         const codigo = $(this).attr('codigo');
 
         //RUTA DE CONSULTA DEL ID DE EMPLEADO
-        const url = route('empleados.getEmpleado', {id_empleado: codigo});
+        const url = route('ofertas.getOferta', {id_oferta: codigo});
 
         $.get(url, function (response) {
 
-            const $form = $('#registroEmpleado');
+            const $form = $('#registroOferta');
 
-            $form.find('#codigo_empleado').val(response.id);
-            $form.find('input[name="cedula"]').val(response.cedula);
-            $form.find('input[name="nombres"]').val(response.nombre);
-            $form.find('input[name="apellidos"]').val(response.apellido);
-            $form.find('input[name="telefono"]').val(response.telefono);
-            $form.find('input[name="email"]').val(response.email);
-            $form.find('input[name="licencia"]').val(response.licencia_conducir);
-            $form.find('input[name="fechaingreso"]').val(response.fecha_ingreso);
-            $form.find('input[name="fechasalida"]').val(response.fecha_salida);
+            $form.find('#codigo_oferta').val(response.IdOferta);
+            $form.find('input[name="descripcion_oferta"]').val(response.cedula);
+            $form.find('input[name="porcentaje_oferta"]').val(response.nombre);
+            $form.find('input[name="fecha_desde"]').val(response.apellido);
+            $form.find('input[name="fecha_hasta"]').val(response.telefono);
+          
             $form.find('#estado').val(response.estado);
 
-            $('#modalRegistroEmpleado').modal('show');
+            $('#modalRegistroOferta').modal('show');
 
             console.log('response: ', response);
 

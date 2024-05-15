@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cargos_empleado;
 use App\Models\Empleados;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,11 @@ class EmpleadosController extends Controller
      */
     public function index()
     {
-        return view('admin.adminempleados');
+        // $cargos_empleado = Cargos_empleado::select('IdCargo', 'Cargo')->get();
+
+        $cargos_empleado = DB::select('Select IdCargo, Cargo from cargos_empleado');
+        
+        return view('admin.adminempleados', compact('cargos_empleado'));
     }
 
     /**
@@ -60,6 +65,9 @@ class EmpleadosController extends Controller
             $empleado->Fecha_salida = isset($request->fechasalida) ? $request->fechasalida : null;
             $empleado->Estado = isset($request->estado) ? $request->estado : null;
             $empleado->LicenciaConducir = $request->licencia;
+
+            //cargo del empleado
+            $empleado->id_cargo = isset($request->cargo) ? $request->cargo : null;
             // $empleado->creado_por = $usuario_id;
             $empleado->save();
 
@@ -115,6 +123,8 @@ class EmpleadosController extends Controller
             $empleado->Fecha_salida = isset($request->fechasalida) ? $request->fechasalida : null;
             $empleado->Estado = isset($request->estado) ? $request->estado : null;
             $empleado->LicenciaConducir = $request->licencia;
+               //cargo del empleado
+               $empleado->id_cargo = isset($request->cargo) ? $request->cargo : null;
             // $empleado->creado_por = $usuario_id;
             $empleado->save();
 
@@ -138,11 +148,18 @@ class EmpleadosController extends Controller
                                 'Email AS email',
                                 DB::raw('DATE_FORMAT(Fecha_ingreso, "%Y-%m-%d") AS fecha_ingreso'),
                                 DB::raw('DATE_FORMAT(Fecha_salida, "%Y-%m-%d") AS fecha_salida'),
-                                // 'Fecha_salida AS fecha_salida',
+                    
                                 'LicenciaConducir AS licencia_conducir',
+                                
+                                //cargo del empleado
+                                'id_cargo AS id_cargo',
+                                
                                 'Estado AS estado',
                             )
                             ->where('id', $id_empleado)->first();
+
+
+        
 
         return response()->json($data);
     }
@@ -166,7 +183,7 @@ class EmpleadosController extends Controller
         return datatables()->of($data)
                             ->addColumn('action', function($row) {
 
-                                $btnActivo = $row->estado == 'ACTIVO' ? "<a class='dropdown-item text-danger btnCambiarEstado' estado='$row->activo' href='#!' codigo='$row->id'> <i class='bi bi-x'> </i> Desactivar</a>" : "<a class='dropdown-item text-success btnCambiarEstado' href='#!' estado='$row->activo' codigo='$row->id'> <i class='bi bi-check2'> </i> Activar</a>";
+                                $btnActivo = $row->estado == 'ACTIVO' ? "<a class='dropdown-item text-danger btnCambiarEstado' estado='$row->estado' nombre='$row->nombre' href='#!' codigo='$row->id'> <i class='bi bi-x'> </i> Desactivar</a>" : "<a class='dropdown-item text-success btnCambiarEstado' href='#!' estado='$row->estado' nombre='$row->nombre'  codigo='$row->id'> <i class='bi bi-check2'> </i> Activar</a>";
 
                                 return '<div class="dropstart font-sans-serif position-static d-inline-block">
                                             <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal float-end" type="button" id="dropdown0" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
@@ -180,12 +197,12 @@ class EmpleadosController extends Controller
                                             </div>
                                         </div>';
                             })->addColumn('estado', function ($row) {
-                                return $row->activo == 1 ? "<span class='badge badge-success text-success'> <i class='bi bi-check2'> </i> Activo</span>" : "<span class='badge badge-danger text-danger'><i class='bi bi-x'> Inactivo</span>";
+                                return $row->estado == 'ACTIVO' ? "<span class='badge badge-success text-success'> <i class='bi bi-check2'> </i> Activo</span>" : "<span class='badge badge-danger text-danger'><i class='bi bi-x'> Inactivo</span>";
                             })->rawColumns(['action', 'estado'])->make(true);
     }
 
     
-    public function cambiarDestino($id_empleado, Request $request) {
+    public function cambiarEmpleado($id_empleado, Request $request) {
 
         $return = new stdClass();
         $return->code = 200;
@@ -197,7 +214,7 @@ class EmpleadosController extends Controller
             $usuario_id = Auth::user()->id;
 
             $empleados = Empleados::where('id', $id_empleado)->first();
-            $empleados->activo = $request->estado == 1 ? 0 : 1;
+            $empleados->Estado = $request->estado == 'ACTIVO' ? 'INACTIVO' : 'ACTIVO';
             // $empleados->actualizado_por = $usuario_id;
             $empleados->save();
 

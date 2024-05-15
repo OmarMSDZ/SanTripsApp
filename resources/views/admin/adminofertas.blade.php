@@ -16,7 +16,7 @@
     <h1>Administración de Ofertas</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{route('adminmenu')}}">Home</a></li>
         <li class="breadcrumb-item active">Administración de Ofertas</li>
       </ol>
     </nav>
@@ -30,17 +30,17 @@
             <h5 class="card-title">Filtro</h5>
 
             <form id="formBusqueda" class="row justify-center align-items-center">
-                {{-- <div class="col-md-3 col-sm-4 col-lg-4">
+                <div class="col-md-3 col-sm-4 col-lg-4">
                     <label for="tipo_cliente">Provincias</label>
                     <div class="form-group">
                         <select class="form-select default-select2" name="provincia" id="filtro_provincia" required>
                             <option value="0"> ====</option>
-                            @foreach ($provincias as $key)
+                            {{-- @foreach ($provincias as $key)
                                 <option value="{{$key->id}}">{{$key->nombre}} </option>
-                            @endforeach
+                            @endforeach --}}
                         </select>
                     </div>
-                </div> --}}
+                </div> 
 
                 <div class="col-md-3 col-sm-4 col-lg-3">
                     <label for="estatus">Estatus</label>
@@ -69,7 +69,7 @@
             </form>
             <hr>
             <div class="table-responsive is-hide">
-                <table class="table table-striped table-hover table-sm" id="table_id" class="display" style="width:100%">
+                <table class="table table-striped table-hover table-sm" id="tablaOferta" class="display" style="width:100%">
                     <thead class="">
                         <tr>
                             {{-- <th>#</th>  --}}
@@ -90,7 +90,7 @@
     </div>
   </section>
 
-  <form id="formCambiarDestino" action="" method="POST" class="form">
+  <form id="formCambiarOferta" action="" method="POST" class="form">
     <input name="codigo" value="0" type="hidden">
     <input name="estado" value="0" type="hidden">
     @csrf
@@ -141,7 +141,16 @@
                         </div>
                     </div>
 
-                     
+                    <div class="col-4">
+                      <div class="mb-3">
+                          <label for="estado" class="form-label">Estado</label>
+                          <select name="estado" id="estado" class="form-select" required>
+                              <option value="ACTIVO">Activo</option>
+                              <option value="INACTIVO">Inactivo</option>
+                          </select>
+                      </div>
+                  </div>
+
                 </div>
 
                 <div class="mb-3">

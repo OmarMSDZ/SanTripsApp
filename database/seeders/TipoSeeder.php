@@ -14,6 +14,7 @@ class TipoSeeder extends Seeder
     public function run(): void
     {
         $data = [
+            //tipos de destino
             ['codigo' => 'restau', 'tipo' => 'destinos', 'nombre' => 'RESTAURANTE'],
             ['codigo' => 'mus', 'tipo' => 'destinos', 'nombre' => 'MUSEO'],
             ['codigo' => 'ciud', 'tipo' => 'destinos', 'nombre' => 'CIUDADES'],
@@ -21,6 +22,14 @@ class TipoSeeder extends Seeder
             ['codigo' => 'ntrlz', 'tipo' => 'destinos', 'nombre' => 'NATURALEZA'],
             ['codigo' => 'ply', 'tipo' => 'destinos', 'nombre' => 'PLAYAS'],
             ['codigo' => 'nctnl', 'tipo' => 'destinos', 'nombre' => 'NACIONALES'],  
+            
+            //tipos de paquetes
+            ['codigo' => 'turi', 'tipo' => 'paquetes', 'nombre' => 'TURISTICO'],
+            ['codigo' => 'histori', 'tipo' => 'paquetes', 'nombre' => 'HISTORICO'],
+            ['codigo' => 'gastro', 'tipo' => 'paquetes', 'nombre' => 'GASTRONOMICO'],
+            ['codigo' => 'edu', 'tipo' => 'paquetes', 'nombre' => 'EDUCATIVO'],
+            
+            
         ];
         DB::table('tipos')->insert($data);
     }

@@ -3,9 +3,9 @@
 $( function () {
 
     const PARAMETROS = {
-        URL_DATATABLE: route('empleados.getEmpleados')
+        URL_DATATABLE: route('paquetes.getPaquetes')
     }
-    var dataTable = $('#tablaEmpleado').DataTable({
+    var dataTable = $('#tablaPaquete').DataTable({
         responsive: true,
         dom: 'Bfrtip',
         "ajax" : `${PARAMETROS.URL_DATATABLE}?${$('#formBusqueda').serialize()}`,
@@ -14,17 +14,21 @@ $( function () {
         },
         "columns": [
             // {data: 'id'},
-            {data: 'cedula'},
             {data: 'nombre'},
-            {data: 'apellido'},
-            {data: 'telefono'},
-            {data: 'email'},
-            {data: 'licencia_conducir'},
-            //cargo del empleado
-           
+            {data: 'descripcion'},
+            {data: 'costo'},
+            {data: 'numpersonas'},
+            {data: 'edades'},
+            {data: 'idiomas'},
+            {data: 'alojamiento'},
+            {data: 'tiempoestimado'},
+            {data: 'disponibilidad'},
             
-            {data: 'fecha_ingreso'},
-            {data: 'fecha_salida'},
+            //campos fk 
+            {data: 'categoriapaq'},
+            {data: 'oferta'},
+
+
             {data: 'estado'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ]
@@ -39,7 +43,7 @@ $( function () {
 
     //LIMPIA EL FORMULARIO
     const limpiarFormModal =()=> {
-        $('#codigo_empleado').val('0');
+        $('#codigo_paquete').val('0');
         $('.limpiarForm').val('');
         $('.selectLimpiarForm').val('');
         $('#estado').val('ACTIVO');
@@ -50,26 +54,21 @@ $( function () {
 
 
         $('#btnProcesar').text('GUARDAR');
-        $('#modalRegistroEmpleado  .modal-title').text('Registro de empleado');
+        $('#modalRegistroPaquete  .modal-title').text('Registro de Paquete Turístico');
 
-        $('#modalRegistroEmpleado').modal('show');
+        $('#modalRegistroPaquete').modal('show');
     });
 
 
 
     $('#btnProcesar').click( function () {
 
-        $("#registroEmpleado").submit();
+        $("#registroPaquete").submit();
     });
 
 
-    $("#registroEmpleado").validate({
-        // rules: {
-        //     identificacion: "required",
-        // },
-        // messages: {
-
-        // },
+    $("#registroPaquete").validate({
+   
         highlight: function (element, errorClass, validClass) {
             var elem = $(element);
             if (elem.hasClass("select2-hidden-accessible")) {
@@ -105,14 +104,14 @@ $( function () {
         submitHandler: function (form) {
 
             const data_form = new FormData(form);
-            let url = route('empleados.store');
+            let url = route('paquetes.store');
             let method = 'POST';
 
-            const ID = $('#codigo_empleado').val();
+            const ID = $('#codigo_paquete').val();
 
             if(ID != 0) {
 
-                url = route('empleados.update', {id_empleado: ID});
+                url = route('paquetes.update', {id_paquete: ID});
             }
 
             $.ajax({
@@ -132,7 +131,7 @@ $( function () {
 
                 $("#btnProcesar").html("Guardar").prop("disabled", false);
                 //OCULTAR EL MODAL DEL REGISTRO
-                $('#modalRegistroEmpleado').modal('hide');
+                $('#modalRegistroPaquete').modal('hide');
 
                 //LIMPIAR EL FORMULARIO
                 limpiarFormModal();
@@ -171,37 +170,43 @@ $( function () {
     });
 
     //EVENTO ASOCIADO AL BOTON DE ACTUALIZAR DE LA TABLA
-    $('#tablaEmpleado').on('click', '.btnActualizar', function () {
+    $('#tablaPaquete').on('click', '.btnActualizar', function () {
 
         $('#btnProcesar').text('ACTUALIZAR');
-        $('#modalRegistroEmpleado  .modal-title').text('Actualizar registro de empleado');
+        $('#modalRegistroPaquete  .modal-title').text('Actualizar registro de Paquete Turístico');
 
         //CODIGO IDENTIFICADOR DEL REGISTRO
         const codigo = $(this).attr('codigo');
 
         //RUTA DE CONSULTA DEL ID DE EMPLEADO
-        const url = route('empleados.getEmpleado', {id_empleado: codigo});
+        const url = route('paquetes.getPaquete', {id_paquete: codigo});
 
         $.get(url, function (response) {
 
-            const $form = $('#registroEmpleado');
 
-            $form.find('#codigo_empleado').val(response.id);
-            $form.find('input[name="cedula"]').val(response.cedula);
-            $form.find('input[name="nombres"]').val(response.nombre);
-            $form.find('input[name="apellidos"]').val(response.apellido);
-            $form.find('input[name="telefono"]').val(response.telefono);
-            $form.find('input[name="email"]').val(response.email);
-            $form.find('input[name="licencia"]').val(response.licencia_conducir);
-            
-            //cargo del empleado
-            $form.find('select[name="cargo"]').val(response.id_cargo);
-            
-            $form.find('input[name="fechaingreso"]').val(response.fecha_ingreso);
-            $form.find('input[name="fechasalida"]').val(response.fecha_salida);
+            const $form = $('#registroPaquete');
+            //en el response van los nombres de los campos en la BD
+            $form.find('#codigo_paquete').val(response.id);
+            $form.find('input[name="nombre"]').val(response.nombre);
+            $form.find('input[name="descripcion"]').val(response.descripcion);
+            $form.find('input[name="costo"]').val(response.costo);
+            $form.find('input[name="numpersonas"]').val(response.numpersonas);
+            $form.find('select[name="edades"]').val(response.edades);
+            $form.find('select[name="idiomas"]').val(response.idiomas);
+            $form.find('select[name="alojamiento"]').val(response.alojamiento);
+ 
+            $form.find('input[name="tiempoestimado"]').val(response.tiempoestimado);
+            $form.find('select[name="disponibilidad"]').val(response.disponibilidad);
+
+
+            //campos de fk 
+            // $form.find('select[name="cargo"]').val(response.id_cargo);
+            $form.find('select[name="categoriapaq"]').val(response.categoriapaq);
+            $form.find('select[name="oferta"]').val(response.oferta);
+ 
             $form.find('#estado').val(response.estado);
 
-            $('#modalRegistroEmpleado').modal('show');
+            $('#modalRegistroPaquete').modal('show');
 
             console.log('response: ', response);
 
@@ -209,19 +214,19 @@ $( function () {
         console.log('codigo: ', codigo);
     });
 
-    $('#tablaEmpleado').on('click', '.btnCambiarEstado', function () {
+    $('#tablaPaquete').on('click', '.btnCambiarEstado', function () {
 
         const codigo = $(this).attr('codigo');
         const estado = $(this).attr('estado');
         const nombre = $(this).attr('nombre');
 
-        const $form = $('#formCambiarEmpleado');
+        const $form = $('#formCambiarPaquete');
 
-        let msg = `Estas seguro que deseas activar el empleado ${nombre}`;
+        let msg = `Estas seguro que deseas activar el paquete ${nombre}`;
 
         //RECOMENDACION CAMBIAR A BOOLEANO (1 O 0)
         if(estado == 'ACTIVO') {
-             msg = `Estas seguro que deseas desactivar el empleado ${nombre}`;
+             msg = `Estas seguro que deseas desactivar el paquete ${nombre}`;
         }
 
         $form.find('input[name="codigo"]').val(codigo);
@@ -238,20 +243,20 @@ $( function () {
             // timer: 1500,
         }).then((results) => {
             console.log('SI');
-            $('#formCambiarEmpleado').submit();
+            $('#formCambiarPaquete').submit();
         });
 
         console.log('codigo: ', codigo);
     });
     
 
-    $('#formCambiarEmpleado').submit( function (e) {
+    $('#formCambiarPaquete').submit( function (e) {
         e.preventDefault();
         // const data = new FormData(this);
 
         console.log('enviando....');
 
-        const $form = $('#formCambiarEmpleado');
+        const $form = $('#formCambiarPaquete');
 
         const data = {
             codigo: $form.find('input[name="codigo"]').val(),
@@ -259,7 +264,7 @@ $( function () {
             _token: $form.find('input[name="_token"]').val(),
         };
 
-        const url = route('empleados.cambiar_estado', {id_empleado: data.codigo});
+        const url = route('paquetes.cambiar_estado', {id_paquete: data.codigo});
 
         $.post(url, data, function (response) {
             $('#formBusqueda').submit();

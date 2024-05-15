@@ -1,6 +1,6 @@
 
 @extends('layouts.admin_layout_new')
-@section('title', 'Administrador de Empleados')
+@section('title', 'Administrador de Paquetes Turísticos')
 
 @section('css')
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.0/css/responsive.dataTables.css">
@@ -12,19 +12,14 @@
 
 @section('content')
 
-
-{{-- <div class="page-content p-5" id="content">
-<!-- Contenido de admin empleados -->
-<h2>Admin Empleados <span class="text-gray float-end">SanTrips</span></h2>
-<hr> --}}
-
+ 
 
 <div class="pagetitle">
-    <h1>Administración de Empleados</h1>
+    <h1>Administración de Paquetes Turísticos</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{route('adminmenu')}}">Home</a></li>
-        <li class="breadcrumb-item active">Administración de Empleados</li>
+        <li class="breadcrumb-item active">Administración de Paquetes Turísticos</li>
       </ol>
     </nav>
   </div><!-- End Page Title -->
@@ -41,13 +36,13 @@
 
                     <form id="formBusqueda" class="row justify-center align-items-center">
                         <div class="col-md-3 col-sm-4 col-lg-4">
-                            <label for="tipo_cliente">Provincias</label>
+                            <label for="tipo_cliente">Categoría</label>
                             <div class="form-group">
                                 <select class="form-select default-select2" name="provincia" id="filtro_provincia" required>
                                     <option value="0"> ====</option>
-                                    {{-- @foreach ($provincias as $key)
+                                     {{-- @foreach ($categoriapaq as $key)
                                         <option value="{{$key->id}}">{{$key->nombre}} </option>
-                                    @endforeach --}}
+                                    @endforeach  --}}
                                 </select>
                             </div>
                         </div>
@@ -81,20 +76,23 @@
                 </div>
                 <br>
                 <div class="col-12 table-container">
-                    <table id="tablaEmpleado" class="table table-hover">
+                    <table id="tablaPaquete" class="table table-hover">
                         <!-- Contenido de la tabla -->
                         <thead class="">
                         <tr>
                             {{-- <th>Id</th> --}}
-                            <th>Cédula</th>
-                            <th>Nombre/s</th>
-                            <th>Apellido/s</th>
-                            <th>Telefono</th>
-                            <th>Email</th>
-                            <th>Lic. Conducir</th>
-                            <th>Fecha Ingreso</th>
-                            <th>Fecha Salida</th>
-                            <th>Estado</th>
+                            <th>Nombre</th>
+                            <th>Descripcion</th>
+                            <th>Costo</th>
+                            <th>N° Personas</th>
+                            <th>Edades</th>
+                            <th>Idiomas</th>
+                            <th>Alojamiento</th>
+                            <th>Tiempo_estimado</th>
+                            <th>Disponibilidad</th>
+                            <th>Categoría</th>
+                            <th>Oferta Aplicada</th>
+                            
                             <th>Acción</th>
                         </tr>
                     </thead>
@@ -107,95 +105,138 @@
 </div>
 
 
-<form id="formCambiarEmpleado" action="" method="POST" class="form">
+<form id="formCambiarPaquete" action="" method="POST" class="form">
     <input name="codigo" value="0" type="hidden">
     <input name="estado" value="0" type="hidden">
     @csrf
 </form>
 
-<div class="modal fade" id="modalRegistroEmpleado" tabindex="-1">
+<div class="modal fade" id="modalRegistroPaquete" tabindex="-1">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Registro De Empleado</h5>
+          <h5 class="modal-title">Registro De Paquete Turístico</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form id="registroEmpleado" class="row" action="" method="POST" class="form">
+            <form id="registroPaquete" class="row" action="" method="POST" class="form">
                 @csrf
 
-                <input type="hidden" id="codigo_empleado" name="codigo" value="0">
+                <input type="hidden" id="codigo_paquete" name="codigo" value="0">
 
                 <div class="col-4">
                     <div class="mb-3">
-                        <label for="cedula" class="form-label">Cedula</label>
-                        <input type="text" name="cedula" class="form-control limpiarForm" placeholder="Cedula del empleado" required>
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" name="nombre" class="form-control limpiarForm" placeholder="Nombre del Paquete" required>
                     </div>
                 </div>
 
                 <div class="col-4">
                     <div class="mb-3">
-                        <label for="nombres" class="form-label">Nombre/s</label>
-                        <input type="text" name="nombres" class="form-control limpiarForm" placeholder="Nombre/s" required>
-                    </div>
+                        <label for="descripcion" class="form-label">Descripcion</label>
+                        <textarea name="descripcion" id="" cols="30" rows="10" class="form-control limpiarForm" placeholder="Descripcion del paquete" required></textarea>
+                      </div>
                 </div>
 
                 <div class="col-4">
-                    <div class="mb-3">
-                        <label for="apellidos" class="form-label">Apellido/s</label>
-                        <input type="text" name="apellidos" class="form-control limpiarForm" placeholder="Apellido/s" required>
-                    </div>
+                  <div class="mb-3">
+                      <label for="costo" class="form-label">Costo (RD$)</label>
+                      <input type="number" name="costo" class="form-control limpiarForm" step="0.01" placeholder="Costo del paquete en RD$" required>
+                  </div>
                 </div>
 
                 <div class="col-4">
+                  <div class="mb-3">
+                      <label for="numpersonas" class="form-label">Num. Max. Personas</label>
+                      <input type="number" name="numpersonas" class="form-control limpiarForm" step="0.01" placeholder="Numero maximo de personas" required>
+                  </div>
+                </div>
 
+              
+                <div class="col-4">
                     <div class="mb-3">
-                        <label for="telefono" class="form-label">Teléfono</label>
-                        <input type="tel" name="telefono" class="form-control limpiarForm" placeholder="Teléfono" required>
-                    </div>
+                        <label for="edades" class="form-label">Edades</label>
+                        <select name="edades" id="edades" class="form-select limpiarForm">
+                          <option value="">===</option>
+                          <option value="TODAS LAS EDADES">Todas las Edades</option>
+                          <option value="ADOLESCENTES Y ADULTOS">Adolescentes y Adultos</option>
+                          <option value="SOLO ADULTOS">Solo Adultos</option>
+                        </select>
+                     </div>
                 </div>
 
                 <div class="col-4">
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" name="email" class="form-control limpiarForm" placeholder="Email" required>
-                    </div>
+                  <div class="mb-3">
+                      <label for="idiomas" class="form-label">Idiomas</label>
+                      <select name="idiomas" id="idiomas" class="form-select limpiarForm">
+                        <option value="">===</option>
+                        <option value="ESPAÑOL">Español</option>
+                        <option value="INGLES">Inglés</option>
+                        <option value="INGLES Y ESPAÑOL">Inglés y Español</option>
+                      </select>
+                   </div>
+                 </div>
+
+
+
+                 <div class="col-4">
+                  <div class="mb-3">
+                      <label for="alojamiento" class="form-label">Alojamiento</label>
+                      <select name="alojamiento" id="alojamiento" class="form-select limpiarForm">
+                        <option value="DISPONIBLE (HOTEL)">Disponible (Hotel)</option>
+                        <option value="DISPONIBLE (A ESPECIFICAR)">Disponible (A Especificar)</option>
+                        <option value="NO DISPONIBLE">No Disponible</option>
+                      </select>
+                   </div>
                 </div>
 
                 <div class="col-4">
-                    <div class="mb-3">
-                        <label for="licencia" class="form-label">N° Licencia de Conducir</label>
-                        <input type="text" name="licencia" class="form-control limpiarForm" placeholder="Licencia de Conducir" required>
-                    </div>
+                  <div class="mb-3">
+                      <label for="tiempoestimado" class="form-label">Duración Estimada (En Horas)</label>
+                      <input type="number" name="tiempoestimado" class="form-control limpiarForm" placeholder="Duración estimada del paquete (En Horas)" required>
+                  </div>
                 </div>
 
                 <div class="col-4">
+                  <div class="mb-3">
+                      <label for="disponibilidad" class="form-label">Disponibilidad</label>
+                      <select name="disponibilidad" id="disponibilidad" class="form-select limpiarForm">
+                        <option value="DISPONIBLE">Disponible</option>
+                        <option value="NO DISPONIBLE">No Disponible</option>
+                      </select>
+                   </div>
+                </div>
+                
+
+                <div class="col-4">
+                  <div class="mb-3">
+                      <label for="categoriapaq" class="form-label">Categoria Paquete</label>
+                      <select name="categoriapaq" id="categoriapaq" class="form-select limpiarForm">
+
+                          <option value="">===</option>
+                          @foreach ($categoriapaq as $key)
+                              <option value="{{$key->id}}">{{$key->nombre}}</option>
+                          @endforeach 
+                      
+                      </select>
+                  </div>
+              </div>
+
+
+                <div class="col-4">
                     <div class="mb-3">
-                        <label for="cargo" class="form-label">Cargo</label>
-                        <select name="cargo" id="cargo" class="form-select limpiarForm">
+                        <label for="oferta" class="form-label">Ofertas Aplicadas</label>
+                        <select name="oferta" id="oferta" class="form-select limpiarForm">
 
                             <option value="">===</option>
-                            @foreach ($cargos_empleado as $key)
-                                <option value="{{$key->IdCargo}}">{{$key->Cargo}}</option>
-                            @endforeach
+                            @foreach ($ofertas as $key)
+                                <option value="{{$key->IdOferta}}">{{$key->Descripcion}}</option>
+                            @endforeach 
                         
                         </select>
                     </div>
                 </div>
-
-                <div class="col-4">
-                    <div class="mb-3">
-                        <label for="fechaingreso" class="form-label">Fecha Ingreso</label>
-                        <input type="date" name="fechaingreso" class="form-control limpiarForm" value={{date('Y-m-y')}} required>
-                    </div>
-                </div>
-
-                <div class="col-4">
-                    <div class="mb-3">
-                        <label for="fechasalida" class="form-label">Fecha Salida</label>
-                        <input type="date" name="fechasalida" class="form-control limpiarForm">
-                    </div>
-                </div>
+ 
 
                 <div class="col-4">
                     <div class="mb-3">
@@ -207,14 +248,7 @@
                     </div>
                 </div>
 
-                {{-- <div class="mb-3">
-                    <button type="button" class="btn btn-success">Registrar</button>
-                    <button type="button" class="btn btn-warning">Actualizar</button>
-                    <br>
-                    <p class="font-weight-bold text-uppercase px-3 small mt-3 mb-0">Otras Acciones</p>
-                    <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="" style="text-decoration: none; color: white;"> Administrar Cargos</a></button>
-                    <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="" style="text-decoration: none; color: white;"> Asignar Encargado Paquete</a></button>
-                </div> --}}
+          
 
             </form>
         </div>
@@ -243,6 +277,6 @@
 <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
 <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.bootstrap5.js"></script>
 
-<script src=" {{ asset('assets/js/admin_empleados/admin_empleados.js') }}"></script>
+<script src=" {{ asset('assets/js/admin_paquetes/admin_paquetes.js') }}"></script>
 
 @endsection

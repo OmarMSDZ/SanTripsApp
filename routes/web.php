@@ -189,6 +189,23 @@ Route::middleware('auth')->prefix('admin')->group( function () {
         Route::post('/cambiar_estado/{id_oferta}', 'cambiarOferta')->name('ofertas.cambiar_estado');
     });
 
+    Route::controller(PaquetesTuristicosController::class)->prefix('paquetes')->group( function () {
+
+        //ir a la vista principal
+        Route::get('/', 'index')->name('paquetes.index');
+        //obtener datos completos
+        Route::get('/data', 'getPaquetes')->name('paquetes.getPaquetes');
+        //obtener un dato especifico
+        Route::get('/data/{id_paquete}', 'getPaquete')->name('paquetes.getPaquete');
+        //guardar
+        Route::post('/', 'store')->name('paquetes.store'); 
+        //actualizar
+        Route::post('/update/{id_paquete}', 'update')->name('paquetes.update');
+        //cambiar estado 
+        Route::post('/cambiar_estado/{id_paquete}', 'cambiarPaquete')->name('paquetes.cambiar_estado');
+    });
+
+
 
 
 
