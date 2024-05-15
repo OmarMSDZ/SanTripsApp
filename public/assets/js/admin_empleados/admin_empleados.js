@@ -200,7 +200,7 @@ $( function () {
             $form.find('input[name="fechaingreso"]').val(response.fecha_ingreso);
             $form.find('input[name="fechasalida"]').val(response.fecha_salida);
             $form.find('#estado').val(response.estado);
-
+ 
             $('#modalRegistroEmpleado').modal('show');
 
             console.log('response: ', response);
