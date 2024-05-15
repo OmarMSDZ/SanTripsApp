@@ -20,7 +20,7 @@ $( function () {
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ]
     });
-
+ 
     $('#formBusqueda').submit(function (e) {
 
         //EVITA QUE SE ACTUALICE LA PAGINA AL ENVIAR LA DATA DE BUSQUEDA
