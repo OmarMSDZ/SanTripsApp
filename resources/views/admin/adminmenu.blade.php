@@ -1,4 +1,15 @@
- <x-headadmin></x-headadmin>
+@extends('layouts.admin_layout_new')
+@section('title', 'Administrador de Ofertas')
+
+@section('css')
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.0/css/responsive.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/2.0.0/css/colReorder.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.1/css/buttons.dataTables.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap5.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.1/css/buttons.bootstrap5.css">
+@endsection
+
+@section('content')
  <!-- Contenedor del contenido de la pagina -->
 <div class="page-content p-5" id="content">
 <!-- Contenido de la pagina de admin menu (dashboard) -->
@@ -12,7 +23,7 @@
                     <h4 class="font-weight-normal mb-3">Usuarios Registrados<i class="mdi mdi-chart-line mdi-24px float-end"></i>
                     </h4>
                     <h2 class="mb-5">0</h2>
-                    <h6 class="card-text"><a href="{{ Route('adminusuarios')}}" style="text-decoration: none; color: black;">Ir a Admin Usuarios</a></h6>
+                    <h6 class="card-text"><a href="#" style="text-decoration: none; color: black;">Ir a Admin Usuarios</a></h6>
                   </div>
                 </div>
               </div>
@@ -23,7 +34,7 @@
                     <h4 class="font-weight-normal mb-3">Empleados Registrados<i class="mdi mdi-bookmark-outline mdi-24px float-end"></i>
                     </h4>
                     <h2 class="mb-5">0</h2>
-                    <h6 class="card-text"><a href="{{ Route('adminempleados')}}" style="text-decoration: none; color: black;">Ir a Admin Empleados</a></h6>
+                    <h6 class="card-text"><a href="{{ Route('empleados.index')}}" style="text-decoration: none; color: black;">Ir a Admin Empleados</a></h6>
                   </div>
                 </div>
               </div>
@@ -34,7 +45,7 @@
                     <h4 class="font-weight-normal mb-3">Vehiculos Registrados<i class="mdi mdi-diamond mdi-24px float-end"></i>
                     </h4>
                     <h2 class="mb-5">0</h2>
-                    <h6 class="card-text"><a href="{{ Route('adminvehiculos')}}" style="text-decoration: none; color: black;">Ir a Admin Vehiculos</a></h6>
+                    <h6 class="card-text"><a href="{{ Route('vehiculos.index')}}" style="text-decoration: none; color: black;">Ir a Admin Vehiculos</a></h6>
                   </div>
                 </div>
               </div>
@@ -49,7 +60,7 @@
                     <h4 class="font-weight-normal mb-3">Paquetes Turísticos Registrados<i class="mdi mdi-chart-line mdi-24px float-end"></i>
                     </h4>
                     <h2 class="mb-5">0</h2>
-                    <h6 class="card-text"><a href="{{ Route('adminpaquetes')}}" style="text-decoration: none; color: black;">Ir a Admin Paquetes</a></h6>
+                    <h6 class="card-text"><a href="{{ Route('Paquetes.index')}}" style="text-decoration: none; color: black;">Ir a Admin Paquetes</a></h6>
                   </div>
                 </div>
               </div>
@@ -60,7 +71,7 @@
                     <h4 class="font-weight-normal mb-3">Destinos Registrados<i class="mdi mdi-bookmark-outline mdi-24px float-end"></i>
                     </h4>
                     <h2 class="mb-5">0</h2>
-                    <h6 class="card-text"><a href="{{ Route('admindestinos')}}" style="text-decoration: none; color: black;">Ir a Admin Destinos</a></h6>
+                    <h6 class="card-text"><a href="{{ Route('destinos.index')}}" style="text-decoration: none; color: black;">Ir a Admin Destinos</a></h6>
                   </div>
                 </div>
               </div>
@@ -72,7 +83,7 @@
                     <h4 class="font-weight-normal mb-3">Empresas Proveedoras Registradas<i class="mdi mdi-diamond mdi-24px float-end"></i>
                     </h4>
                     <h2 class="mb-5">0</h2>
-                    <h6 class="card-text"><a href="{{ Route('adminempresasproveedoras')}}" style="text-decoration: none; color: black;">Ir a Admin Empresas Proveedoras</a></h6>
+                    <h6 class="card-text"><a href="{{ Route('empresasProveedoras.index')}}" style="text-decoration: none; color: black;">Ir a Admin Empresas Proveedoras</a></h6>
                   </div>
                 </div>
               </div>
@@ -86,7 +97,7 @@
                     <h4 class="font-weight-normal mb-3">Reservaciones Realizadas<i class="mdi mdi-chart-line mdi-24px float-end"></i>
                     </h4>
                     <h2 class="mb-5">0</h2>
-                    <h6 class="card-text"><a href="{{ Route('adminreservas')}}" style="text-decoration: none; color: black;">Ir a Admin Reservas</a></h6>
+                    <h6 class="card-text"><a href="{{ Route('reservashechas.index')}}" style="text-decoration: none; color: black;">Ir a Admin Reservas</a></h6>
                   </div>
                 </div>
               </div> 
@@ -97,7 +108,7 @@
                     <h4 class="font-weight-normal mb-3">Pagos Pendientes<i class="mdi mdi-bookmark-outline mdi-24px float-end"></i>
                     </h4>
                     <h2 class="mb-5">0</h2>
-                    <h6 class="card-text"><a href="{{ Route('adminpagos')}}" style="text-decoration: none; color: black;">Ir a Admin Pagos</a></h6>
+                    <h6 class="card-text"><a href="{{ Route('pagos.index')}}" style="text-decoration: none; color: black;">Ir a Admin Pagos</a></h6>
                   </div>
                 </div>
               </div>
@@ -204,4 +215,24 @@
       </div>
  
   </div>
- <x-footeradmin></x-footeradmin>
+  @endsection
+
+  @section('javascript')
+    <script src="https://cdn.datatables.net/2.0.1/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.1/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/colreorder/2.0.0/js/colReorder.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.0/js/dataTables.responsive.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.1/js/dataTables.buttons.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.bootstrap5.js"></script>
+
+    {{-- IMPORTANTE, INCLUIR EL JS CORRESPONDIENTE A ESTA VISTA PARA QUE FUNCIONE DE MANERA ADECUADA --}}
+
+
+  @endsection

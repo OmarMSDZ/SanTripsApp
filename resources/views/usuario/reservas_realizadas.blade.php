@@ -21,10 +21,12 @@
 
         <h3>Mostrar por Estado</h3>
         <select name="estado" id="" class="form-select">
-
- 
- 
+            <option value="ACTIVA">Activas</option>
+            <option value="EN PROCESO">En Proceso</option>
+            <option value="CANCELADA">Canceladas</option>
+            <option value="COMPLETADA">Completada</option>
         </select>
+        <hr>
         <!-- Sección de perfil del usuario -->
 
 
@@ -39,17 +41,19 @@
             
         
         <div class="user-profile">
-            <img src="{{asset('img/favicon.png')}}" alt="Foto de perfil" >
+            {{-- <img src="{{asset('img/favicon.png')}}" alt="Foto de perfil" > --}}
             <div class="user-info">
-                <h2>Usuario</h2>
+                <h2>Información del Usuario</h2>
                 <p hidden>{{$usuario->id}}</p>
-                <p>Nombre: {{$usuario->name}}</p>
-                <p>Email: {{$usuario->email}}</p>
+                <p> <span style="font-weight:bold;"> Nombre: </span> {{$usuario->name}}</p>
+                <p> <span style="font-weight:bold;"> Email: </span> {{$usuario->email}}</p>
                 <!-- Agrega más información del perfil según sea necesario -->
                 @endforeach    
             </div>
         </div>
     
+
+        <hr>
 
         
         <style>
@@ -92,12 +96,12 @@ table {
                     r.CantidadPersonas, 
                     mp.Metodo_Pago,
                     r.EstadoReservacion,
-              			dr.fk_IdPaquete,
+              			dr.id_paquete_turistico,
               			dr.fk_IdReservacion
                     FROM reservacion AS r INNER JOIN detalle_reserva AS dr
 						   ON r.IdReservacion=dr.fk_IdReservacion 
                     INNER JOIN paquetes_turisticos AS p ON 
-						  p.IdPaquete=dr.fk_IdPaquete INNER JOIN metodo_pago AS mp ON 
+						  p.id=dr.Id_paquete_turistico INNER JOIN metodo_pago AS mp ON 
                     mp.IdMetodopago=r.fk_IdMetodopago  
                     WHERE r.fk_IdUsuario= $idusuario;")    
                     // esto del id debe de ser variable, tomado de la sesion del usuario

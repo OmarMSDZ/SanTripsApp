@@ -47,11 +47,11 @@
         <!-- Jumbotron -->
         {{-- Aqui iria la info del paquete --}}
         @php
-             $paquetes = DB::select("SELECT p.idPaquete as idpaq, p.Nombre as nombre, p.Descripcion as descripcion,
+             $paquetes = DB::select("SELECT p.id as idpaq, p.Nombre as nombre, p.Descripcion as descripcion,
          p.Costo as costo, p.Num_personas as numpersonas, p.Edades as edades, p.Idiomas as idiomas, p.Alojamiento as alojamiento, p.Tiempo_estimado as tiempoestimado, 
         p.Disponibilidad as disponibilidad, c.CategoriaPaq as categoria, o.Porcentaje as porciento FROM
           paquetes_turisticos as p INNER JOIN categorias_paquetes as c ON p.fk_IdCategoriaPaq=c.IdCategoriaPaq 
-          INNER JOIN ofertas as o ON p.fk_IdOferta=o.IdOferta WHERE p.idPaquete=$id");
+          INNER JOIN ofertas as o ON p.fk_IdOferta=o.IdOferta WHERE p.id=$id");
         @endphp
 
         <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">

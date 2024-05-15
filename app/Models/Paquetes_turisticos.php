@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Paquetes_turisticos extends Model
 {
     use HasFactory;
+ 
+
+    
 }

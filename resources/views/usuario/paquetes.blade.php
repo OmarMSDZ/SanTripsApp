@@ -23,7 +23,7 @@
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {{-- Consulta para obtener la info de los paquetes --}}
         <?php
-        $paquetes = DB::select("SELECT p.idPaquete as idpaq, p.Nombre as nombre, p.Descripcion as descripcion,
+        $paquetes = DB::select("SELECT p.id as idpaq, p.Nombre as nombre, p.Descripcion as descripcion,
         p.Costo as costo, p.Num_personas as numpersonas, p.Edades as edades, p.Idiomas as idiomas, p.Alojamiento as alojamiento, p.Tiempo_estimado as tiempoestimado, 
         p.Disponibilidad as disponibilidad, c.CategoriaPaq as categoria, o.Porcentaje as porciento FROM
         paquetes_turisticos as p INNER JOIN categorias_paquetes as c ON p.fk_IdCategoriaPaq=c.IdCategoriaPaq INNER JOIN ofertas as o ON p.fk_IdOferta=o.IdOferta");
@@ -39,8 +39,8 @@
                     <img src="{{asset('img/logosantri.jpeg')}}" alt="" class="card-img-top">
 
                     
-                    <h2 class="card-title">{{$paquete->nombre}} </h2>
-                    <p class="card-text">{{$paquete->categoria}}</p>
+                    <h2 class="card-title">{{$paquete->nombre}}</h2>
+                    <p class="card-text"> <span style="font-weight:bold">Categoría:</span> {{$paquete->categoria}}</p>
                   
                     <button class="btn btn-primary" onclick="toggleMoreInfo(this)">Mostrar Más Información</button>
                     <div class="more-info d-none">
@@ -50,9 +50,9 @@
                             <li class="list-group-item">Edades: {{$paquete->edades}}</li>
                             <li class="list-group-item">Idiomas: {{$paquete->idiomas}}</li>
                             <li class="list-group-item">Disponibilidad Alojamiento: {{$paquete->alojamiento}}</li>
-                            <li class="list-group-item">Duración Estimada: (En Horas){{$paquete->tiempoestimado}}</li>
+                            <li class="list-group-item">Duración Estimada (En Horas): {{$paquete->tiempoestimado}}</li>
                             <li class="list-group-item">Disponibilidad: {{$paquete->disponibilidad}}</li>
-                            <li class="list-group-item">Costo (RD$): {{$paquete->costo}}</li>
+                            <li class="list-group-item">Costo por persona (RD$): {{$paquete->costo}}</li>
                         </ul>
                         <form action="{{ route('procesar_reserva')}}" method="POST">
                             @csrf <!-- Agrega el token CSRF para protección -->

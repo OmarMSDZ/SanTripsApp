@@ -8,12 +8,12 @@ use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
- 
+
     public function up()
     {
-        Schema::create('Paquetes_turisticos', function (Blueprint $table) {
-          
-            $table->id('IdPaquete');
+        Schema::create('paquetes_turisticos', function (Blueprint $table) {
+
+            $table->id();
             $table->string('Nombre', 50);
             $table->text('Descripcion');
             $table->float('Costo');
@@ -23,30 +23,19 @@ return new class extends Migration
             $table->string('Alojamiento', 50)->nullable()->default(null);
             $table->integer('Tiempo_estimado');
             $table->string('Disponibilidad', 25);
-            $table->unsignedBigInteger('fk_IdCategoriapaq');
-            $table->unsignedBigInteger('fk_IdOferta');
+            $table->string('Estado', 25);
+            
+            // $table->foreignId('fk_IdCategoriapaq')->nullable()->constrained('categorias_paquetes', 'IdCategoriapaq');
+            $table->foreignId('id_categoria_paquete')->nullable()->constrained('tipos');
+            $table->foreignId('fk_IdOferta')->nullable()->constrained('ofertas', 'IdOferta');
+            
             $table->timestamps();
-
-            $table->index(["fk_IdCategoriapaq"], 'fk_IdCategoriapaq');
-
-            $table->index(["fk_IdOferta"], 'fk_IdOferta');
-
-
-            $table->foreign('fk_IdCategoriapaq', 'fk_IdCategoriapaq')
-                ->references('IdCategoriapaq')->on('categorias_paquetes')
-                ->onDelete('restrict')
-                ->onUpdate('cascade');
-
-            $table->foreign('fk_IdOferta', 'fk_IdOferta')
-                ->references('IdOferta')->on('ofertas')
-                ->onDelete('restrict')
-                ->onUpdate('cascade');
         });
     }
 
-    
+
     public function down()
     {
-        Schema::dropIfExists('Paquetes_turisticos');
+        Schema::dropIfExists('paquetes_turisticos');
     }
 };

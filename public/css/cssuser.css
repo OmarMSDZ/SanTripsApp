@@ -658,11 +658,11 @@ body { background: var(--white); }
 \*-----------------------------------*/
 
 .cta {
-  background: var(--bright-navy-blue);
+  /* background: var(--bright-navy-blue); */
   padding-block: var(--section-padding);
 }
 
-.cta :is(.section-subtitle, .section-title, .section-text) { color: var(--white); }
+.cta :is(.section-subtitle, .section-title, .section-text) { color: var(--black); }
 
 .cta .section-text { font-size: var(--fs-5); }
 
