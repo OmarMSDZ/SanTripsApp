@@ -57,7 +57,7 @@
     {{-- END HEADER --}}
   <!-- ======= Sidebar ======= -->
 
-    @include('layouts.sidebar_new')
+  @include('layouts.sidebar_new') 
 
   <main id="main" class="main">
 

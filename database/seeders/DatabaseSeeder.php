@@ -15,12 +15,36 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+         User::factory()->create(
+            [
+
+            
+            // [
+            //  'name' => 'Test User',
+            //   'email' => 'test@example.com',
+            // ],
+            
+            //definir los usuarios por default de admin y user
+            [
+             'name' => 'Admin',
+             'email' => 'admin@gmail.com',
+             'password' => '12345678',
+             'usertype' => 'admin',
+            ],
+
+            [
+                'name' => 'User',
+                'email' => 'user@gmail.com',
+                'password' => '12345678',
+                'usertype' => 'user',
+            ],
+   
+            ]
+        );
 
         $this->call(TipoSeeder::class);
+        $this->call(Cargos_EmpleadoSeeder::class);
+        
         $this->call(AppSeeder::class);
 
     }

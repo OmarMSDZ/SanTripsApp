@@ -23,7 +23,10 @@ return new class extends Migration
             $table->string('Alojamiento', 50)->nullable()->default(null);
             $table->integer('Tiempo_estimado');
             $table->string('Disponibilidad', 25);
-            $table->foreignId('fk_IdCategoriapaq')->nullable()->constrained('categorias_paquetes', 'IdCategoriapaq');
+            $table->string('Estado', 25);
+            
+            // $table->foreignId('fk_IdCategoriapaq')->nullable()->constrained('categorias_paquetes', 'IdCategoriapaq');
+            $table->foreignId('id_categoria_paquete')->nullable()->constrained('tipos');
             $table->foreignId('fk_IdOferta')->nullable()->constrained('ofertas', 'IdOferta');
             
             $table->timestamps();
