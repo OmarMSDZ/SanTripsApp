@@ -1,3 +1,5 @@
+// const { createLogger } = require("vite");
+
 $( function () {
 
     const PARAMETROS = {
@@ -20,7 +22,7 @@ $( function () {
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ]
     });
- 
+
     $('#formBusqueda').submit(function (e) {
 
         //EVITA QUE SE ACTUALICE LA PAGINA AL ENVIAR LA DATA DE BUSQUEDA
@@ -170,21 +172,27 @@ $( function () {
         //CODIGO IDENTIFICADOR DEL REGISTRO
         const codigo = $(this).attr('codigo');
 
-        //RUTA DE CONSULTA DEL ID DE EMPLEADO
-        const url = route('ofertas.getOferta', {id_oferta: codigo});
+        
+        //RUTA DE CONSULTA DEL ID 
+         const url = route('ofertas.getOferta', {id_oferta: codigo});
+
+        // const getOfertaUrl = route('ofertas.getOferta', ['id_oferta', ':codigo']);
+        
+        // const url = getOfertaUrl.replace(':codigo', codigo);
+    
 
         $.get(url, function (response) {
 
             const $form = $('#registroOferta');
 
-            $form.find('#codigo_oferta').val(response.IdOferta);
-            $form.find('input[name="descripcion_oferta"]').val(response.cedula);
-            $form.find('input[name="porcentaje_oferta"]').val(response.nombre);
-            $form.find('input[name="fecha_desde"]').val(response.apellido);
-            $form.find('input[name="fecha_hasta"]').val(response.telefono);
-          
-            $form.find('#estado').val(response.estado);
-
+            //para llenar estos campos con valores 
+            $form.find('#codigo_oferta').val(response.id);
+            $form.find('#descripcion').val(response.descripcion);
+            $form.find('input[name="porcentaje"]').val(response.porcentaje);
+            $form.find('input[name="fechadesde"]').val(response.fechadesde);
+            $form.find('input[name="fechahasta"]').val(response.fechahasta);
+            $form.find('#estado').val(response.Estado);
+ 
             $('#modalRegistroOferta').modal('show');
 
             console.log('response: ', response);
@@ -192,4 +200,84 @@ $( function () {
         }, 'json');
         console.log('codigo: ', codigo);
     });
+
+    $('#tablaOferta').on('click', '.btnCambiarEstado', function () {
+
+        const codigo = $(this).attr('codigo');
+        const estado = $(this).attr('estado');
+        const nombre = $(this).attr('nombre');
+
+        const $form = $('#formCambiarOferta');
+
+        let msg = `Estas seguro que deseas activar la oferta ${nombre}`;
+
+        //RECOMENDACION CAMBIAR A BOOLEANO (1 O 0)
+        if(estado == 'ACTIVO') {
+             msg = `Estas seguro que deseas desactivar la oferta ${nombre}`;
+        }
+
+        $form.find('input[name="codigo"]').val(codigo);
+        $form.find('input[name="estado"]').val(estado);
+
+        Swal.fire({
+            position: "top-center",
+            icon: "question",
+            title: msg,
+            confirmButtonText: "Si",
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            // showConfirmButton: false,
+            // timer: 1500,
+        }).then((results) => {
+            console.log('SI');
+            $('#formCambiarOferta').submit();
+        });
+
+        console.log('codigo: ', codigo);
+    });
+    
+
+    $('#formCambiarOferta').submit( function (e) {
+        e.preventDefault();
+        // const data = new FormData(this);
+
+        console.log('enviando....');
+
+        const $form = $('#formCambiarOferta');
+
+        const data = {
+            codigo: $form.find('input[name="codigo"]').val(),
+            estado: $form.find('input[name="estado"]').val(),
+            _token: $form.find('input[name="_token"]').val(),
+        };
+
+        const url = route('ofertas.cambiar_estado', {id_oferta: data.codigo});
+//CODIGO IDENTIFICADOR DEL REGISTRO
+        
+        // const codigo = $(this).attr('codigo');        
+        
+        // const getOfertaUrl = route('ofertas.cambiar_estado', ['id_oferta', ':codigo']);
+        
+        // const url = getOfertaUrl.replace(':codigo', codigo);
+    
+
+        $.post(url, data, function (response) {
+            $('#formBusqueda').submit();
+
+            //CAMBIAR A BOOLEANO
+            const mensaje = (data.estado == "ACTIVO") ? 'Se ha inabilitado de forma correcta!' : 'Se ha habilitado de forma correcta!';
+
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: mensaje,
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        });
+
+    });
+
+
+
 });
