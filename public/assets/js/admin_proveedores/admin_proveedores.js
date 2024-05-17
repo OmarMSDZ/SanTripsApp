@@ -1,9 +1,9 @@
 $( function () {
 
     const PARAMETROS = {
-        URL_DATATABLE: route('destinos.getDestinos')
+        URL_DATATABLE: route('proveedores.getProveedores')
     }
-    var dataTable = $('#table_id').DataTable({
+    var dataTable = $('#tablaProveedor').DataTable({
         responsive: true,
         dom: 'Bfrtip',
         "ajax" : `${PARAMETROS.URL_DATATABLE}?${$('#formBusqueda').serialize()}`,
@@ -13,11 +13,13 @@ $( function () {
         "columns": [
             // {data: 'id'},
             {data: 'nombre'},
-            {data: 'proveedor'},
+            {data: 'telefono'},
+            {data: 'email'},
+            {data: 'nombretiposervicio'},
+            // {data: 'pais'},
             {data: 'provincia'},
-            {data: 'hora_desde'},
-            {data: 'hora_hasta'},
-            {data: 'creado_por'},
+            {data: 'direccion'},
+            
             {data: 'estado'},
 
             {data: 'action', name: 'action', orderable: false, searchable: false},
@@ -27,7 +29,7 @@ $( function () {
 
     //LIMPIA EL FORMULARIO
     const limpiarFormModal =()=> {
-        $('#codigo_destino').val('0');
+        $('#codigo_proveedor').val('0');
         $('.limpiarForm').val('');
         $('.selectLimpiarForm').val('');
         $('.selectLimpiarForm').val('');
@@ -35,15 +37,15 @@ $( function () {
 
     $('#btnNuevoRegistro').click( function () {
         limpiarFormModal();
-        $('#modalRegistroDestino').modal('show');
+        $('#modalRegistroProveedor').modal('show');
     });
 
     $('#btnGuardar').click( function () {
-        $('#registroDestino').submit();
+        $('#registroProveedor').submit();
     });
 
 
-    $("#registroDestino").validate({
+    $("#registroProveedor").validate({
         rules: {
             identificacion: "required",
         },
@@ -85,14 +87,14 @@ $( function () {
         submitHandler: function (form) {
 
             const data_form = new FormData(form);
-            let url = route('destinos.store');
+            let url = route('proveedores.store');
             let method = 'POST';
 
-            const ID = $('#codigo_destino').val();
+            const ID = $('#codigo_proveedor').val();
 
             if(ID != 0) {
 
-                url = route('destinos.update', {id_destino: ID});
+                url = route('proveedores.update', {id_proveedor: ID});
             }
 
             $.ajax({
@@ -111,7 +113,7 @@ $( function () {
               success: function (response) {
 
                 //OCULTAR EL MODAL DEL REGISTRO
-                $('#modalRegistroDestino').modal('hide');
+                $('#modalRegistroProveedor').modal('hide');
 
                 //LIMPIAR EL FORMULARIO
                 limpiarFormModal();
@@ -154,26 +156,28 @@ $( function () {
         dataTable.ajax.url(`${PARAMETROS.URL_DATATABLE}?${$('#formBusqueda').serialize()}`).load();
     });
 
-    $('#table_id').on('click', '.btnActualizar', function () {
+    $('#tablaProveedor').on('click', '.btnActualizar', function () {
 
         const codigo = $(this).attr('codigo');
 
-        const url = route('destinos.getDestino', {id_destino: codigo});
+        const url = route('proveedores.getProveedor', {id_proveedor: codigo});
 
         $.get(url, function (response) {
 
-            const $form = $('#registroDestino');
+            const $form = $('#registroProveedor');
 
-            $form.find('#codigo_destino').val(response.id);
-            $form.find('#nombre_destino').val(response.nombre);
-            $form.find('#empresa').val(response.id_proveedor);
-            $form.find('#tipo_destino').val(response.id_tipo_destino);
-            $form.find('#provincia').val(response.id_provincia);
-            $form.find('#abierto_desde').val(response.hora_desde);
-            $form.find('#abierto_hasta').val(response.hora_hasta);
-            $form.find('#observaciones').val(response.observaciones);
+            $form.find('#codigo_proveedor').val(response.id);
+            $form.find('input[name="nombre"]').val(response.nombre);
+            $form.find('input[name="telefono"]').val(response.telefono);
+            $form.find('input[name="email"]').val(response.email);
+            $form.find('#tiposervicio').val(response.tiposervicio);
+            // $form.find('select[name="pais"]').val(response.id_pais);
+            $form.find('select[name="provincia"]').val(response.provincia);
+            $form.find('textarea[name="direccion"]').val(response.direccion);
+            $form.find('select[name="estado"]').val(response.estado);
+            
 
-            $('#modalRegistroDestino').modal('show');
+            $('#modalRegistroProveedor').modal('show');
 
             console.log('response: ', response);
 
@@ -181,21 +185,28 @@ $( function () {
         console.log('codigo: ', codigo);
     });
 
-    $('#table_id').on('click', '.btnCambiarEstado', function () {
+    $('#tablaProveedor').on('click', '.btnCambiarEstado', function () {
 
         const codigo = $(this).attr('codigo');
         const estado = $(this).attr('estado');
+        const nombre = $(this).attr('nombre');
 
-        const $form = $('#formCambiarDestino');
+        const $form = $('#formCambiarProveedor');
+
+        let msg = `Estas seguro que deseas activar el proveedor ${nombre}`;
+
+        //RECOMENDACION CAMBIAR A BOOLEANO (1 O 0)
+        if(estado == 'ACTIVO') {
+             msg = `Estas seguro que deseas desactivar el proveedor ${nombre}`;
+        }
+
         $form.find('input[name="codigo"]').val(codigo);
         $form.find('input[name="estado"]').val(estado);
-
-
 
         Swal.fire({
             position: "top-center",
             icon: "question",
-            title: 'Estas seguro que desean inactivar el Destino X',
+            title: msg,
             confirmButtonText: "Si, desactivar",
             showCancelButton: true,
             cancelButtonText: "Cancelar",
@@ -203,19 +214,20 @@ $( function () {
             // timer: 1500,
         }).then((results) => {
             console.log('SI');
-            $('#formCambiarDestino').submit();
-
+            $('#formCambiarProveedor').submit();
         });
+
+        console.log('codigo: ', codigo);
     });
+    
 
-
-    $('#formCambiarDestino').submit( function (e) {
+    $('#formCambiarProveedor').submit( function (e) {
         e.preventDefault();
         // const data = new FormData(this);
 
         console.log('enviando....');
 
-        const $form = $('#formCambiarDestino');
+        const $form = $('#formCambiarProveedor');
 
         const data = {
             codigo: $form.find('input[name="codigo"]').val(),
@@ -223,12 +235,13 @@ $( function () {
             _token: $form.find('input[name="_token"]').val(),
         };
 
-        const url = route('destinos.cambiar_estado', {id_destino: data.codigo});
+        const url = route('proveedores.cambiar_estado', {id_proveedor: data.codigo});
 
         $.post(url, data, function (response) {
             $('#formBusqueda').submit();
 
-            const mensaje = (data.estado == 1) ? 'Se ha inabilitado de forma correcta!' : 'Se ha habilitado de forma correcta!';
+            //CAMBIAR A BOOLEANO
+            const mensaje = (data.estado == "ACTIVO") ? 'Se ha inhabilitado de forma correcta!' : 'Se ha habilitado de forma correcta!';
 
             Swal.fire({
                 position: "top-center",

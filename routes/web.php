@@ -12,7 +12,7 @@ use App\Http\Controllers\CategoriasPaquetesController;
 use App\Http\Controllers\DestinoController;
 use App\Http\Controllers\DestinosController;
 use App\Http\Controllers\EmpleadosController;
-use App\Http\Controllers\EmpresasProveedorasController;
+ 
 use App\Http\Controllers\EncargadosPaquetesController;
 use App\Http\Controllers\ImagenesPaquetesController;
 
@@ -23,6 +23,7 @@ use App\Http\Controllers\PagoController;
 use App\Http\Controllers\PaquetesDestinosController;
 use App\Http\Controllers\PaquetesTuristicosController;
 use App\Http\Controllers\PayPalController;
+use App\Http\Controllers\ProveedoresController;
 use App\Http\Controllers\ReservacionController;
 use App\Http\Controllers\ReservasHechasController;
 use App\Http\Controllers\TipoDestinoController;
@@ -78,11 +79,7 @@ Route::resource('admin/Paquetes', PaquetesTuristicosController::class)->paramete
 
 
 
-
-
-Route::resource('admin/empresasProveedoras',EmpresasProveedorasController::class)->parameters([
-    'EmpresasProveedoras' => 'empresasProveedoras'
-]);
+ 
 
 Route::resource('admin/vehiculos', VehiculoTransporteController::class)->parameters([
     'Vehiculos' => 'vehiculos'
@@ -204,6 +201,24 @@ Route::middleware('auth')->prefix('admin')->group( function () {
         //cambiar estado 
         Route::post('/cambiar_estado/{id_paquete}', 'cambiarPaquete')->name('paquetes.cambiar_estado');
     });
+
+    Route::controller(ProveedoresController::class)->prefix('proveedores')->group( function () {
+
+        //ir a la vista principal
+        Route::get('/', 'index')->name('proveedores.index');
+        //obtener datos completos
+        Route::get('/data', 'getProveedores')->name('proveedores.getProveedores');
+        //obtener un dato especifico
+        Route::get('/data/{id_proveedor}', 'getProveedor')->name('proveedores.getProveedor');
+        //guardar
+        Route::post('/', 'store')->name('proveedores.store'); 
+        //actualizar
+        Route::post('/update/{id_proveedor}', 'update')->name('proveedores.update');
+        //cambiar estado 
+        Route::post('/cambiar_estado/{id_proveedor}', 'cambiarProveedor')->name('proveedores.cambiar_estado');
+    });
+
+
 
 
 
