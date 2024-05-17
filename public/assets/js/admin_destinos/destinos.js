@@ -228,7 +228,7 @@ $( function () {
         $.post(url, data, function (response) {
             $('#formBusqueda').submit();
 
-            const mensaje = (data.estado == 1) ? 'Se ha inabilitado de forma correcta!' : 'Se ha habilitado de forma correcta!';
+            const mensaje = (data.estado == 1) ? 'Se ha inhabilitado de forma correcta!' : 'Se ha habilitado de forma correcta!';
 
             Swal.fire({
                 position: "top-center",

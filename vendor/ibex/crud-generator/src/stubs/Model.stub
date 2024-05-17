@@ -1,0 +1,26 @@
+<?php
+
+namespace {{modelNamespace}};
+
+use Illuminate\Database\Eloquent\Model;
+{{softDeletesNamespace}}
+/**
+ * Class {{modelName}}
+ {{properties}}
+ * @package App
+ * @mixin \Illuminate\Database\Eloquent\Builder
+ */
+class {{modelName}} extends Model
+{
+    {{softDeletes}}
+    protected $perPage = 20;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [{{fillable}}];
+
+{{relations}}
+}

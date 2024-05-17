@@ -265,7 +265,7 @@ $( function () {
             $('#formBusqueda').submit();
 
             //CAMBIAR A BOOLEANO
-            const mensaje = (data.estado == "ACTIVO") ? 'Se ha inabilitado de forma correcta!' : 'Se ha habilitado de forma correcta!';
+            const mensaje = (data.estado == "ACTIVO") ? 'Se ha inhabilitado de forma correcta!' : 'Se ha habilitado de forma correcta!';
 
             Swal.fire({
                 position: "top-center",

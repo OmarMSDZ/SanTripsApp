@@ -9,15 +9,6 @@ class Ofertas extends Model
 {
     use HasFactory;
 
-    //campos de la tabla
-    protected $fillable = 
-    [
-    'IdOferta',
-    'Descripcion',
-    'Porcentaje',
-    'FechaDesde',
-    'FechaHasta'
-    ];
-
-    protected $primaryKey = 'IdOferta';
+    protected $primaryKey='IdOferta';
+    
 }

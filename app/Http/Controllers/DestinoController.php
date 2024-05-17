@@ -25,7 +25,7 @@ class DestinoController extends Controller
         $provincias = $obj_country->getCountry();
         $provincias = $obj_country->getStates();
 
-        $proveedores = Proveedor::select('id', 'nombre', 'telefono')->where('activo', 1)->get();
+        $proveedores = Proveedor::select('id', 'nombre', 'telefono')->where('estado', 'ACTIVO')->get();
 
         return view('admin.admindestinos', compact('tipos_destinos', 'provincias', 'proveedores'));
     }

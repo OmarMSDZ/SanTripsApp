@@ -26,7 +26,7 @@ class AppSeeder extends Seeder
             
             ['codigo' => 'dst', 'orden' => 5, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Destinos', 'ruta' => 'destinos.index', 'icono' => 'bi bi-calendar-range-fill'],
             
-            ['codigo' => 'empp', 'orden' => 6, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Empresas Proveedoras', 'ruta' => 'empresasProveedoras.index', 'icono' => 'bi bi-calendar-range-fill'],
+            ['codigo' => 'empp', 'orden' => 6, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Empresas Proveedoras', 'ruta' => 'proveedores.index', 'icono' => 'bi bi-calendar-range-fill'],
             
             ['codigo' => 'vhcl', 'orden' => 7, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Vehículos', 'ruta' => 'vehiculos.index', 'icono' => 'bi bi-calendar-range-fill'],
             
