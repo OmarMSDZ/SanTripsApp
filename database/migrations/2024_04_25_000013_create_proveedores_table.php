@@ -17,12 +17,14 @@ return new class extends Migration
             $table->string('nombre', 50);
             $table->string('telefono', 50);
             $table->string('email', 50);
-            $table->string('id_pais', 50)->nullable();
-            $table->string('id_provincia', 50)->nullable();
-            $table->string('id_ciudad', 50)->nullable();
+ 
+            $table->foreignId('id_provincia')->constrained('provincias');
+       
             $table->string('direccion', 50)->nullable();
             $table->foreignId('creado_por')->constrained('users');
-            $table->boolean('activo')->default(1);
+            $table->foreignId('actualizado_por')->nullable()->constrained('users');
+            
+            $table->string('Estado', 15)->default('ACTIVO');
             $table->timestamps();
         });
     }
