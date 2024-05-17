@@ -83,7 +83,7 @@
                     <h4 class="font-weight-normal mb-3">Empresas Proveedoras Registradas<i class="mdi mdi-diamond mdi-24px float-end"></i>
                     </h4>
                     <h2 class="mb-5">0</h2>
-                    <h6 class="card-text"><a href="{{ Route('empresasProveedoras.index')}}" style="text-decoration: none; color: black;">Ir a Admin Empresas Proveedoras</a></h6>
+                    <h6 class="card-text"><a href="#" style="text-decoration: none; color: black;">Ir a Admin Empresas Proveedoras</a></h6>
                   </div>
                 </div>
               </div>
