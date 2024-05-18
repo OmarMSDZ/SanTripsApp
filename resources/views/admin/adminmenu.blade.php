@@ -22,7 +22,10 @@
                     <img src="" class="card-img-absolute" alt="" />
                     <h4 class="font-weight-normal mb-3">Usuarios Registrados<i class="mdi mdi-chart-line mdi-24px float-end"></i>
                     </h4>
-                    <h2 class="mb-5">0</h2>
+                    @foreach ($usuarios as $usuario)
+                    <h2 class="mb-5">{{$usuario->count}}</h2>
+                    @endforeach
+                 
                     <h6 class="card-text"><a href="#" style="text-decoration: none; color: black;">Ir a Admin Usuarios</a></h6>
                   </div>
                 </div>
@@ -33,7 +36,9 @@
                     <img src="" class="card-img-absolute" alt="" />
                     <h4 class="font-weight-normal mb-3">Empleados Registrados<i class="mdi mdi-bookmark-outline mdi-24px float-end"></i>
                     </h4>
-                    <h2 class="mb-5">0</h2>
+                    @foreach ($empleados as $empleado)
+                    <h2 class="mb-5">{{$empleado->count}}</h2>
+                    @endforeach
                     <h6 class="card-text"><a href="{{ Route('empleados.index')}}" style="text-decoration: none; color: black;">Ir a Admin Empleados</a></h6>
                   </div>
                 </div>
@@ -44,11 +49,14 @@
                     <img src="" class="card-img-absolute" alt="" />
                     <h4 class="font-weight-normal mb-3">Vehiculos Registrados<i class="mdi mdi-diamond mdi-24px float-end"></i>
                     </h4>
-                    <h2 class="mb-5">0</h2>
+                    @foreach ($vehiculos as $vehiculo)
+                    <h2 class="mb-5">{{$vehiculo->count}}</h2>
+                    @endforeach
                     <h6 class="card-text"><a href="{{ Route('vehiculos.index')}}" style="text-decoration: none; color: black;">Ir a Admin Vehiculos</a></h6>
                   </div>
                 </div>
               </div>
+
             </div>
 
           
@@ -59,7 +67,9 @@
                     <img src="" class="card-img-absolute" alt="" />
                     <h4 class="font-weight-normal mb-3">Paquetes Turísticos Registrados<i class="mdi mdi-chart-line mdi-24px float-end"></i>
                     </h4>
-                    <h2 class="mb-5">0</h2>
+                    @foreach ($paquetes as $paquete)
+                    <h2 class="mb-5">{{$paquete->count}}</h2>
+                    @endforeach
                     <h6 class="card-text"><a href="{{ Route('Paquetes.index')}}" style="text-decoration: none; color: black;">Ir a Admin Paquetes</a></h6>
                   </div>
                 </div>
@@ -70,7 +80,9 @@
                     <img src="" class="card-img-absolute" alt="" />
                     <h4 class="font-weight-normal mb-3">Destinos Registrados<i class="mdi mdi-bookmark-outline mdi-24px float-end"></i>
                     </h4>
-                    <h2 class="mb-5">0</h2>
+                    @foreach ($destinos as $destino)
+                    <h2 class="mb-5">{{$destino->count}}</h2>
+                    @endforeach
                     <h6 class="card-text"><a href="{{ Route('destinos.index')}}" style="text-decoration: none; color: black;">Ir a Admin Destinos</a></h6>
                   </div>
                 </div>
@@ -82,7 +94,9 @@
                     <img src="" class="card-img-absolute" alt="" />
                     <h4 class="font-weight-normal mb-3">Empresas Proveedoras Registradas<i class="mdi mdi-diamond mdi-24px float-end"></i>
                     </h4>
-                    <h2 class="mb-5">0</h2>
+                    @foreach ($proveedores as $proveedor)
+                    <h2 class="mb-5">{{$proveedor->count}}</h2>
+                    @endforeach
                     <h6 class="card-text"><a href="#" style="text-decoration: none; color: black;">Ir a Admin Empresas Proveedoras</a></h6>
                   </div>
                 </div>
@@ -96,7 +110,9 @@
                     <img src="" class="card-img-absolute" alt="" />
                     <h4 class="font-weight-normal mb-3">Reservaciones Realizadas<i class="mdi mdi-chart-line mdi-24px float-end"></i>
                     </h4>
-                    <h2 class="mb-5">0</h2>
+                    @foreach ($reservas as $reserva)
+                    <h2 class="mb-5">{{$reserva->count}}</h2>
+                    @endforeach
                     <h6 class="card-text"><a href="{{ Route('reservashechas.index')}}" style="text-decoration: none; color: black;">Ir a Admin Reservas</a></h6>
                   </div>
                 </div>

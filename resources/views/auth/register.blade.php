@@ -4,10 +4,29 @@
 
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Nombre')" />
+            <x-input-label for="nombres" :value="__('Nombre/s')" />
+            <x-text-input id="nombres" class="block mt-1 w-full" type="text" name="nombres" :value="old('npmbres')" required autofocus autocomplete="nombres" />
+            <x-input-error :messages="$errors->get('nombres')" class="mt-2" />
+        </div>
+        <div>
+            <x-input-label for="apellidos" :value="__('Apellido/s')" />
+            <x-text-input id="apellidos" class="block mt-1 w-full" type="text" name="apellidos" :value="old('apellidos')" required autofocus autocomplete="apellidos" />
+            <x-input-error :messages="$errors->get('apellidos')" class="mt-2" />
+        </div>
+
+        <div>
+            <x-input-label for="telefono" :value="__('Número de telefono')" />
+            <x-text-input id="telefono" class="block mt-1 w-full" type="text" name="telefono" :value="old('telefono')" required autofocus autocomplete="telefono" />
+            <x-input-error :messages="$errors->get('telefono')" class="mt-2" />
+        </div>
+
+        <div>
+            <x-input-label for="name" :value="__('Nombre de usuario')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
+
+        
 
         <!-- Email Address -->
         <div class="mt-4">

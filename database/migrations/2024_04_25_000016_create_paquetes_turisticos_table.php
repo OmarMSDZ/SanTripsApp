@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('Idiomas', 50);
             $table->string('Alojamiento', 50)->nullable()->default(null);
             $table->integer('Tiempo_estimado');
-            $table->string('Disponibilidad', 25);
-            $table->string('Estado', 25);
+            $table->string('Disponibilidad', 25)->default('DISPONIBLE');
+            $table->string('Estado', 25)->default('ACTIVO');
             
             // $table->foreignId('fk_IdCategoriapaq')->nullable()->constrained('categorias_paquetes', 'IdCategoriapaq');
             $table->foreignId('id_categoria_paquete')->nullable()->constrained('tipos');

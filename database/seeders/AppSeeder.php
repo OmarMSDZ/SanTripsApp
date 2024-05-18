@@ -18,7 +18,7 @@ class AppSeeder extends Seeder
             
             ['codigo' => 'dsh', 'orden' => 1, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Dashboard', 'ruta' => 'adminmenu/dashboard', 'icono' => 'bi bi-grid'],
             
-            ['codigo' => 'usr', 'orden' => 2, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Usuarios', 'ruta' => 'adminusuarios', 'icono' => 'bi bi-person'],
+            ['codigo' => 'usr', 'orden' => 2, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Usuarios', 'ruta' => 'usuarios.index', 'icono' => 'bi bi-person'],
             
             ['codigo' => 'emp', 'orden' => 3, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Empleados', 'ruta' => 'empleados.index', 'icono' => 'bi bi-person'],
             
