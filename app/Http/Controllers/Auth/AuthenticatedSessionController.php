@@ -31,7 +31,7 @@ class AuthenticatedSessionController extends Controller
 
         if ($request -> user()->usertype === 'admin'){
 
-            return redirect()->route('adminmenu');
+            return redirect()->route('admin.index');
         }
 
         return redirect()->intended(route('inicio', absolute: false));

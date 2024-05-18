@@ -2,6 +2,7 @@
 
 //controladores
 
+use App\Http\Controllers\AdminMenuController;
 use App\Http\Controllers\ApiServiceCountryStateCityController;
 use App\Http\Controllers\CargosEmpleadoController;
 use App\Http\Controllers\ProfileController;
@@ -29,6 +30,7 @@ use App\Http\Controllers\ReservasHechasController;
 use App\Http\Controllers\TipoDestinoController;
 use App\Http\Controllers\TipoServiciosproveedorController;
 use App\Http\Controllers\TipoVehiculoController;
+use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\VehiculoEmpleadoController;
 use App\Http\Controllers\VehiculosPaquetesController;
 use App\Http\Controllers\VehiculoTransporteController;
@@ -58,9 +60,7 @@ Route::get('/admin', function () {
     return view('admin/adminmenu');
 })->name('adminmenu');
 
-Route::get('/admin/dashboard', function () {
-    return view('admin/adminmenu');
-})->name('adminmenu/dashboard');
+
 
 //rutas para el nav (GET)
 Route::get('/admin/usuarios', function () {
@@ -144,6 +144,10 @@ Route::get('/admin/provincias', function () {
 
 // RUTAS DE ADMIN
 Route::middleware('auth')->prefix('admin')->group( function () {
+ 
+    Route::controller(AdminMenuController::class)->prefix('admin/dashboard')->group( function () {
+        Route::get('/', 'index')->name('admin.index'); 
+    });
 
     Route::controller(DestinoController::class)->prefix('destinos')->group( function () {
         Route::get('/', 'index')->name('destinos.index');
@@ -217,6 +221,23 @@ Route::middleware('auth')->prefix('admin')->group( function () {
         //cambiar estado 
         Route::post('/cambiar_estado/{id_proveedor}', 'cambiarProveedor')->name('proveedores.cambiar_estado');
     });
+
+    Route::controller(UsuariosController::class)->prefix('usuarios')->group( function () {
+
+        //ir a la vista principal
+        Route::get('/', 'index')->name('usuarios.index');
+        //obtener datos completos
+        Route::get('/data', 'getUsuarios')->name('usuarios.getUsuarios');
+        //obtener un dato especifico
+        Route::get('/data/{id_usuario}', 'getUsuario')->name('usuarios.getUsuario');
+        //guardar
+        Route::post('/', 'store')->name('usuarios.store'); 
+        //actualizar
+        Route::post('/update/{id_usuario}', 'update')->name('usuarios.update');
+        //cambiar estado 
+        Route::post('/cambiar_estado/{id_usuario}', 'cambiarUsuario')->name('usuarios.cambiar_estado');
+    });
+
 
 
 
