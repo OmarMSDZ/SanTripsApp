@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.1/css/buttons.dataTables.css"/>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap5.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.1/css/buttons.bootstrap5.css">
+    {{-- Añadir esta linea para que funcione el eliminar --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+
 @endsection
 
 @section('content')

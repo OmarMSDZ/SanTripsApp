@@ -188,6 +188,7 @@ class ProveedoresController extends Controller
                                             <div class="dropdown-menu dropdown-menu-end border py-2" aria-labelledby="dropdown0">
                                                     <a class="dropdown-item btnMostrar" codigo="'.$row->id.'" href="#!"> <i class="bi bi-card-heading"></i> Mostrar</a>
                                                     <a class="dropdown-item btnActualizar" href="#!" codigo="'.$row->id.'"> <i class="bi bi-pencil-square"></i> Actualizar</a>
+                                                    <a class="dropdown-item text-danger btnEliminar" href="#!" codigo="'.$row->id.'"> <i class="bi bi-trash"></i> Eliminar</a>
                                                     <div class="dropdown-divider"></div>
                                                     '. $btnActivo .'
                                             </div>
@@ -222,4 +223,22 @@ class ProveedoresController extends Controller
         return response()->json($return, $return->code);
     }
 
+    
+    public function destroy($id_proveedor)
+    {
+        $return = new stdClass();
+        $return->code = 200;
+        $return->message = "Registro eliminado correctamente";
+    
+        try {
+            $proveedor = Proveedor::findOrFail($id_proveedor);
+            $proveedor->delete();
+        } catch (\Exception $e) {
+            $return->message = $e->getMessage();
+            $return->code = 500;
+        }
+        return response()->json($return, $return->code);
+    }
+
+    
 }
