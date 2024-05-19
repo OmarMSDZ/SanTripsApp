@@ -178,24 +178,43 @@ class DestinoController extends Controller
 
         return datatables()->of($data)
                             ->addColumn('action', function($row) {
-
                                 $btnActivo = $row->activo == 1 ? "<a class='dropdown-item text-danger btnCambiarEstado' estado='$row->activo' href='#!' codigo='$row->id'> <i class='bi bi-x'> </i> Desactivar</a>" : "<a class='dropdown-item text-success btnCambiarEstado' href='#!' estado='$row->activo' codigo='$row->id'> <i class='bi bi-check2'> </i> Activar</a>";
-
+                            
                                 return '<div class="dropstart font-sans-serif position-static d-inline-block">
                                             <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal float-end" type="button" id="dropdown0" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
                                                 <span class="fas fa-ellipsis-h fs--1"></span>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-end border py-2" aria-labelledby="dropdown0">
-                                                    <a class="dropdown-item btnMostrar" codigo="'.$row->id.'" href="#!"> <i class="bi bi-card-heading"></i> Mostrar</a>
-                                                    <a class="dropdown-item btnActualizar" href="#!" codigo="'.$row->id.'"> <i class="bi bi-pencil-square"></i> Actualizar</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    '. $btnActivo .'
+                                                <a class="dropdown-item btnMostrar" codigo="'.$row->id.'" href="#!"> <i class="bi bi-card-heading"></i> Mostrar</a>
+                                                <a class="dropdown-item btnActualizar" href="#!" codigo="'.$row->id.'"> <i class="bi bi-pencil-square"></i> Actualizar</a>
+                                                <a class="dropdown-item text-danger btnEliminar" href="#!" codigo="'.$row->id.'"> <i class="bi bi-trash"></i> Eliminar</a>
+                                                <div class="dropdown-divider"></div>
+                                                '. $btnActivo .'
                                             </div>
                                         </div>';
                             })->addColumn('estado', function ($row) {
                                 return $row->activo == 1 ? "<span class='badge badge-success text-success'> <i class='bi bi-check2'> </i> Activo</span>" : "<span class='badge badge-danger text-danger'><i class='bi bi-x'> Inactivo</span>";
                             })->rawColumns(['action', 'estado'])->make(true);
     }
+
+
+    public function destroy($id_destino)
+    {
+        $return = new stdClass();
+        $return->code = 200;
+        $return->message = "Registro eliminado correctamente";
+    
+        try {
+            $destino = Destinos::findOrFail($id_destino);
+            $destino->delete();
+        } catch (\Exception $e) {
+            $return->message = $e->getMessage();
+            $return->code = 500;
+        }
+        return response()->json($return, $return->code);
+    }
+    
+    
 
 
 }
