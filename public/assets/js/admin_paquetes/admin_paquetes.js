@@ -5,7 +5,10 @@ $( function () {
     const PARAMETROS = {
         URL_DATATABLE: route('paquetes.getPaquetes'),
        //para poder borrar registros
-        URL_DESTROY: (id) => route('paquetes.destroy', {id_paquete: id})
+        URL_DESTROY: (id) => route('paquetes.destroy', {id_paquete: id}),
+
+        URL_UPDATEIMAGES: (id) => route('paquetes.deleteImagenes', {id_paquete: id})
+        
     
     }
     var dataTable = $('#tablaPaquete').DataTable({
@@ -206,6 +209,19 @@ $( function () {
             // $form.find('select[name="cargo"]').val(response.id_cargo);
             $form.find('select[name="categoriapaq"]').val(response.categoriapaq);
             $form.find('select[name="oferta"]').val(response.oferta);
+
+            // Mostrar los campos de eliminación de imágenes si las imágenes existen
+            // if (response.imagen1) {
+            //     $form.find('input[name="borrar_imagen1"]').show();
+            // }
+            // if (response.imagen2) {
+            //     $form.find('input[name="borrar_imagen2"]').show();
+            // }
+            // if (response.imagen3) {
+            //     $form.find('input[name="borrar_imagen3"]').show();
+            // }
+            
+
  
             $form.find('#estado').val(response.estado);
 
@@ -335,6 +351,58 @@ $( function () {
             }
         })
     });
+
+
+    
+    $('#tablaPaquete').on('click', '.btnDeleteImagenes', function () {
+        const codigo = $(this).attr('codigo');
+        const url = PARAMETROS.URL_UPDATEIMAGES(codigo);
+
+        Swal.fire({
+            title: '¿Estás seguro de limpiar las imagenes?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: {_token: $('meta[name="csrf-token"]').attr('content')},
+                    success: function (response) {
+                        if(response.code === 200) {
+                            Swal.fire(
+                                'Eliminado!',
+                                response.message,
+                                'success'
+                            );
+                            dataTable.ajax.reload();
+                        } else {
+                            Swal.fire(
+                                'Error!',
+                                response.message,
+                                'error'
+                            );
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        Swal.fire(
+                            'Error!',
+                            'Hubo un problema al eliminar las imagenes',
+                            'error'
+                        );
+                    }
+                });
+            }
+        })
+    });
+
+
+
+
 
 
 
