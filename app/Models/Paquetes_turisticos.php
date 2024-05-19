@@ -9,6 +9,5 @@ class Paquetes_turisticos extends Model
 {
     use HasFactory;
  
-
-    
+ 
 }
