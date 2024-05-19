@@ -132,9 +132,9 @@ Route::resource('admin/Categorias_paquetes', CategoriasPaquetesController::class
 
 
 
-Route::resource('admin/imagenespaquetes', ImagenesPaquetesController::class)->parameters([
-    'Imagenespaquetes' => 'imagenespaquetes'
-]);
+// Route::resource('admin/imagenespaquetes', ImagenesPaquetesController::class)->parameters([
+//     'Imagenespaquetes' => 'imagenespaquetes'
+// ]);
 
 //rutas interfaz de destinos admin
 
@@ -216,6 +216,9 @@ Route::middleware('auth')->prefix('admin')->group( function () {
         Route::post('/cambiar_estado/{id_paquete}', 'cambiarPaquete')->name('paquetes.cambiar_estado');
         //eliminar registros
         Route::delete('/destroy/{id_paquete}', 'destroy')->name('paquetes.destroy');
+        //limpiar imagenes de paquete
+        Route::post('/deleteImagenes/{id_paquete}', 'deleteImagenes')->name('paquetes.deleteImagenes');
+
 
     });
 

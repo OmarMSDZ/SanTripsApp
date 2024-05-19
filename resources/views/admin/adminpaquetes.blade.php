@@ -240,6 +240,33 @@
                     </div>
                 </div>
  
+                {{-- <div class="controleseliminarimagenes col-4">
+                    <input type="checkbox" class="form-control form-check-input" name="borrar_imagen1" value="1" hidden placeholder="Eliminar Imagen 1"> Eliminar imagen 1<br>
+                    <input type="checkbox" class="form-control form-check-input" name="borrar_imagen2" value="1" hidden placeholder="Eliminar Imagen 2"> Eliminar imagen 2<br>
+                    <input type="checkbox" class="form-control form-check-input" name="borrar_imagen3" value="1" hidden placeholder="Eliminar Imagen 3"> Eliminar imagen 3<br>
+                </div> --}}
+                <div class="col-4">
+                    <div class="mb-3">
+                        <label for="imagen1" class="form-label">Imagen 1</label>
+                        <input type="file" name="imagen1" class="form-control limpiarForm" accept="image/*">
+                    </div>
+                </div>
+                
+                <div class="col-4">
+                    <div class="mb-3">
+                        <label for="imagen2" class="form-label">Imagen 2</label>
+                        <input type="file" name="imagen2" class="form-control limpiarForm" accept="image/*">
+                    </div>
+                </div>
+                
+                <div class="col-4">
+                    <div class="mb-3">
+                        <label for="imagen3" class="form-label">Imagen 3</label>
+                        <input type="file" name="imagen3" class="form-control limpiarForm" accept="image/*">
+                    </div>
+                </div>
+
+                
 
                 <div class="col-4">
                     <div class="mb-3">
