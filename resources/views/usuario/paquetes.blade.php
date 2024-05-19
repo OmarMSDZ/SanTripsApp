@@ -25,8 +25,8 @@
         <?php
         $paquetes = DB::select("SELECT p.id as idpaq, p.Nombre as nombre, p.Descripcion as descripcion,
         p.Costo as costo, p.Num_personas as numpersonas, p.Edades as edades, p.Idiomas as idiomas, p.Alojamiento as alojamiento, p.Tiempo_estimado as tiempoestimado, 
-        p.Disponibilidad as disponibilidad, c.CategoriaPaq as categoria, o.Porcentaje as porciento FROM
-        paquetes_turisticos as p INNER JOIN categorias_paquetes as c ON p.fk_IdCategoriaPaq=c.IdCategoriaPaq INNER JOIN ofertas as o ON p.fk_IdOferta=o.IdOferta");
+        p.Disponibilidad as disponibilidad, c.nombre as categoria, o.Porcentaje as porciento, p.imagen1 as imagen1 FROM
+        paquetes_turisticos as p INNER JOIN tipos as c ON p.fk_IdCategoriaPaq=c.id INNER JOIN ofertas as o ON p.fk_IdOferta=o.IdOferta where c.tipo='paquetes'");
         ?>
         {{-- De esta forma se imprime cada paquete en la pagina luego de hacer la consulta --}}
         @foreach($paquetes as $paquete)
@@ -36,7 +36,10 @@
             <div class="card h-100">
                 <div class="card-body"> 
  
-                    <img src="{{asset('img/logosantri.jpeg')}}" alt="" class="card-img-top">
+                    {{-- <img src="{{asset('img/logosantri.jpeg')}}" alt="" class="card-img-top"> --}}
+
+                    {{-- imagen del paquete, muestra la primera imagen--}}
+                    <img src="{{ $paquete->imagen1 ? asset('storage/' . $paquete->imagen1) : asset('img/logosantri.jpeg') }}" alt="" class="card-img-top">
 
                     
                     <h2 class="card-title">{{$paquete->nombre}}</h2>
