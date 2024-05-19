@@ -1,7 +1,10 @@
 $( function () {
 
     const PARAMETROS = {
-        URL_DATATABLE: route('destinos.getDestinos')
+        URL_DATATABLE: route('destinos.getDestinos'),
+        
+        //para poder borrar registros
+        URL_DESTROY: (id) => route('destinos.destroy', {id_destino: id})
     }
     var dataTable = $('#table_id').DataTable({
         responsive: true,
@@ -242,5 +245,54 @@ $( function () {
     });
 
 
+
+    //FUNCION PARA ELIMINAR REGISTROS
+
+
+    $('#table_id').on('click', '.btnEliminar', function () {
+        const codigo = $(this).attr('codigo');
+        const url = PARAMETROS.URL_DESTROY(codigo);
+
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminarlo!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "DELETE",
+                    url: url,
+                    data: {_token: $('meta[name="csrf-token"]').attr('content')},
+                    success: function (response) {
+                        if(response.code === 200) {
+                            Swal.fire(
+                                'Eliminado!',
+                                response.message,
+                                'success'
+                            );
+                            dataTable.ajax.reload();
+                        } else {
+                            Swal.fire(
+                                'Error!',
+                                response.message,
+                                'error'
+                            );
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        Swal.fire(
+                            'Error!',
+                            'Hubo un problema al eliminar el registro.',
+                            'error'
+                        );
+                    }
+                });
+            }
+        })
+    });
 
 });

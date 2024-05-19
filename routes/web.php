@@ -156,6 +156,10 @@ Route::middleware('auth')->prefix('admin')->group( function () {
         Route::post('/', 'store')->name('destinos.store');
         Route::post('/cambiar_estado/{id_destino}', 'cambiarDestino')->name('destinos.cambiar_estado');
         Route::post('/update/{id_destino}', 'update')->name('destinos.update');
+
+        //eliminar registros
+        Route::delete('/destroy/{id_destino}', 'destroy')->name('destinos.destroy');
+        
     });
 
     Route::controller(EmpleadosController::class)->prefix('empleados')->group( function () {
@@ -168,6 +172,9 @@ Route::middleware('auth')->prefix('admin')->group( function () {
         Route::post('/update/{id_empleado}', 'update')->name('empleados.update');
 
         Route::post('/cambiar_estado/{id_empleado}', 'cambiarEmpleado')->name('empleados.cambiar_estado');
+      
+        //eliminar registros
+        Route::delete('/destroy/{id_empleado}', 'destroy')->name('empleados.destroy');
 
 
     });
@@ -188,6 +195,9 @@ Route::middleware('auth')->prefix('admin')->group( function () {
         Route::post('/update/{id_oferta}', 'update')->name('ofertas.update');
         //cambiar estado 
         Route::post('/cambiar_estado/{id_oferta}', 'cambiarOferta')->name('ofertas.cambiar_estado');
+        //eliminar registros
+        Route::delete('/destroy/{id_oferta}', 'destroy')->name('ofertas.destroy');
+        
     });
 
     Route::controller(PaquetesTuristicosController::class)->prefix('paquetes')->group( function () {
@@ -204,6 +214,9 @@ Route::middleware('auth')->prefix('admin')->group( function () {
         Route::post('/update/{id_paquete}', 'update')->name('paquetes.update');
         //cambiar estado 
         Route::post('/cambiar_estado/{id_paquete}', 'cambiarPaquete')->name('paquetes.cambiar_estado');
+        //eliminar registros
+        Route::delete('/destroy/{id_paquete}', 'destroy')->name('paquetes.destroy');
+
     });
 
     Route::controller(ProveedoresController::class)->prefix('proveedores')->group( function () {
@@ -220,6 +233,9 @@ Route::middleware('auth')->prefix('admin')->group( function () {
         Route::post('/update/{id_proveedor}', 'update')->name('proveedores.update');
         //cambiar estado 
         Route::post('/cambiar_estado/{id_proveedor}', 'cambiarProveedor')->name('proveedores.cambiar_estado');
+        //eliminar registros
+        Route::delete('/destroy/{id_proveedor}', 'destroy')->name('proveedores.destroy');
+
     });
 
     Route::controller(UsuariosController::class)->prefix('usuarios')->group( function () {
