@@ -15,6 +15,7 @@ return new class extends Migration
             
             $table->id('IdModeloVehiculo');
             $table->string('ModeloVehiculo', 25);
+            $table->foreignId('fk_IdMarcaVehiculo')->nullable()->constrained('marca_vehiculo');;
             $table->timestamps();
         });
     }
