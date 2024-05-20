@@ -29,6 +29,13 @@ class TipoSeeder extends Seeder
             ['codigo' => 'gastro', 'tipo' => 'paquetes', 'nombre' => 'GASTRONOMICO'],
             ['codigo' => 'edu', 'tipo' => 'paquetes', 'nombre' => 'EDUCATIVO'],
             
+            //tipos de vehiculos
+            ['codigo' => 'autbu', 'tipo' => 'vehiculos', 'nombre' => 'AUTOBUS'],
+            ['codigo' => 'cami', 'tipo' => 'vehiculos', 'nombre' => 'CAMION'],
+            ['codigo' => 'camnt', 'tipo' => 'vehiculos', 'nombre' => 'CAMIONETA'],
+            ['codigo' => 'carr', 'tipo' => 'vehiculos', 'nombre' => 'CARRO'],
+            ['codigo' => 'mot', 'tipo' => 'vehiculos', 'nombre' => 'MOTO'],
+            
             
         ];
         DB::table('tipos')->insert($data);
