@@ -14,39 +14,32 @@ return new class extends Migration
         Schema::create('Vehiculo_transporte', function (Blueprint $table) {
   
             $table->id('IdVehiculo');
+            
             $table->text('Descripcion');
-            $table->string('Matricula', 15);
+            
+            $table->string('Matricula', 15)->unique();
+            
             $table->date('FechaIngreso');
+            
             $table->integer('CantidadPasajeros');
+            
             $table->integer('AnoVehiculo');
+            
             $table->string('Color', 15);
+            
             $table->string('TipoCombustible', 20);
-            $table->unsignedBigInteger('fk_IdTipoVehiculo');
-            $table->unsignedBigInteger('fk_IdMarcaVehiculo');
-            $table->unsignedBigInteger('fk_IdModeloVehiculo');
+            
+            $table->foreignId('fk_IdTipoVehiculo')->nullable()->constrained('tipos');;
+            
+            $table->foreignId('fk_IdMarcaVehiculo')->nullable()->constrained('marca_vehiculo');;
+            
+            $table->foreignId('fk_IdModeloVehiculo')->nullable()->constrained('modelo_vehiculo');;
+
+            $table->string('Estado', 25)->default('ACTIVO');
+            
             $table->timestamps();
             
-            $table->index(["fk_IdTipoVehiculo"], 'fk_IdTipoVehiculo');
-
-            $table->index(["fk_IdMarcaVehiculo"], 'fk_IdMarcaVehiculo');
-
-            $table->index(["fk_IdModeloVehiculo"], 'fk_IdModeloVehiculo');
-
-
-            $table->foreign('fk_IdMarcaVehiculo', 'fk_IdMarcaVehiculo')
-                ->references('IdMarcaVehiculo')->on('marca_vehiculo')
-                ->onDelete('restrict')
-                ->onUpdate('cascade');
-
-            $table->foreign('fk_IdModeloVehiculo', 'fk_IdModeloVehiculo')
-                ->references('IdModeloVehiculo')->on('Modelo_vehiculo')
-                ->onDelete('restrict')
-                ->onUpdate('cascade');
-
-            $table->foreign('fk_IdTipoVehiculo', 'fk_IdTipoVehiculo')
-                ->references('IdTipoVehiculo')->on('tipo_vehiculo')
-                ->onDelete('restrict')
-                ->onUpdate('cascade');
+           
         });
     }
 

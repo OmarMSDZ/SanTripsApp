@@ -69,72 +69,23 @@ Route::get('/admin/usuarios', function () {
 
 
 
-
-
-
-Route::resource('admin/Paquetes', PaquetesTuristicosController::class)->parameters([
-    'Paquetes' => 'paquetes_turisticos'
-]);
-
-
+ 
 
 
  
-
-Route::resource('admin/vehiculos', VehiculoTransporteController::class)->parameters([
-    'Vehiculos' => 'vehiculos'
-]);
-
 //para administrar las reservas realizadas
 Route::resource('admin/reservas', ReservasHechasController::class)->parameters([
     'Reservashechas' => 'reservashechas'
 ]);
-Route::get('admin/reservas', [ReservasHechasController::class, 'index'])->name('reservashechas.index');
-
-
-Route::resource('admin/pagos', PagoController::class)->parameters([
-    'Pagos' => 'pagos'
-]);
-
+ 
+ 
 // Route::resource('admin/incidentes', IncidentesController::class)->parameters([
 //     'Incidentesadmin' => 'incidentesadmin'
 // ]);
 // Route::get('admin/reservas', [IncidentesController::class, 'index'])->name('reservashechas.index');
 
 
-
-
-
-Route::get('/admin/incidentes', function () {
-    return view('admin/adminincidentes');
-})->name('adminincidentes');
-
-Route::get('/admin/varias', function () {
-    return view('admin/adminvarias');
-})->name('adminvarias');
-
-//rutas interfaz de empleado admin
-
-Route::resource('admin/cargospuestos', CargosEmpleadoController::class)->parameters([
-    'Cargospuestos' => 'cargospuestos'
-]);
-
-Route::resource('admin/encargadospaquetes',EncargadosPaquetesController::class)->parameters([
-    'Encargadospaquetes' => 'encargadospaquetes'
-]);
-
-//rutas interfaz de paquetes turisticos admin
-
-//RUTAS NUEVAS
-Route::resource('admin/Categorias_paquetes', CategoriasPaquetesController::class)->parameters([
-    'Categorias_paquetes' => 'categorias_paquetes'
-]);
-
-
-
-// Route::resource('admin/imagenespaquetes', ImagenesPaquetesController::class)->parameters([
-//     'Imagenespaquetes' => 'imagenespaquetes'
-// ]);
+ 
 
 //rutas interfaz de destinos admin
 
@@ -258,6 +209,24 @@ Route::middleware('auth')->prefix('admin')->group( function () {
     });
 
 
+    Route::controller(VehiculoTransporteController::class)->prefix('vehiculos')->group( function () {
+
+        //ir a la vista principal
+        Route::get('/', 'index')->name('vehiculos.index');
+        //obtener datos completos
+        Route::get('/data', 'getVehiculos')->name('vehiculos.getVehiculos');
+        //obtener un dato especifico
+        Route::get('/data/{id_vehiculo}', 'getVehiculo')->name('vehiculos.getVehiculo');
+        //guardar
+        Route::post('/', 'store')->name('vehiculos.store'); 
+        //actualizar
+        Route::post('/update/{id_vehiculo}', 'update')->name('vehiculos.update');
+        //cambiar estado 
+        Route::post('/cambiar_estado/{id_vehiculo}', 'cambiarVehiculo')->name('vehiculos.cambiar_estado');
+        //eliminar registros
+        Route::delete('/destroy/{id_vehiculo}', 'destroy')->name('vehiculos.destroy');
+    });
+
 
 
 
@@ -277,31 +246,7 @@ Route::middleware('auth')->prefix('admin')->group( function () {
 
 //rutas interfaz de empresas proveedoras admin
 
-Route::resource('admin/tiposerviciosprov',TipoServiciosproveedorController::class)->parameters([
-    'Tiposerviciosprov' => 'tiposerviciosprov'
-]);
-//rutas interfaz de vehiculos admin
-
-Route::resource('admin/marcasvehiculos', MarcaVehiculoController::class)->parameters([
-    'MarcasVehiculos' => 'marcasvehiculos'
-]);
-
-Route::resource('admin/modelosvehiculos',ModeloVehiculoController::class)->parameters([
-    'Modelosvehiculos' => 'modelosvehiculos'
-]);
-
-
-Route::resource('admin/tiposvehiculo', TipoVehiculoController::class)->parameters([
-    'Tiposvehiculo' => 'tiposvehiculo'
-]);
-
-Route::resource('admin/asignarvehiculoempleado', VehiculoEmpleadoController::class)->parameters([
-    'Asignarvehiculoempleado' => 'asignarvehiculoempleado'
-]);
-
-Route::resource('admin/asignarvehiculopaquete',VehiculosPaquetesController::class)->parameters([
-    'Psignarvehiculopaquete' => 'asignarvehiculopaquete'
-]);
+ 
 
 
 
