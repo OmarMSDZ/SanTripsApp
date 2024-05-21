@@ -228,20 +228,21 @@ Route::middleware('auth')->prefix('admin')->group( function () {
     });
 
 
-
-
-
-
-
+    Route::controller(ReservasHechasController::class)->prefix('reservashechas')->group( function () {
+        //ir a la vista principal
+        Route::get('/', 'index')->name('reservashechas.index');
+        //ir a vista detallada con el id
+        Route::post('/procesarReservaVistaDetallada', 'procesarReservaVistaDetallada')->name('reservashechas.procesarReservaVistaDetallada');
+        Route::get('/vistadetallada/{id}', 'mostrarFormularioVistaDetallada')->name('reservashechas.vistaDetallada');
+        //actualizar
+        Route::post('/update/{id_reserva}', 'update')->name('reservashechas.update');
+        //eliminar registros
+        Route::delete('/destroy/{id_reserva}', 'destroy')->name('reservashechas.destroy');
+    });
 });
 
 
-
-// Route::resource('admin/tiposdestino',TipoDestinoController::class)->parameters([
-//     'Tiposdestino' => 'tiposdestino'
-// ]);
-
-
+ 
 
 
 //rutas interfaz de empresas proveedoras admin
@@ -261,13 +262,9 @@ Route::get('/admin/vistadetalladapago', function () {
 })->name('vistadetalladapago');
 
 //rutas vista detallada incidentes
-Route::get('/admin/vistadetalladaincidente', function () {
-    return view('admin/vistadetalladaincidente');
-})->name('vistadetalladaincidente');
+ 
 
-
-// Rutas para formularios interfaces admin (POST)
-
+ 
 
 // Rutas para navegar interfaces usuario (GET), la de inicio es la primera que sale al abrir la app
 Route::get('/', function () {
@@ -307,7 +304,7 @@ Route::get('/paypalprueba', [PayPalController::class, 'index']);
 Route::get('/create/{amount}', [PayPalController::class, 'create']);
 Route::post('/complete', [PayPalController::class, 'complete']);
 
-//
+//rutas para la api de provincias paises y demas 
 Route::prefix('/v1')->group(function () {
     Route::controller(ApiServiceCountryStateCityController::class)->group(function () {
         Route::get('/country', 'getCountries')->name('api.countries');
