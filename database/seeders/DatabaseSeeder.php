@@ -26,6 +26,9 @@ class DatabaseSeeder extends Seeder
             
             //definir los usuarios por default de admin y user
             [
+                'nombres' => 'Admin',
+                'apellidos' => 'Admin',
+                'telefono' => '1231234123',
              'name' => 'Admin',
              'email' => 'admin@gmail.com',
              'password' => '12345678',
@@ -33,6 +36,9 @@ class DatabaseSeeder extends Seeder
             ],
 
             [
+                'nombres' => 'User',
+                'apellidos' => 'User',
+                'telefono' => '1231234123',
                 'name' => 'User',
                 'email' => 'user@gmail.com',
                 'password' => '12345678',
