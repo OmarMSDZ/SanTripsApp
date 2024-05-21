@@ -3,7 +3,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="{{route('adminmenu')}}" class="d-flex align-items-center">
+      <a href="{{route('admin.index')}}" class="d-flex align-items-center">
    
         <span class="d-none d-lg-block">
             <img src="{{ asset('img/SanTrips.svg') }}" alt="..." style="width: 75px; height: 75px;">
