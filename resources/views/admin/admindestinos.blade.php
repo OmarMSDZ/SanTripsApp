@@ -20,7 +20,7 @@
     <h1>Administración de Destinos</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
         <li class="breadcrumb-item active">Administración de Destinos</li>
       </ol>
     </nav>

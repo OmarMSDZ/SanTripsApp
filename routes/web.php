@@ -56,10 +56,7 @@ Las que usen GET, son solo para navegar
 Las que usen POST, son solo para enviar informacion a traves de los formulario
 */
 // Rutas para navegar interfaces admin (GET)
-Route::get('/admin', function () {
-    return view('admin/adminmenu');
-})->name('adminmenu');
-
+ 
 
 
 //rutas para el nav (GET)
