@@ -1,5 +1,5 @@
 @extends('layouts.admin_layout_new')
-@section('title', 'Administrador de Ofertas')
+@section('title', 'Administrador')
 
 @section('css')
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.0/css/responsive.dataTables.css">
@@ -70,7 +70,7 @@
                     @foreach ($paquetes as $paquete)
                     <h2 class="mb-5">{{$paquete->count}}</h2>
                     @endforeach
-                    <h6 class="card-text"><a href="{{ Route('Paquetes.index')}}" style="text-decoration: none; color: black;">Ir a Admin Paquetes</a></h6>
+                    <h6 class="card-text"><a href="{{ Route('paquetes.index')}}" style="text-decoration: none; color: black;">Ir a Admin Paquetes</a></h6>
                   </div>
                 </div>
               </div>
@@ -124,7 +124,7 @@
                     <h4 class="font-weight-normal mb-3">Pagos Pendientes<i class="mdi mdi-bookmark-outline mdi-24px float-end"></i>
                     </h4>
                     <h2 class="mb-5">0</h2>
-                    <h6 class="card-text"><a href="{{ Route('pagos.index')}}" style="text-decoration: none; color: black;">Ir a Admin Pagos</a></h6>
+                    <h6 class="card-text"><a href="#" style="text-decoration: none; color: black;">Ir a Admin Pagos</a></h6>
                   </div>
                 </div>
               </div>
