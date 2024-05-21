@@ -27,7 +27,7 @@
     <h1>Administración de Vehiculos</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{route('adminmenu')}}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
         <li class="breadcrumb-item active">Administración de Vehiculos</li>
       </ol>
     </nav>
