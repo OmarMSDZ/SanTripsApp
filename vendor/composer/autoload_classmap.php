@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Http\\Controllers\\AdminMenuController' => $baseDir . '/app/Http/Controllers/AdminMenuController.php',
     'App\\Http\\Controllers\\ApiServiceCountryStateCityController' => $baseDir . '/app/Http/Controllers/ApiServiceCountryStateCityController.php',
     'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => $baseDir . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
     'App\\Http\\Controllers\\Auth\\ConfirmablePasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmablePasswordController.php',
@@ -27,7 +28,6 @@ return array(
     'App\\Http\\Controllers\\EstadoReservacionController' => $baseDir . '/app/Http/Controllers/EstadoReservacionController.php',
     'App\\Http\\Controllers\\FacturaController' => $baseDir . '/app/Http/Controllers/FacturaController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
-    'App\\Http\\Controllers\\ImagenesPaquetesController' => $baseDir . '/app/Http/Controllers/ImagenesPaquetesController.php',
     'App\\Http\\Controllers\\IncidentesController' => $baseDir . '/app/Http/Controllers/IncidentesController.php',
     'App\\Http\\Controllers\\MarcaVehiculoController' => $baseDir . '/app/Http/Controllers/MarcaVehiculoController.php',
     'App\\Http\\Controllers\\MetodoPagoController' => $baseDir . '/app/Http/Controllers/MetodoPagoController.php',
@@ -41,7 +41,6 @@ return array(
     'App\\Http\\Controllers\\PreferenciasViajeController' => $baseDir . '/app/Http/Controllers/PreferenciasViajeController.php',
     'App\\Http\\Controllers\\ProfileController' => $baseDir . '/app/Http/Controllers/ProfileController.php',
     'App\\Http\\Controllers\\ProveedoresController' => $baseDir . '/app/Http/Controllers/ProveedoresController.php',
-    'App\\Http\\Controllers\\ProvinciasController' => $baseDir . '/app/Http/Controllers/ProvinciasController.php',
     'App\\Http\\Controllers\\ReservaController' => $baseDir . '/app/Http/Controllers/ReservaController.php',
     'App\\Http\\Controllers\\ReservacionController' => $baseDir . '/app/Http/Controllers/ReservacionController.php',
     'App\\Http\\Controllers\\ReservasHechasController' => $baseDir . '/app/Http/Controllers/ReservasHechasController.php',
@@ -50,6 +49,7 @@ return array(
     'App\\Http\\Controllers\\TipoIncidenteController' => $baseDir . '/app/Http/Controllers/TipoIncidenteController.php',
     'App\\Http\\Controllers\\TipoServiciosproveedorController' => $baseDir . '/app/Http/Controllers/TipoServiciosproveedorController.php',
     'App\\Http\\Controllers\\TipoVehiculoController' => $baseDir . '/app/Http/Controllers/TipoVehiculoController.php',
+    'App\\Http\\Controllers\\UsuariosController' => $baseDir . '/app/Http/Controllers/UsuariosController.php',
     'App\\Http\\Controllers\\VehiculoEmpleadoController' => $baseDir . '/app/Http/Controllers/VehiculoEmpleadoController.php',
     'App\\Http\\Controllers\\VehiculoTransporteController' => $baseDir . '/app/Http/Controllers/VehiculoTransporteController.php',
     'App\\Http\\Controllers\\VehiculosPaquetesController' => $baseDir . '/app/Http/Controllers/VehiculosPaquetesController.php',
@@ -68,7 +68,6 @@ return array(
     'App\\Models\\Encargados_paquetes' => $baseDir . '/app/Models/Encargados_paquetes.php',
     'App\\Models\\Estado_reservacion' => $baseDir . '/app/Models/Estado_reservacion.php',
     'App\\Models\\Factura' => $baseDir . '/app/Models/Factura.php',
-    'App\\Models\\Imagenes_paquetes' => $baseDir . '/app/Models/Imagenes_paquetes.php',
     'App\\Models\\Incidentes' => $baseDir . '/app/Models/Incidentes.php',
     'App\\Models\\Marca_vehiculo' => $baseDir . '/app/Models/Marca_vehiculo.php',
     'App\\Models\\Metodo_pago' => $baseDir . '/app/Models/Metodo_pago.php',
@@ -223,6 +222,7 @@ return array(
     'Database\\Seeders\\DatabaseSeeder' => $baseDir . '/database/seeders/DatabaseSeeder.php',
     'Database\\Seeders\\ProveedorSeeder' => $baseDir . '/database/seeders/ProveedorSeeder.php',
     'Database\\Seeders\\TipoSeeder' => $baseDir . '/database/seeders/TipoSeeder.php',
+    'Database\\Seeders\\VehiculoSeeder' => $baseDir . '/database/seeders/VehiculoSeeder.php',
     'DateError' => $vendorDir . '/symfony/polyfill-php83/Resources/stubs/DateError.php',
     'DateException' => $vendorDir . '/symfony/polyfill-php83/Resources/stubs/DateException.php',
     'DateInvalidOperationException' => $vendorDir . '/symfony/polyfill-php83/Resources/stubs/DateInvalidOperationException.php',
