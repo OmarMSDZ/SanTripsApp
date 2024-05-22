@@ -31,9 +31,9 @@ return new class extends Migration
             
             $table->foreignId('fk_IdTipoVehiculo')->nullable()->constrained('tipos');;
             
-            $table->foreignId('fk_IdMarcaVehiculo')->nullable()->constrained('Marca_vehiculo','IdMarcaVehiculo');;
+            $table->foreignId('fk_IdMarcaVehiculo')->nullable()->constrained('Marca_vehiculo', 'IdMarcaVehiculo');
             
-            $table->foreignId('fk_IdModeloVehiculo')->nullable()->constrained('Modelo_vehiculo','IdModeloVehiculo');
+            $table->foreignId('fk_IdModeloVehiculo')->nullable()->constrained('Modelo_vehiculo', 'IdModeloVehiculo');
 
             $table->string('Estado', 25)->default('ACTIVO');
             

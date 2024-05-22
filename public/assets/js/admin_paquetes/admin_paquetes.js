@@ -340,17 +340,23 @@ $( function () {
                             );
                         }
                     },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        Swal.fire(
-                            'Error!',
-                            'Hubo un problema al eliminar el registro.',
-                            'error'
-                        );
+                    error: function(xhr, textStatus, errorThrown) {
+                                 console.log(xhr.responseText);
+                             console.log(textStatus);
+                                 console.log(errorThrown);
+
+                                 Swal.fire(
+                                    'Error!',
+                                    'Hubo un problema al eliminar el registro.',
+                                    'error'
+                                );
+                                
+                        
                     }
                 });
             }
         })
-    });
+    }); 
 
 
     

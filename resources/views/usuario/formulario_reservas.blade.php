@@ -1,57 +1,35 @@
 <x-headusuario></x-headusuario>
 
 <!-- DATOS PERSONALES -->
-{{-- <h1>Reservacion de paquetes</h1>
-<form class="formulario" action="insertar.php" method="POST">
-    <p>El ID del paquete es</p>
-    <input type="text" name="id" value="{{ $id }}">
-    <h2>Datos personales</h2>
-    <label for="nombre">Nombres:</label>
-    <input type="text" name="nombre" id="nombre">
-    <label for="apellido">Apellidos:</label>
-    <input type="text" name="apellido" id="apellido">
-    <label for="telefono">Teléfono:</label>
-    <input type="text" name="telefono" id="telefono">
-    <label for="cedula">Cédula:</label>
-    <input type="text" name="cedula" id="cedula">
-    <label for="email">Email:</label>
-    <input type="email" name="email" id="email">
-    <label for="cantidad_adultos">Cantidad de adultos:</label>
-    <input type="number" name="cantidad_adultos" id="cantidad_adultos" min="0" value="1">
-    <label for="cantidad_ninos">Cantidad de niños:</label>
-    <input type="number" name="cantidad_ninos" id="cantidad_ninos" min="0" value="1">
-    <h2>Detalles del paquete turístico</h2>
-    <p>Seleccione el paquete turístico:</p>
-    <select name="paquete_turistico">
-        <option value="paquete1">Paquete 1</option>
-        <option value="paquete2">Paquete 2</option>
-        <option value="paquete3">Paquete 3</option>
-    </select>
-    <label for="fecha_desde">Desde:</label>
-    <input type="date" id="fecha_desde" name="fecha_desde">
-    <label for="fecha_hasta">Hasta:</label>
-    <input type="date" id="fecha_hasta" name="fecha_hasta">
-    <label for="detalles">Detalles adicionales:</label><br>
-    <textarea id="detalles" name="detalles" rows="4" cols="50"></textarea>
-    <br><br>
-    <br>
-
-    <!-- no tocar lo que tiene en el medio -->
-    <input type="reset" value="Borrar Campos">&nbsp;&nbsp;&nbsp;<input type="submit" value="Reservar">
-</form> --}}
-
-
-
       <!-- Section: Design Block -->
       <section class="mt-5">
         <!-- Jumbotron -->
         {{-- Aqui iria la info del paquete --}}
         @php
-             $paquetes = DB::select("SELECT p.id as idpaq, p.Nombre as nombre, p.Descripcion as descripcion,
-         p.Costo as costo, p.Num_personas as numpersonas, p.Edades as edades, p.Idiomas as idiomas, p.Alojamiento as alojamiento, p.Tiempo_estimado as tiempoestimado, 
-        p.Disponibilidad as disponibilidad, c.CategoriaPaq as categoria, o.Porcentaje as porciento FROM
-          paquetes_turisticos as p INNER JOIN categorias_paquetes as c ON p.fk_IdCategoriaPaq=c.IdCategoriaPaq 
-          INNER JOIN ofertas as o ON p.fk_IdOferta=o.IdOferta WHERE p.id=$id");
+             $paquetes = DB::select("SELECT 
+    p.id as idpaq, 
+    p.Nombre as nombre, 
+    p.Descripcion as descripcion,
+    p.Costo as costo, 
+    p.Num_personas as numpersonas, 
+    p.Edades as edades, 
+    p.Idiomas as idiomas, 
+    p.Alojamiento as alojamiento, 
+    p.Tiempo_estimado as tiempoestimado, 
+    p.Disponibilidad as disponibilidad, 
+    tip.nombre as categoria, 
+    o.Porcentaje as porciento 
+FROM 
+    paquetes_turisticos as p 
+INNER JOIN 
+    tipos as tip 
+    ON p.fk_IdCategoriaPaq=tip.id 
+INNER JOIN 
+    ofertas as o 
+    ON p.fk_IdOferta=o.IdOferta 
+WHERE 
+    p.id=$id AND tip.tipo='paquetes';
+");
         @endphp
 
         <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
@@ -117,22 +95,71 @@
                                         <div class="col-md-6 mb-4">
                                             <div data-mdb-input-init class="form-outline">
                                                 <label class="form-label" for="CantidadPersonasAdultos">Cantidad de Personas</label>
-                                                {{-- Estos campos deben de sumarse y presentarse en la parte de CantidadPersonas --}}
                                                 <hr class="mt-0">
-                                      
+
                                                 <label class="form-label" for="CantidadPersonasAdultos">Adultos:</label>
-                                                <input type="number" name="CantidadPersonasAdultos" class="form-control">
-                                            
-                                                <label class="form-label" for="CantidadPersonasAdolescentes">Adolescentes:</label>
-                                                <input type="number" name="CantidadPersonasAdolescentes" class="form-control">
-                                        
-                                                <label class="form-label" for="CantidadPersonasNinos">Niños:</label>
-                                                <input type="number" name="CantidadPersonasNinos" class="form-control">
-                                      
+                                                <input type="number" id="CantidadPersonasAdultos" name="CantidadPersonasAdultos" class="form-control">
+                                               
+                                                    {{-- Mostrar los inputs segun el valor de edades --}}
+                                                    @if ($paquete->edades == "TODAS LAS EDADES")
+                                                    <label class="form-label" for="CantidadPersonasAdolescentes">Adolescentes:</label>
+                                                    <input type="number" id="CantidadPersonasAdolescentes" name="CantidadPersonasAdolescentes" class="form-control">
+                                                    <label class="form-label" for="CantidadPersonasNinos">Niños:</label>
+                                                    <input type="number" id="CantidadPersonasNinos" name="CantidadPersonasNinos" class="form-control">
+                                                    <script>
+                                                        document.addEventListener('DOMContentLoaded', (event) => {
+                                                            const adultosInput = document.getElementById('CantidadPersonasAdultos');
+                                                            const adolescentesInput = document.getElementById('CantidadPersonasAdolescentes');
+                                                            const ninosInput = document.getElementById('CantidadPersonasNinos');
+                                                            const totalInput = document.getElementById('CantidadPersonas');
+    
+                                                            function updateTotal() {
+                                                                const adultos = parseInt(adultosInput.value) || 0;
+                                                                const adolescentes = parseInt(adolescentesInput.value) || 0;
+                                                                const ninos = parseInt(ninosInput.value) || 0;
+                                                                const total = adultos + adolescentes + ninos;
+                                                                totalInput.value = total;
+                                                            }
+    
+                                                            adultosInput.addEventListener('input', updateTotal);
+                                                            adolescentesInput.addEventListener('input', updateTotal);
+                                                            ninosInput.addEventListener('input', updateTotal);
+                                                        });
+                                                    </script>
+
+                                                    @elseif ($paquete->edades == "ADOLESCENTES Y ADULTOS")
+                                                    <label class="form-label" for="CantidadPersonasAdolescentes">Adolescentes:</label>
+                                                    <input type="number" id="CantidadPersonasAdolescentes" name="CantidadPersonasAdolescentes" class="form-control">
+                                                    <script>
+                                                        document.addEventListener('DOMContentLoaded', (event) => {
+                                                            const adultosInput = document.getElementById('CantidadPersonasAdultos');
+                                                            const adolescentesInput = document.getElementById('CantidadPersonasAdolescentes');
+                                                            // const ninosInput = document.getElementById('CantidadPersonasNinos');
+                                                            const totalInput = document.getElementById('CantidadPersonas');
+    
+                                                            function updateTotal() {
+                                                                const adultos = parseInt(adultosInput.value) || 0;
+                                                                const adolescentes = parseInt(adolescentesInput.value) || 0;
+                                                                // const ninos = parseInt(ninosInput.value) || 0;
+                                                                const total = adultos + adolescentes;
+                                                                totalInput.value = total;
+                                                            }
+    
+                                                            adultosInput.addEventListener('input', updateTotal);
+                                                            adolescentesInput.addEventListener('input', updateTotal);
+                                                            ninosInput.addEventListener('input', updateTotal);
+                                                        });
+                                                    </script>
+                                                    @endif
+                                             
+                                                
                                                 <center>
-                                                <label for="CantidadPersonas">Cantidad Total Personas:</label>
-                                                <input type="number" name="CantidadPersonas" class="form-control" min="1" max="{{$paquete->numpersonas}}">
+                                                    <label for="CantidadPersonas">Cantidad Total Personas:</label>
+                                                    <input type="number" id="CantidadPersonas" name="CantidadPersonas" class="form-control" min="1" max="{{$paquete->numpersonas}}" readonly>
                                                 </center>
+
+                                                {{-- para sumar los valores de los input --}}
+                                                
                                               
                                             </div>
                                         </div>
