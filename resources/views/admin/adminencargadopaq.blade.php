@@ -1,5 +1,5 @@
 @extends('layouts.admin_layout_new')
-@section('title', 'Administrador de Paquetes destinos')
+@section('title', 'Administrador de Empleados encargados de paquetes')
 
 @section('css')
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.0/css/responsive.dataTables.css">
@@ -11,20 +11,19 @@
 
 @section('content')
 
-{{--ESTE ES EL QUE SIRVE  --}}
 
 {{-- <div class="page-content p-5" id="content">
-<!-- Contenido de admin empleados -->
-<h2>Admin paquetes destinos <span class="text-gray float-end">SanTrips</span></h2>
+<!-- Contenido de admin -->
+<h2>Admin Encargado paquetes <span class="text-gray float-end">SanTrips</span></h2>
 <hr> --}}
 
 
 <div class="pagetitle">
-    <h1>Administración de Paquetes Destinos</h1>
+    <h1>Administración de Encargados de paquetes</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-        <li class="breadcrumb-item active">Administración de Paquetes destinos</li>
+        <li class="breadcrumb-item active">Administración de Encargados de paquetes</li>
       </ol>
     </nav>
   </div><!-- End Page Title -->
@@ -39,8 +38,7 @@
 
                 <div class="col-12">
 
-                
-                    
+
                         <div class="col-lg-4 mt-3 offset-lg-1 offset-md-4">
                             <div class="d-flex justify-content-end">
                                 <button class="btn btn-outline-secondary btn-sm mx-2" type="submit">
@@ -60,19 +58,18 @@
                 </div>
                 <br>
                 <div class="col-12 table-container">
-                    <div class="table-responsive">
-                        <table id="tablapaquetes_destinos" class="table table-hover" width="100%">
-                            <!-- Contenido de la tabla -->
-                            <thead class="">
-                            <tr>
-                                 
-                                <!-- <th>id_paquetes_turistico</th>
-                                <th>id_destino</th>
-                                <th>accion</th> -->
-                            </tr>
-                        </thead>
-                        </table>
-                    </div>
+                    <table id="tablaencargados_paquetes" class="table table-hover">
+                        <!-- Contenido de la tabla -->
+                        <thead class="">
+                        <tr>
+                            <!-- {{-- <th>Id</th> --}} -->
+                            <th>Fecha</th>
+                            <th>id_paquete_turistico</th>
+                            <th>id_empleado</th>
+                            
+                        </tr>
+                    </thead>
+                    </table>
                 </div>
             </div>
           </div>
@@ -80,44 +77,78 @@
     </div>
 </div>
 
-<div class="modal fade" id="modalRegistropaqdestino" tabindex="-1">
+
+<form id="formCambiarencargado" action="" method="POST" class="form">
+    <input name="codigo" value="0" type="hidden">
+    <input name="estado" value="0" type="hidden">
+    @csrf
+</form>
+
+<div class="modal fade" id="modalRegistroencargadopaq" tabindex="-1">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Registro De Paquetes Destinos</h5>
+          <h5 class="modal-title">Registro De encargados de paquete</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form id="registropaqdestino" class="row" action="" method="POST" class="form">
+            <form id="registroencargado" class="row" action="" method="POST" class="form">
                 @csrf
 
-                <input type="hidden" id="codigo_paqdestino" name="codigo" value="0">
+                <input type="hidden" id="codigo_encargad" name="codigo" value="0">
 
-                <div class="col-6 col-sm-12 col-lg-6">
+                <div class="col-4">
                     <div class="mb-3">
-                        <label for="paquete_turistico" class="form-label">Paquete turistico</label>
-                        <select name="paquete_turistico" id="paquete_turistico" class="form-select limpiarForm" required>
+                        <label for="fechaingreso" class="form-label">Fecha</label>
+                        <input type="date" name="fechaingreso" class="form-control limpiarForm" value={{date('Y-m-y')}} required>
+                    </div>
+                </div>
+
+               
+
+                <div class="col-4">
+                    <div class="mb-3">
+                        <label for="id_paquetes_turistico" class="form-label">id_paquetes_turistico</label>
+                        <select name="id_paquetes_turistico" id="id_paquetes_turistico" class="form-select limpiarForm">
+
                             <option value="">===</option>
                             @foreach ($id_paquetes_turistico as $key)
                                 <option value="{{$key->id}}">{{$key->Nombre}}</option>
                             @endforeach
+                    
                         </select>
                     </div>
                 </div>
 
-                <div class="col-6 col-sm-12 col-lg-6">
+
+                
+                <div class="col-4">
                     <div class="mb-3">
-                        <label for="destino" class="form-label">Destino</label>
-                        <select name="destino" id="destino" class="form-select limpiarForm" required>
+                        <label for="idemp" class="form-label">Id empleado</label>
+                        <select name="idemp" id="idemp" class="form-select limpiarForm">
 
                             <option value="">===</option>
-                            @foreach ($id_destino as $key)
-                                <option value="{{$key->id}}">{{$key->nombre}}</option>
+                            @foreach ($id_empleado as $key)
+                                <option value="{{$key->id}}">{{$key->Nombres}}</option>
                             @endforeach
                         
                         </select>
                     </div>
                 </div>
+
+                
+
+           
+
+                {{-- <div class="mb-3">
+                    <button type="button" class="btn btn-success">Registrar</button>
+                    <button type="button" class="btn btn-warning">Actualizar</button>
+                    <br>
+                    <p class="font-weight-bold text-uppercase px-3 small mt-3 mb-0">Otras Acciones</p>
+                    <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="" style="text-decoration: none; color: white;"> Administrar Cargos</a></button>
+                    <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="" style="text-decoration: none; color: white;"> Asignar Encargado Paquete</a></button>
+                </div> --}}
+
             </form>
         </div>
         <div class="modal-footer">
@@ -145,6 +176,6 @@
 <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
 <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.bootstrap5.js"></script>
 
-<script src=" {{ asset('assets/js/admin_paqdestino/adminpaqdestino.js') }}"></script>
+<script src=" {{ asset('assets/js/admin_encargadopaq/admin_encargadopaq.js') }}"></script>
 
 @endsection

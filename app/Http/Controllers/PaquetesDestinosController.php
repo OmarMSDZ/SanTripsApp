@@ -174,7 +174,7 @@ class PaquetesDestinosController extends Controller
                                                     <a class="dropdown-item btnMostrar" codigo="'.$row->id.'" href="#!"> <i class="bi bi-card-heading"></i> Mostrar</a>
                                                     <a class="dropdown-item btnActualizar" href="#!" codigo="'.$row->id.'" destino="'. $row->id_destino .'" paquete_turistico="'. $row->id_paquete_turistico .'"> <i class="bi bi-pencil-square"></i> Actualizar</a>
                                                     <div class="dropdown-divider"></div>
-                                                    "<a class="dropdown-item text-danger btnBorrarRegistro" href="#!" codigo="'. $row->id .'"> <i class="bi bi-x"> </i> Borrar</a>"
+                                                    <a class="dropdown-item text-danger btnBorrarRegistro" href="#!" codigo="'. $row->id .'"> <i class="bi bi-x"> </i> Borrar</a>
                                             </div>
                                         </div>';
                             })->addColumn('estado', function ($row) {
