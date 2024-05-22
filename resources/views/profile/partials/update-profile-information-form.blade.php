@@ -18,7 +18,26 @@
         @method('patch')
 
         <div>
-            <x-input-label for="name" :value="__('Nombre')" />
+            <x-input-label for="nombres" :value="__('Nombres')" />
+            <x-text-input id="nombres" name="nombres" type="text" class="mt-1 block w-full" :value="old('nombres', $user->nombres)" required autofocus autocomplete="nombres" />
+            <x-input-error class="mt-2" :messages="$errors->get('nombres')" />
+        </div>
+
+        <div>
+            <x-input-label for="apellidos" :value="__('Apellidos')" />
+            <x-text-input id="apellidos" name="apellidos" type="text" class="mt-1 block w-full" :value="old('apellidos', $user->apellidos)" required autofocus autocomplete="apellidos" />
+            <x-input-error class="mt-2" :messages="$errors->get('apellidos')" />
+        </div>
+
+        <div>
+            <x-input-label for="telefono" :value="__('Telefono')" />
+            <x-text-input id="telefono" name="telefono" type="tel" class="mt-1 block w-full" :value="old('telefono', $user->telefono)" required autofocus autocomplete="telefono" />
+            <x-input-error class="mt-2" :messages="$errors->get('telefono')" />
+        </div>
+
+
+        <div>
+            <x-input-label for="name" :value="__('Nombre de Usuario')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>

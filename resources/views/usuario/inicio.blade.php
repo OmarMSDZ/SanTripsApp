@@ -42,10 +42,10 @@
                     <label for="CategoriaPaquete" class="input-label">Tipo de viaje preferido</label>
                     <select name="CategoriaPaquete" id="" class="form-select input-field">
                         @php
-                            $categoriaspaquetes= DB::select('SELECT * FROM categorias_paquetes');
+                            $categoriaspaquetes= DB::select('SELECT * FROM tipos WHERE tipo="paquetes"');
                         @endphp
                         @foreach ($categoriaspaquetes as $categoriapaquete)
-                        <option value="{{$categoriapaquete->IdCategoriapaq}}">{{$categoriapaquete->Categoriapaq}}</option>
+                        <option value="{{$categoriapaquete->id}}">{{$categoriapaquete->nombre}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -343,7 +343,7 @@
                                     <span>/ Por Persona</span>
                                 </p>
                                 <button class="btn btn-secondary"> <a href=""
-                                        style="text-decoration: none; color: white;">Reserva ahora</a></button>
+                                        style="text-decoration: none; color: white;">Reservar ahora</a></button>
                             </div>
                         </div>
                     </li>
@@ -358,7 +358,7 @@
 
                             <div class="card-content">
 
-                                <h3 class="h3 card-title">Summer Holiday To The Oxolotan River</h3>
+                                <h3 class="h3 card-title">Museo Centro León</h3>
 
                                 <p class="card-text">
                                     Laoreet, voluptatum nihil dolor esse quaerat mattis explicabo maiores, est aliquet
@@ -372,7 +372,7 @@
                                         <div class="meta-box">
                                             <ion-icon name="time"></ion-icon>
 
-                                            <p class="text">7D/6N</p>
+                                            <p class="text">8H</p>
                                         </div>
                                     </li>
 
@@ -380,7 +380,7 @@
                                         <div class="meta-box">
                                             <ion-icon name="people"></ion-icon>
 
-                                            <p class="text">pax: 10</p>
+                                            <p class="text">Max: 30</p>
                                         </div>
                                     </li>
 
@@ -388,7 +388,7 @@
                                         <div class="meta-box">
                                             <ion-icon name="location"></ion-icon>
 
-                                            <p class="text">Malaysia</p>
+                                            <p class="text">República Dominicana, <br> Santiago de los Caballeros</p>
                                         </div>
                                     </li>
 
@@ -400,24 +400,17 @@
 
                                 <div class="wrapper">
 
-                                    <p class="reviews">(20 reviews)</p>
-
-                                    <div class="card-rating">
-                                        <ion-icon name="star"></ion-icon>
-                                        <ion-icon name="star"></ion-icon>
-                                        <ion-icon name="star"></ion-icon>
-                                        <ion-icon name="star"></ion-icon>
-                                        <ion-icon name="star"></ion-icon>
-                                    </div>
+                                     
 
                                 </div>
 
                                 <p class="price">
                                     $520
-                                    <span>/ per person</span>
+                                    <span>/ por persona</span>
                                 </p>
 
-                                <button class="btn btn-secondary">Book Now</button>
+                                <button class="btn btn-secondary">Reservar ahora
+                                </button>
 
                             </div>
 
@@ -434,7 +427,7 @@
 
                             <div class="card-content">
 
-                                <h3 class="h3 card-title">Santorini Island's Weekend Vacation</h3>
+                                <h3 class="h3 card-title">Estadio Cibao</h3>
 
                                 <p class="card-text">
                                     Laoreet, voluptatum nihil dolor esse quaerat mattis explicabo maiores, est aliquet
@@ -448,7 +441,7 @@
                                         <div class="meta-box">
                                             <ion-icon name="time"></ion-icon>
 
-                                            <p class="text">7D/6N</p>
+                                            <p class="text">5H</p>
                                         </div>
                                     </li>
 
@@ -456,7 +449,7 @@
                                         <div class="meta-box">
                                             <ion-icon name="people"></ion-icon>
 
-                                            <p class="text">pax: 10</p>
+                                            <p class="text">Max: 10</p>
                                         </div>
                                     </li>
 
@@ -464,7 +457,7 @@
                                         <div class="meta-box">
                                             <ion-icon name="location"></ion-icon>
 
-                                            <p class="text">Malaysia</p>
+                                            <p class="text">República Dominicana, <br> Santiago de los Caballeros</p>
                                         </div>
                                     </li>
 
@@ -476,24 +469,16 @@
 
                                 <div class="wrapper">
 
-                                    <p class="reviews">(40 reviews)</p>
-
-                                    <div class="card-rating">
-                                        <ion-icon name="star"></ion-icon>
-                                        <ion-icon name="star"></ion-icon>
-                                        <ion-icon name="star"></ion-icon>
-                                        <ion-icon name="star"></ion-icon>
-                                        <ion-icon name="star"></ion-icon>
-                                    </div>
+                                  
 
                                 </div>
 
                                 <p class="price">
                                     $660
-                                    <span>/ per person</span>
+                                    <span>/ por persona</span>
                                 </p>
 
-                                <button class="btn btn-secondary">Book Now</button>
+                                <button class="btn btn-secondary">Reservar Ahora</button>
 
                             </div>
 
