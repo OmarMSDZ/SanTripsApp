@@ -126,6 +126,20 @@ Route::middleware('auth')->prefix('admin')->group( function () {
 
 
     });
+
+       //ruta de paquete destinos
+       Route::controller(PaquetesDestinosController::class)->prefix('paqdestino')->group( function () {
+
+        Route::get('/', 'index')->name('paqdestino.index');
+        Route::get('/data', 'getPaquetesdestinos')->name('paqdestino.getPaquetesdestinos');
+        Route::get('/data/{id}', 'getPaquetedestino')->name('paqdestino.getPaquetedestino');
+        Route::post('/', 'store')->name('paqdestino.store'); 
+        Route::post('/update/{id}', 'update')->name('paqdestino.update');
+        Route::post('/cambiar_estado/{id}', 'cambiarPaquetesdestino')->name('paquetesdestino.cambiar_estado');
+        Route::delete('/{id}', 'delete')->name('paquetesdestino.delete');
+
+
+    });
     
     //el prefix es el nombre con el que lo vamos a llamar en la url
     
