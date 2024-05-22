@@ -39,10 +39,10 @@
                     {{-- <img src="{{asset('img/logosantri.jpeg')}}" alt="" class="card-img-top"> --}}
 
                     {{-- imagen del paquete, muestra la primera imagen--}}
-                    <img src="{{ $paquete->imagen1 ? asset('storage/' . $paquete->imagen1) : asset('img/logosantri.jpeg') }}" alt="" class="card-img-top">
+                    <img src="{{ $paquete->imagen1 ? asset('storage/' . $paquete->imagen1) : asset('img/logosantri.jpeg') }}" alt="" class="card-img-top" style="width:21em; height:21em;">
 
-                    
-                    <h2 class="card-title">{{$paquete->nombre}}</h2>
+                    <hr>
+                    <h3 class="card-title">{{$paquete->nombre}}</h3>
                     <p class="card-text"> <span style="font-weight:bold">Categoría:</span> {{$paquete->categoria}}</p>
                   
                     <button class="btn btn-primary" onclick="toggleMoreInfo(this)">Mostrar Más Información</button>
