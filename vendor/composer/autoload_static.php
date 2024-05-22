@@ -554,6 +554,7 @@ class ComposerStaticInitda9b7a1dc1dd923105198c572cc7df8d
     );
 
     public static $classMap = array (
+        'App\\Http\\Controllers\\AdminMenuController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminMenuController.php',
         'App\\Http\\Controllers\\ApiServiceCountryStateCityController' => __DIR__ . '/../..' . '/app/Http/Controllers/ApiServiceCountryStateCityController.php',
         'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmablePasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmablePasswordController.php',
@@ -575,7 +576,6 @@ class ComposerStaticInitda9b7a1dc1dd923105198c572cc7df8d
         'App\\Http\\Controllers\\EstadoReservacionController' => __DIR__ . '/../..' . '/app/Http/Controllers/EstadoReservacionController.php',
         'App\\Http\\Controllers\\FacturaController' => __DIR__ . '/../..' . '/app/Http/Controllers/FacturaController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
-        'App\\Http\\Controllers\\ImagenesPaquetesController' => __DIR__ . '/../..' . '/app/Http/Controllers/ImagenesPaquetesController.php',
         'App\\Http\\Controllers\\IncidentesController' => __DIR__ . '/../..' . '/app/Http/Controllers/IncidentesController.php',
         'App\\Http\\Controllers\\MarcaVehiculoController' => __DIR__ . '/../..' . '/app/Http/Controllers/MarcaVehiculoController.php',
         'App\\Http\\Controllers\\MetodoPagoController' => __DIR__ . '/../..' . '/app/Http/Controllers/MetodoPagoController.php',
@@ -589,7 +589,6 @@ class ComposerStaticInitda9b7a1dc1dd923105198c572cc7df8d
         'App\\Http\\Controllers\\PreferenciasViajeController' => __DIR__ . '/../..' . '/app/Http/Controllers/PreferenciasViajeController.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
         'App\\Http\\Controllers\\ProveedoresController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProveedoresController.php',
-        'App\\Http\\Controllers\\ProvinciasController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProvinciasController.php',
         'App\\Http\\Controllers\\ReservaController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReservaController.php',
         'App\\Http\\Controllers\\ReservacionController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReservacionController.php',
         'App\\Http\\Controllers\\ReservasHechasController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReservasHechasController.php',
@@ -598,6 +597,7 @@ class ComposerStaticInitda9b7a1dc1dd923105198c572cc7df8d
         'App\\Http\\Controllers\\TipoIncidenteController' => __DIR__ . '/../..' . '/app/Http/Controllers/TipoIncidenteController.php',
         'App\\Http\\Controllers\\TipoServiciosproveedorController' => __DIR__ . '/../..' . '/app/Http/Controllers/TipoServiciosproveedorController.php',
         'App\\Http\\Controllers\\TipoVehiculoController' => __DIR__ . '/../..' . '/app/Http/Controllers/TipoVehiculoController.php',
+        'App\\Http\\Controllers\\UsuariosController' => __DIR__ . '/../..' . '/app/Http/Controllers/UsuariosController.php',
         'App\\Http\\Controllers\\VehiculoEmpleadoController' => __DIR__ . '/../..' . '/app/Http/Controllers/VehiculoEmpleadoController.php',
         'App\\Http\\Controllers\\VehiculoTransporteController' => __DIR__ . '/../..' . '/app/Http/Controllers/VehiculoTransporteController.php',
         'App\\Http\\Controllers\\VehiculosPaquetesController' => __DIR__ . '/../..' . '/app/Http/Controllers/VehiculosPaquetesController.php',
@@ -616,7 +616,6 @@ class ComposerStaticInitda9b7a1dc1dd923105198c572cc7df8d
         'App\\Models\\Encargados_paquetes' => __DIR__ . '/../..' . '/app/Models/Encargados_paquetes.php',
         'App\\Models\\Estado_reservacion' => __DIR__ . '/../..' . '/app/Models/Estado_reservacion.php',
         'App\\Models\\Factura' => __DIR__ . '/../..' . '/app/Models/Factura.php',
-        'App\\Models\\Imagenes_paquetes' => __DIR__ . '/../..' . '/app/Models/Imagenes_paquetes.php',
         'App\\Models\\Incidentes' => __DIR__ . '/../..' . '/app/Models/Incidentes.php',
         'App\\Models\\Marca_vehiculo' => __DIR__ . '/../..' . '/app/Models/Marca_vehiculo.php',
         'App\\Models\\Metodo_pago' => __DIR__ . '/../..' . '/app/Models/Metodo_pago.php',
@@ -771,6 +770,7 @@ class ComposerStaticInitda9b7a1dc1dd923105198c572cc7df8d
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
         'Database\\Seeders\\ProveedorSeeder' => __DIR__ . '/../..' . '/database/seeders/ProveedorSeeder.php',
         'Database\\Seeders\\TipoSeeder' => __DIR__ . '/../..' . '/database/seeders/TipoSeeder.php',
+        'Database\\Seeders\\VehiculoSeeder' => __DIR__ . '/../..' . '/database/seeders/VehiculoSeeder.php',
         'DateError' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateError.php',
         'DateException' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateException.php',
         'DateInvalidOperationException' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateInvalidOperationException.php',
