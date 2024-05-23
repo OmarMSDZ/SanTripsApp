@@ -23,14 +23,14 @@
     <hr>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {{-- Consulta para obtener la info de los paquetes --}}
-        @php
+        {{-- @php
             
         $paquetes = DB::select("SELECT p.id as idpaq, p.Nombre as nombre, p.Descripcion as descripcion,
         p.Costo as costo, p.Num_personas as numpersonas, p.Edades as edades, p.Idiomas as idiomas, p.Alojamiento as alojamiento, p.Tiempo_estimado as tiempoestimado, 
         p.Disponibilidad as disponibilidad, c.nombre as categoria, o.Porcentaje as porciento, p.imagen1 as imagen1 FROM
         paquetes_turisticos as p INNER JOIN tipos as c ON p.fk_IdCategoriaPaq=c.id INNER JOIN ofertas as o ON p.fk_IdOferta=o.IdOferta where c.tipo='paquetes'");
         
-        @endphp
+        @endphp --}}
 
         {{-- De esta forma se imprime cada paquete en la pagina luego de hacer la consulta --}}
         @foreach($paquetes as $paquete)
