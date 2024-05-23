@@ -202,36 +202,7 @@
 
             <a href="{{ route('inicio') }}" class="logo"><img src="{{ asset('img/SanTrips (logo azul).svg') }}"
                     alt="" class="img-fluid"></a>
-{{-- 
-            <nav id="navbar" class="navbar navbar-expand-lg">
-                <div class="container-fluid">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item"><a class="nav-link scrollto" href="{{ route('inicio') }}">Inicio</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link scrollto" href="{{ route('inicio') }}#about">Sobre
-                                    Nosotros</a></li>
-                            <li class="nav-item"><a class="nav-link scrollto" href="{{route('paquetes_turisticos')}}">Paquetes Turísticos</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link scrollto" href="{{route('reservas_realizadas')}}">Mis Reservas</a></li>
-                            <li class="nav-item"><a class="nav-link scrollto" href="{{ route('inicio') }}#contact">Contacto</a></li>
-                           
-                            
-                            <li class="nav-item"><a class="nav-link scrollto" href="{{ route('register') }}">Registro</a></li>
-                            <li class="nav-item"><a class="nav-link scrollto" href="{{ route('login') }}">Login</a></li>
-                          
-
-                </div>
-         
-                        </ul>
-                    </div>
-                </div>
-            </nav><!-- .navbar --> --}}
-
+ 
 
             <nav id="navbar" class="navbar navbar-expand-lg ">
                 <div class="container-fluid">

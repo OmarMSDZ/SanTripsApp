@@ -9,7 +9,7 @@
         - #HERO
       -->
 
-        <section class="hero" id="home">
+         <section class="hero" id="home">
             <div class="container">
 
                 <h2 class="h1 hero-title">Explora Santiago, Vive la Ciudad</h2>
@@ -28,6 +28,7 @@
 
             </div>
         </section>
+ 
 
   <!--
         - #TOUR SEARCH
@@ -41,9 +42,7 @@
                 <div class="input-wrapper">
                     <label for="CategoriaPaquete" class="input-label">Tipo de viaje preferido</label>
                     <select name="CategoriaPaquete" id="" class="form-select input-field">
-                        @php
-                            $categoriaspaquetes= DB::select('SELECT * FROM tipos WHERE tipo="paquetes"');
-                        @endphp
+                       
                         @foreach ($categoriaspaquetes as $categoriapaquete)
                         <option value="{{$categoriapaquete->id}}">{{$categoriapaquete->nombre}}</option>
                         @endforeach
@@ -85,7 +84,7 @@
         - #CTA
       -->
 
-      <section class="cta" id="contact">
+      <section class="cta" id="">
         <div class="container"> 
 
             <div class="cta-content">
@@ -159,7 +158,7 @@
         <!--
         - #POPULAR
       -->
-
+{{-- 
         <section class="popular" id="destination">
             <div class="container">
 
@@ -270,10 +269,10 @@
                     <button class="btn btn-primary">Descubre Más Destinos</button>
                 </center>
             </div>
-        </section>
+        </section> --}}
 
         <!--
-        - #PAQUETES TODO ESTO DEBE ESTAR ASOCIADO A BASE DE DATOS, (traer solo 3)
+        - #PAQUETES TODO ESTO DEBE ESTAR ASOCIADO A BASE DE DATOS, (traer solo 3 mas recientes)
       -->
         <section class="package" id="package">
             <div class="container">
@@ -283,214 +282,75 @@
                 <h2 class="h2 section-title">Echa un Vistazo a Nuestros Paquetes</h2>
 
                 <p class="section-text">
-                    Fusce hic augue velit wisi quibusdam pariatur, iusto primis, nec nemo, rutrum. Vestibulum cumque
-                    laudantium.
-                    Sit ornare
-                    mollitia tenetur, aptent.
+                    Descubre nuestros paquetes más recientes y embárcate en una experiencia de lujo. 
+                    Desde escapadas románticas hasta emocionantes tours familiares, nuestras ofertas 
+                    exclusivas están diseñadas para satisfacer todos tus deseos de viaje. 
+                    ¡Reserva ahora y vive la aventura de tus sueños!
                 </p>
 
                 <ul class="package-list">
 
-                    <li>
-                        <div class="package-card">
+                    @foreach ($paquetes as $paquete)
+                        
+                   
 
+                    <li>
+                         
+                        <div class="package-card">
                             <figure class="card-banner">
-                                <img src="{{ asset('img/pico_duarte.jpg') }}" alt="Pico Duarte">
+                     
+                                <img src="{{ $paquete->imagen1 ? asset('storage/' . $paquete->imagen1) : asset('img/logosantri.jpeg') }}" alt="" style="width: 20em; height: 15em;" >
 
                             </figure>
 
                             <div class="card-content">
-
-                                <h3 class="h3 card-title">Pico Duarte</h3>
-
-                                <p class="card-text">
-                                    Laoreet, voluptatum nihil dolor esse quaerat mattis explicabo maiores, est aliquet
-                                    porttitor! Eaque,
-                                    cras, aspernatur.
-                                </p>
-
+                                <h3 class="h3 card-title">{{$paquete->nombre}}</h3>
+                                <p class="card-text">{{$paquete->descripcion}}</p>
                                 <ul class="card-meta-list">
-
                                     <li class="card-meta-item">
                                         <div class="meta-box">
                                             <ion-icon name="time"></ion-icon>
-
-                                            <p class="text">48H</p>
+                                            <p class="text">{{$paquete->tiempoestimado}} H</p>
                                         </div>
                                     </li>
-
                                     <li class="card-meta-item">
                                         <div class="meta-box">
                                             <ion-icon name="people"></ion-icon>
-
-                                            <p class="text">Max: 5</p>
+                                            <p class="text">Max: {{$paquete->numpersonas}}</p>
                                         </div>
                                     </li>
 
                                     <li class="card-meta-item">
                                         <div class="meta-box">
-                                            <ion-icon name="location"></ion-icon>
-
-                                            <p class="text">República Dominicana, <br> Santiago de los Caballeros</p>
+                                            {{-- <ion-icon name="location"></ion-icon> --}}
+                                            <p class="text">Categoría: <br> {{$paquete->categoria}}</p>
                                         </div>
                                     </li>
+                                    
 
                                 </ul>
                             </div>
                             <div class="card-price">
                                 <p class="price">
-                                    $1000
+                                    RD$ {{$paquete->costo}}
                                     <span>/ Por Persona</span>
                                 </p>
-                                <button class="btn btn-secondary"> <a href=""
-                                        style="text-decoration: none; color: white;">Reservar ahora</a></button>
+                        
+                                        <form action="{{ route('procesar_reserva')}}" method="POST">
+                                        s
+
                             </div>
                         </div>
                     </li>
+                    @endforeach
 
-                    <li>
-                        <div class="package-card">
-
-                            <figure class="card-banner">
-                                <img src="{{ asset('img/Centro-Leon.jpg') }}" alt="Centro Leon">
-
-                            </figure>
-
-                            <div class="card-content">
-
-                                <h3 class="h3 card-title">Museo Centro León</h3>
-
-                                <p class="card-text">
-                                    Laoreet, voluptatum nihil dolor esse quaerat mattis explicabo maiores, est aliquet
-                                    porttitor! Eaque,
-                                    cras, aspernatur.
-                                </p>
-
-                                <ul class="card-meta-list">
-
-                                    <li class="card-meta-item">
-                                        <div class="meta-box">
-                                            <ion-icon name="time"></ion-icon>
-
-                                            <p class="text">8H</p>
-                                        </div>
-                                    </li>
-
-                                    <li class="card-meta-item">
-                                        <div class="meta-box">
-                                            <ion-icon name="people"></ion-icon>
-
-                                            <p class="text">Max: 30</p>
-                                        </div>
-                                    </li>
-
-                                    <li class="card-meta-item">
-                                        <div class="meta-box">
-                                            <ion-icon name="location"></ion-icon>
-
-                                            <p class="text">República Dominicana, <br> Santiago de los Caballeros</p>
-                                        </div>
-                                    </li>
-
-                                </ul>
-
-                            </div>
-
-                            <div class="card-price">
-
-                                <div class="wrapper">
-
-                                     
-
-                                </div>
-
-                                <p class="price">
-                                    $520
-                                    <span>/ por persona</span>
-                                </p>
-
-                                <button class="btn btn-secondary">Reservar ahora
-                                </button>
-
-                            </div>
-
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="package-card">
-
-                            <figure class="card-banner">
-                                <img src="{{ asset('img/estadiocibao.jpg') }}" alt="Estadio Cibao">
-
-                            </figure>
-
-                            <div class="card-content">
-
-                                <h3 class="h3 card-title">Estadio Cibao</h3>
-
-                                <p class="card-text">
-                                    Laoreet, voluptatum nihil dolor esse quaerat mattis explicabo maiores, est aliquet
-                                    porttitor! Eaque,
-                                    cras, aspernatur.
-                                </p>
-
-                                <ul class="card-meta-list">
-
-                                    <li class="card-meta-item">
-                                        <div class="meta-box">
-                                            <ion-icon name="time"></ion-icon>
-
-                                            <p class="text">5H</p>
-                                        </div>
-                                    </li>
-
-                                    <li class="card-meta-item">
-                                        <div class="meta-box">
-                                            <ion-icon name="people"></ion-icon>
-
-                                            <p class="text">Max: 10</p>
-                                        </div>
-                                    </li>
-
-                                    <li class="card-meta-item">
-                                        <div class="meta-box">
-                                            <ion-icon name="location"></ion-icon>
-
-                                            <p class="text">República Dominicana, <br> Santiago de los Caballeros</p>
-                                        </div>
-                                    </li>
-
-                                </ul>
-
-                            </div>
-
-                            <div class="card-price">
-
-                                <div class="wrapper">
-
-                                  
-
-                                </div>
-
-                                <p class="price">
-                                    $660
-                                    <span>/ por persona</span>
-                                </p>
-
-                                <button class="btn btn-secondary">Reservar Ahora</button>
-
-                            </div>
-
-                        </div>
-                    </li>
 
                 </ul>
                 <!--
 AQUI DEBE MANDAR A LA PAGINA DE PAQUETES PARA RESERVAR -->
-
-                <button class="btn btn-primary"> <a href="{{route('paquetes_turisticos')}}" style="text-decoration: none; color: white;">   Descubrir Más </a></button>
-
+                <center>
+                <button class="btn btn-primary"> <a href="{{route('paquetes_turisticos')}}" style="text-decoration: none; color: white; width: 25rem;">   Descubrir Más </a></button>
+                </center>
             </div>
         </section>
 
