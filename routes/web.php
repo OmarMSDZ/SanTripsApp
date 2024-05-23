@@ -142,6 +142,20 @@ Route::middleware('auth')->prefix('admin')->group( function () {
 
 
     });
+
+
+           //ruta de encargados paquetes
+           Route::controller(EncargadosPaquetesController::class)->prefix('encargadopaq')->group( function () {
+
+            Route::get('/', 'index')->name('encargadopaq.index');
+            Route::get('/data', 'getEncargadospaquetes')->name('encargadopaq.getEncargadospaquetes');
+            Route::get('/data/{id}', 'getEncargadopaquete')->name('encargadopaq.getEncargadopaquete');
+            Route::post('/', 'store')->name('encargadopaq.store'); 
+            Route::post('/update/{id}', 'update')->name('encargadopaq.update');
+            Route::post('/cambiar_estado/{id}', 'cambiarencargadopaq')->name('encargadopaq.cambiar_estado');
+            Route::delete('/{id}', 'delete')->name('encargadopaq.delete');
+    
+        });
     
     //el prefix es el nombre con el que lo vamos a llamar en la url
     
