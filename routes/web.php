@@ -16,17 +16,19 @@ use App\Http\Controllers\EmpleadosController;
  
 use App\Http\Controllers\EncargadosPaquetesController;
 use App\Http\Controllers\ImagenesPaquetesController;
-
+use App\Http\Controllers\InicioController;
 use App\Http\Controllers\MarcaVehiculoController;
 use App\Http\Controllers\ModeloVehiculoController;
 use App\Http\Controllers\OfertasController;
 use App\Http\Controllers\PagoController;
 use App\Http\Controllers\PaquetesDestinosController;
 use App\Http\Controllers\PaquetesTuristicosController;
+use App\Http\Controllers\PaqueteVistaController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\ProveedoresController;
 use App\Http\Controllers\ReservacionController;
 use App\Http\Controllers\ReservasHechasController;
+use App\Http\Controllers\ReservasRealizadasVistaController;
 use App\Http\Controllers\TipoDestinoController;
 use App\Http\Controllers\TipoServiciosproveedorController;
 use App\Http\Controllers\TipoVehiculoController;
@@ -268,49 +270,31 @@ Route::middleware('auth')->prefix('admin')->group( function () {
 
 
  
-
-
-//rutas interfaz de empresas proveedoras admin
-
- 
-
-
-
 //rutas interfaz de reservas admin
-Route::get('/admin/vistadetalladareserva', function () {
-    return view('admin/vistadetalladareserva');
-})->name('vistadetalladareserva');
+// Route::get('/admin/vistadetalladareserva', function () {
+//     return view('admin/vistadetalladareserva');
+// })->name('vistadetalladareserva');
 
-//rutas vista detallada pago
-Route::get('/admin/vistadetalladapago', function () {
-    return view('admin/vistadetalladapago');
-})->name('vistadetalladapago');
+// //rutas vista detallada pago
+// Route::get('/admin/vistadetalladapago', function () {
+//     return view('admin/vistadetalladapago');
+// })->name('vistadetalladapago');
 
 //rutas vista detallada incidentes
  
-
- 
-
 // Rutas para navegar interfaces usuario (GET), la de inicio es la primera que sale al abrir la app
-Route::get('/', function () {
-    return view('usuario/inicio');
-})->name('inicio');
-
+ 
+Route::get('/', [InicioController::class,'index'])->name('inicio');
 
 Route::get('/incidentes', function () {
     return view('usuario/incidentes');
 })->name('incidentes');
 
-//esta solo entra con login
-Route::get('/reservas_realizadas', function () {
-    return view('usuario/reservas_realizadas');
-})->middleware(['auth', 'verified'])->name('reservas_realizadas');
+//  Esta de reservas realizadas sale solo al hacer login 
+Route::get('/reservas_realizadas', [ReservasRealizadasVistaController::class,'index'])->middleware(['auth', 'verified'])->name('reservas_realizadas');
+Route::post('/reservas_realizadas/cancelar', [ReservasRealizadasVistaController::class, 'cancelarReservacion'])->middleware(['auth', 'verified'])->name('cancelarReservacion');
 
-
-Route::get('/paquetes_turisticos', function () {
-    return view('usuario/paquetes');
-})->name('paquetes_turisticos');
-
+Route::get('usuario/paquetes', [PaqueteVistaController::class,'index'])->name('paquetes_turisticos');
 
 
 // Rutas para formulario de reserva, solo se ven con el usuario logueado
@@ -324,7 +308,6 @@ Route::get('admin/adminmenu', [HomeController::class,'index']);
 
 
 //vaina de paypal
-
 Route::get('/paypalprueba', [PayPalController::class, 'index']);
 Route::get('/create/{amount}', [PayPalController::class, 'create']);
 Route::post('/complete', [PayPalController::class, 'complete']);
