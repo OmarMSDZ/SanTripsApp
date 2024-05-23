@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.1/css/buttons.dataTables.css"/>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap5.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.1/css/buttons.bootstrap5.css">
-@endsection
+    <meta name="csrf-token" content="{{csrf_token()}}">
+    @endsection
 
 @section('content')
 
@@ -58,18 +59,20 @@
                 </div>
                 <br>
                 <div class="col-12 table-container">
-                    <table id="tablaencargados_paquetes" class="table table-hover">
-                        <!-- Contenido de la tabla -->
-                        <thead class="">
-                        <tr>
-                            <!-- {{-- <th>Id</th> --}} -->
-                            <th>Fecha</th>
-                            <th>id_paquete_turistico</th>
-                            <th>id_empleado</th>
-                            
-                        </tr>
-                    </thead>
-                    </table>
+                    <div class="table-responsive">
+                        <table id="tablaencargados_paquetes" class="table table-hover">
+                         <!-- Contenido de la tabla -->
+                            <thead class="">
+                             <tr>
+                                 <!-- {{-- <th>Id</th> --}} -->
+                                    <th>Fecha</th>
+                                    <th>id_paquete_turistico</th>
+                                    <th>id_empleado</th>
+                                    <th>accion</th>
+                             </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
             </div>
           </div>
@@ -78,11 +81,11 @@
 </div>
 
 
-<form id="formCambiarencargado" action="" method="POST" class="form">
+{{-- <form id="formCambiarencargado" action="" method="POST" class="form">
     <input name="codigo" value="0" type="hidden">
     <input name="estado" value="0" type="hidden">
     @csrf
-</form>
+</form> --}}
 
 <div class="modal fade" id="modalRegistroencargadopaq" tabindex="-1">
     <div class="modal-dialog modal-xl">
@@ -95,24 +98,24 @@
             <form id="registroencargado" class="row" action="" method="POST" class="form">
                 @csrf
 
-                <input type="hidden" id="codigo_encargad" name="codigo" value="0">
+                <input type="hidden" id="codigo_encargado" name="codigo" value="0">
 
-                <div class="col-4">
+                <div class="col-6 col-sm-12 col-lg-6">
                     <div class="mb-3">
-                        <label for="fechaingreso" class="form-label">Fecha</label>
-                        <input type="date" name="fechaingreso" class="form-control limpiarForm" value={{date('Y-m-y')}} required>
+                        <label for="Fecha" class="form-label">Fecha</label>
+                        <input type="date" name="Fecha" id="fecha" class="form-control limpiarForm" value={{date('Y-m-y')}} required>
                     </div>
                 </div>
 
                
 
-                <div class="col-4">
+                <div class="col-6 col-sm-12 col-lg-6">
                     <div class="mb-3">
-                        <label for="id_paquetes_turistico" class="form-label">id_paquetes_turistico</label>
-                        <select name="id_paquetes_turistico" id="id_paquetes_turistico" class="form-select limpiarForm">
+                        <label for="id_paquete_turistico" class="form-label">Paquetes turistico</label>
+                        <select name="id_paquete_turistico" id="id_paquetes_turistico" class="form-select limpiarForm">
 
                             <option value="">===</option>
-                            @foreach ($id_paquetes_turistico as $key)
+                            @foreach ($id_paquete_turistico as $key)
                                 <option value="{{$key->id}}">{{$key->Nombre}}</option>
                             @endforeach
                     
@@ -122,10 +125,10 @@
 
 
                 
-                <div class="col-4">
+                <div class="col-6 col-sm-12 col-lg-6">
                     <div class="mb-3">
-                        <label for="idemp" class="form-label">Id empleado</label>
-                        <select name="idemp" id="idemp" class="form-select limpiarForm">
+                        <label for="id_empleado" class="form-label">Id empleado</label>
+                        <select name="id_empleado" id="empleado" class="form-select limpiarForm">
 
                             <option value="">===</option>
                             @foreach ($id_empleado as $key)
@@ -135,20 +138,6 @@
                         </select>
                     </div>
                 </div>
-
-                
-
-           
-
-                {{-- <div class="mb-3">
-                    <button type="button" class="btn btn-success">Registrar</button>
-                    <button type="button" class="btn btn-warning">Actualizar</button>
-                    <br>
-                    <p class="font-weight-bold text-uppercase px-3 small mt-3 mb-0">Otras Acciones</p>
-                    <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="" style="text-decoration: none; color: white;"> Administrar Cargos</a></button>
-                    <button type="button" class="btn btn-primary mt-1" style="width: 14em;"> <a href="" style="text-decoration: none; color: white;"> Asignar Encargado Paquete</a></button>
-                </div> --}}
-
             </form>
         </div>
         <div class="modal-footer">
