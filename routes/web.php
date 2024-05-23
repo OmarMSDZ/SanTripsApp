@@ -151,7 +151,7 @@ Route::middleware('auth')->prefix('admin')->group( function () {
             Route::post('/', 'store')->name('encargadopaq.store'); 
             Route::post('/update/{id}', 'update')->name('encargadopaq.update');
             Route::post('/cambiar_estado/{id}', 'cambiarencargadopaq')->name('encargadopaq.cambiar_estado');
-    
+            Route::delete('/{id}', 'delete')->name('encargadopaq.delete');
     
         });
     

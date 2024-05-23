@@ -56,15 +56,7 @@ class PaquetesDestinosController extends Controller
             $paqdestino->id_destino = $request->destino;
 
 
-            //id del paquete tursitico
-            // $paqdestino->id_paquetes_turistico  = isset($request->id_paquetes_turisticos ) ? $request->id_paquetes_turisticos : null;
-            // // $empleado->creado_por = $usuario_id; 
-            // $id_paquetes_turisticos ->save();
 
-
-              //id del destino
-            //   $paqdestino->id_destino  = isset($request->id_destino ) ? $request->id_destino : null;
-              // $empleado->creado_por = $usuario_id; 
               $paqdestino->save();
 
             
@@ -106,7 +98,6 @@ class PaquetesDestinosController extends Controller
         try {
             // return $request;
              $codigo = $request->codigo;
-
             $paqdestino = Paquetes_destinos::where('id', $codigo)->first();
             $paqdestino->id_paquetes_turistico = $request->paquete_turistico;
             $paqdestino->id_destino  = $request->destino;
