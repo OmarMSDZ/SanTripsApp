@@ -31,12 +31,14 @@
 
 
         {{-- Esto se debe de hacer con el id del usuario que inicie sesion --}}
-        <?php 
-            $idusuario = Auth::user()->id;
+        {{-- @php
+             
+        //     $idusuario = Auth::user()->id;
 
-           $usuarios = DB::select("SELECT id, name, email FROM users WHERE id=$idusuario");
+        //    $usuarios = DB::select("SELECT id, name, email FROM users WHERE id=$idusuario");
            
-        ?> 
+        
+        @endphp --}}
         @foreach ($usuarios as $usuario)
             
         
@@ -67,8 +69,23 @@ table {
     border-collapse: collapse;
 }
         </style>
+            @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+        
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        
             <div class="table-container">
-            <table class="table table-responsive" style="overflow: auto; position: sticky;">
+            
+                <table class="table table-responsive" style="overflow: auto; position: sticky;">
+
                 <thead>
                     <tr> 
                         <th>No.Reserva</th>
@@ -83,30 +100,7 @@ table {
                 </thead>
                 <tbody class="table-hover">
 
-                    {{-- aqui deberia de traer las reservas realizadas por un usuario especifico --}}
-                    @php
                     
-               
-
-                    $reservas = DB::select("SELECT 
-                    r.IdReservacion, 
-                    p.Nombre, 
-                    r.FechaSeleccionada, 
-            
-                    r.CantidadPersonas, 
-                    mp.Metodo_Pago,
-                    r.EstadoReservacion,
-              			dr.id_paquete_turistico,
-              			dr.fk_IdReservacion
-                    FROM reservacion AS r INNER JOIN detalle_reserva AS dr
-						   ON r.IdReservacion=dr.fk_IdReservacion 
-                    INNER JOIN paquetes_turisticos AS p ON 
-						  p.id=dr.Id_paquete_turistico INNER JOIN metodo_pago AS mp ON 
-                    mp.IdMetodopago=r.fk_IdMetodopago  
-                    WHERE r.fk_IdUsuario= $idusuario;")    
-                    // esto del id debe de ser variable, tomado de la sesion del usuario
-                    
-                    @endphp
 
                     @foreach ($reservas as $reserva)
                     <tr>
@@ -117,8 +111,17 @@ table {
                         <td>{{$reserva->CantidadPersonas}}</td>
                         <td>{{$reserva->Metodo_Pago}}</td>
                         <td>{{$reserva->EstadoReservacion}}</td>
-                        <td><button class="btn btn-danger" style="border-radius: 10px;"> <a href="#" style="text-decoration: none; color:black;"></a> Cancelar</button></td>
-                    </tr>
+                        
+                        <td>
+                            <form action="{{ route('cancelarReservacion') }}" method="POST">
+
+                                @csrf <!-- Token CSRF para protección -->
+                                <input type="hidden" name="id_reserva" value="{{ $reserva->IdReservacion }}" readonly>
+                                <input type="date" name="fecha_reserva" value="{{$reserva->FechaSeleccionada}}" hidden readonly>
+                                <button type="submit" class="btn btn-danger mt-3">Cancelar</button>
+                            </form>
+                    </td>
+                     </tr>
                     @endforeach
                     <!-- Agregar más filas según sea necesario -->
                 </tbody>
