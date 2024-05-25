@@ -104,8 +104,11 @@ class ReservasHechasController extends Controller
         try {
             $request->validate([
                 'estado' => 'required|string',
+            
             ]);
             $reserva = Reservacion::where('IdReservacion', $id_reserva)->first();
+        
+            $reserva->FechaSeleccionada = $request->cambiarFecha;
             $reserva->EstadoReservacion = $request->estado;
             $reserva->save();
         } catch (\Throwable $th) {
