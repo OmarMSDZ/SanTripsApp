@@ -12,28 +12,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('Incidentes', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+            
             $table->id('IdIncidente');
             $table->dateTime('FechaIncidente');
             $table->text('Descripcion');
-            $table->unsignedBigInteger('fk_IdTipoIncidente');
-            $table->unsignedBigInteger('fk_IdUsuario');
+            $table->foreignId('fk_IdTipoIncidente')->constrained('tipos');
+            $table->foreignId('fk_IdUsuario')->constrained('users');
             $table->timestamps();
-            
-            $table->index(["fk_IdTipoIncidente"], 'fk_IdTipoIncidente');
 
-            $table->index(["fk_IdUsuario"], 'fk_IdUsuario');
-
-
-            $table->foreign('fk_IdTipoIncidente', 'fk_IdTipoIncidente')
-                ->references('IdTipoIncidente')->on('tipo_incidente')
-                ->onDelete('restrict')
-                ->onUpdate('cascade');
-
-            $table->foreign('fk_IdUsuario', 'fk_IdUsuarioIncidente')
-                ->references('IdUsuario')->on('usuarios')
-                ->onDelete('restrict')
-                ->onUpdate('cascade');
         });
     }
 

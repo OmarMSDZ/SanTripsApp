@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\cancelacion_reserva;
 use App\Models\Reservacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -56,6 +57,14 @@ class ReservasRealizadasVistaController extends Controller
                 if ($reservacion) {
                     $reservacion->EstadoReservacion = 'CANCELADA';
                     $reservacion->save();
+
+                    // para guardar tambien en la tabla de cancelacion reserva 
+                    $cancelacion_reserva = new cancelacion_reserva();
+                    $cancelacion_reserva->motivo= $request->motivocancelacion;
+                    $cancelacion_reserva->acepta = $request->reembolsoSi;
+                    $cancelacion_reserva->fk_IdReservacion = $request->id_reserva;
+                    $cancelacion_reserva->save();
+
                     return redirect()->route('reservas_realizadas')->with('success', 'Reservación cancelada correctamente');
                 } else {
                     return redirect()->route('reservas_realizadas')->with('error', 'Reservación no encontrada');
