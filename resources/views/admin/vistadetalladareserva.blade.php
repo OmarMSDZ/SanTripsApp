@@ -45,11 +45,14 @@
     <option value="CANCELADA">Cancelada</option>
     <option value="COMPLETADA">Completada</option>
 </select>
-
+{{-- Para poder cambiar la fecha de la reserva en caso de haber algun inconveniente con la misma
+  digase, que la empresa determine que no se puede hacer ese día --}}
+<label for="cambiarFecha"><h4>Cambiar Fecha de Reservación (En caso de haber algún inconveniente con la misma)</h4></label>
+<input type="date" name="cambiarFecha" class="form-control" id="" value="{{$reserva->fechareserva}}">
 <br>
 
  
-<button type="submit" class="btn btn-success">Actualizar Estado Reserva</button>
+<button type="submit" class="btn btn-success">Actualizar Estado o Fecha Reserva</button>
  
 </form>
 

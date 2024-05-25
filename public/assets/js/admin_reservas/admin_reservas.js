@@ -38,7 +38,7 @@ $( function () {
                         success: function (response) {
                             Swal.fire(
                                 'Eliminado!',
-                                'El registro ha sido eliminado.',
+                                'La Reserva ha sido eliminada con éxito.',
                                 'success'
                             ).then(() => {
                                 // location.reload(); // Recargar la página para reflejar los cambios
@@ -56,10 +56,43 @@ $( function () {
                 }
             });
         });
+
+        //para el boton de actualizar fecha o estado de la reservacion 
+        $('#vistadetallada').on('submit', function (e) {
+            e.preventDefault(); // Evitar que el formulario se envíe automáticamente
+            const form = $(this);
+            const url = form.attr('action');
+                    $.ajax({
+                        type: "POST", 
+                        url: url,
+                        data: form.serialize(), // Enviar todos los datos del formulario
+                        success: function (response) {
+                            Swal.fire(
+                                'Actualizado',
+                                'La Reserva ha sido actualizada con éxito.',
+                                'success'
+                            ).then(() => {
+                
+                                window.location.href =  route('reservashechas.index'); // Redirigir a la ruta del índice
+                            });
+                        },
+                        error: function (xhr, status, error) {
+                            Swal.fire(
+                                'Error!',
+                                'Hubo un problema al actualizar el registro.',
+                                'error'
+                            );
+                        }
+                    });
+      
+            });
+        });
+
+
     });
     
 
 
 
 
-});
+ 
