@@ -38,10 +38,21 @@ use App\Http\Controllers\VehiculosPaquetesController;
 use App\Http\Controllers\VehiculoTransporteController;
 use Illuminate\Support\Facades\Route;
 
- Route::get('/welcome', function () {
-     return view('welcome');
- });
 
+use App\Mail\pruebacorreos;
+use Illuminate\Support\Facades\Mail;
+//  Route::get('/welcome', function () {
+//      return view('welcome');
+//  });
+ Route::get('/correo', function () {
+    // de esta forma se llama el controlador de los correos con los parametros
+
+    // return (new pruebacorreos("prueba"))->render();
+    $response = Mail::to('santripsrd@gmail.com')->send(new pruebacorreos("prueba"));
+
+    dump($response);
+
+});
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -54,38 +65,20 @@ Route::middleware('auth')->group(function () {
 
 /*
 En esta parte se van a definir las rutas de la aplicacion
-Las que usen GET, son solo para navegar
-Las que usen POST, son solo para enviar informacion a traves de los formulario
 */
 // Rutas para navegar interfaces admin (GET)
- 
 
 
 //rutas para el nav (GET)
 Route::get('/admin/usuarios', function () {
     return view('admin/adminusuarios');
 })->name('adminusuarios');
-
-
-
- 
-
-
  
 //para administrar las reservas realizadas
 Route::resource('admin/reservas', ReservasHechasController::class)->parameters([
     'Reservashechas' => 'reservashechas'
 ]);
  
- 
-// Route::resource('admin/incidentes', IncidentesController::class)->parameters([
-//     'Incidentesadmin' => 'incidentesadmin'
-// ]);
-// Route::get('admin/reservas', [IncidentesController::class, 'index'])->name('reservashechas.index');
-
-
- 
-
 //rutas interfaz de destinos admin
 
 Route::get('/admin/provincias', function () {
@@ -269,45 +262,34 @@ Route::middleware('auth')->prefix('admin')->group( function () {
 });
 
 
+  
  
-//rutas interfaz de reservas admin
-// Route::get('/admin/vistadetalladareserva', function () {
-//     return view('admin/vistadetalladareserva');
-// })->name('vistadetalladareserva');
-
-// //rutas vista detallada pago
-// Route::get('/admin/vistadetalladapago', function () {
-//     return view('admin/vistadetalladapago');
-// })->name('vistadetalladapago');
-
-//rutas vista detallada incidentes
- 
-// Rutas para navegar interfaces usuario (GET), la de inicio es la primera que sale al abrir la app
- 
+// Rutas para navegar interfaces usuario , la de inicio es la primera que sale al abrir la app 
 Route::get('/', [InicioController::class,'index'])->name('inicio');
 
 Route::get('/incidentes', function () {
     return view('usuario/incidentes');
 })->name('incidentes');
 
-//  Esta de reservas realizadas sale solo al hacer login 
-Route::get('/reservas_realizadas', [ReservasRealizadasVistaController::class,'index'])->middleware(['auth', 'verified'])->name('reservas_realizadas');
-Route::post('/reservas_realizadas/cancelar', [ReservasRealizadasVistaController::class, 'cancelarReservacion'])->middleware(['auth', 'verified'])->name('cancelarReservacion');
 
 Route::get('usuario/paquetes', [PaqueteVistaController::class,'index'])->name('paquetes_turisticos');
 
+//  Esta de reservas realizadas sale solo al hacer login 
+Route::get('/reservas_realizadas', [ReservasRealizadasVistaController::class,'index'])->middleware(['auth', 'verified'])->name('reservas_realizadas');
 
 // Rutas para formulario de reserva, solo se ven con el usuario logueado
 Route::get('/formulario-reserva/{id}', [ReservaController::class, 'mostrarFormulario'])->middleware(['auth', 'verified'])->name('formulario_reserva');
 Route::post('/procesar-reserva', [ReservaController::class, 'procesarReserva'])->name('procesar_reserva');
 Route::post('/reservar_paquete/{paquete_id}', [ReservaController::class, 'vistaReservacion'])->name('vista_reservacion');
 Route::post('/formulario_reserva', [ReservacionController::class, 'store'])->name('Reservacion.store');
+//rutas para cancelar reserva
+Route::get('/cancelar-reserva', [ReservaController::class, 'mostrarFormularioCancelacion'])->middleware(['auth', 'verified'])->name('formulario_cancelar');
+Route::post('/reservas_realizadas/cancelar', [ReservasRealizadasVistaController::class, 'cancelarReservacion'])->middleware(['auth', 'verified'])->name('cancelarReservacion');
 
 //autentificacion de usuario
 Route::get('admin/adminmenu', [HomeController::class,'index']);
 
-
-//vaina de paypal
+//paypal (PRUEBA)
 Route::get('/paypalprueba', [PayPalController::class, 'index']);
 Route::get('/create/{amount}', [PayPalController::class, 'create']);
 Route::post('/complete', [PayPalController::class, 'complete']);
