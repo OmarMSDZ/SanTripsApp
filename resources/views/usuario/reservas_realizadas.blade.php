@@ -18,15 +18,15 @@
         <div class="container mt-15">
             <h1>Mis Reservas</h1>
             <hr>
-
+{{-- 
         <h3>Mostrar por Estado</h3>
         <select name="estado" id="" class="form-select">
             <option value="ACTIVA">Activas</option>
             <option value="EN PROCESO">En Proceso</option>
             <option value="CANCELADA">Canceladas</option>
             <option value="COMPLETADA">Completada</option>
-        </select>
-        <hr>
+        </select> --}}
+        {{-- <hr> --}}
         <!-- Sección de perfil del usuario -->
 
 
@@ -113,10 +113,13 @@ table {
                         <td>{{$reserva->EstadoReservacion}}</td>
                         
                         <td>
-                            <form action="{{ route('cancelarReservacion') }}" method="POST">
+                            {{-- <form action="{{ route('cancelarReservacion') }}" method="POST"> --}}
 
+                                <form action="{{ route('formulario_cancelar') }}" method="GET">
                                 @csrf <!-- Token CSRF para protección -->
-                                <input type="hidden" name="id_reserva" value="{{ $reserva->IdReservacion }}" readonly>
+                                {{-- <input type="hidden" name="id_reserva" value="{{ $reserva->IdReservacion }}" readonly> --}}
+                                <input type="hidden" name="idReserva" value="{{ $reserva->IdReservacion }}" readonly>
+                                
                                 <input type="date" name="fecha_reserva" value="{{$reserva->FechaSeleccionada}}" hidden readonly>
                                 <button type="submit" class="btn btn-danger mt-3">Cancelar</button>
                             </form>
