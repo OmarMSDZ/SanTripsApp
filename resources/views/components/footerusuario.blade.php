@@ -33,7 +33,7 @@
           </li>
           <li class="contact-item">
               <ion-icon name="help-outline"></ion-icon>
-              <a href="{{route('incidentes')}}" class="contact-link">Tuviste algun problema? cuéntanoslo</a>
+              <a href="{{route('UserIncidente.index')}}" class="contact-link">Tuviste algun problema? cuéntanoslo</a>
           </li>
       </ul>
 
