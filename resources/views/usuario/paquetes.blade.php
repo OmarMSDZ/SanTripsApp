@@ -70,7 +70,7 @@
                             <li class="list-group-item"><i class="bi bi-building-fill"></i> Disponibilidad Alojamiento: {{$paquete->alojamiento}}</li>
                             <li class="list-group-item"><i class="bi bi-alarm-fill"></i> Duración Estimada (En Horas): {{$paquete->tiempoestimado}}</li>
                             <li class="list-group-item"><i class="bi bi-calendar-check-fill"></i> Disponibilidad: {{$paquete->disponibilidad}}</li>
-                            <li class="list-group-item"><i class="bi bi-cash-coin"></i> Costo por persona (RD$): {{$paquete->costo}}</li>
+                            <li class="list-group-item"><i class="bi bi-cash-coin"></i> Costo por persona (USD): {{$paquete->costo}}</li>
                         </ul>
                         <form action="{{ route('procesar_reserva')}}" method="POST">
                             @csrf <!-- Agrega el token CSRF para protección -->

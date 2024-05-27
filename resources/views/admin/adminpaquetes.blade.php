@@ -143,8 +143,8 @@
 
                 <div class="col-4">
                   <div class="mb-3">
-                      <label for="costo" class="form-label">Costo (RD$)</label>
-                      <input type="number" name="costo" class="form-control limpiarForm" step="0.01" placeholder="Costo del paquete en RD$" required>
+                      <label for="costo" class="form-label">Costo (USD)</label>
+                      <input type="number" name="costo" class="form-control limpiarForm" step="0.01" placeholder="Costo del paquete en USD" required>
                   </div>
                 </div>
 

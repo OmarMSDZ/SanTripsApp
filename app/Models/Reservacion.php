@@ -15,6 +15,7 @@ class Reservacion extends Model
         'Detalles_adicionales',
         'MontoTotal',
         'CantidadPersonas',
+        'fecha_expiracion',
         'fk_IdMetodopago',
         'fk_IdUsuario'
     
