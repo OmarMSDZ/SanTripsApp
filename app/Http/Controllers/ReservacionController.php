@@ -63,6 +63,23 @@ class ReservacionController extends Controller
             'fecha_expiracion' => now()->addMinutes(60),
         ]);          
 
+
+
+            // Crear la reserva
+            // $reserva = Reservacion::create([
+            //     // Asignar los campos de la reserva
+            //     // $validatedData['campo']...
+            // ]);
+           
+            $reserva = Reservacion::create($request->only('FechaSeleccionada', 'DetallesAdicionales','MontoTotal','CantidadPersonas', 'MetodoPago', 'usuario_id' ) + [
+                'fk_IdMetodopago' => $request->input('MetodoPago'),
+                'fk_IdUsuario' => $request->input('usuario_id') 
+            ]);
+
+            // dd($reserva);
+
+         
+
             Detalle_reserva::create($request->only('id_paquete_turistico','fk_IdReservacion') + [
                 
                 'id_paquete_turistico' => $request->input('paquete_id'),
