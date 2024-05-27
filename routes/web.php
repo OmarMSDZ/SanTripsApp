@@ -37,6 +37,7 @@ use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\VehiculoEmpleadoController;
 use App\Http\Controllers\VehiculosPaquetesController;
 use App\Http\Controllers\VehiculoTransporteController;
+use App\Http\Controllers\UserIncidenteController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -263,7 +264,16 @@ Route::middleware('auth')->prefix('admin')->group( function () {
 });
 
 
+
   
+
+// RUTA DE USER INCIDENTE
+Route::controller(UserincidenteController::class)->middleware('auth')->prefix('UserIncidente')->group( function () {
+    Route::get('/', 'index')->name('UserIncidente.index');
+    Route::post('/', 'store')->name('UserIncidente.store'); 
+    
+});
+
  
 // Rutas para navegar interfaces usuario , la de inicio es la primera que sale al abrir la app 
 Route::get('/', [InicioController::class,'index'])->name('inicio');
