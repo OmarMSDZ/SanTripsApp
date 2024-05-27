@@ -41,6 +41,7 @@
 <label for="estado"> <h4> Actualizar estado de la Reservación</h4></label>
 <select name="estado" id="" class="form-select">
     <option value="ACTIVA">Activa</option>
+    <option value="PAGO PENDIENTE">Pago Pendiente</option>
     <option value="EN PROCESO">En Proceso</option>
     <option value="CANCELADA">Cancelada</option>
     <option value="COMPLETADA">Completada</option>

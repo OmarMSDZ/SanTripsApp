@@ -19,10 +19,13 @@ return new class extends Migration
             $table->text('Detalles_adicionales')->nullable()->default(null);
             $table->float('MontoTotal')->nullable()->default(null);
             $table->integer('CantidadPersonas')->default('1');
-            $table->string('EstadoReservacion')->default('ACTIVA');
+            //esto porque la reservacion se va a crear primero que el pago
+            $table->string('EstadoReservacion')->default('PAGO PENDIENTE');
             
             $table->unsignedBigInteger('fk_IdMetodopago');
             $table->unsignedBigInteger('fk_IdUsuario');
+            //fecha de expiracion de la reserva (se le dara una hora o 2)
+            $table->timestamp('fecha_expiracion');
     
             $table->timestamps();
             

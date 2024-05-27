@@ -23,6 +23,8 @@ class ReservasRealizadasVistaController extends Controller
         r.IdReservacion, 
         p.Nombre, 
         r.FechaSeleccionada, 
+        
+        r.fecha_expiracion,
 
         r.CantidadPersonas, 
         mp.Metodo_Pago,
@@ -35,7 +37,12 @@ class ReservasRealizadasVistaController extends Controller
               p.id=dr.Id_paquete_turistico INNER JOIN metodo_pago AS mp ON 
         mp.IdMetodopago=r.fk_IdMetodopago  
         WHERE r.fk_IdUsuario= $idusuario AND 
-        r.EstadoReservacion = 'ACTIVA'||'EN PROCESO'||'COMPLETADA'");
+        (r.EstadoReservacion = 'ACTIVA' 
+         OR r.EstadoReservacion = 'PAGO PENDIENTE' 
+         OR r.EstadoReservacion = 'EN PROCESO' 
+         OR r.EstadoReservacion = 'COMPLETADA')
+         
+         ");
 
         return view('usuario.reservas_realizadas', compact('idusuario', 'usuarios', 'reservas'));
     }

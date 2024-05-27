@@ -112,18 +112,33 @@ table {
                         <td>{{$reserva->Metodo_Pago}}</td>
                         <td>{{$reserva->EstadoReservacion}}</td>
                         
-                        <td>
-                            {{-- <form action="{{ route('cancelarReservacion') }}" method="POST"> --}}
+                        <td>  
 
+                            @if ($reserva->EstadoReservacion == 'PAGO PENDIENTE')
+                                 {{-- para pagar la reserva, se muestra solo si el estado es PAGO PENDIENTE --}}
+                                 @if ($reserva->fecha_expiracion < now())
+                                 <form action="{{ route('Reservacion.expirar', $reserva->IdReservacion) }}" method="GET">
+                                 @endif
+                                 <form action="{{ route('createTransaction', $reserva->IdReservacion) }}" method="GET">
+                                    @csrf <!-- Token CSRF para protección -->
+                                    <button type="submit" class="btn btn-success mt-3">pagar</button>
+                                </form> 
+                            @endif
+                               
+                                {{-- para cancelar la reserva y verificar si esta expirada --}}
+                                @if ($reserva->EstadoReservacion == 'PAGO PENDIENTE' && $reserva->fecha_expiracion < now())
+                                <form action="{{ route('Reservacion.expirar', $reserva->IdReservacion) }}" method="GET">
+                            @else
                                 <form action="{{ route('formulario_cancelar') }}" method="GET">
+                            @endif
                                 @csrf <!-- Token CSRF para protección -->
-                                {{-- <input type="hidden" name="id_reserva" value="{{ $reserva->IdReservacion }}" readonly> --}}
-                                <input type="hidden" name="idReserva" value="{{ $reserva->IdReservacion }}" readonly>
-                                
+                                <input type="hidden" name="idReserva" value="{{$reserva->IdReservacion }}" readonly>
                                 <input type="date" name="fecha_reserva" value="{{$reserva->FechaSeleccionada}}" hidden readonly>
                                 <button type="submit" class="btn btn-danger mt-3">Cancelar</button>
                             </form>
-                    </td>
+                            
+                                
+                        </td>
                      </tr>
                     @endforeach
                     <!-- Agregar más filas según sea necesario -->

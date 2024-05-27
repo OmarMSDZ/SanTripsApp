@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id('IdIncidente');
             $table->dateTime('FechaIncidente');
             $table->text('Descripcion');
+            $table->string('Estado', 25)->default('ACTIVO');
             $table->foreignId('fk_IdTipoIncidente')->constrained('tipos');
             $table->foreignId('fk_IdUsuario')->constrained('users');
             $table->timestamps();

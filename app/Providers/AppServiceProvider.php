@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
+ 
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -20,12 +22,16 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
+    //para llamar el evento de expirar reservas
+  
+
+    
     /**
      * Bootstrap any application services.
      */
     public function boot(): void
     {
-
+       
         //
         view()->composer(
             ['layouts.sidebar_new', 'layouts.navbar_new'],
