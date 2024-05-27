@@ -36,6 +36,7 @@ use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\VehiculoEmpleadoController;
 use App\Http\Controllers\VehiculosPaquetesController;
 use App\Http\Controllers\VehiculoTransporteController;
+use App\Http\Controllers\UserIncidenteController;
 use Illuminate\Support\Facades\Route;
 
  Route::get('/welcome', function () {
@@ -269,6 +270,12 @@ Route::middleware('auth')->prefix('admin')->group( function () {
 });
 
 
+// RUTA DE USER INCIDENTE
+Route::controller(UserincidenteController::class)->middleware('auth')->prefix('UserIncidente')->group( function () {
+    Route::get('/', 'index')->name('UserIncidente.index');
+    Route::post('/', 'store')->name('UserIncidente.store'); 
+    
+});
  
 //rutas interfaz de reservas admin
 // Route::get('/admin/vistadetalladareserva', function () {
