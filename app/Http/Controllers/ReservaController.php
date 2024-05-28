@@ -19,5 +19,16 @@ class ReservaController extends Controller
         return view('usuario.formulario_reservas', compact('id'));
     }
 
+    public function mostrarFormularioCancelacion(Request $request)
+    {
+        // Pasamos el id a la vista
+        $idReserva = $request->idReserva;
+        $fecha_reserva = $request ->fecha_reserva;
+
+        return view('usuario.cancelar_reserva', compact('idReserva','fecha_reserva'));
+    }
+
+
+
 }
  

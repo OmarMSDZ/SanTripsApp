@@ -32,7 +32,7 @@
 <p><span style="font-weight:bold">Paquete Reservado: </span>{{$reserva->nombrepaquete}}</p>
 <p><span style="font-weight:bold">Para la Fecha:</span> {{$reserva->fechareserva}}</p>
 <p><span style="font-weight:bold">Cantidad de Personas:</span> {{$reserva->cantpersonasreserva}}</p>
-<p><span style="font-weight:bold">Total (RD$):</span> {{$reserva->montoreserva}}</p>
+<p><span style="font-weight:bold">Total (USD):</span> ${{$reserva->montoreserva}}</p>
 <p><span style="font-weight:bold">Estado de Reserva: </span>{{$reserva->estado}}</p>
 
 
@@ -41,15 +41,24 @@
 <label for="estado"> <h4> Actualizar estado de la Reservación</h4></label>
 <select name="estado" id="" class="form-select">
     <option value="ACTIVA">Activa</option>
+    <option value="PAGO PENDIENTE">Pago Pendiente</option>
     <option value="EN PROCESO">En Proceso</option>
     <option value="CANCELADA">Cancelada</option>
     <option value="COMPLETADA">Completada</option>
 </select>
-
+{{-- Para poder cambiar la fecha de la reserva en caso de haber algun inconveniente con la misma
+  digase, que la empresa determine que no se puede hacer ese día --}}
+<label for="cambiarFecha"><h4>Cambiar Fecha de Reservación (En caso de haber algún inconveniente con la misma)</h4></label>
+<input type="date" name="cambiarFecha" class="form-control" id="" value="{{$reserva->fechareserva}}">
 <br>
 
- 
-<button type="submit" class="btn btn-success">Actualizar Estado Reserva</button>
+
+<label for="cambiarNumpersonas"><h4>Cambiar numero de personas (Devolver o cobrar posteriormente al cliente la cantidad correspondiente, solo hacer si se ha solicitado)</h4></label>
+<input type="number" name="cambiarNumpersonas" class="form-control" id="" value="{{$reserva->cantpersonasreserva}}" min="1">
+<br>
+
+
+<button type="submit" class="btn btn-success">Actualizar Datos de Esta Reservación</button>
  
 </form>
 

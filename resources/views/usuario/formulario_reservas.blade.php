@@ -17,6 +17,7 @@
     p.Alojamiento as alojamiento, 
     p.Tiempo_estimado as tiempoestimado, 
     p.Disponibilidad as disponibilidad, 
+    p.Horainicio as horainicio, 
     tip.nombre as categoria, 
     o.Porcentaje as porciento 
 FROM 
@@ -67,21 +68,23 @@ WHERE
                         @endforeach
                         <hr>
 
-                        <p style="color: hsl(217, 10%, 50.8%)"><i class="bi bi-cash-coin"></i> Costo: {{ $paquete->costo }}</p>
+                        <p style="color: hsl(217, 10%, 50.8%)"><i class="bi bi-cash-coin"></i> Costo: {{$paquete->costo}}</p>
                         <hr>
-                        <p style="color: hsl(217, 10%, 50.8%)"><i class="bi bi-people-fill"></i> N° Max. Personas: {{ $paquete->numpersonas }}</p>
+                        <p style="color: hsl(217, 10%, 50.8%)"><i class="bi bi-people-fill"></i> N° Max. Personas: {{$paquete->numpersonas}}</p>
                         <hr>
-                        <p style="color: hsl(217, 10%, 50.8%)"><i class="bi bi-bar-chart-fill"></i> Edades: {{ $paquete->edades }}</p>
+                        <p style="color: hsl(217, 10%, 50.8%)"><i class="bi bi-bar-chart-fill"></i> Edades: {{$paquete->edades}}</p>
                         <hr>
-                        <p style="color: hsl(217, 10%, 50.8%)"><i class="bi bi-translate"></i> Idiomas: {{ $paquete->idiomas }}</p>
+                        <p style="color: hsl(217, 10%, 50.8%)"><i class="bi bi-translate"></i> Idiomas: {{$paquete->idiomas}}</p>
                         <hr>
-                        <p style="color: hsl(217, 10%, 50.8%)"><i class="bi bi-building-fill"></i> Alojamiento: {{ $paquete->alojamiento }}</p>
+                        <p style="color: hsl(217, 10%, 50.8%)"><i class="bi bi-building-fill"></i> Alojamiento: {{$paquete->alojamiento}}</p>
                         <hr>
-                        <p style="color: hsl(217, 10%, 50.8%)"><i class="bi bi-alarm-fill"></i> Duración Estimada (Horas): {{ $paquete->tiempoestimado }}</p>
+                        <p style="color: hsl(217, 10%, 50.8%)"><i class="bi bi-alarm-fill"></i> Hora de inicio: {{$paquete->horainicio}}</p>
                         <hr>
-                        <p style="color: hsl(217, 10%, 50.8%)"><i class="bi bi-calendar-check-fill"></i> Disponibilidad: {{ $paquete->disponibilidad }}</p>
+                        <p style="color: hsl(217, 10%, 50.8%)"><i class="bi bi-alarm-fill"></i> Duración Estimada (Horas): {{$paquete->tiempoestimado}}</p>
                         <hr>
-                        <p style="color: hsl(217, 10%, 50.8%)"><i class="bi bi-percent"></i> Porcentaje Ofertas (%): {{ $paquete->porciento }}</p>
+                        <p style="color: hsl(217, 10%, 50.8%)"><i class="bi bi-calendar-check-fill"></i> Disponibilidad: {{$paquete->disponibilidad}}</p>
+                        <hr>
+                        <p style="color: hsl(217, 10%, 50.8%)"><i class="bi bi-percent"></i> Porcentaje Ofertas (%): {{$paquete->porciento}}</p>
 
                 </div>
                 {{-- aqui iria el form de registro --}}

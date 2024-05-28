@@ -29,6 +29,8 @@ $( function () {
             {data: 'alojamiento'},
             {data: 'tiempoestimado'},
             {data: 'disponibilidad'},
+            {data: 'horainicio'},
+            
             
             //campos fk 
             {data: 'categoriapaq'},
@@ -194,7 +196,7 @@ $( function () {
             //en el response van los nombres de los campos en la BD
             $form.find('#codigo_paquete').val(response.id);
             $form.find('input[name="nombre"]').val(response.nombre);
-            $form.find('input[name="descripcion"]').val(response.descripcion);
+            $form.find('#descripcion').val(response.descripcion);
             $form.find('input[name="costo"]').val(response.costo);
             $form.find('input[name="numpersonas"]').val(response.numpersonas);
             $form.find('select[name="edades"]').val(response.edades);
@@ -203,6 +205,8 @@ $( function () {
  
             $form.find('input[name="tiempoestimado"]').val(response.tiempoestimado);
             $form.find('select[name="disponibilidad"]').val(response.disponibilidad);
+            $form.find('input[name="horainicio"]').val(response.horainicio);
+            
 
 
             //campos de fk 
@@ -210,19 +214,6 @@ $( function () {
             $form.find('select[name="categoriapaq"]').val(response.categoriapaq);
             $form.find('select[name="oferta"]').val(response.oferta);
 
-            // Mostrar los campos de eliminación de imágenes si las imágenes existen
-            // if (response.imagen1) {
-            //     $form.find('input[name="borrar_imagen1"]').show();
-            // }
-            // if (response.imagen2) {
-            //     $form.find('input[name="borrar_imagen2"]').show();
-            // }
-            // if (response.imagen3) {
-            //     $form.find('input[name="borrar_imagen3"]').show();
-            // }
-            
-
- 
             $form.find('#estado').val(response.estado);
 
             $('#modalRegistroPaquete').modal('show');
