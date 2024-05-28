@@ -22,6 +22,8 @@ class ReservasHechasController extends Controller
 
         //se hace de esta manera para que funcione el filtro
         $estado = $request->input('estado');
+        $fechareserva = $request->input('fechareserva');
+        
 
 
         $query = "
@@ -39,13 +41,19 @@ class ReservasHechasController extends Controller
         INNER JOIN users as u ON u.id = r.fk_IdUsuario
     ";
 
+    $params = [];
+
     if ($estado) {
-        $query .= " WHERE r.EstadoReservacion = :estado";
-        $reservas = DB::select($query, ['estado' => $estado]);
-    } else {
-        $reservas = DB::select($query);
+        $query .= " AND r.EstadoReservacion = :estado";
+        $params['estado'] = $estado;
     }
 
+    if ($fechareserva) {
+        $query .= " AND r.FechaSeleccionada = :fechareserva";
+        $params['fechareserva'] = $fechareserva;
+    }
+
+    $reservas = DB::select($query, $params);
 
 
         return view('admin.adminreservas', compact('reservas'));
@@ -109,6 +117,7 @@ class ReservasHechasController extends Controller
             $reserva = Reservacion::where('IdReservacion', $id_reserva)->first();
         
             $reserva->FechaSeleccionada = $request->cambiarFecha;
+            $reserva->CantidadPersonas = $request->cambiarNumpersonas;
             $reserva->EstadoReservacion = $request->estado;
             $reserva->save();
         } catch (\Throwable $th) {
@@ -129,14 +138,11 @@ class ReservasHechasController extends Controller
     
         try {
             DB::beginTransaction();
-    
             // Encuentra la reserva y elimina los detalles relacionados
             $reserva = Reservacion::findOrFail($id_reserva);
             Detalle_reserva::where('fk_IdReservacion', $id_reserva)->delete();
-    
             // Elimina la reserva
             $reserva->delete();
-    
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();

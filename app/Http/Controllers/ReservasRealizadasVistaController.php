@@ -22,6 +22,9 @@ class ReservasRealizadasVistaController extends Controller
         $reservas = DB::select("SELECT 
         r.IdReservacion, 
         p.Nombre, 
+
+        p.Horainicio,
+
         r.FechaSeleccionada, 
         
         r.fecha_expiracion,
@@ -29,8 +32,8 @@ class ReservasRealizadasVistaController extends Controller
         r.CantidadPersonas, 
         mp.Metodo_Pago,
         r.EstadoReservacion,
-              dr.id_paquete_turistico,
-              dr.fk_IdReservacion
+        dr.id_paquete_turistico,
+        dr.fk_IdReservacion
         FROM reservacion AS r INNER JOIN detalle_reserva AS dr
                ON r.IdReservacion=dr.fk_IdReservacion 
         INNER JOIN paquetes_turisticos AS p ON 

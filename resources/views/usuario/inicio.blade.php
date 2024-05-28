@@ -291,7 +291,7 @@
                                 </div>
                                 <div class="card-price">
                                     <p class="price">
-                                        USD {{ $paquete->costo }}
+                                        USD ${{ $paquete->costo }}
                                         <span>/ Por Persona</span>
                                     </p>
 

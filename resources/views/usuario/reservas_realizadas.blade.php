@@ -91,7 +91,7 @@ table {
                         <th>No.Reserva</th>
                         <th>Nombre del Paquete</th>
                         <th>Fecha Seleccionada</th>
-              
+                        <th>Hora de Inicio</th>
                         <th>N° Personas</th>
                         <th>Metodo de Pago</th>
                         <th>Estado de la Reserva</th>
@@ -107,7 +107,8 @@ table {
                         <td>{{$reserva->IdReservacion}}</td>
                         <td>{{$reserva->Nombre}}</td>
                         <td>{{$reserva->FechaSeleccionada}}</td>
-                  
+                        <td>{{$reserva->Horainicio}}</td>
+                        
                         <td>{{$reserva->CantidadPersonas}}</td>
                         <td>{{$reserva->Metodo_Pago}}</td>
                         <td>{{$reserva->EstadoReservacion}}</td>
