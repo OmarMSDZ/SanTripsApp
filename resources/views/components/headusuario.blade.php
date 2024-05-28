@@ -23,6 +23,11 @@
         rel="stylesheet">
 {{-- para lo de paypal --}}
         <script src="https://www.paypal.com/sdk/js?client-id={{config('paypal.client_id')}}&currency=DOP&intent=capture"></script>
+
+        {{-- animaciones --}}
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  @routes
+
 </head>
 <style>
     /*--------------------------------------------------------------

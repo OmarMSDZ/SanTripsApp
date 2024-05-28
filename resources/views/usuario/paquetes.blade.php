@@ -68,9 +68,16 @@
                             <li class="list-group-item"><i class="bi bi-bar-chart-fill"></i> Edades: {{$paquete->edades}}</li>
                             <li class="list-group-item"><i class="bi bi-translate"></i> Idiomas: {{$paquete->idiomas}}</li>
                             <li class="list-group-item"><i class="bi bi-building-fill"></i> Disponibilidad Alojamiento: {{$paquete->alojamiento}}</li>
-                            <li class="list-group-item"><i class="bi bi-alarm-fill"></i> Duración Estimada (En Horas): {{$paquete->tiempoestimado}}</li>
+                            
+                            <li class="list-group-item"><i class="bi bi-alarm-fill"></i> Inicio y Duración del Tour
+                                <ul>
+                                    <li class="">-Hora de Inicio: {{$paquete->horainicio}}</li>
+                                    <li class="">-Duración Estimada (En Horas): {{$paquete->tiempoestimado}}</li>
+                                </ul>
+                            </li>
+                           
                             <li class="list-group-item"><i class="bi bi-calendar-check-fill"></i> Disponibilidad: {{$paquete->disponibilidad}}</li>
-                            <li class="list-group-item"><i class="bi bi-cash-coin"></i> Costo por persona (RD$): {{$paquete->costo}}</li>
+                            <li class="list-group-item"><i class="bi bi-cash-coin"></i> Costo por persona (USD): {{$paquete->costo}}</li>
                         </ul>
                         <form action="{{ route('procesar_reserva')}}" method="POST">
                             @csrf <!-- Agrega el token CSRF para protección -->

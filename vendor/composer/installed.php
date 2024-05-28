@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '89236d6e578fc1ee2a13d8c17c5760b5013acde1',
+        'reference' => 'dcfe391edf6678f499abd2af201e0b874b47a785',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -400,7 +400,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '89236d6e578fc1ee2a13d8c17c5760b5013acde1',
+            'reference' => 'dcfe391edf6678f499abd2af201e0b874b47a785',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -1003,6 +1003,15 @@
             'replaced' => array(
                 0 => '*',
             ),
+        ),
+        'srmklive/paypal' => array(
+            'pretty_version' => '3.0.30',
+            'version' => '3.0.30.0',
+            'reference' => 'd511038ff01f466e7bfca475c7417b5a6c4d38a5',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../srmklive/paypal',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'symfony/clock' => array(
             'pretty_version' => 'v7.0.7',
