@@ -24,6 +24,8 @@ return new class extends Migration
             $table->integer('Tiempo_estimado');
             $table->string('Disponibilidad', 25)->default('DISPONIBLE');
             
+            $table->time('Horainicio');
+            
             $table->string('imagen1', 255)->nullable();
             $table->string('imagen2', 255)->nullable();
             $table->string('imagen3', 255)->nullable();

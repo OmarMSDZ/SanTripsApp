@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Reservacion;
 use App\Models\Detalle_reserva;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-use App\Services\PayPalService;
 use stdClass;
 
 class ReservacionController extends Controller
@@ -42,7 +40,6 @@ class ReservacionController extends Controller
             
             // Otros campos de reserva...
             'FechaSeleccionada' => 'required',
-            'DetallesAdicionales' => '',
             'CantidadPersonas' => 'required',
             'MontoTotal' => 'required',
             'MetodoPago' => 'required',
@@ -50,51 +47,29 @@ class ReservacionController extends Controller
         ]);
  
 
- $reserva = Reservacion::create([
+        $reserva = Reservacion::create([
             'FechaSeleccionada' => $request->input('FechaSeleccionada'),
-            'DetallesAdicionales' => $request->input('DetallesAdicionales'),
+            'Detalles_adicionales' => $request->input('DetallesAdicionales'),
             'MontoTotal' => $request->input('MontoTotal'),
             'CantidadPersonas' => $request->input('CantidadPersonas'),
             'MetodoPago' => $request->input('MetodoPago'),
             'fk_IdMetodopago' => $request->input('MetodoPago'),
             'fk_IdUsuario' => $request->usuario_id,
             'EstadoReservacion' => 'pendiente de pago',
-            // 'fecha_creacion' => now(),
+
             'fecha_expiracion' => now()->addMinutes(60),
         ]);          
 
-
-
-            // Crear la reserva
-            // $reserva = Reservacion::create([
-            //     // Asignar los campos de la reserva
-            //     // $validatedData['campo']...
-            // ]);
-           
-            $reserva = Reservacion::create($request->only('FechaSeleccionada', 'DetallesAdicionales','MontoTotal','CantidadPersonas', 'MetodoPago', 'usuario_id' ) + [
-                'fk_IdMetodopago' => $request->input('MetodoPago'),
-                'fk_IdUsuario' => $request->input('usuario_id') 
-            ]);
-
-            // dd($reserva);
-
-         
-
-            Detalle_reserva::create($request->only('id_paquete_turistico','fk_IdReservacion') + [
-                
-                'id_paquete_turistico' => $request->input('paquete_id'),
-                'fk_IdReservacion' => $reserva->IdReservacion 
-            ]);
-                //obtener el id de la reserva creada
-          
-
-               //redirigir a paypal
-         
-                 
-            // Redireccionar con un mensaje de éxito
-            return redirect()->route('reservas_realizadas')->with('success', 'Se ha Realizado con exito su reserva, proceda con el pago para terminar este proceso');
-
+        
+        Detalle_reserva::create($request->only('id_paquete_turistico','fk_IdReservacion') + [
             
+            'id_paquete_turistico' => $request->input('paquete_id'),
+            'fk_IdReservacion' => $reserva->IdReservacion 
+        ]);
+                            
+        // Redireccionar con un mensaje de éxito
+        return redirect()->route('reservas_realizadas')->with('warning', 'Se ha Realizado con exito su reserva!, expirará dentro de 1 hora en caso de no proceder con el pago');
+        
     }
 
     //para cambiar el estatus a activo luego de pagar
@@ -111,7 +86,7 @@ class ReservacionController extends Controller
             $return->message = $th->getMessage();
             $return->code = 500;
         }
-        // return response()->json($return, $return->code);
+       
         return redirect()->route('reservas_realizadas');
     }
 
