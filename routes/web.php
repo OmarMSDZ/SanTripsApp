@@ -2,6 +2,10 @@
 
 //controladores
 
+use App\Http\Controllers\PoliticasController;
+
+
+
 use App\Http\Controllers\AdminMenuController;
 use App\Http\Controllers\ApiServiceCountryStateCityController;
 use App\Http\Controllers\CargosEmpleadoController;
@@ -329,3 +333,14 @@ Route::prefix('/v1')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+
+
+// prueba politicas
+
+Route::get('/politicas', [PoliticasController::class,'index'])->name('politicas.index');
+
+
+
+
