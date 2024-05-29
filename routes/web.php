@@ -42,6 +42,7 @@ use App\Http\Controllers\VehiculoEmpleadoController;
 use App\Http\Controllers\VehiculosPaquetesController;
 use App\Http\Controllers\VehiculoTransporteController;
 use App\Http\Controllers\UserIncidenteController;
+use App\Mail\FacturaMail;
 use Illuminate\Support\Facades\Route;
 
 
@@ -312,27 +313,22 @@ Route::post('/reservas_realizadas/cancelar', [ReservasRealizadasVistaController:
 //autentificacion de usuario
 Route::get('admin/adminmenu', [HomeController::class,'index']);
 
-//paypal (PRUEBA)
+//paypal 
 
 Route::get('/paypal/create-transaction/{idreservacion}', [PayPalController::class, 'createTransaction'])->name('createTransaction');
 Route::get('/paypal/capture-transaction/{idreservacion}', [PayPalController::class, 'captureTransaction'])->name('captureTransaction');
 Route::get('/paypal/cancel-transaction', [PayPalController::class, 'cancelTransaction'])->name('cancelTransaction');
 
 
-//probar vistas de los correos
-Route::get('/ticketelectronico/{idusuario}/{idreserva}', function ($idusuario,$idreserva) {
-    // de esta forma se llama el controlador de los correos con los parametros
-    // return view('Mails.TicketReserva');
-    // return (new ticketElectronico($idusuario, $idreserva))->render();
-
-    //enviar el correo a la direccion por default y luego a la normal
-    // Mail::to(User::find($idusuario)->email)->send(new ticketElectronico($idusuario, $idreserva));
-    $user = User::find($idusuario);
-    if ($user) {
-        Mail::to($user->email)->send(new ticketElectronico($idusuario, $idreserva));
-    }
+ //ruta para probar vistas de los correos
+//  Route::get('/factura', function () {
+//      // de esta forma se llama el controlador de los correos con los parametros
+//      // return view('Mails.TicketReserva');
+//     //   return (new FacturaMail(8,64,3))->render();
+ 
     
-})->name('EnviarTicketElectronico');
+//  })->name('EnviarTicketElectronico');
+
 //rutas para la api de provincias paises y demas 
 Route::prefix('/v1')->group(function () {
     Route::controller(ApiServiceCountryStateCityController::class)->group(function () {
@@ -345,10 +341,7 @@ Route::prefix('/v1')->group(function () {
 require __DIR__.'/auth.php';
 
 
-
-
-// prueba politicas
-
+// politicas de SanTrips
 Route::get('/politicas', [PoliticasController::class,'index'])->name('politicas.index');
 
 

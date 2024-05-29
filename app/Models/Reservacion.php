@@ -23,4 +23,8 @@ class Reservacion extends Model
 
     protected $primaryKey = 'IdReservacion';
     protected $table = 'reservacion'; // nombre de la tabla
+ 
+
+
+
 }
