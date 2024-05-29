@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\FacturaMail;
 use App\Mail\ticketElectronico;
 use App\Models\Reservacion;
 use App\Models\Detalle_reserva;
+use App\Models\Factura;
 use App\Models\Ticket_electronico;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -144,15 +146,48 @@ class ReservacionController extends Controller
      'fk_IdUsuario' => $userId,
  ]);
 
+//  Crear la factura de la reserva a la hora de pagar
+ $descripcionFactura= DB::table('reservacion as r')
+ ->select('p.Nombre as nombrepaq', 'p.Costo as costopersona','o.Porcentaje as porciento')
+ ->join('detalle_reserva as dr', 'r.IdReservacion', '=', 'dr.fk_IdReservacion')
+ ->join('paquetes_turisticos as p', 'dr.id_paquete_turistico', '=', 'p.id')
+ ->join('ofertas as o', 'p.fk_IdOferta', '=', 'o.IdOferta')
+ ->where('r.IdReservacion', $idreservacion)
+ ->first();
+
+//   dd($descripcionFactura);
  
 
+ $fechaFactura = now()->toDateString();
+ 
+ $montoFactura = (float)  Reservacion::find($idreservacion)->MontoTotal;
+//  $descuentosPorcentajeFactura = (float) $descripcionFactura->porciento;
+ $descuentosPorcentajeFactura = $descripcionFactura->porciento;
+ 
+ $montoDescontado = ($descuentosPorcentajeFactura/100) * ($montoFactura * $descuentosPorcentajeFactura);
+ $montopendiente = '0';
 
-    // Llamar a la ruta para enviar el correo
-    // $emailRuta = route('EnviarTicketElectronico', ['idusuario' => $userId, 'idreserva' => $idreservacion]);
-    // Http::get($emailRuta);
+ $factura = Factura::create([
+    'Fecha' => $fechaFactura,
+    'Descripcion' => $descripcionFactura->nombrepaq,
+    'Monto' =>  $montoFactura,
+    'Descuentos' => $montoDescontado,
+    'Monto_pendiente' => $montopendiente,
+    'fk_IdReservacion' => $idreservacion,
+ ]);
+ 
+ $idfactura= $factura->NumFactura;
 
+
+
+    //enviar los correos al email del usuario que activa este controlador, y esta logueado, luego de pagar
     Mail::to(Auth::user()->email)
     ->send(new ticketElectronico($userId, $idreservacion));
+
+    Mail::to(Auth::user()->email)
+    ->send(new FacturaMail($userId, $idreservacion, $idfactura));
+
+
 
         // } catch (\Throwable $th) {
         //     $return->message = $th->getMessage();
