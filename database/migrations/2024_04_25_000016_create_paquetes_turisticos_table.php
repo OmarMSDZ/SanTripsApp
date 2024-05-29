@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('Disponibilidad', 25)->default('DISPONIBLE');
             
             $table->time('Horainicio');
+            $table->text('PuntoEncuentro')->nullable();
+            
             
             $table->string('imagen1', 255)->nullable();
             $table->string('imagen2', 255)->nullable();
