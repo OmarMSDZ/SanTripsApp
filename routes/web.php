@@ -42,6 +42,8 @@ use App\Http\Controllers\VehiculoEmpleadoController;
 use App\Http\Controllers\VehiculosPaquetesController;
 use App\Http\Controllers\VehiculoTransporteController;
 use App\Http\Controllers\UserIncidenteController;
+use App\Http\Controllers\AdminIncidentesController;
+
 use App\Mail\FacturaMail;
 use Illuminate\Support\Facades\Route;
 
@@ -268,10 +270,66 @@ Route::middleware('auth')->prefix('admin')->group( function () {
         //eliminar registros
         Route::delete('/destroy/{id_reserva}', 'destroy')->name('reservashechas.destroy');
     });
+
+
+    //ruta Cargo empleados
+
+    Route::controller(CargosEmpleadoController::class)->prefix('admincargoempleado')->group( function () {
+        //ir a la vista principal
+        Route::get('/', 'index')->name('admincargoempleado.index');
+        //obtener datos completos
+        Route::get('/data', 'getCargoempleados')->name('admincargoempleado.getCargoempleados');
+        //obtener un dato especifico
+        Route::get('/data/{idCargo}', 'getCargoempleado')->name('admincargoempleado.getCargoempleado');
+        //guardar
+        Route::post('/', 'store')->name('admincargoempleado.store'); 
+        //actualizar
+        Route::post('/update/{idCargo}', 'update')->name('admincargoempleado.update');
+        //cambiar estado 
+        Route::post('/cambiar_estado/{idCargo}', 'admincambiarCargoempleado')->name('admincargoempleado.cambiar_estado');
+        //eliminar registros
+        Route::delete('/{idCargo}', 'delete')->name('admincargoempleado.delete');
+    });
+
+    //incidentes
+    Route::controller(AdminIncidentesController::class)->prefix('adminincidentes')->group(function () {
+        Route::get('/', 'index')->name('adminincidentes.index');
+        Route::post('/', 'store')->name('adminincidentes.store');
+        Route::post('/cambiar_estado/{id_incidente}', 'cambiarEstado')->name('adminincidentes.cambiar_estado');
+        Route::post('/update/{id_incidente}', 'update')->name('adminincidentes.update');
+        Route::get('/data/table', 'getIncidentes')->name('adminincidentes.getIncidentes');
+    
+    });
+
+//rutas asignacion Vehiculos paquetes
+
+Route::controller(VehiculosPaquetesController::class)->prefix('vehiculos_paquetes')->group(function () {
+    Route::get('/', 'index')->name('vehiculos_paquetes.index');
+    Route::post('/', 'store')->name('vehiculos_paquetes.store');
+    Route::post('/cambiar_estado/{id_vehiculos_paquetes}', 'cambiarEstadoVehiculoPaquete')->name('vehiculos_paquetes.cambiar_estado');
+    Route::post('/update/{id_vehiculos_paquetes}', 'update')->name('vehiculos_paquetes.update');
+
+    Route::get('/data/table', 'getVehiculosPaquetes')->name('vehiculos_paquetes.getVehiculosPaquetes');
+    Route::get('/data/table/{id_vehiculos_paquetes}', 'getVehiculoPaquete')->name('vehiculos_paquetes.getVehiculoPaquete');
+
+    Route::delete('/destroy/{id_vehiculos_paquetes}', 'destroy')->name('Vehiculos_paquetes.destroy');
 });
 
+//rutas asignacion Vehiculos empleados
 
+Route::controller(VehiculoEmpleadoController::class)->prefix('asignarvehiculoempleado')->group(function () {
+    Route::get('/', 'index')->name('asignarvehiculoempleado.index');
+    Route::post('/', 'store')->name('asignarvehiculoempleado.store');
+    Route::post('/cambiar_estado/{id_asignacion}', 'cambiarEstadoVehiculoEmpleado')->name('asignarvehiculoempleado.cambiar_estado');
+    Route::post('/update/{id_asignacion}', 'update')->name('asignarvehiculoempleado.update');
+    Route::get('/data/table', 'getAsignacionesVehiculos')->name('asignarvehiculoempleado.getAsignacionesVehiculos');
+    Route::get('/data/table/{id_asignacion_vehiculo}', 'getAsignacionVehiculo')->name('asignarvehiculoempleado.getAsignacionVehiculo');
+    
+    Route::delete('/{id}', 'delete')->name('asignarvehiculoempleado.delete');
 
+});
+
+});
   
 
 // RUTA DE USER INCIDENTE
@@ -284,6 +342,10 @@ Route::controller(UserincidenteController::class)->middleware('auth')->prefix('U
  
 // Rutas para navegar interfaces usuario , la de inicio es la primera que sale al abrir la app 
 Route::get('/', [InicioController::class,'index'])->name('inicio');
+
+// Rutas para navegar interfaces usuario , la de inicio es la primera que sale al abrir la app 
+Route::get('/', [InicioController::class,'index'])->name('inicio');
+
 
 Route::get('/incidentes', function () {
     return view('usuario/incidentes');
@@ -337,6 +399,8 @@ Route::prefix('/v1')->group(function () {
         Route::get('/city/{country?}/{state?}', 'getCities')->name('api.cities');
     });
 });
+
+
 
 require __DIR__.'/auth.php';
 
