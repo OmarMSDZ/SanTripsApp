@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use Exception;
- 
+use Illuminate\Support\Facades\Log;
+use PhpParser\Node\Stmt\TryCatch;
 
 class PayPalController extends Controller
 {
@@ -60,6 +61,10 @@ class PayPalController extends Controller
 
     public function captureTransaction(Request $request, $idreservacion)
     {
+
+        try {
+
+        
         $paypal = new PayPalClient;
         $paypal->setApiCredentials(config('paypal'));
         $token = $paypal->getAccessToken();
@@ -95,6 +100,11 @@ class PayPalController extends Controller
         }
 
         return redirect()->route('inicio')->with('error', 'Error al capturar el pago.');
+    }catch (Exception $e) {
+        Log::error($e->getMessage());
+        return redirect()->route('inicio')->with('error', 'Error al capturar el pago.');
+    }
+
     }
 
     public function cancelTransaction()

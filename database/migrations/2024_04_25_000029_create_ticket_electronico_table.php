@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('CodigoVerificacion');
             $table->dateTime('Fecha');
+            $table->string('Codigo', 255)->unique();
             $table->dateTime('Valido_hasta');
             $table->text('Punto_encuentro');
             $table->foreignId('fk_IdReservacion')->constrained('Reservacion');
