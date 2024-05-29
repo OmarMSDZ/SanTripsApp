@@ -94,7 +94,7 @@ WHERE
                             <form action="{{ route('Reservacion.store') }}" method="POST">
                                 @csrf
                                 <center><img src="{{ asset('img/SanTrips (logo azul).svg') }}" alt=""
-                                        class="form-img" style="width:6em;heigth:6em;"></center>
+                                        class="form-img" style="width:6em;height:6em;"></center>
                                 <center>
                                     <h2>Reserva este Paquete</h2>
                                 </center>
@@ -272,7 +272,7 @@ WHERE
 
 
 <!-- FORMULARIO DE PAGO -->
-
+<!-- 
 {{-- 
 <form class="formulario" action="procesar_pago_paypal.php" method="POST">
     <h2>Formulario de Pago PayPal</h2>
@@ -303,7 +303,7 @@ WHERE
         <textarea id="descripcion" name="descripcion" rows="4"></textarea>
         <input type="submit" value="Pagar con PayPal">
     </div>
-</form> --}}
+</form> --}} -->
 
 
 

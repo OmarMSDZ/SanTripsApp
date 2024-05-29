@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vehiculos_paquetes extends Model
 {
-    use HasFactory;
+    // campos de la tabla
+protected $fillable = [
+    'IdVehiculosPaquetes',
+    'id_paquetes_turistico',
+    'fk_IdVehiculo'
+];
+
+    protected $primaryKey = 'IdVehiculosPaquetes';
 }
