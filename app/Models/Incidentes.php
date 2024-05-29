@@ -7,5 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Incidentes extends Model
 {
-    use HasFactory;
+    // Campos de la tabla
+    protected $fillable = [
+        'IdIncidente',
+        'FechaIncidente',
+        'Descripcion',
+        'fk_IdTipoIncidente',
+        'fk_IdUsuario',
+        'EstadoIncidente'
+    ];
+
+    protected $primaryKey = 'id';
 }
