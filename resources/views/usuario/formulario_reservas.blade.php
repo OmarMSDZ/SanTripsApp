@@ -94,7 +94,7 @@ WHERE
                             <form action="{{ route('Reservacion.store') }}" method="POST">
                                 @csrf
                                 <center><img src="{{ asset('img/SanTrips (logo azul).svg') }}" alt=""
-                                        class="form-img" style="width:6em;heigth:6em;"></center>
+                                        class="form-img" style="width:6em;height:6em;"></center>
                                 <center>
                                     <h2>Reserva este Paquete</h2>
                                 </center>
