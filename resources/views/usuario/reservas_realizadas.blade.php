@@ -18,25 +18,27 @@
         <div class="container mt-15">
             <h1>Mis Reservas</h1>
             <hr>
-
+{{-- 
         <h3>Mostrar por Estado</h3>
         <select name="estado" id="" class="form-select">
             <option value="ACTIVA">Activas</option>
             <option value="EN PROCESO">En Proceso</option>
             <option value="CANCELADA">Canceladas</option>
             <option value="COMPLETADA">Completada</option>
-        </select>
-        <hr>
+        </select> --}}
+        {{-- <hr> --}}
         <!-- Sección de perfil del usuario -->
 
 
         {{-- Esto se debe de hacer con el id del usuario que inicie sesion --}}
-        <?php 
-            $idusuario = Auth::user()->id;
+        {{-- @php
+             
+        //     $idusuario = Auth::user()->id;
 
-           $usuarios = DB::select("SELECT id, name, email FROM users WHERE id=$idusuario");
+        //    $usuarios = DB::select("SELECT id, name, email FROM users WHERE id=$idusuario");
            
-        ?> 
+        
+        @endphp --}}
         @foreach ($usuarios as $usuario)
             
         
@@ -67,14 +69,29 @@ table {
     border-collapse: collapse;
 }
         </style>
+            @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+        
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        
             <div class="table-container">
-            <table class="table table-responsive" style="overflow: auto; position: sticky;">
+            
+                <table class="table table-responsive" style="overflow: auto; position: sticky;">
+
                 <thead>
                     <tr> 
                         <th>No.Reserva</th>
                         <th>Nombre del Paquete</th>
                         <th>Fecha Seleccionada</th>
-              
+                        <th>Hora de Inicio</th>
                         <th>N° Personas</th>
                         <th>Metodo de Pago</th>
                         <th>Estado de la Reserva</th>
@@ -83,42 +100,47 @@ table {
                 </thead>
                 <tbody class="table-hover">
 
-                    {{-- aqui deberia de traer las reservas realizadas por un usuario especifico --}}
-                    @php
                     
-               
-
-                    $reservas = DB::select("SELECT 
-                    r.IdReservacion, 
-                    p.Nombre, 
-                    r.FechaSeleccionada, 
-            
-                    r.CantidadPersonas, 
-                    mp.Metodo_Pago,
-                    r.EstadoReservacion,
-              			dr.id_paquete_turistico,
-              			dr.fk_IdReservacion
-                    FROM reservacion AS r INNER JOIN detalle_reserva AS dr
-						   ON r.IdReservacion=dr.fk_IdReservacion 
-                    INNER JOIN paquetes_turisticos AS p ON 
-						  p.id=dr.Id_paquete_turistico INNER JOIN metodo_pago AS mp ON 
-                    mp.IdMetodopago=r.fk_IdMetodopago  
-                    WHERE r.fk_IdUsuario= $idusuario;")    
-                    // esto del id debe de ser variable, tomado de la sesion del usuario
-                    
-                    @endphp
 
                     @foreach ($reservas as $reserva)
                     <tr>
                         <td>{{$reserva->IdReservacion}}</td>
                         <td>{{$reserva->Nombre}}</td>
                         <td>{{$reserva->FechaSeleccionada}}</td>
-                  
+                        <td>{{$reserva->Horainicio}}</td>
+                        
                         <td>{{$reserva->CantidadPersonas}}</td>
                         <td>{{$reserva->Metodo_Pago}}</td>
                         <td>{{$reserva->EstadoReservacion}}</td>
-                        <td><button class="btn btn-danger" style="border-radius: 10px;"> <a href="#" style="text-decoration: none; color:black;"></a> Cancelar</button></td>
-                    </tr>
+                        
+                        <td>  
+
+                            @if ($reserva->EstadoReservacion == 'PAGO PENDIENTE')
+                                 {{-- para pagar la reserva, se muestra solo si el estado es PAGO PENDIENTE --}}
+                                 @if ($reserva->fecha_expiracion < now())
+                                 <form action="{{ route('Reservacion.expirar', $reserva->IdReservacion) }}" method="GET">
+                                 @endif
+                                 <form action="{{ route('createTransaction', $reserva->IdReservacion) }}" method="GET">
+                                    @csrf <!-- Token CSRF para protección -->
+                                    <button type="submit" class="btn btn-success mt-3">pagar</button>
+                                </form> 
+                            @endif
+                               
+                                {{-- para cancelar la reserva y verificar si esta expirada --}}
+                                @if ($reserva->EstadoReservacion == 'PAGO PENDIENTE' && $reserva->fecha_expiracion < now())
+                                <form action="{{ route('Reservacion.expirar', $reserva->IdReservacion) }}" method="GET">
+                            @else
+                                <form action="{{ route('formulario_cancelar') }}" method="GET">
+                            @endif
+                                @csrf <!-- Token CSRF para protección -->
+                                <input type="hidden" name="idReserva" value="{{$reserva->IdReservacion }}" readonly>
+                                <input type="date" name="fecha_reserva" value="{{$reserva->FechaSeleccionada}}" hidden readonly>
+                                <button type="submit" class="btn btn-danger mt-3">Cancelar</button>
+                            </form>
+                            
+                                
+                        </td>
+                     </tr>
                     @endforeach
                     <!-- Agregar más filas según sea necesario -->
                 </tbody>

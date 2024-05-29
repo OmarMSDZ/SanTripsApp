@@ -15,6 +15,7 @@ class Reservacion extends Model
         'Detalles_adicionales',
         'MontoTotal',
         'CantidadPersonas',
+        'fecha_expiracion',
         'fk_IdMetodopago',
         'fk_IdUsuario'
     
@@ -22,4 +23,8 @@ class Reservacion extends Model
 
     protected $primaryKey = 'IdReservacion';
     protected $table = 'reservacion'; // nombre de la tabla
+ 
+
+
+
 }
