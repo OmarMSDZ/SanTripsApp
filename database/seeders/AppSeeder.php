@@ -32,7 +32,7 @@ class AppSeeder extends Seeder
             
             ['codigo' => 'rsv', 'orden' => 8, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Reservas', 'ruta' => 'reservashechas.index', 'icono' => 'bi bi-calendar-range-fill'],
             
-            ['codigo' => 'pgs', 'orden' => 9, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Pagos', 'ruta' => 'pagos.index', 'icono' => 'bi bi-calendar-range-fill'],
+            ['codigo' => 'pgs', 'orden' => 9, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Pagos', 'ruta' => 'pagos.index', 'icono' => 'bi bi-calendar-range-fill', 'activo' => '0', 'visible' => '0'],
             
             ['codigo' => 'oft', 'orden' => 10, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Ofertas', 'ruta' => 'ofertas.index', 'icono' => 'bi bi-calendar-range-fill'],
 
@@ -40,7 +40,7 @@ class AppSeeder extends Seeder
             
             ['codigo' => 'ecpq', 'orden' => 12, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Encargados Paquetes', 'ruta' => 'encargadopaq.index', 'icono' => 'bi bi-calendar-range-fill'],
 
-            ['codigo' => 'extr', 'orden' => 13, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Extras', 'ruta' => 'adminvarias', 'icono' => 'bi bi-calendar-range-fill'],
+            ['codigo' => 'extr', 'orden' => 13, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Extras', 'ruta' => 'adminvarias', 'icono' => 'bi bi-calendar-range-fill', 'activo' => '0', 'visible' => '0'],
         ];
         DB::table('apps')->insert($apps);
 

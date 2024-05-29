@@ -46,6 +46,8 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Mail\pruebacorreos;
+use App\Mail\ticketElectronico;
+use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 //  Route::get('/welcome', function () {
 //      return view('welcome');
@@ -316,6 +318,21 @@ Route::get('/paypal/create-transaction/{idreservacion}', [PayPalController::clas
 Route::get('/paypal/capture-transaction/{idreservacion}', [PayPalController::class, 'captureTransaction'])->name('captureTransaction');
 Route::get('/paypal/cancel-transaction', [PayPalController::class, 'cancelTransaction'])->name('cancelTransaction');
 
+
+//probar vistas de los correos
+Route::get('/ticketelectronico/{idusuario}/{idreserva}', function ($idusuario,$idreserva) {
+    // de esta forma se llama el controlador de los correos con los parametros
+    // return view('Mails.TicketReserva');
+    // return (new ticketElectronico($idusuario, $idreserva))->render();
+
+    //enviar el correo a la direccion por default y luego a la normal
+    // Mail::to(User::find($idusuario)->email)->send(new ticketElectronico($idusuario, $idreserva));
+    $user = User::find($idusuario);
+    if ($user) {
+        Mail::to($user->email)->send(new ticketElectronico($idusuario, $idreserva));
+    }
+    
+})->name('EnviarTicketElectronico');
 //rutas para la api de provincias paises y demas 
 Route::prefix('/v1')->group(function () {
     Route::controller(ApiServiceCountryStateCityController::class)->group(function () {
