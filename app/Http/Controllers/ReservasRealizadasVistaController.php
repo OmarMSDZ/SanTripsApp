@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\cancelacion_reserva;
 use App\Models\Reservacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,20 +22,30 @@ class ReservasRealizadasVistaController extends Controller
         $reservas = DB::select("SELECT 
         r.IdReservacion, 
         p.Nombre, 
+
+        p.Horainicio,
+
         r.FechaSeleccionada, 
+        
+        r.fecha_expiracion,
 
         r.CantidadPersonas, 
         mp.Metodo_Pago,
         r.EstadoReservacion,
-              dr.id_paquete_turistico,
-              dr.fk_IdReservacion
+        dr.id_paquete_turistico,
+        dr.fk_IdReservacion
         FROM reservacion AS r INNER JOIN detalle_reserva AS dr
                ON r.IdReservacion=dr.fk_IdReservacion 
         INNER JOIN paquetes_turisticos AS p ON 
               p.id=dr.Id_paquete_turistico INNER JOIN metodo_pago AS mp ON 
         mp.IdMetodopago=r.fk_IdMetodopago  
         WHERE r.fk_IdUsuario= $idusuario AND 
-        r.EstadoReservacion = 'ACTIVA'||'EN PROCESO'||'COMPLETADA'");
+        (r.EstadoReservacion = 'ACTIVA' 
+         OR r.EstadoReservacion = 'PAGO PENDIENTE' 
+         OR r.EstadoReservacion = 'EN PROCESO' 
+         OR r.EstadoReservacion = 'COMPLETADA')
+         
+         ");
 
         return view('usuario.reservas_realizadas', compact('idusuario', 'usuarios', 'reservas'));
     }
@@ -56,6 +67,14 @@ class ReservasRealizadasVistaController extends Controller
                 if ($reservacion) {
                     $reservacion->EstadoReservacion = 'CANCELADA';
                     $reservacion->save();
+
+                    // para guardar tambien en la tabla de cancelacion reserva 
+                    $cancelacion_reserva = new cancelacion_reserva();
+                    $cancelacion_reserva->motivo= $request->motivocancelacion;
+                    $cancelacion_reserva->acepta = $request->reembolsoSi;
+                    $cancelacion_reserva->fk_IdReservacion = $request->id_reserva;
+                    $cancelacion_reserva->save();
+
                     return redirect()->route('reservas_realizadas')->with('success', 'Reservación cancelada correctamente');
                 } else {
                     return redirect()->route('reservas_realizadas')->with('error', 'Reservación no encontrada');

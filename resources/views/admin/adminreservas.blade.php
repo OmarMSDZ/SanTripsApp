@@ -48,7 +48,19 @@
                           </select>
                       </div>
                   </div>
-              
+
+                  <div class="col-md-3 col-sm-4 col-lg-3">
+                    <label for="fechareserva">Fecha</label>
+                    <div class="form-group">
+                      <input type="date" name="fechareserva" class="form-control" id="fechaseleccionada" value="{{request('fechareserva')}}">
+                    </div>
+                </div>
+
+
+
+
+
+
                   <div class="col-lg-4 mt-3 offset-lg-1">
                       <div class="">
                           <button class="btn btn-outline-secondary btn-sm mx-2" type="submit">

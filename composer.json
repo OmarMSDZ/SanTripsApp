@@ -9,6 +9,7 @@
         "laravel/breeze": "^2.0",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
+        "srmklive/paypal": "^3.0",
         "tightenco/ziggy": "^2.1",
         "yajra/laravel-datatables-oracle": "^11.1"
     },
