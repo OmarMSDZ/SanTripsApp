@@ -13,38 +13,16 @@ return new class extends Migration
     {
         Schema::create('Ticket_electronico', function (Blueprint $table) {
 
-            $table->id('Id');
+            $table->id();
+            $table->string('CodigoVerificacion');
             $table->dateTime('Fecha');
+            $table->string('Codigo', 255)->unique();
             $table->dateTime('Valido_hasta');
             $table->text('Punto_encuentro');
-            $table->unsignedBigInteger('fk_IdReservacion');
+            $table->foreignId('fk_IdReservacion')->constrained('Reservacion');
             $table->foreignId('id_empleado')->constrained('Empleados');
-
-            // $table->unsignedBigInteger('fk_IdEmpleado');
-            $table->unsignedBigInteger('fk_IdUsuario');
+            $table->foreignId('fk_IdUsuario')->constrained('users');
             $table->timestamps();
-
-            $table->index(["fk_IdReservacion"], 'fk_IdReservacion');
-
-            // $table->index(["fk_IdEmpleado"], 'fk_IdEmpleado');
-
-            $table->index(["fk_IdUsuario"], 'fk_IdUsuario');
-
-
-            // $table->foreign('fk_IdEmpleado', 'fk_IdEmpleadoTicket')
-            //     ->references('IdEmpleado')->on('empleados')
-            //     ->onDelete('restrict')
-            //     ->onUpdate('cascade');
-
-            $table->foreign('fk_IdReservacion', 'fk_IdReservacionTicket')
-                ->references('IdReservacion')->on('reservacion')
-                ->onDelete('restrict')
-                ->onUpdate('cascade');
-
-            $table->foreign('fk_IdUsuario', 'fk_IdUsuarioTicket')
-                ->references('IdUsuario')->on('usuarios')
-                ->onDelete('restrict')
-                ->onUpdate('cascade');
         });
     }
 

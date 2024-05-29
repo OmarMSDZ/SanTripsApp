@@ -93,6 +93,10 @@
                             <th>Alojamiento</th>
                             <th>Tiempo_estimado</th>
                             <th>Disponibilidad</th>
+                            
+                            <th>Hora Inicio</th>
+                            <th>Punto Encuentro</th>
+                            
                             <th>Categoría</th>
                             <th>Oferta Aplicada</th>
                             
@@ -137,14 +141,14 @@
                 <div class="col-4">
                     <div class="mb-3">
                         <label for="descripcion" class="form-label">Descripcion</label>
-                        <textarea name="descripcion" id="" cols="30" rows="10" class="form-control limpiarForm" placeholder="Descripcion del paquete" required></textarea>
+                        <textarea name="descripcion" id="descripcion" cols="30" rows="10" class="form-control limpiarForm" placeholder="Descripcion del paquete" required></textarea>
                       </div>
                 </div>
 
                 <div class="col-4">
                   <div class="mb-3">
-                      <label for="costo" class="form-label">Costo (RD$)</label>
-                      <input type="number" name="costo" class="form-control limpiarForm" step="0.01" placeholder="Costo del paquete en RD$" required>
+                      <label for="costo" class="form-label">Costo (USD)</label>
+                      <input type="number" name="costo" class="form-control limpiarForm" step="0.01" placeholder="Costo del paquete en USD" required>
                   </div>
                 </div>
 
@@ -201,6 +205,20 @@
                 </div>
 
                 <div class="col-4">
+                    <div class="mb-3">
+                        <label for="horainicio" class="form-label">Hora de Inicio</label>
+                        <input type="time" name="horainicio" class="form-control limpiarForm" placeholder="Hora de Inicio del Tour" required>
+                    </div>
+                  </div>
+
+                  <div class="col-4">
+                    <div class="mb-3">
+                        <label for="puntoencuentro" class="form-label">Punto Encuentro</label>
+                        <textarea name="puntoencuentro" id="puntoencuentro" cols="30" rows="10" class="form-control limpiarForm" placeholder="Punto de encuentro (Dirección)" required></textarea>
+                      </div>
+                </div>
+
+                <div class="col-4">
                   <div class="mb-3">
                       <label for="disponibilidad" class="form-label">Disponibilidad</label>
                       <select name="disponibilidad" id="disponibilidad" class="form-select limpiarForm">
@@ -239,12 +257,7 @@
                         </select>
                     </div>
                 </div>
- 
-                {{-- <div class="controleseliminarimagenes col-4">
-                    <input type="checkbox" class="form-control form-check-input" name="borrar_imagen1" value="1" hidden placeholder="Eliminar Imagen 1"> Eliminar imagen 1<br>
-                    <input type="checkbox" class="form-control form-check-input" name="borrar_imagen2" value="1" hidden placeholder="Eliminar Imagen 2"> Eliminar imagen 2<br>
-                    <input type="checkbox" class="form-control form-check-input" name="borrar_imagen3" value="1" hidden placeholder="Eliminar Imagen 3"> Eliminar imagen 3<br>
-                </div> --}}
+  
                 <div class="col-4">
                     <div class="mb-3">
                         <label for="imagen1" class="form-label">Imagen 1</label>

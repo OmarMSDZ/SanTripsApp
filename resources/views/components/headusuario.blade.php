@@ -13,7 +13,7 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="{{ asset('css/cssuser.css') }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,6 +23,11 @@
         rel="stylesheet">
 {{-- para lo de paypal --}}
         <script src="https://www.paypal.com/sdk/js?client-id={{config('paypal.client_id')}}&currency=DOP&intent=capture"></script>
+
+        {{-- animaciones --}}
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  @routes
+
 </head>
 <style>
     /*--------------------------------------------------------------
@@ -202,36 +207,7 @@
 
             <a href="{{ route('inicio') }}" class="logo"><img src="{{ asset('img/SanTrips (logo azul).svg') }}"
                     alt="" class="img-fluid"></a>
-{{-- 
-            <nav id="navbar" class="navbar navbar-expand-lg">
-                <div class="container-fluid">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item"><a class="nav-link scrollto" href="{{ route('inicio') }}">Inicio</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link scrollto" href="{{ route('inicio') }}#about">Sobre
-                                    Nosotros</a></li>
-                            <li class="nav-item"><a class="nav-link scrollto" href="{{route('paquetes_turisticos')}}">Paquetes Turísticos</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link scrollto" href="{{route('reservas_realizadas')}}">Mis Reservas</a></li>
-                            <li class="nav-item"><a class="nav-link scrollto" href="{{ route('inicio') }}#contact">Contacto</a></li>
-                           
-                            
-                            <li class="nav-item"><a class="nav-link scrollto" href="{{ route('register') }}">Registro</a></li>
-                            <li class="nav-item"><a class="nav-link scrollto" href="{{ route('login') }}">Login</a></li>
-                          
-
-                </div>
-         
-                        </ul>
-                    </div>
-                </div>
-            </nav><!-- .navbar --> --}}
-
+ 
 
             <nav id="navbar" class="navbar navbar-expand-lg ">
                 <div class="container-fluid">

@@ -116,7 +116,7 @@
           
               @csrf
 
-                <input type="text" id="codigo_oferta" name="codigo" value="0">
+                <input type="text" id="codigo_oferta" name="codigo" value="0" hidden readonly>
 
                 <div class="col-4">
                     <div class="mb-3">

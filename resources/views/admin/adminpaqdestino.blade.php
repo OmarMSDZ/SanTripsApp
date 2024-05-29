@@ -11,7 +11,7 @@
 
 @section('content')
 
-{{--ESTE ES EL QUE SIRVE  --}}
+
 
 {{-- <div class="page-content p-5" id="content">
 <!-- Contenido de admin empleados -->

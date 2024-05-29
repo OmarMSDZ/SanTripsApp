@@ -12,13 +12,13 @@ class Encargados_paquetes extends Model
        //campos de la tabla
        protected $fillable = 
        [
-       'id',
+       'IdEncargadosPaquetes',
        'Fecha',
-       'id_paquetes_turistico',
+       'id_paquete_turistico',
        'id_empleado'
        ];
    
-       protected $primaryKey = 'id';
+       protected $primaryKey = 'IdEncargadosPaquetes';
 
        protected $table = 'encargados_paquetes';
 }

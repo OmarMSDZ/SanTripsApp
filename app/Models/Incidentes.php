@@ -7,15 +7,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class Incidentes extends Model
 {
-    // Campos de la tabla
+    use HasFactory;
+
+    protected $table = 'incidentes';
+    protected $primaryKey = 'IdIncidente';
+
     protected $fillable = [
-        'IdIncidente',
         'FechaIncidente',
         'Descripcion',
         'fk_IdTipoIncidente',
         'fk_IdUsuario',
-        'EstadoIncidente'
     ];
 
-    protected $primaryKey = 'id';
+    // Definir relaciones si es necesario
+    // public function tipoIncidente()
+    // {
+    //     return $this->belongsTo(Tipo_Incidente::class, 'fk_IdTipoIncidente', 'IdTipoIncidente');
+    // }
+
+    // public function usuario()
+    // {
+    //     return $this->belongsTo(User::class, 'fk_IdUsuario', 'IdUsuario');
+    // }
 }
+
