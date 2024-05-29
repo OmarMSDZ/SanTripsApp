@@ -272,7 +272,7 @@ WHERE
 
 
 <!-- FORMULARIO DE PAGO -->
-
+<!-- 
 {{-- 
 <form class="formulario" action="procesar_pago_paypal.php" method="POST">
     <h2>Formulario de Pago PayPal</h2>
@@ -303,7 +303,7 @@ WHERE
         <textarea id="descripcion" name="descripcion" rows="4"></textarea>
         <input type="submit" value="Pagar con PayPal">
     </div>
-</form> --}}
+</form> --}} -->
 
 
 
