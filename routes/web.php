@@ -2,10 +2,7 @@
 
 //controladores
 
-use App\Http\Controllers\AdminIncidentesController;
-
 use App\Http\Controllers\PoliticasController;
-
 
 
 
@@ -45,6 +42,8 @@ use App\Http\Controllers\VehiculoEmpleadoController;
 use App\Http\Controllers\VehiculosPaquetesController;
 use App\Http\Controllers\VehiculoTransporteController;
 use App\Http\Controllers\UserIncidenteController;
+use App\Http\Controllers\AdminIncidentesController;
+
 use App\Mail\FacturaMail;
 use Illuminate\Support\Facades\Route;
 
@@ -330,11 +329,7 @@ Route::controller(VehiculoEmpleadoController::class)->prefix('asignarvehiculoemp
 
 });
 
-
 });
-
-
-
   
 
 // RUTA DE USER INCIDENTE
@@ -345,33 +340,8 @@ Route::controller(UserincidenteController::class)->middleware('auth')->prefix('U
 });
 
  
-
-
-
-
-//rutas interfaz de reservas admin
-Route::get('/admin/vistadetalladareserva', function () {
-    return view('admin/vistadetalladareserva');
-})->name('vistadetalladareserva');
-
-//rutas vista detallada pago
-Route::get('/admin/vistadetalladapago', function () {
-    return view('admin/vistadetalladapago');
-})->name('vistadetalladapago');
-
-//rutas vista detallada incidentes
- 
-
-// Route::get('/admin/vistadetalladaincidente', function () {
-//     return view('admin/vistadetalladaincidente');
-// })->name('vistadetalladaincidente');
- 
-
-// Rutas para navegar interfaces usuario (GET), la de inicio es la primera que sale al abrir la app
-Route::get('/', function () {
-    return view('usuario/inicio');
-})->name('inicio');
-
+// Rutas para navegar interfaces usuario , la de inicio es la primera que sale al abrir la app 
+Route::get('/', [InicioController::class,'index'])->name('inicio');
 
 // Rutas para navegar interfaces usuario , la de inicio es la primera que sale al abrir la app 
 Route::get('/', [InicioController::class,'index'])->name('inicio');
