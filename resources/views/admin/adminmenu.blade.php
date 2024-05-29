@@ -146,7 +146,7 @@
 <br>
 <hr>
 <!-- Aqui se mostrarán los graficos de ECharts -->
-<div class="row container">
+{{-- <div class="row container">
 
   <div class="col-sm-2 col-md-6">
                <!-- Prepare a DOM with a defined width and height for ECharts -->
@@ -229,8 +229,8 @@
         myChart.setOption(option);
       </script>
       </div>
- 
-  </div>
+  --}}
+  {{-- </div> --}}
   @endsection
 
   @section('javascript')

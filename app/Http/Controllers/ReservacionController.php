@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Reservacion;
 use App\Models\Detalle_reserva;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
+use stdClass;
 
 class ReservacionController extends Controller
 {
@@ -39,86 +40,55 @@ class ReservacionController extends Controller
             
             // Otros campos de reserva...
             'FechaSeleccionada' => 'required',
-            'DetallesAdicionales' => '',
             'CantidadPersonas' => 'required',
             'MontoTotal' => 'required',
             'MetodoPago' => 'required',
             
         ]);
-        // dd($validatedData);
+ 
 
-        // try {
-            // Iniciar una transacción de base de datos
-            // DB::beginTransaction();
+        $reserva = Reservacion::create([
+            'FechaSeleccionada' => $request->input('FechaSeleccionada'),
+            'Detalles_adicionales' => $request->input('DetallesAdicionales'),
+            'MontoTotal' => $request->input('MontoTotal'),
+            'CantidadPersonas' => $request->input('CantidadPersonas'),
+            'MetodoPago' => $request->input('MetodoPago'),
+            'fk_IdMetodopago' => $request->input('MetodoPago'),
+            'fk_IdUsuario' => $request->usuario_id,
+            'EstadoReservacion' => 'pendiente de pago',
 
-            // Crear la reserva
-            // $reserva = Reservacion::create([
-            //     // Asignar los campos de la reserva
-            //     // $validatedData['campo']...
-            // ]);
-           
-            $reserva = Reservacion::create($request->only('FechaSeleccionada', 'DetallesAdicionales','MontoTotal','CantidadPersonas', 'MetodoPago', 'usuario_id' ) + [
-                'fk_IdMetodopago' => $request->input('MetodoPago'),
-                'fk_IdUsuario' => $request->input('usuario_id') 
-            ]);
+            'fecha_expiracion' => now()->addMinutes(60),
+        ]);          
 
-            // dd($reserva);
-
-         
-            Detalle_reserva::create($request->only('id_paquete_turistico','fk_IdReservacion') + [
-                
-                'id_paquete_turistico' => $request->input('paquete_id'),
-                'fk_IdReservacion' => $reserva->IdReservacion 
-            ]);
-
-            // Actualizar disponibilidad del paquete (opcional)
-            // $paquete = Paquete::find($validatedData['paquete_id']);
-            // $paquete->disponibilidad -= 1;
-            // $paquete->save();
-
-            // Commit de la transacción
-            // DB::commit();
-
-            // Redireccionar con un mensaje de éxito
-            return redirect()->route('reservas_realizadas')->with('success', 'Reserva creada correctamente.');
-        // } catch (\Exception $e) {
-            // Rollback de la transacción en caso de error
-            // DB::rollBack();
-
-            // Redireccionar con un mensaje de error
-            // return back()->withInput()->withErrors(['error' => 'Error al crear la reserva: ' . $e->getMessage()]);
-        // }
+        
+        Detalle_reserva::create($request->only('id_paquete_turistico','fk_IdReservacion') + [
+            
+            'id_paquete_turistico' => $request->input('paquete_id'),
+            'fk_IdReservacion' => $reserva->IdReservacion 
+        ]);
+                            
+        // Redireccionar con un mensaje de éxito
+        return redirect()->route('reservas_realizadas')->with('warning', 'Se ha Realizado con exito su reserva!, expirará dentro de 1 hora en caso de no proceder con el pago');
+        
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Reservacion $reservacion)
-    {
-        //
+    //para cambiar el estatus a activo luego de pagar
+    public function cambiarEstatus($idreservacion){
+        $return = new stdClass();
+        $return->code = 200;
+        $return->message = "Se ha actualizado de forma correcta";
+
+        try {
+            $reserva = Reservacion::where('IdReservacion', $idreservacion)->first();
+            $reserva->EstadoReservacion = 'ACTIVA';
+            $reserva->save();
+        } catch (\Throwable $th) {
+            $return->message = $th->getMessage();
+            $return->code = 500;
+        }
+       
+        return redirect()->route('reservas_realizadas');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Reservacion $reservacion)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Reservacion $reservacion)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Reservacion $reservacion)
-    {
-        //
-    }
+ 
 }

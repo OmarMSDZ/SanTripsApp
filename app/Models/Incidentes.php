@@ -20,14 +20,14 @@ class Incidentes extends Model
     ];
 
     // Definir relaciones si es necesario
-    public function tipoIncidente()
-    {
-        return $this->belongsTo(TipoIncidente::class, 'fk_IdTipoIncidente', 'IdTipoIncidente');
-    }
+    // public function tipoIncidente()
+    // {
+    //     return $this->belongsTo(Tipo_Incidente::class, 'fk_IdTipoIncidente', 'IdTipoIncidente');
+    // }
 
-    public function usuario()
-    {
-        return $this->belongsTo(User::class, 'fk_IdUsuario', 'IdUsuario');
-    }
+    // public function usuario()
+    // {
+    //     return $this->belongsTo(User::class, 'fk_IdUsuario', 'IdUsuario');
+    // }
 }
 
