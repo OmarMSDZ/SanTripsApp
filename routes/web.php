@@ -42,10 +42,15 @@ use App\Http\Controllers\VehiculoEmpleadoController;
 use App\Http\Controllers\VehiculosPaquetesController;
 use App\Http\Controllers\VehiculoTransporteController;
 use App\Http\Controllers\UserIncidenteController;
+use App\Http\Controllers\AdminIncidentesController;
+
+use App\Mail\FacturaMail;
 use Illuminate\Support\Facades\Route;
 
 
 use App\Mail\pruebacorreos;
+use App\Mail\ticketElectronico;
+use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 //  Route::get('/welcome', function () {
 //      return view('welcome');
@@ -265,10 +270,66 @@ Route::middleware('auth')->prefix('admin')->group( function () {
         //eliminar registros
         Route::delete('/destroy/{id_reserva}', 'destroy')->name('reservashechas.destroy');
     });
+
+
+    //ruta Cargo empleados
+
+    Route::controller(CargosEmpleadoController::class)->prefix('admincargoempleado')->group( function () {
+        //ir a la vista principal
+        Route::get('/', 'index')->name('admincargoempleado.index');
+        //obtener datos completos
+        Route::get('/data', 'getCargoempleados')->name('admincargoempleado.getCargoempleados');
+        //obtener un dato especifico
+        Route::get('/data/{idCargo}', 'getCargoempleado')->name('admincargoempleado.getCargoempleado');
+        //guardar
+        Route::post('/', 'store')->name('admincargoempleado.store'); 
+        //actualizar
+        Route::post('/update/{idCargo}', 'update')->name('admincargoempleado.update');
+        //cambiar estado 
+        Route::post('/cambiar_estado/{idCargo}', 'admincambiarCargoempleado')->name('admincargoempleado.cambiar_estado');
+        //eliminar registros
+        Route::delete('/{idCargo}', 'delete')->name('admincargoempleado.delete');
+    });
+
+    //incidentes
+    Route::controller(AdminIncidentesController::class)->prefix('adminincidentes')->group(function () {
+        Route::get('/', 'index')->name('adminincidentes.index');
+        Route::post('/', 'store')->name('adminincidentes.store');
+        Route::post('/cambiar_estado/{id_incidente}', 'cambiarEstado')->name('adminincidentes.cambiar_estado');
+        Route::post('/update/{id_incidente}', 'update')->name('adminincidentes.update');
+        Route::get('/data/table', 'getIncidentes')->name('adminincidentes.getIncidentes');
+    
+    });
+
+//rutas asignacion Vehiculos paquetes
+
+Route::controller(VehiculosPaquetesController::class)->prefix('vehiculos_paquetes')->group(function () {
+    Route::get('/', 'index')->name('vehiculos_paquetes.index');
+    Route::post('/', 'store')->name('vehiculos_paquetes.store');
+    Route::post('/cambiar_estado/{id_vehiculos_paquetes}', 'cambiarEstadoVehiculoPaquete')->name('vehiculos_paquetes.cambiar_estado');
+    Route::post('/update/{id_vehiculos_paquetes}', 'update')->name('vehiculos_paquetes.update');
+
+    Route::get('/data/table', 'getVehiculosPaquetes')->name('vehiculos_paquetes.getVehiculosPaquetes');
+    Route::get('/data/table/{id_vehiculos_paquetes}', 'getVehiculoPaquete')->name('vehiculos_paquetes.getVehiculoPaquete');
+
+    Route::delete('/destroy/{id_vehiculos_paquetes}', 'destroy')->name('Vehiculos_paquetes.destroy');
 });
 
+//rutas asignacion Vehiculos empleados
 
+Route::controller(VehiculoEmpleadoController::class)->prefix('asignarvehiculoempleado')->group(function () {
+    Route::get('/', 'index')->name('asignarvehiculoempleado.index');
+    Route::post('/', 'store')->name('asignarvehiculoempleado.store');
+    Route::post('/cambiar_estado/{id_asignacion}', 'cambiarEstadoVehiculoEmpleado')->name('asignarvehiculoempleado.cambiar_estado');
+    Route::post('/update/{id_asignacion}', 'update')->name('asignarvehiculoempleado.update');
+    Route::get('/data/table', 'getAsignacionesVehiculos')->name('asignarvehiculoempleado.getAsignacionesVehiculos');
+    Route::get('/data/table/{id_asignacion_vehiculo}', 'getAsignacionVehiculo')->name('asignarvehiculoempleado.getAsignacionVehiculo');
+    
+    Route::delete('/{id}', 'delete')->name('asignarvehiculoempleado.delete');
 
+});
+
+});
   
 
 // RUTA DE USER INCIDENTE
@@ -281,6 +342,10 @@ Route::controller(UserincidenteController::class)->middleware('auth')->prefix('U
  
 // Rutas para navegar interfaces usuario , la de inicio es la primera que sale al abrir la app 
 Route::get('/', [InicioController::class,'index'])->name('inicio');
+
+// Rutas para navegar interfaces usuario , la de inicio es la primera que sale al abrir la app 
+Route::get('/', [InicioController::class,'index'])->name('inicio');
+
 
 Route::get('/incidentes', function () {
     return view('usuario/incidentes');
@@ -310,11 +375,21 @@ Route::post('/reservas_realizadas/cancelar', [ReservasRealizadasVistaController:
 //autentificacion de usuario
 Route::get('admin/adminmenu', [HomeController::class,'index']);
 
-//paypal (PRUEBA)
+//paypal 
 
 Route::get('/paypal/create-transaction/{idreservacion}', [PayPalController::class, 'createTransaction'])->name('createTransaction');
 Route::get('/paypal/capture-transaction/{idreservacion}', [PayPalController::class, 'captureTransaction'])->name('captureTransaction');
 Route::get('/paypal/cancel-transaction', [PayPalController::class, 'cancelTransaction'])->name('cancelTransaction');
+
+
+ //ruta para probar vistas de los correos
+//  Route::get('/factura', function () {
+//      // de esta forma se llama el controlador de los correos con los parametros
+//      // return view('Mails.TicketReserva');
+//     //   return (new FacturaMail(8,64,3))->render();
+ 
+    
+//  })->name('EnviarTicketElectronico');
 
 //rutas para la api de provincias paises y demas 
 Route::prefix('/v1')->group(function () {
@@ -325,13 +400,12 @@ Route::prefix('/v1')->group(function () {
     });
 });
 
+
+
 require __DIR__.'/auth.php';
 
 
-
-
-// prueba politicas
-
+// politicas de SanTrips
 Route::get('/politicas', [PoliticasController::class,'index'])->name('politicas.index');
 
 

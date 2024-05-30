@@ -51,6 +51,9 @@ class PaquetesTuristicosController extends Controller
                 'disponibilidad' => 'required|string',
 
                 'horainicio' => 'required',
+                //este dato no se le muestra al usuario
+                'puntoencuentro' => 'required',
+                
                 
                 'estado' => 'required|string',
                 'imagen1' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -69,6 +72,8 @@ class PaquetesTuristicosController extends Controller
             $paquete->Tiempo_estimado = $request->tiempoestimado;
             $paquete->Disponibilidad = $request->disponibilidad;
             $paquete->Horainicio = $request->horainicio;
+
+            $paquete->PuntoEncuentro = $request->puntoencuentro;
             
             $paquete->Estado = $request->estado;
             $paquete->fk_IdCategoriapaq = isset($request->categoriapaq) ? $request->categoriapaq : null;
@@ -115,6 +120,8 @@ class PaquetesTuristicosController extends Controller
                 'disponibilidad' => 'required|string',
 
                 'horainicio' => 'required',
+                'puntoencuentro' => 'required',
+                
                 
                 'estado' => 'required|string',
                 'imagen1' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -134,6 +141,8 @@ class PaquetesTuristicosController extends Controller
             $paquete->Tiempo_estimado = $request->tiempoestimado;
             $paquete->Disponibilidad = $request->disponibilidad;
             $paquete->Horainicio = $request->horainicio;
+            $paquete->PuntoEncuentro = $request->puntoencuentro;
+            
             
             $paquete->Estado = $request->estado;
             $paquete->fk_IdCategoriapaq = isset($request->categoriapaq) ? $request->categoriapaq : null;
@@ -185,6 +194,8 @@ class PaquetesTuristicosController extends Controller
             'Tiempo_estimado AS tiempoestimado',
             'Disponibilidad AS disponibilidad',
             'Horainicio AS horainicio',
+            //este dato no se le muestra al usuario
+            'PuntoEncuentro AS puntoencuentro',
             
             'Estado AS estado',
             'fk_IdCategoriapaq AS categoriapaq',
@@ -212,6 +223,10 @@ class PaquetesTuristicosController extends Controller
             'Tiempo_estimado AS tiempoestimado',
             'Disponibilidad AS disponibilidad',
             'Horainicio AS horainicio',
+
+            //este dato no se le muestra al usuario
+            'PuntoEncuentro AS puntoencuentro',
+            
             
             'Estado AS estado',
             'fk_IdCategoriapaq AS categoriapaq',

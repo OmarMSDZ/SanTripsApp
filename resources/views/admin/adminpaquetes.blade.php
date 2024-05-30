@@ -95,6 +95,7 @@
                             <th>Disponibilidad</th>
                             
                             <th>Hora Inicio</th>
+                            <th>Punto Encuentro</th>
                             
                             <th>Categoría</th>
                             <th>Oferta Aplicada</th>
@@ -210,6 +211,12 @@
                     </div>
                   </div>
 
+                  <div class="col-4">
+                    <div class="mb-3">
+                        <label for="puntoencuentro" class="form-label">Punto Encuentro</label>
+                        <textarea name="puntoencuentro" id="puntoencuentro" cols="30" rows="10" class="form-control limpiarForm" placeholder="Punto de encuentro (Dirección)" required></textarea>
+                      </div>
+                </div>
 
                 <div class="col-4">
                   <div class="mb-3">
