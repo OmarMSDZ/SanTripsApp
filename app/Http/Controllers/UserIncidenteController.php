@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Incidentes;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
+use App\Mail\IncidenteMail;
 
 class UserIncidenteController extends Controller
 {
@@ -34,6 +37,21 @@ class UserIncidenteController extends Controller
         $incidente->fk_IdTipoIncidente = $validatedData['tipoincidente'];
         $incidente->fk_IdUsuario = $user_id;
         $incidente->save();
+
+        // Enviar correos
+        $idusuario =  Auth::user()->id;
+        $idincidente = $incidente->IdIncidente;
+
+        // Obtener la lista de correos de los administradores desde la base de datos
+        $adminEmails = User::where('usertype', 'admin')->pluck('email');
+
+        // Enviar el correo a cada administrador
+        foreach ($adminEmails as $adminEmail) {
+            Mail::to($adminEmail)->send(new IncidenteMail($idusuario, $idincidente));
+        }
+
+        // // También enviar el correo al usuario actual
+        // Mail::to(Auth::user()->email)->send(new IncidenteMail($idusuario, $idincidente));
 
         // Redireccionar con un mensaje de éxito
         return redirect()->route('inicio')->with('success', 'Incidente creado correctamente');

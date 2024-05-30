@@ -1,0 +1,245 @@
+[33mcommit 6266f97a7ec129d5cb842f1755e9361d70d374f1[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 70a7589 ada4982
+Author: Darlenys Acevedo <dar.acevedo26@gmail.com>
+Date:   Sun May 26 23:36:15 2024 -0400
+
+    Actualizaciones incidentes -darlenys
+
+[33mcommit 70a75893ef370a45f5d01365e6e910150b44d0e8[m
+Author: Darlenys Acevedo <dar.acevedo26@gmail.com>
+Date:   Sun May 26 23:34:18 2024 -0400
+
+    Actualizaciones  incidentes - darlenys
+
+[33mcommit ada49826fae533025d03d1db481687a10883451d[m
+Merge: c6caba8 1a49161
+Author: OmarMSDZ <143972689+OmarMSDZ@users.noreply.github.com>
+Date:   Sat May 25 19:41:38 2024 -0400
+
+    Merge pull request #22 from OmarMSDZ/cambiosadminreservas
+    
+    cambios en migraciones y form cancelar reservas
+
+[33mcommit 1a49161969c0693bc9e112cfb18feed73ff6d948[m
+Author: OmarMSDZ <Omarjadismoralesdiaz@gmail.com>
+Date:   Sat May 25 19:41:09 2024 -0400
+
+    cambios en migraciones y form cancelar reservas
+
+[33mcommit c6caba8ea082b35cdbfe535205da594d84ed963d[m
+Merge: 37b5c0f eb47b04
+Author: OmarMSDZ <143972689+OmarMSDZ@users.noreply.github.com>
+Date:   Fri May 24 22:14:38 2024 -0400
+
+    Merge pull request #21 from OmarMSDZ/cambiosadminreservas
+    
+    cambios admin reservas, permitir cambiar fecha reserva
+
+[33mcommit eb47b04d317f7fb41bf706d3cb2233b5fdc0c6f1[m
+Author: OmarMSDZ <Omarjadismoralesdiaz@gmail.com>
+Date:   Fri May 24 22:14:04 2024 -0400
+
+    cambios admin reservas, permitir cambiar fecha reserva
+
+[33mcommit 37b5c0f946d1ead5072a330d5efb40477797520d[m
+Merge: 69250a5 82b77b5
+Author: OmarMSDZ <143972689+OmarMSDZ@users.noreply.github.com>
+Date:   Thu May 23 22:40:24 2024 -0400
+
+    Merge pull request #20 from OmarMSDZ/cambiosinicio
+    
+    Cambiosinicio
+
+[33mcommit 82b77b5e8af8e161428ee9c606ca2f2583c07c3a[m
+Merge: bcedf6b 69250a5
+Author: OmarMSDZ <Omarjadismoralesdiaz@gmail.com>
+Date:   Thu May 23 22:39:38 2024 -0400
+
+    Merge branch 'main' of https://github.com/OmarMSDZ/SanTripsApp into cambiosinicio
+
+[33mcommit bcedf6bbd2aa751c45246c1389c9b3539dbd1915[m
+Author: OmarMSDZ <Omarjadismoralesdiaz@gmail.com>
+Date:   Thu May 23 22:37:27 2024 -0400
+
+    Cambios de diseño en la pagina de inicio
+
+[33mcommit f72746b63f0a14602669653a80702948649fa8de[m
+Author: OmarMSDZ <Omarjadismoralesdiaz@gmail.com>
+Date:   Thu May 23 12:28:01 2024 -0400
+
+    cambios del 23-5-2024
+
+[33mcommit 69250a5ad13e4d99ced63da52783bd4dd41d0c86[m
+Merge: 602fcf6 d8cd5e5
+Author: OmarMSDZ <143972689+OmarMSDZ@users.noreply.github.com>
+Date:   Thu May 23 12:25:39 2024 -0400
+
+    Merge pull request #19 from OmarMSDZ/cancelarreservas
+    
+    funcion de cancelar reservas y funcionalidades en pagina de inicio
+
+[33mcommit 87750b151354fbce34eb3e57cd04f93e7d1d8ef9[m
+Merge: d8cd5e5 602fcf6
+Author: OmarMSDZ <Omarjadismoralesdiaz@gmail.com>
+Date:   Thu May 23 12:23:55 2024 -0400
+
+    Merge branch 'main' of https://github.com/OmarMSDZ/SanTripsApp into cancelarreservas
+
+[33mcommit d8cd5e56d4e95147733f6992f07365ff00a0b5eb[m[33m ([m[1;31morigin/cancelarreservas[m[33m)[m
+Author: OmarMSDZ <Omarjadismoralesdiaz@gmail.com>
+Date:   Thu May 23 12:20:54 2024 -0400
+
+    funcion de cancelar reservas y funcionalidades en pagina de inicio
+
+[33mcommit 602fcf649682695b18fa1a7f3a30f1f3bdb13a30[m
+Merge: 5e2743d 5c6818a
+Author: Darlenys Acevedo <dar.acevedo26@gmail.com>
+Date:   Thu May 23 11:41:11 2024 -0400
+
+    Commit de darlenys
+
+[33mcommit 5e2743de476381122bba8ed2e9737b27271c631b[m
+Author: Darlenys Acevedo <dar.acevedo26@gmail.com>
+Date:   Thu May 23 11:36:35 2024 -0400
+
+    crud encragados paquetes - Darlenys
+
+[33mcommit 5c6818a2b4c91aba9f59301ca671b581c66737d9[m
+Merge: f2d47c8 5d0eda6
+Author: OmarMSDZ <143972689+OmarMSDZ@users.noreply.github.com>
+Date:   Wed May 22 23:10:56 2024 -0400
+
+    Merge pull request #18 from OmarMSDZ/destinosenpaquetes
+    
+    Agregar destinos en paquetes turisticos en la vista de usuario y func…
+
+[33mcommit 5d0eda63bbc558e2028a49b4ac604eeac6a10370[m[33m ([m[1;31morigin/destinosenpaquetes[m[33m)[m
+Author: OmarMSDZ <Omarjadismoralesdiaz@gmail.com>
+Date:   Wed May 22 23:10:24 2024 -0400
+
+    Agregar destinos en paquetes turisticos en la vista de usuario y funciones en el form de reserva
+
+[33mcommit f2d47c81f42885fc3f6185ed3f56ade5074e3698[m
+Merge: 56efffc 9982ace
+Author: Darlenys Acevedo <dar.acevedo26@gmail.com>
+Date:   Wed May 22 14:02:44 2024 -0400
+
+    Merge branch 'main' of https://github.com/OmarMSDZ/SanTripsApp
+
+[33mcommit 56efffc6f98c2fb1da4301e6e52e4cf16f1a1dcc[m
+Author: Darlenys Acevedo <dar.acevedo26@gmail.com>
+Date:   Wed May 22 14:00:59 2024 -0400
+
+    prueba 1
+
+[33mcommit 9982ace87511ed5d352c8e82abc1d23e4681a572[m
+Merge: 85e637a 55ea73f
+Author: OmarMSDZ <143972689+OmarMSDZ@users.noreply.github.com>
+Date:   Tue May 21 22:58:24 2024 -0400
+
+    Merge pull request #17 from OmarMSDZ/cambiosmigraciones
+    
+    Cambiosmigraciones
+
+[33mcommit 55ea73f23af4e2899d59e0d0bb5cce1e37c11a52[m[33m ([m[1;31morigin/cambiosmigraciones[m[33m)[m
+Merge: 65fdf5d 85e637a
+Author: OmarMSDZ <Omarjadismoralesdiaz@gmail.com>
+Date:   Tue May 21 22:57:46 2024 -0400
+
+    cambios en migraciones y vistas de usuarios
+
+[33mcommit 85e637ae2e5b3d373baa6270573e240a140312c9[m
+Author: Darlenys Acevedo <dar.acevedo26@gmail.com>
+Date:   Tue May 21 22:47:05 2024 -0400
+
+    crud admin de paquetes destinos -Darlenys
+
+[33mcommit 65fdf5d44c385df81311e1108de7393ded31a900[m
+Author: OmarMSDZ <Omarjadismoralesdiaz@gmail.com>
+Date:   Tue May 21 21:50:06 2024 -0400
+
+    Cambios en migraciones, seeders y formularios
+
+[33mcommit 89236d6e578fc1ee2a13d8c17c5760b5013acde1[m
+Merge: 948b191 79f5250
+Author: OmarMSDZ <143972689+OmarMSDZ@users.noreply.github.com>
+Date:   Mon May 20 22:22:26 2024 -0400
+
+    Merge pull request #16 from OmarMSDZ/adminreservas2
+    
+    correccion de rutas
+
+[33mcommit 79f5250eac1953285b76de3365a49a557b24eb74[m
+Author: OmarMSDZ <Omarjadismoralesdiaz@gmail.com>
+Date:   Mon May 20 22:21:40 2024 -0400
+
+    correccion de rutas
+
+[33mcommit 948b191ad0525db87ab0afd7e957f4ddbf04596a[m
+Merge: 347b0e3 30e2e36
+Author: OmarMSDZ <143972689+OmarMSDZ@users.noreply.github.com>
+Date:   Mon May 20 22:13:27 2024 -0400
+
+    Merge pull request #15 from OmarMSDZ/adminreservas2
+    
+    admin reservas
+
+[33mcommit 30e2e365dbff950781762d32de2c324c10c3012f[m
+Author: OmarMSDZ <Omarjadismoralesdiaz@gmail.com>
+Date:   Mon May 20 22:12:58 2024 -0400
+
+    admin reservas
+
+[33mcommit 347b0e36fb78c83648d29129aec2f0ec5adc2928[m
+Merge: dd9cd9d b8540f0
+Author: OmarMSDZ <143972689+OmarMSDZ@users.noreply.github.com>
+Date:   Sun May 19 23:04:16 2024 -0400
+
+    Merge pull request #14 from OmarMSDZ/formvehiculo
+    
+    Formulario vehiculos admin
+
+[33mcommit b8540f07ad075cb92358076c37d34bed88a2b34c[m
+Author: OmarMSDZ <Omarjadismoralesdiaz@gmail.com>
+Date:   Sun May 19 21:58:23 2024 -0400
+
+    Formulario vehiculos admin
+
+[33mcommit dd9cd9de1aae49f69f5ccc9425243333ef948a7a[m
+Merge: 8c215fe a9bf085
+Author: OmarMSDZ <143972689+OmarMSDZ@users.noreply.github.com>
+Date:   Sat May 18 23:04:31 2024 -0400
+
+    Merge pull request #13 from OmarMSDZ/imagenespaquetes
+    
+    implementacion de imagenes en paquetes
+
+[33mcommit a9bf0852581353bb88828a73d73456f0ca1b66f0[m
+Author: OmarMSDZ <Omarjadismoralesdiaz@gmail.com>
+Date:   Sat May 18 22:57:54 2024 -0400
+
+    implementacion de imagenes en paquetes
+
+[33mcommit 8c215feb6166239295d8939d860cc2fb57bdc0a3[m
+Merge: f4fdd69 52e1846
+Author: OmarMSDZ <143972689+OmarMSDZ@users.noreply.github.com>
+Date:   Sat May 18 20:42:31 2024 -0400
+
+    Merge pull request #12 from OmarMSDZ/botoneliminarcruds
+    
+    cambios en los form (boton de eliminar en forms de admin)
+
+[33mcommit 52e184641145def1cc9af4d8f8e37002211b41b2[m
+Author: OmarMSDZ <Omarjadismoralesdiaz@gmail.com>
+Date:   Sat May 18 20:41:42 2024 -0400
+
+    cambios en los form (boton de eliminar en forms de admin)
+
+[33mcommit f4fdd6992f526080bba28b4b9ec3ecb18fe75351[m
+Merge: a113057 6b73378
+Author: OmarMSDZ <143972689+OmarMSDZ@users.noreply.github.com>
+Date:   Sat May 18 16:26:39 2024 -0400
+
+    Merge pull request #11 from OmarMSDZ/formusuarios
+    
+    Form usuarios y cam

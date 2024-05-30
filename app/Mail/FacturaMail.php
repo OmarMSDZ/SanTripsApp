@@ -34,7 +34,7 @@ class FacturaMail extends Mailable
         $userQuery = User::all()->where('id', $idusuario)->first();
 
         //traer info de paquete y reserva especifica
-        $paqueteReservaQuery = DB::table('reservacion as r')
+        $paqueteReservaQuery = DB::table('incidente as inc')
             ->select(
                 'p.id as idpaq',
                 'p.Nombre as nombre',
