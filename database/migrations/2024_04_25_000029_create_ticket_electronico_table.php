@@ -20,7 +20,7 @@ return new class extends Migration
             $table->dateTime('Valido_hasta');
             $table->text('Punto_encuentro');
             $table->foreignId('fk_IdReservacion')->constrained('Reservacion', 'IdReservacion');
-            $table->foreignId('id_empleado')->constrained('empleados');
+            $table->foreignId('id_empleado')->constrained('Empleados');
             $table->foreignId('fk_IdUsuario')->constrained('users');
             $table->timestamps();
         });

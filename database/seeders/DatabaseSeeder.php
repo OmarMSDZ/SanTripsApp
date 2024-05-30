@@ -56,6 +56,7 @@ class DatabaseSeeder extends Seeder
         
         $this->call(AppSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(OfertaSeeder::class);
         
 
 
