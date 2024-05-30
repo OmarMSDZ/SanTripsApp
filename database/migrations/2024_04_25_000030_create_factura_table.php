@@ -22,16 +22,11 @@ return new class extends Migration
             $table->string('Tipo_pago', 50);
             $table->string('Plazo', 25)->nullable()->default(null);
             $table->float('Monto_pendiente')->nullable()->default(null);
-            $table->unsignedBigInteger('fk_IdReservacion');
+            $table->foreignId('fk_IdReservacion')->constrained('Reservacion', 'IdReservacion');
+            
             $table->timestamps();
             
-            $table->index(["fk_IdReservacion"], 'fk_IdReservacion');
-
-
-            $table->foreign('fk_IdReservacion', 'fk_IdReservacionFactura')
-                ->references('IdReservacion')->on('reservacion')
-                ->onDelete('restrict')
-                ->onUpdate('cascade');
+          
         });
     }
  

@@ -16,6 +16,8 @@ return new class extends Migration
             $table->id('IdAsignacion');
             $table->date('FechaAsignacion');
             $table->foreignId('id_empleado')->constrained('Empleados');
+            $table->foreignId('fk_IdVehiculo')->constrained('vehiculo_transporte', 'IdVehiculo');
+            
             // $table->unsignedBigInteger('fk_IdEmpleado');
             $table->unsignedBigInteger('fk_IdVehiculo');
             $table->timestamps();
@@ -30,10 +32,10 @@ return new class extends Migration
             //     ->onDelete('restrict')
             //     ->onUpdate('cascade');
 
-            $table->foreign('fk_IdVehiculo', 'fk_IdVehiculo')
-                ->references('IdVehiculo')->on('vehiculo_transporte')
-                ->onDelete('restrict')
-                ->onUpdate('cascade');
+            // $table->foreign('fk_IdVehiculo', 'fk_IdVehiculo')
+            //     ->references('IdVehiculo')->on('vehiculo_transporte')
+            //     ->onDelete('restrict')
+            //     ->onUpdate('cascade');
         });
     }
 

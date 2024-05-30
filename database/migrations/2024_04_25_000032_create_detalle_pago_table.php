@@ -14,24 +14,11 @@ return new class extends Migration
         Schema::create('Detalle_pago', function (Blueprint $table) {
           
             $table->id('IdDetallePago');
-            $table->unsignedBigInteger('fk_NumFactura');
-            $table->unsignedBigInteger('fk_IdPago');
+            $table->foreignId('fk_NumFactura')->constrained('Factura', 'NumFactura');
+            $table->foreignId('fk_IdPago')->constrained('Pago', 'IdPago');
             $table->timestamps();
             
-            $table->index(["fk_NumFactura"], 'fk_NumFactura');
-
-            $table->index(["fk_IdPago"], 'fk_IdPago');
-
-
-            $table->foreign('fk_NumFactura', 'fk_NumFacturaDetallePago')
-                ->references('NumFactura')->on('factura')
-                ->onDelete('restrict')
-                ->onUpdate('cascade');
-
-            $table->foreign('fk_IdPago', 'fk_IdPagoDetallePago')
-                ->references('IdPago')->on('pago')
-                ->onDelete('restrict')
-                ->onUpdate('cascade');
+           
         });
     }
 

@@ -16,24 +16,8 @@ return new class extends Migration
             $table->id('IdDetalleReserva');
             $table->integer('cantidad');
             $table->foreignId('id_paquete_turistico')->constrained('paquetes_turisticos');
-            // $table->unsignedBigInteger('fk_IdPaquete');
-            $table->unsignedBigInteger('fk_IdReservacion');
+            $table->foreignId('fk_IdReservacion')->constrained('Reservacion', 'IdReservacion');
             $table->timestamps();
-
-            // $table->index(["fk_IdPaquete"], 'fk_IdPaquete');
-
-            $table->index(["fk_IdReservacion"], 'fk_IdReservacion');
-
-
-            // $table->foreign('fk_IdPaquete', 'fk_IdPaqueteDetalleReserva')
-            //     ->references('IdPaquete')->on('paquetes_turisticos')
-            //     ->onDelete('restrict')
-            //     ->onUpdate('cascade');
-
-            $table->foreign('fk_IdReservacion', 'fk_IdReservacionDetalleReserva')
-                ->references('IdReservacion')->on('reservacion')
-                ->onDelete('restrict')
-                ->onUpdate('cascade');
         });
     }
 
