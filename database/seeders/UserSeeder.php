@@ -22,6 +22,6 @@ class UserSeeder extends Seeder
 
              
         ];
-        DB::table('users')->insert($data);
+        DB::table('Users')->insert($data);
     }
 }

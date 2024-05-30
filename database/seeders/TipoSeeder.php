@@ -49,6 +49,6 @@ class TipoSeeder extends Seeder
 
             
         ];
-        DB::table('tipos')->insert($data);
+        DB::table('Tipos')->insert($data);
     }
 }

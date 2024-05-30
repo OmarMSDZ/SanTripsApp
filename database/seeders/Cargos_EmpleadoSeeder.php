@@ -20,6 +20,6 @@ class Cargos_EmpleadoSeeder extends Seeder
             
              
         ];
-        DB::table('cargos_empleado')->insert($data);
+        DB::table('Cargos_empleado')->insert($data);
     }
 }
