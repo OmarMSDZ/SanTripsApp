@@ -30,7 +30,7 @@ $( function () {
             {data: 'tiempoestimado'},
             {data: 'disponibilidad'},
             {data: 'horainicio'},
-            
+            {data: 'puntoencuentro'},
             
             //campos fk 
             {data: 'categoriapaq'},
@@ -202,11 +202,12 @@ $( function () {
             $form.find('select[name="edades"]').val(response.edades);
             $form.find('select[name="idiomas"]').val(response.idiomas);
             $form.find('select[name="alojamiento"]').val(response.alojamiento);
- 
+            
             $form.find('input[name="tiempoestimado"]').val(response.tiempoestimado);
             $form.find('select[name="disponibilidad"]').val(response.disponibilidad);
             $form.find('input[name="horainicio"]').val(response.horainicio);
             
+            $form.find('#puntoencuentro').val(response.puntoencuentro);
 
 
             //campos de fk 
