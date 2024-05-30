@@ -32,7 +32,7 @@ class AppSeeder extends Seeder
             
             ['codigo' => 'rsv', 'orden' => 8, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Reservas', 'ruta' => 'reservashechas.index', 'icono' => 'bi bi-calendar-range-fill'],
             
-            ['codigo' => 'pgs', 'orden' => 9, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Pagos', 'ruta' => 'pagos.index', 'icono' => 'bi bi-calendar-range-fill', 'activo' => '0', 'visible' => '0'],
+            // ['codigo' => 'pgs', 'orden' => 9, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Pagos', 'ruta' => 'pagos.index', 'icono' => 'bi bi-calendar-range-fill', 'activo' => '0', 'visible' => '0'],
             
             ['codigo' => 'oft', 'orden' => 10, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Ofertas', 'ruta' => 'ofertas.index', 'icono' => 'bi bi-calendar-range-fill'],
 
@@ -40,7 +40,15 @@ class AppSeeder extends Seeder
             
             ['codigo' => 'ecpq', 'orden' => 12, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Encargados Paquetes', 'ruta' => 'encargadopaq.index', 'icono' => 'bi bi-calendar-range-fill'],
 
-            ['codigo' => 'extr', 'orden' => 13, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Extras', 'ruta' => 'adminvarias', 'icono' => 'bi bi-calendar-range-fill', 'activo' => '0', 'visible' => '0'],
+            ['codigo' => 'inci', 'orden' => 13, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Incidentes', 'ruta' => 'adminincidentes.index', 'icono' => 'bi bi-calendar-range-fill'],
+            
+            ['codigo' => 'crgemp', 'orden' => 14, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Cargos Empleado', 'ruta' => 'admincargoempleado.index', 'icono' => 'bi bi-calendar-range-fill'],
+            
+            ['codigo' => 'vhcpaq', 'orden' => 14, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Asig. Vehiculos Paq.', 'ruta' => 'vehiculos_paquetes.index', 'icono' => 'bi bi-calendar-range-fill'],
+            
+            ['codigo' => 'vhcemp', 'orden' => 15, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Asig. Vehiculos. Emp.', 'ruta' => 'asignarvehiculoempleado.index', 'icono' => 'bi bi-calendar-range-fill'],
+            
+            // ['codigo' => 'extr', 'orden' => 16, 'id_app_padre' => NULL, 'modulo' => 0, 'nombre' => 'Extras', 'ruta' => 'adminvarias', 'icono' => 'bi bi-calendar-range-fill', 'activo' => '0', 'visible' => '0'],
         ];
         DB::table('apps')->insert($apps);
 
