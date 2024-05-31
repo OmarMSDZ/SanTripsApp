@@ -11,11 +11,11 @@ return new class extends Migration
  
     public function up()
     {
-        Schema::create('Modelo_vehiculo', function (Blueprint $table) {
+        Schema::create('modelo_vehiculo', function (Blueprint $table) {
             
             $table->id('IdModeloVehiculo');
             $table->string('ModeloVehiculo', 25);
-            $table->foreignId('fk_IdMarcaVehiculo')->nullable()->constrained('Marca_vehiculo','IdMarcaVehiculo');
+            $table->foreignId('fk_IdMarcaVehiculo')->nullable()->constrained('marca_vehiculo','IdMarcaVehiculo');
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
    
     public function down()
     {
-        Schema::dropIfExists('Modelo_vehiculo');
+        Schema::dropIfExists('modelo_vehiculo');
     }
 };

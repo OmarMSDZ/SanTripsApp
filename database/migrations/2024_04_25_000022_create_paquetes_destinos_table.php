@@ -17,24 +17,10 @@ return new class extends Migration
             $table->foreignId('id_paquetes_turistico')->constrained('paquetes_turisticos');
             $table->foreignId('id_destino')->constrained('destinos');
 
-            // $table->unsignedBigInteger('fk_IdPaquete');
-            // $table->unsignedBigInteger('fk_IdDestino');
+          
             $table->timestamps();
 
-            // $table->index(["fk_IdPaquete"], 'fk_IdPaquete');
-
-            // $table->index(["fk_IdDestino"], 'fk_IdDestino');
-
-
-            // $table->foreign('fk_IdDestino', 'fk_IdDestino')
-            //     ->references('IdDestino')->on('destinos')
-            //     ->onDelete('restrict')
-            //     ->onUpdate('cascade');
-
-            // $table->foreign('fk_IdPaquete', 'fk_IdPaquete')
-            //     ->references('IdPaquete')->on('paquetes_turisticos')
-            //     ->onDelete('restrict')
-            //     ->onUpdate('cascade');
+ 
         });
     }
 

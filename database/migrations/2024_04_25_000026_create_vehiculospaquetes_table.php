@@ -11,7 +11,7 @@ return new class extends Migration
 
     public function up()
     {
-        Schema::create('Vehiculos_paquetes', function (Blueprint $table) {
+        Schema::create('vehiculos_paquetes', function (Blueprint $table) {
             // $table->engine = 'InnoDB';
             $table->id('IdVehiculosPaquetes');
             $table->foreignId('id_paquete_turistico')->constrained('paquetes_turisticos');
@@ -26,6 +26,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('Vehiculos_paquetes');
+        Schema::dropIfExists('vehiculos_paquetes');
     }
 };

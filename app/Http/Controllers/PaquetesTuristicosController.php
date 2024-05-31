@@ -76,7 +76,7 @@ class PaquetesTuristicosController extends Controller
             $paquete->PuntoEncuentro = $request->puntoencuentro;
             
             $paquete->Estado = $request->estado;
-            $paquete->fk_IdCategoriapaq = isset($request->categoriapaq) ? $request->categoriapaq : null;
+            $paquete->id_categoria_paquete = isset($request->categoriapaq) ? $request->categoriapaq : null;
             $paquete->fk_IdOferta = isset($request->oferta) ? $request->oferta : null;
 
             if ($request->hasFile('imagen1')) {
@@ -145,7 +145,7 @@ class PaquetesTuristicosController extends Controller
             
             
             $paquete->Estado = $request->estado;
-            $paquete->fk_IdCategoriapaq = isset($request->categoriapaq) ? $request->categoriapaq : null;
+            $paquete->id_categoria_paquete = isset($request->categoriapaq) ? $request->categoriapaq : null;
             $paquete->fk_IdOferta = isset($request->oferta) ? $request->oferta : null;
 
             if ($request->hasFile('imagen1')) {
@@ -198,7 +198,7 @@ class PaquetesTuristicosController extends Controller
             'PuntoEncuentro AS puntoencuentro',
             
             'Estado AS estado',
-            'fk_IdCategoriapaq AS categoriapaq',
+            'id_categoria_paquete AS categoriapaq',
             'fk_IdOferta AS oferta',
             'imagen1',
             'imagen2',
@@ -229,7 +229,7 @@ class PaquetesTuristicosController extends Controller
             
             
             'Estado AS estado',
-            'fk_IdCategoriapaq AS categoriapaq',
+            'id_categoria_paquete AS categoriapaq',
             'fk_IdOferta AS oferta',
             'imagen1',
             'imagen2',

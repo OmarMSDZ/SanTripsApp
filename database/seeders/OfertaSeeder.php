@@ -19,6 +19,6 @@ class OfertaSeeder extends Seeder
         
              
         ];
-        DB::table('Ofertas')->insert($data);
+        DB::table('ofertas')->insert($data);
     }
 }

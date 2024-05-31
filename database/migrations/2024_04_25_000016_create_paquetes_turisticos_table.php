@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('Descripcion');
             $table->float('Costo');
             $table->integer('Num_personas');
-            $table->string('Edades', 15);
+            $table->string('Edades', 25);
             $table->string('Idiomas', 50);
             $table->string('Alojamiento', 50)->nullable()->default(null);
             $table->integer('Tiempo_estimado');
@@ -34,7 +34,7 @@ return new class extends Migration
             
             $table->string('Estado', 25)->default('ACTIVO');
             
-            // $table->foreignId('fk_IdCategoriapaq')->nullable()->constrained('categorias_paquetes', 'IdCategoriapaq');
+            // $table->foreignId('id_categoria_paquete')->nullable()->constrained('categorias_paquetes', 'IdCategoriapaq');
             $table->foreignId('id_categoria_paquete')->nullable()->constrained('tipos');
             $table->foreignId('fk_IdOferta')->nullable()->constrained('ofertas', 'IdOferta');
 

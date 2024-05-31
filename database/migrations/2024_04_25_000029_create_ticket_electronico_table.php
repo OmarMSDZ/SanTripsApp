@@ -11,7 +11,7 @@ return new class extends Migration
 
     public function up()
     {
-        Schema::create('Ticket_electronico', function (Blueprint $table) {
+        Schema::create('ticket_electronico', function (Blueprint $table) {
 
             $table->id();
             $table->string('CodigoVerificacion');
@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('Codigo', 255)->unique();
             $table->dateTime('Valido_hasta');
             $table->text('Punto_encuentro');
-            $table->foreignId('fk_IdReservacion')->constrained('Reservacion', 'IdReservacion');
-            $table->foreignId('id_empleado')->constrained('Empleados');
+            $table->foreignId('fk_IdReservacion')->constrained('reservacion', 'IdReservacion');
+            $table->foreignId('id_empleado')->constrained('empleados');
             $table->foreignId('fk_IdUsuario')->constrained('users');
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('Ticket_electronico');
+        Schema::dropIfExists('ticket_electronico');
     }
 };

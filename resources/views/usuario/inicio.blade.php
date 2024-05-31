@@ -30,7 +30,7 @@
             </div>
         </section>
 
-        <section class="tour-search">
+        {{-- <section class="tour-search">
             <div class="container">
 
                 <form action="" class="tour-search-form">
@@ -75,7 +75,7 @@
                 </form>
 
             </div>
-        </section>
+        </section> --}}
         <!--
         - #CTA
       -->

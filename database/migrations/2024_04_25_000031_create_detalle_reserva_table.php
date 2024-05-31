@@ -11,12 +11,12 @@ return new class extends Migration
 
     public function up()
     {
-        Schema::create('Detalle_reserva', function (Blueprint $table) {
+        Schema::create('detalle_reserva', function (Blueprint $table) {
 
             $table->id('IdDetalleReserva');
             $table->integer('cantidad');
             $table->foreignId('id_paquete_turistico')->constrained('paquetes_turisticos');
-            $table->foreignId('fk_IdReservacion')->constrained('Reservacion', 'IdReservacion');
+            $table->foreignId('fk_IdReservacion')->constrained('reservacion', 'IdReservacion');
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('Detalle_reserva');
+        Schema::dropIfExists('detalle_reserva');
     }
 };

@@ -24,7 +24,7 @@ FROM
     paquetes_turisticos as p 
 INNER JOIN 
     tipos as tip 
-    ON p.fk_IdCategoriaPaq=tip.id 
+    ON p.id_categoria_paquete=tip.id 
 INNER JOIN 
     ofertas as o 
     ON p.fk_IdOferta=o.IdOferta 

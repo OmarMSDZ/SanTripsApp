@@ -11,7 +11,7 @@ return new class extends Migration
     
     public function up()
     {
-        Schema::create('Reservacion', function (Blueprint $table) {
+        Schema::create('reservacion', function (Blueprint $table) {
         
             $table->id('IdReservacion');
             $table->date('FechaSeleccionada');
@@ -22,9 +22,8 @@ return new class extends Migration
             //esto porque la reservacion se va a crear primero que el pago
             $table->string('EstadoReservacion')->default('PAGO PENDIENTE');
             
-            // $table->unsignedBigInteger('fk_IdMetodopago');
-            // $table->unsignedBigInteger('fk_IdUsuario');
-            $table->foreignId('fk_IdMetodopago')->constrained('metodo_pago', 'IdMetodooago');
+          
+            $table->foreignId('fk_IdMetodopago')->constrained('metodo_pago', 'IdMetodopago');
             $table->foreignId('fk_IdUsuario')->constrained('users');
             
             //fecha de expiracion de la reserva (se le dara una hora o 2)
@@ -39,6 +38,6 @@ return new class extends Migration
     
     public function down()
     {
-        Schema::dropIfExists('Reservacion');
+        Schema::dropIfExists('reservacion');
     }
 };

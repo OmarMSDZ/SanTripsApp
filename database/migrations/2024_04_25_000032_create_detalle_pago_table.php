@@ -11,11 +11,11 @@ return new class extends Migration
    
     public function up()
     {
-        Schema::create('Detalle_pago', function (Blueprint $table) {
+        Schema::create('detalle_pago', function (Blueprint $table) {
           
             $table->id('IdDetallePago');
-            $table->foreignId('fk_NumFactura')->constrained('Factura', 'NumFactura');
-            $table->foreignId('fk_IdPago')->constrained('Pago', 'IdPago');
+            $table->foreignId('fk_NumFactura')->constrained('factura', 'NumFactura');
+            $table->foreignId('fk_IdPago')->constrained('pago', 'IdPago');
             $table->timestamps();
             
            
@@ -25,6 +25,6 @@ return new class extends Migration
  
     public function down()
     {
-        Schema::dropIfExists('Detalle_pago');
+        Schema::dropIfExists('detalle_pago');
     }
 };

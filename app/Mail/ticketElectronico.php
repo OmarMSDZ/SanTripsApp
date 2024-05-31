@@ -59,7 +59,7 @@ class ticketElectronico extends Mailable
             )
             ->join('detalle_reserva as dr', 'r.IdReservacion', '=', 'dr.fk_IdReservacion')
             ->join('paquetes_turisticos as p', 'p.id', '=', 'dr.id_paquete_turistico')
-            ->join('tipos as tip', 'tip.id', '=', 'p.fk_IdCategoriapaq')
+            ->join('tipos as tip', 'tip.id', '=', 'p.id_categoria_paquete')
             ->join('ofertas as o', 'o.IdOferta', '=', 'p.fk_IdOferta')
             ->where('r.IdReservacion', '=', $idreserva)
             ->first();

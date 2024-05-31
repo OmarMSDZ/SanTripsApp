@@ -11,7 +11,7 @@ return new class extends Migration
  
     public function up()
     {
-        Schema::create('Factura', function (Blueprint $table) {
+        Schema::create('factura', function (Blueprint $table) {
            
             $table->id('NumFactura');
             $table->dateTime('Fecha');
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('Tipo_pago', 50);
             $table->string('Plazo', 25)->nullable()->default(null);
             $table->float('Monto_pendiente')->nullable()->default(null);
-            $table->foreignId('fk_IdReservacion')->constrained('Reservacion', 'IdReservacion');
+            $table->foreignId('fk_IdReservacion')->constrained('reservacion', 'IdReservacion');
             
             $table->timestamps();
             
@@ -32,6 +32,6 @@ return new class extends Migration
  
     public function down()
     {
-        Schema::dropIfExists('Factura');
+        Schema::dropIfExists('factura');
     }
 };
