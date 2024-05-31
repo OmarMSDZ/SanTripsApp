@@ -224,7 +224,7 @@ WHERE
                                             <input type="number" id="Porcentaje" value="{{ $paquete->porciento }}"
                                                 hidden readonly>
 
-                                            <label for="MontoTotal">Monto Total a Pagar (RD$) </label>
+                                            <label for="MontoTotal">Monto Total a Pagar (USD$) </label>
 
                                             {{-- <input type="number" name="MontoTotal" class="form-control" readonly step="0.01" value="{{($paquete->costo)-((($paquete->costo)*($paquete->porciento))/100)}}"> --}}
                                             <input type="number" id="MontoTotal" name="MontoTotal"

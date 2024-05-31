@@ -15,6 +15,22 @@ $( function () {
         responsive: true,
         dom: 'Bfrtip',
         "ajax" : `${PARAMETROS.URL_DATATABLE}?${$('#formBusqueda').serialize()}`,
+        //se hace de esta manera el ajax por si da un error saber localizarlo
+        //  ajax: {
+        //      url: PARAMETROS.URL_DATATABLE,
+        //      type: 'GET',
+        //      data: $('#formBusqueda').serialize(),
+        //      success: function(data) {
+        //          dataTable.clear().draw();
+        //          dataTable.rows.add(data).draw();
+        //      },
+        //      error: function(xhr, textStatus, errorThrown) {
+        //          console.log(xhr.responseText);
+        //          console.log(textStatus);
+        //          console.log(errorThrown);
+        //      }
+        //  },
+
         "language": {
             // "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
         },
