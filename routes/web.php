@@ -45,6 +45,8 @@ use App\Http\Controllers\UserIncidenteController;
 use App\Http\Controllers\AdminIncidentesController;
 
 use App\Mail\FacturaMail;
+use App\Mail\IncidenteMail;
+use App\Mail\CancelacionMail;
 use Illuminate\Support\Facades\Route;
 
 
@@ -381,15 +383,28 @@ Route::get('/paypal/create-transaction/{idreservacion}', [PayPalController::clas
 Route::get('/paypal/capture-transaction/{idreservacion}', [PayPalController::class, 'captureTransaction'])->name('captureTransaction');
 Route::get('/paypal/cancel-transaction', [PayPalController::class, 'cancelTransaction'])->name('cancelTransaction');
 
+//ruta para probar vistas de los correos
 
- //ruta para probar vistas de los correos
-//  Route::get('/factura', function () {
-//      // de esta forma se llama el controlador de los correos con los parametros
-//      // return view('Mails.TicketReserva');
-//     //   return (new FacturaMail(8,64,3))->render();
+
+ Route::get('/cancelacion', function () {
+// de esta forma se llama el controlador de los correos con los parametros
+//  return view('Mails.TicketReserva');
+
+return (new CancelacionMail(10,10))->render();
  
-    
-//  })->name('EnviarTicketElectronico');
+     })->name('cancelacion');
+
+
+
+
+
+
+
+
+
+
+
+
 
 //rutas para la api de provincias paises y demas 
 Route::prefix('/v1')->group(function () {

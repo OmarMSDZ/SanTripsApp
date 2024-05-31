@@ -7,18 +7,18 @@ use App\Models\Reservacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use stdClass;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CancelacionMail;
 
 class ReservasRealizadasVistaController extends Controller
 {
-    //
-
-    public function index(){
-
+    public function index()
+    {
         $idusuario = Auth::user()->id;
 
-        $usuarios = DB::select("SELECT id, name, email FROM users WHERE id=$idusuario");
+        $usuarios = DB::select("SELECT id, name, email FROM users WHERE id = ?", [$idusuario]);
 
+ 
         $reservas = DB::select("SELECT 
         r.IdReservacion, 
         p.Nombre, 
@@ -46,12 +46,10 @@ class ReservasRealizadasVistaController extends Controller
          OR r.EstadoReservacion = 'COMPLETADA')
          
          ");
+ 
 
         return view('usuario.reservas_realizadas', compact('idusuario', 'usuarios', 'reservas'));
     }
-  
-
-  
 
     public function cancelarReservacion(Request $request)
     {
@@ -68,14 +66,20 @@ class ReservasRealizadasVistaController extends Controller
                     $reservacion->EstadoReservacion = 'CANCELADA';
                     $reservacion->save();
 
-                    // para guardar tambien en la tabla de cancelacion reserva 
+                    // Guardar también en la tabla de cancelación de reserva 
                     $cancelacion_reserva = new cancelacion_reserva();
-                    $cancelacion_reserva->motivo= $request->motivocancelacion;
+                    $cancelacion_reserva->motivo = $request->motivocancelacion;
                     $cancelacion_reserva->acepta = $request->reembolsoSi;
                     $cancelacion_reserva->fk_IdReservacion = $request->id_reserva;
                     $cancelacion_reserva->save();
 
-                    return redirect()->route('reservas_realizadas')->with('success', 'Reservación cancelada correctamente');
+                    // Enviar correo electrónico de cancelación
+                    $idusuario = Auth::user()->id;
+                    $idcancelacion = $cancelacion_reserva->id;
+
+                    Mail::to(Auth::user()->email)->send(new CancelacionMail($idusuario, $idcancelacion));
+
+                    return redirect()->route('reservas_realizadas')->with('success', 'Reservación cancelada correctamente y Correo de cancelacion enviado correctamente');
                 } else {
                     return redirect()->route('reservas_realizadas')->with('error', 'Reservación no encontrada');
                 }
@@ -86,8 +90,4 @@ class ReservasRealizadasVistaController extends Controller
             return redirect()->route('reservas_realizadas')->with('error', 'Ocurrió un error: ' . $th->getMessage());
         }
     }
-    
-    
-
-
 }

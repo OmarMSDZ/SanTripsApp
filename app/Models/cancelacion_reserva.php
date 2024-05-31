@@ -10,4 +10,10 @@ class cancelacion_reserva extends Model
     use HasFactory;
 
     protected $table = 'cancelacion_reserva';
+
+    protected $fillable = [
+        'motivo',
+        'acepta',
+        'fk_IdReservacion',
+    ];
 }
