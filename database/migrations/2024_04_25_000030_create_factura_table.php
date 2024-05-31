@@ -17,10 +17,10 @@ return new class extends Migration
             $table->dateTime('Fecha');
             $table->text('Descripcion')->nullable()->default(null);
             $table->float('Monto');
-            $table->float('Impuestos')->nullable()->default(null);
+     
             $table->float('Descuentos')->nullable()->default(null);
-            $table->string('Tipo_pago', 50);
-            $table->string('Plazo', 25)->nullable()->default(null);
+ 
+  
             $table->float('Monto_pendiente')->nullable()->default(null);
             $table->foreignId('fk_IdReservacion')->constrained('reservacion', 'IdReservacion');
             

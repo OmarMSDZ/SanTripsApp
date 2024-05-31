@@ -29,9 +29,8 @@ class TipoSeeder extends Seeder
             ['codigo' => 'gastro', 'tipo' => 'paquetes', 'nombre' => 'GASTRONOMICO'],
             ['codigo' => 'edu', 'tipo' => 'paquetes', 'nombre' => 'EDUCATIVO'],
             
-            //tipos de proveedores
             ['codigo' => 'provturi', 'tipo' => 'proveedores', 'nombre' => 'SERVICIOS TURISTICOS'],
-
+            
             //tipos de vehiculos
             ['codigo' => 'autbu', 'tipo' => 'vehiculos', 'nombre' => 'AUTOBUS'],
             ['codigo' => 'cami', 'tipo' => 'vehiculos', 'nombre' => 'CAMION'],

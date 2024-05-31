@@ -65,10 +65,11 @@
                                                     id="SI"
                                                     value="ACEPTADO"
                                                     name="reembolsoSi"
+                                                    required
                                                 />
                                                 <label class="form-check-label" for="reembolsoSi">Si, Acepto</label>
                                             </div>
-                                            <div class="form-check form-check-inline">
+                                           {{-- <div class="form-check form-check-inline">
                                                 <input
                                                     class="form-check-input"
                                                     type="checkbox"
@@ -77,7 +78,7 @@
                                                     name="reembolsoNo"
                                                 />
                                                 <label class="form-check-label" for="reembolsoNo">No estoy de acuerdo</label>
-                                            </div>
+                                            </div>--}}
                                              
 
                                             {{-- Mostrar los inputs segun el valor de edades --}}

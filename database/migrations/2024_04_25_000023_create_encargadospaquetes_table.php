@@ -16,11 +16,9 @@ return new class extends Migration
             $table->id('IdEncargadosPaquetes');
             $table->date('Fecha');
             $table->foreignId('id_paquete_turistico')->constrained('paquetes_turisticos');
-
-   
+ 
             $table->foreignId('id_empleado')->constrained('empleados');
-
-       
+ 
             $table->timestamps();
  
         });

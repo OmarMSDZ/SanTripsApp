@@ -34,10 +34,10 @@ class ReservasRealizadasVistaController extends Controller
         r.EstadoReservacion,
         dr.id_paquete_turistico,
         dr.fk_IdReservacion
-        FROM reservacion AS r INNER JOIN Detalle_reserva AS dr
+        FROM reservacion AS r INNER JOIN detalle_reserva AS dr
                ON r.IdReservacion=dr.fk_IdReservacion 
         INNER JOIN paquetes_turisticos AS p ON 
-              p.id=dr.Id_paquete_turistico INNER JOIN Metodo_pago AS mp ON 
+              p.id=dr.Id_paquete_turistico INNER JOIN metodo_pago AS mp ON 
         mp.IdMetodopago=r.fk_IdMetodopago  
         WHERE r.fk_IdUsuario= $idusuario AND 
         (r.EstadoReservacion = 'ACTIVA' 

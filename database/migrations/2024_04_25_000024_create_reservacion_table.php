@@ -22,8 +22,9 @@ return new class extends Migration
             //esto porque la reservacion se va a crear primero que el pago
             $table->string('EstadoReservacion')->default('PAGO PENDIENTE');
             
-          
-            $table->foreignId('fk_IdMetodopago')->constrained('metodo_pago', 'IdMetodopago');
+            // $table->unsignedBigInteger('fk_IdMetodopago');
+            // $table->unsignedBigInteger('fk_IdUsuario');
+            $table->foreignId('fk_IdMetodopago')->constrained('metodo_pago', 'IdMetodooago');
             $table->foreignId('fk_IdUsuario')->constrained('users');
             
             //fecha de expiracion de la reserva (se le dara una hora o 2)

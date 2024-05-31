@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('id_paquetes_turistico')->constrained('paquetes_turisticos');
             $table->foreignId('id_destino')->constrained('destinos');
 
-          
+    
             $table->timestamps();
 
  

@@ -18,10 +18,14 @@ return new class extends Migration
             $table->foreignId('id_empleado')->constrained('empleados');
             $table->foreignId('fk_IdVehiculo')->constrained('vehiculo_transporte', 'IdVehiculo');
             
-            
+    
             $table->timestamps();
 
-     
+        
+            $table->index(["fk_IdVehiculo"], 'fk_IdVehiculo');
+
+
+   
         });
     }
 

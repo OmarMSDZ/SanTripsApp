@@ -95,7 +95,7 @@ class ReservacionController extends Controller
              // Buscar id del encargado del paquete
      // Buscar id del encargado del paquete
      $encargado = DB::table('reservacion as r')
-     ->select('e.id as id')
+     ->select('e.id as idemp')
      ->join('detalle_reserva as dr', 'r.IdReservacion', '=', 'dr.fk_IdReservacion')
      ->join('paquetes_turisticos as p', 'dr.id_paquete_turistico', '=', 'p.id')
      ->join('encargados_paquetes as ep', 'p.id', '=', 'ep.id_paquete_turistico')
@@ -136,15 +136,14 @@ class ReservacionController extends Controller
  // Crear el ticket electrónico luego de pagar
  
  Ticket_electronico::create([
-     'Fecha' => $fechaticket,
-     'Codigo' => $codigoTicket,
-     'Valido_hasta' => $fechareserva,
-     'Punto_encuentro' => $puntoEncuentro->puntoencuentro,
-     'fk_IdReservacion' => $idreservacion,
-     'fk_IdEmpleado' => $encargado->id,
-     
-     'fk_IdUsuario' => $userId,
- ]);
+    'Fecha' => $fechaticket,
+    'Codigo' => $codigoTicket,
+    'Valido_hasta' => $fechareserva,
+    'Punto_encuentro' => $puntoEncuentro->puntoencuentro,
+    'fk_IdReservacion' => $idreservacion,
+    'id_empleado' => $encargado->idemp,
+    'fk_IdUsuario' => $userId,
+]);
 
 //  Crear la factura de la reserva a la hora de pagar
  $descripcionFactura= DB::table('reservacion as r')

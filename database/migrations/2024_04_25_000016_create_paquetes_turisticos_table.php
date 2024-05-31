@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('Descripcion');
             $table->float('Costo');
             $table->integer('Num_personas');
-            $table->string('Edades', 25);
+            $table->string('Edades', 15);
             $table->string('Idiomas', 50);
             $table->string('Alojamiento', 50)->nullable()->default(null);
             $table->integer('Tiempo_estimado');

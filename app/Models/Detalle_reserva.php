@@ -11,7 +11,7 @@ class Detalle_reserva extends Model
 
     protected $fillable = [
         'IdDetalleReserva', 
-        // 'cantidad',
+         
         'id_paquete_turistico',
         'fk_IdReservacion'
         

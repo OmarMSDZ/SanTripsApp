@@ -80,7 +80,7 @@ class ticketElectronico extends Mailable
                 'e.Telefono AS telefonoempleado',
                 'e.Email AS emailempleado'
             )
-            ->join('empleados as e', 'e.id', '=', 't.fk_IdEmpleado')
+            ->join('empleados as e', 'e.id', '=', 't.id_empleado')
             ->where('t.fk_IdReservacion', '=', $idreserva)
             ->where('t.fk_idusuario', '=', $idusuario)
             ->first();
