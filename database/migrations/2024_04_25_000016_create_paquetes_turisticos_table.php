@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('Descripcion');
             $table->float('Costo');
             $table->integer('Num_personas');
-            $table->string('Edades', 15);
+            $table->string('Edades', 25);
             $table->string('Idiomas', 50);
             $table->string('Alojamiento', 50)->nullable()->default(null);
             $table->integer('Tiempo_estimado');
@@ -28,9 +28,9 @@ return new class extends Migration
             $table->text('PuntoEncuentro')->nullable();
             
             
-            $table->string('imagen1', 255)->nullable();
-            $table->string('imagen2', 255)->nullable();
-            $table->string('imagen3', 255)->nullable();
+            $table->binary('imagen1')->nullable();
+            $table->binary('imagen2')->nullable();
+            $table->binary('imagen3')->nullable();
             
             $table->string('Estado', 25)->default('ACTIVO');
             

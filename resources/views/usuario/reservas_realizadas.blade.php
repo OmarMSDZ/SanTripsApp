@@ -18,27 +18,7 @@
         <div class="container mt-15">
             <h1>Mis Reservas</h1>
             <hr>
-{{-- 
-        <h3>Mostrar por Estado</h3>
-        <select name="estado" id="" class="form-select">
-            <option value="ACTIVA">Activas</option>
-            <option value="EN PROCESO">En Proceso</option>
-            <option value="CANCELADA">Canceladas</option>
-            <option value="COMPLETADA">Completada</option>
-        </select> --}}
-        {{-- <hr> --}}
-        <!-- Sección de perfil del usuario -->
 
-
-        {{-- Esto se debe de hacer con el id del usuario que inicie sesion --}}
-        {{-- @php
-             
-        //     $idusuario = Auth::user()->id;
-
-        //    $usuarios = DB::select("SELECT id, name, email FROM users WHERE id=$idusuario");
-           
-        
-        @endphp --}}
         @foreach ($usuarios as $usuario)
             
         

@@ -41,8 +41,8 @@
  
                     {{-- <img src="{{asset('img/logosantri.jpeg')}}" alt="" class="card-img-top"> --}}
 
-                    {{-- imagen del paquete, muestra la primera imagen--}}
-                    <img src="{{ $paquete->imagen1 ? asset('storage/' . $paquete->imagen1) : asset('img/logosantri.jpeg') }}" alt="" class="card-img-top" style="width:21em; height:21em;">
+                    {{-- imagen del paquete, muestra la primera imagen      OJO: DESDE LA BD!--}}
+                    <img src="data:image/jpeg;base64,{{ $paquete->imagen1 }}" alt="" class="card-img-top" style="width:21em; height:21em;">
 
                     <hr>
                     <h3 class="card-title">{{$paquete->nombre}}</h3>

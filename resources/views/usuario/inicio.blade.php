@@ -255,11 +255,11 @@
                         <li>
 
                             <div class="package-card" data-aos="fade-up" data-aos-duration="1000">
-                                <figure class="card-banner">
+                                <figure class="card-banner" style=" padding-bottom:0; margin-bottom:0;">
 
-                                    <img src="{{ $paquete->imagen1 ? asset('storage/' . $paquete->imagen1) : asset('img/logosantri.jpeg') }}"
-                                        alt="" style="width: 20em; height: 15em;">
-
+                                    {{-- <img src="{{route('paquetes.image1', $paquete->idpaq) }}"
+                                        alt="" style="width: 20em; height: 20em;"> --}}
+                                    <img src="data:image/jpeg;base64,{{ $paquete->imagen1 }}" alt="" style="width: 20em; height: 20em;">
                                 </figure>
 
                                 <div class="card-content">

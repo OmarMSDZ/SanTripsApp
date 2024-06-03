@@ -24,7 +24,7 @@ return new class extends Migration
             
             // $table->unsignedBigInteger('fk_IdMetodopago');
             // $table->unsignedBigInteger('fk_IdUsuario');
-            $table->foreignId('fk_IdMetodopago')->constrained('metodo_pago', 'IdMetodooago');
+            $table->foreignId('fk_IdMetodopago')->constrained('metodo_pago', 'IdMetodopago');
             $table->foreignId('fk_IdUsuario')->constrained('users');
             
             //fecha de expiracion de la reserva (se le dara una hora o 2)

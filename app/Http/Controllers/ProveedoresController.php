@@ -53,14 +53,14 @@ class ProveedoresController extends Controller
      public function store(Request $request) {
 
         $return = new stdClass();
-        $return->code = 200;
+        $return->code = 201;
         $return->message = "Se ha guardado de forma correcta";
 
         try {
 
             // return $request;
            //ID DEL USUARIO LOGUEADO
-           $usuario_id = Auth::user()->id;
+           $usuario_id = 1; //Auth::user()->id;
 
             $proveedor = new Proveedor();
 
@@ -79,9 +79,11 @@ class ProveedoresController extends Controller
 
         } catch (\Throwable $th) {
             // throw $th->getMessage();
+            echo $th->getMessage();
             $return->message = $th->getMessage();
             $return->code = 500;
         }
+        
         return response()->json($return, $return->code);
     }
 

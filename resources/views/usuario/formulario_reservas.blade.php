@@ -268,63 +268,6 @@ WHERE
     </div>
     <!-- Jumbotron -->
 </section>
-<!-- Section: Design Block -->
-
-
-<!-- FORMULARIO DE PAGO -->
-<!-- 
-{{-- 
-<form class="formulario" action="procesar_pago_paypal.php" method="POST">
-    <h2>Formulario de Pago PayPal</h2>
-    <div class="form-group">
-        <label for="nombre">Nombre Completo:</label>
-        <input type="text" id="nombre" name="nombre" required>
-        <label for="correo">Correo Electrónico:</label>
-        <input type="email" id="correo" name="correo" required>
-        <label for="telefono">Teléfono:</label>
-        <input type="tel" id="telefono" name="telefono">
-        <label for="direccion">Dirección:</label>
-        <input type="text" id="direccion" name="direccion">
-        <label for="ciudad">Ciudad:</label>
-        <input type="text" id="ciudad" name="ciudad">
-        <label for="codigo_postal">Código Postal:</label>
-        <input type="text" id="codigo_postal" name="codigo_postal">
-        <label for="pais">País:</label>
-        <select id="pais" name="pais" required>
-            <option value="">Seleccionar país</option>
-            <option value="US">Estados Unidos</option>
-            <option value="CA">Canadá</option>
-            <option value="MX">México</option>
-            <!-- Agrega más opciones según tus necesidades -->
-        </select>
-        <label for="monto">Monto a Pagar:</label>
-        <input type="number" id="monto" name="monto" min="0.01" step="0.01" required>
-        <label for="descripcion">Descripción del Pago:</label>
-        <textarea id="descripcion" name="descripcion" rows="4"></textarea>
-        <input type="submit" value="Pagar con PayPal">
-    </div>
-</form> --}} -->
-
-
-
-
-<!-- <script>
-    // Obtener el textarea
-    var textarea = document.getElementById('otros_datos');
-
-    // Remover el texto de introducción cuando se hace clic en el textarea
-    textarea.addEventListener('focus', function() {
-        if (textarea.value === 'Introduzca aquí otros datos de interés.') {
-            textarea.value = '';
-        }
-    });
-
-    // Restaurar el texto de introducción si el textarea está vacío al perder el foco
-    textarea.addEventListener('blur', function() {
-        if (textarea.value === '') {
-            textarea.value = 'Introduzca aquí otros datos de interés.';
-        }
-    });
-</script> -->
+ 
 
 <x-footerusuario></x-footerusuario>

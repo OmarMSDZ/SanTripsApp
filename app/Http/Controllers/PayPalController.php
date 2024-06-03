@@ -112,17 +112,7 @@ class PayPalController extends Controller
         return redirect()->route('inicio')->with('error', 'Has cancelado tu transacción.');
     }
 
-    // public function captureTransaction(Request $request)
-    // {
-    //     $paypal = new PayPalClient();
-    //     $paypal->setApiCredentials(config('paypal'));
-    //     $token = $paypal->getAccessToken();
-    //     $paypal->setAccessToken($token);
-
-    //     $result = $paypal->capturePaymentOrder($request->token);
-
-    //     dd($result);
-    // }
+ 
 
     private function getAccessToken() {
         $headers = [

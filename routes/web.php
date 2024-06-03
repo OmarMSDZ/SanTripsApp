@@ -43,16 +43,19 @@ use App\Http\Controllers\VehiculosPaquetesController;
 use App\Http\Controllers\VehiculoTransporteController;
 use App\Http\Controllers\UserIncidenteController;
 use App\Http\Controllers\AdminIncidentesController;
-
+use App\Http\Middleware\AdminMiddleware;
 use App\Mail\FacturaMail;
 use App\Mail\IncidenteMail;
 use App\Mail\CancelacionMail;
 use Illuminate\Support\Facades\Route;
 
+ 
 
 use App\Mail\pruebacorreos;
 use App\Mail\ticketElectronico;
+use App\Models\Paquetes_turisticos;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 //  Route::get('/welcome', function () {
 //      return view('welcome');
@@ -66,9 +69,9 @@ use Illuminate\Support\Facades\Mail;
     dump($response);
 
 });
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -100,7 +103,8 @@ Route::get('/admin/provincias', function () {
 
 // RUTAS DE ADMIN
 Route::middleware('auth')->prefix('admin')->group( function () {
- 
+
+  
     Route::controller(AdminMenuController::class)->prefix('admin/dashboard')->group( function () {
         Route::get('/', 'index')->name('admin.index'); 
     });
@@ -149,6 +153,24 @@ Route::middleware('auth')->prefix('admin')->group( function () {
 
     });
 
+      Route::controller(ProveedoresController::class)->prefix('proveedores')->group( function () {
+
+    //     //ir a la vista principal
+        Route::get('/', 'index')->name('proveedores.index');
+    //     //obtener datos completos
+         Route::get('/data', 'getProveedores')->name('proveedores.getProveedores');
+    //     //obtener un dato especifico
+        Route::get('/data/{id_proveedor}', 'getProveedor')->name('proveedores.getProveedor');
+    //     //guardar
+       Route::post('/', 'store')->name('proveedores.store'); 
+    //     //actualizar
+        Route::post('/update/{id_proveedor}', 'update')->name('proveedores.update');
+    //     //cambiar estado 
+        Route::post('/cambiar_estado/{id_proveedor}', 'cambiarProveedor')->name('proveedores.cambiar_estado');
+    //     //eliminar registros
+         Route::delete('/destroy/{id_proveedor}', 'destroy')->name('proveedores.destroy');
+    
+      });
 
            //ruta de encargados paquetes
            Route::controller(EncargadosPaquetesController::class)->prefix('encargadopaq')->group( function () {
@@ -206,24 +228,25 @@ Route::middleware('auth')->prefix('admin')->group( function () {
 
     });
 
-    Route::controller(ProveedoresController::class)->prefix('proveedores')->group( function () {
+    //IMAGENES DE LOS PAQUETES
 
-        //ir a la vista principal
-        Route::get('/', 'index')->name('proveedores.index');
-        //obtener datos completos
-        Route::get('/data', 'getProveedores')->name('proveedores.getProveedores');
-        //obtener un dato especifico
-        Route::get('/data/{id_proveedor}', 'getProveedor')->name('proveedores.getProveedor');
-        //guardar
-        Route::post('/', 'store')->name('proveedores.store'); 
-        //actualizar
-        Route::post('/update/{id_proveedor}', 'update')->name('proveedores.update');
-        //cambiar estado 
-        Route::post('/cambiar_estado/{id_proveedor}', 'cambiarProveedor')->name('proveedores.cambiar_estado');
-        //eliminar registros
-        Route::delete('/destroy/{id_proveedor}', 'destroy')->name('proveedores.destroy');
+    Route::get('paquetes/{id}/image1', function($id) {
+        $paquete = Paquetes_turisticos::findOrFail($id);
+        return response()->make($paquete->imagen1, 200, ['Content-Type' => 'image/jpeg¿¿']);
+    })->name('paquetes.image1');
+    
+    Route::get('paquetes/{id}/image2', function($id) {
+        $paquete = Paquetes_turisticos::findOrFail($id);
+        return response()->make($paquete->imagen2, 200, ['Content-Type' => 'image/jpeg']);
+    })->name('paquetes.image2');
+    
+    Route::get('paquetes/{id}/image3', function($id) {
+        $paquete = Paquetes_turisticos::findOrFail($id);
+        return response()->make($paquete->imagen3, 200, ['Content-Type' => 'image/jpeg']);
+    })->name('paquetes.image3');
 
-    });
+
+
 
     Route::controller(UsuariosController::class)->prefix('usuarios')->group( function () {
 
@@ -331,6 +354,9 @@ Route::controller(VehiculoEmpleadoController::class)->prefix('asignarvehiculoemp
 
 });
 
+ 
+
+
 });
   
 
@@ -346,7 +372,7 @@ Route::controller(UserincidenteController::class)->middleware('auth')->prefix('U
 Route::get('/', [InicioController::class,'index'])->name('inicio');
 
 // Rutas para navegar interfaces usuario , la de inicio es la primera que sale al abrir la app 
-Route::get('/', [InicioController::class,'index'])->name('inicio');
+// Route::get('/', [InicioController::class,'index'])->name('inicio');
 
 
 Route::get('/incidentes', function () {
@@ -357,7 +383,8 @@ Route::get('/incidentes', function () {
 Route::get('usuario/paquetes', [PaqueteVistaController::class,'index'])->name('paquetes_turisticos');
 
 //  Esta de reservas realizadas sale solo al hacer login 
-Route::get('/reservas_realizadas', [ReservasRealizadasVistaController::class,'index'])->middleware(['auth', 'verified'])->name('reservas_realizadas');
+ Route::get('/reservas_realizadas', [ReservasRealizadasVistaController::class,'index'])->middleware(['auth', 'verified'])->name('reservas_realizadas');
+ 
 
 // Rutas para formulario de reserva, solo se ven con el usuario logueado
 Route::get('/formulario-reserva/{id}', [ReservaController::class, 'mostrarFormulario'])->middleware(['auth', 'verified'])->name('formulario_reserva');
@@ -414,6 +441,26 @@ Route::prefix('/v1')->group(function () {
         Route::get('/city/{country?}/{state?}', 'getCities')->name('api.cities');
     });
 });
+
+
+//  Route::controller(ProveedoresController::class)->prefix('proveedores')->group( function () {
+
+// //     //ir a la vista principal
+//      Route::get('/', 'index')->name('proveedores.index');
+// //     //obtener datos completos
+//      Route::get('/data', 'getProveedores')->name('proveedores.getProveedores');
+// //     //obtener un dato especifico
+//      Route::get('/data/{id_proveedor}', 'getProveedor')->name('proveedores.getProveedor');
+// //     //guardar
+//      Route::post('/', 'store')->name('proveedores.store'); 
+// //     //actualizar
+//      Route::post('/update/{id_proveedor}', 'update')->name('proveedores.update');
+// //     //cambiar estado 
+//      Route::post('/cambiar_estado/{id_proveedor}', 'cambiarProveedor')->name('proveedores.cambiar_estado');
+// //     //eliminar registros
+//      Route::delete('/destroy/{id_proveedor}', 'destroy')->name('proveedores.destroy');
+
+//  });
 
 
 

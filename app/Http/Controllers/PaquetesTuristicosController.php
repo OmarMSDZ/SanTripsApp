@@ -79,17 +79,44 @@ class PaquetesTuristicosController extends Controller
             $paquete->id_categoria_paquete = isset($request->categoriapaq) ? $request->categoriapaq : null;
             $paquete->fk_IdOferta = isset($request->oferta) ? $request->oferta : null;
 
-            if ($request->hasFile('imagen1')) {
-                $paquete->imagen1 = $request->file('imagen1')->store('paquetes_imagenes', 'public');
-            }
-            if ($request->hasFile('imagen2')) {
-                $paquete->imagen2 = $request->file('imagen2')->store('paquetes_imagenes', 'public');
-            }
-            if ($request->hasFile('imagen3')) {
-                $paquete->imagen3 = $request->file('imagen3')->store('paquetes_imagenes', 'public');
-            }
+            // if ($request->hasFile('imagen1')) {
+            //     $paquete->imagen1 = $request->file('imagen1')->store('paquetes_imagenes', 'public');
+            // }
+            // if ($request->hasFile('imagen2')) {
+            //     $paquete->imagen2 = $request->file('imagen2')->store('paquetes_imagenes', 'public');
+            // }
+            // if ($request->hasFile('imagen3')) {
+            //     $paquete->imagen3 = $request->file('imagen3')->store('paquetes_imagenes', 'public');
+            // }
+
+            //para guardar las imagenes directamente en la BD
+            // if ($request->hasFile('imagen1')) {
+            //     $paquete['imagen1'] = file_get_contents($request->file('imagen1')->getRealPath());
+            // }
+            // if ($request->hasFile('imagen2')) {
+            //     $paquete['imagen2'] = file_get_contents($request->file('imagen2')->getRealPath());
+            // }
+            // if ($request->hasFile('imagen3')) {
+            //     $paquete['imagen3'] = file_get_contents($request->file('imagen3')->getRealPath());
+            // }
+
+                 // Procesar las imágenes y convertirlas a base64
+        if ($request->hasFile('imagen1')) {
+            $paquete['imagen1'] = base64_encode(file_get_contents($request->file('imagen1')->getRealPath()));
+        }
+
+        if ($request->hasFile('imagen2')) {
+            $paquete['imagen2'] = base64_encode(file_get_contents($request->file('imagen2')->getRealPath()));
+        }
+        if ($request->hasFile('imagen3')) {
+            $paquete['imagen3'] = base64_encode(file_get_contents($request->file('imagen3')->getRealPath()));
+        }
+
+
 
             $paquete->save();
+
+
         } catch (\Throwable $th) {
             $return->message = $th->getMessage();
             $return->code = 500;
@@ -148,24 +175,35 @@ class PaquetesTuristicosController extends Controller
             $paquete->id_categoria_paquete = isset($request->categoriapaq) ? $request->categoriapaq : null;
             $paquete->fk_IdOferta = isset($request->oferta) ? $request->oferta : null;
 
+            // if ($request->hasFile('imagen1')) {
+            //     // Eliminar la imagen anterior si existe
+            //     if ($paquete->imagen1) {
+            //         Storage::disk('public')->delete($paquete->imagen1);
+            //     }
+            //     $paquete->imagen1 = $request->file('imagen1')->store('paquetes_imagenes', 'public');
+            // }
+            // if ($request->hasFile('imagen2')) {
+            //     if ($paquete->imagen2) {
+            //         Storage::disk('public')->delete($paquete->imagen2);
+            //     }
+            //     $paquete->imagen2 = $request->file('imagen2')->store('paquetes_imagenes', 'public');
+            // }
+            // if ($request->hasFile('imagen3')) {
+            //     if ($paquete->imagen3) {
+            //         Storage::disk('public')->delete($paquete->imagen3);
+            //     }
+            //     $paquete->imagen3 = $request->file('imagen3')->store('paquetes_imagenes', 'public');
+            // }
+
             if ($request->hasFile('imagen1')) {
-                // Eliminar la imagen anterior si existe
-                if ($paquete->imagen1) {
-                    Storage::disk('public')->delete($paquete->imagen1);
-                }
-                $paquete->imagen1 = $request->file('imagen1')->store('paquetes_imagenes', 'public');
+                $paquete['imagen1'] = base64_encode(file_get_contents($request->file('imagen1')->getRealPath()));
             }
+    
             if ($request->hasFile('imagen2')) {
-                if ($paquete->imagen2) {
-                    Storage::disk('public')->delete($paquete->imagen2);
-                }
-                $paquete->imagen2 = $request->file('imagen2')->store('paquetes_imagenes', 'public');
+                $paquete['imagen2'] = base64_encode(file_get_contents($request->file('imagen2')->getRealPath()));
             }
             if ($request->hasFile('imagen3')) {
-                if ($paquete->imagen3) {
-                    Storage::disk('public')->delete($paquete->imagen3);
-                }
-                $paquete->imagen3 = $request->file('imagen3')->store('paquetes_imagenes', 'public');
+                $paquete['imagen3'] = base64_encode(file_get_contents($request->file('imagen3')->getRealPath()));
             }
 
             $paquete->save();
