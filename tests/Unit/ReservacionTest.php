@@ -12,11 +12,11 @@ class ReservacionTest extends TestCase
 {
   
 
-    public function test_store_reservation_successfully()
+    public function test_registro_de_reserva()
     {
 
-             // PROBAR CREACION DE RESERVA  
-             $request = new Request([
+            // PROBAR CREACION DE RESERVA  
+            $request = new Request([
             'paquete_id' => 1,
             'usuario_id' => 1,
             'MetodoPago' => 1,
